@@ -18,3 +18,4 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.genruntimeconfig.cache
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ref\ManageSpacesOfInstitute.dll
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.DetailForm.resources
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.sourcelink.json
