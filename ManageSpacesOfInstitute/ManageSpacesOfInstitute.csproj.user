@@ -7,7 +7,7 @@
     <Compile Update="DetailInfoRoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

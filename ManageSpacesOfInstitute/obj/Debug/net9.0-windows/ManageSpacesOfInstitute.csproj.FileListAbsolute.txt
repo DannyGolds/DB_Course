@@ -5,7 +5,6 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows\ManageSpacesOfInstitute.pdb
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows\FirebirdSql.Data.FirebirdClient.dll
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.csproj.AssemblyReference.cache
-C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.Form1.resources
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.csproj.GenerateResource.cache
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.AssemblyInfoInputs.cache
@@ -20,3 +19,4 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.DetailForm.resources
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.sourcelink.json
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.DetailInfoRoom.resources
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows\ManageSpacesOfInstitute.MainFrame.resources
