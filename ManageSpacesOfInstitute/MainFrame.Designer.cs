@@ -35,18 +35,10 @@
             groupBox1 = new GroupBox();
             gridview_foundroomsinfo = new DataGridView();
             gr_filtering = new GroupBox();
-            button1 = new Button();
-            lbl_chlength = new Label();
-            lbl_chwidth = new Label();
-            lbl_chnummberroom = new Label();
             lbl_chtyperoom = new Label();
             label2 = new Label();
             lbl_cheq = new Label();
             lbl_chbuild = new Label();
-            fpl_chlength = new ComboBox();
-            fpl_chwidth = new ComboBox();
-            btn_applyfilter = new Button();
-            fpl_chnumberroom = new ComboBox();
             fpl_chbuild = new ComboBox();
             label3 = new Label();
             fpl_chtyperoom = new ComboBox();
@@ -66,7 +58,7 @@
             // 
             // btn_auth
             // 
-            btn_auth.Location = new Point(666, 534);
+            btn_auth.Location = new Point(666, 414);
             btn_auth.Name = "btn_auth";
             btn_auth.Size = new Size(126, 26);
             btn_auth.TabIndex = 3;
@@ -77,7 +69,7 @@
             // 
             label_username.AutoSize = true;
             label_username.Font = new Font("Comic Sans MS", 12F);
-            label_username.Location = new Point(4, 534);
+            label_username.Location = new Point(4, 417);
             label_username.Name = "label_username";
             label_username.Size = new Size(53, 23);
             label_username.TabIndex = 4;
@@ -88,7 +80,7 @@
             page_struct.Location = new Point(4, 26);
             page_struct.Name = "page_struct";
             page_struct.Padding = new Padding(3);
-            page_struct.Size = new Size(725, 501);
+            page_struct.Size = new Size(784, 375);
             page_struct.TabIndex = 2;
             page_struct.Text = "Структура помещений";
             page_struct.UseVisualStyleBackColor = true;
@@ -102,7 +94,7 @@
             tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(784, 501);
+            tabPage2.Size = new Size(784, 375);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Поиск помещений";
             tabPage2.UseVisualStyleBackColor = true;
@@ -113,36 +105,30 @@
             groupBox1.Controls.Add(gridview_foundroomsinfo);
             groupBox1.Location = new Point(195, 39);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(583, 456);
+            groupBox1.Size = new Size(583, 331);
             groupBox1.TabIndex = 21;
             groupBox1.TabStop = false;
             groupBox1.Text = "Сведения о найденных помещениях";
             // 
             // gridview_foundroomsinfo
             // 
+            gridview_foundroomsinfo.AllowUserToAddRows = false;
             gridview_foundroomsinfo.AllowUserToDeleteRows = false;
             gridview_foundroomsinfo.AllowUserToResizeColumns = false;
+            gridview_foundroomsinfo.AllowUserToResizeRows = false;
             gridview_foundroomsinfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridview_foundroomsinfo.Location = new Point(6, 22);
             gridview_foundroomsinfo.Name = "gridview_foundroomsinfo";
-            gridview_foundroomsinfo.Size = new Size(571, 428);
+            gridview_foundroomsinfo.Size = new Size(571, 299);
             gridview_foundroomsinfo.TabIndex = 20;
             gridview_foundroomsinfo.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // gr_filtering
             // 
-            gr_filtering.Controls.Add(button1);
-            gr_filtering.Controls.Add(lbl_chlength);
-            gr_filtering.Controls.Add(lbl_chwidth);
-            gr_filtering.Controls.Add(lbl_chnummberroom);
             gr_filtering.Controls.Add(lbl_chtyperoom);
             gr_filtering.Controls.Add(label2);
             gr_filtering.Controls.Add(lbl_cheq);
             gr_filtering.Controls.Add(lbl_chbuild);
-            gr_filtering.Controls.Add(fpl_chlength);
-            gr_filtering.Controls.Add(fpl_chwidth);
-            gr_filtering.Controls.Add(btn_applyfilter);
-            gr_filtering.Controls.Add(fpl_chnumberroom);
             gr_filtering.Controls.Add(fpl_chbuild);
             gr_filtering.Controls.Add(label3);
             gr_filtering.Controls.Add(fpl_chtyperoom);
@@ -150,48 +136,11 @@
             gr_filtering.Controls.Add(fpl_chtypebuild);
             gr_filtering.Location = new Point(8, 39);
             gr_filtering.Name = "gr_filtering";
-            gr_filtering.Size = new Size(181, 456);
+            gr_filtering.Size = new Size(181, 234);
             gr_filtering.TabIndex = 19;
             gr_filtering.TabStop = false;
             gr_filtering.Text = "Фильтрация";
             gr_filtering.UseCompatibleTextRendering = true;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Comic Sans MS", 12F);
-            button1.Location = new Point(10, 419);
-            button1.Name = "button1";
-            button1.Size = new Size(160, 29);
-            button1.TabIndex = 30;
-            button1.Text = "Сбросить";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // lbl_chlength
-            // 
-            lbl_chlength.AutoSize = true;
-            lbl_chlength.Location = new Point(5, 334);
-            lbl_chlength.Name = "lbl_chlength";
-            lbl_chlength.Size = new Size(103, 17);
-            lbl_chlength.TabIndex = 29;
-            lbl_chlength.Text = "Выберите длину";
-            // 
-            // lbl_chwidth
-            // 
-            lbl_chwidth.AutoSize = true;
-            lbl_chwidth.Location = new Point(6, 282);
-            lbl_chwidth.Name = "lbl_chwidth";
-            lbl_chwidth.Size = new Size(111, 17);
-            lbl_chwidth.TabIndex = 28;
-            lbl_chwidth.Text = "Выберите ширину";
-            // 
-            // lbl_chnummberroom
-            // 
-            lbl_chnummberroom.AutoSize = true;
-            lbl_chnummberroom.Location = new Point(7, 228);
-            lbl_chnummberroom.Name = "lbl_chnummberroom";
-            lbl_chnummberroom.Size = new Size(132, 17);
-            lbl_chnummberroom.TabIndex = 27;
-            lbl_chnummberroom.Text = "Выберите аудиторию";
             // 
             // lbl_chtyperoom
             // 
@@ -228,45 +177,6 @@
             lbl_chbuild.Size = new Size(106, 17);
             lbl_chbuild.TabIndex = 23;
             lbl_chbuild.Text = "Выберите корпус";
-            // 
-            // fpl_chlength
-            // 
-            fpl_chlength.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chlength.Location = new Point(10, 354);
-            fpl_chlength.Name = "fpl_chlength";
-            fpl_chlength.Size = new Size(160, 25);
-            fpl_chlength.TabIndex = 22;
-            fpl_chlength.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
-            // 
-            // fpl_chwidth
-            // 
-            fpl_chwidth.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chwidth.Location = new Point(10, 304);
-            fpl_chwidth.Name = "fpl_chwidth";
-            fpl_chwidth.Size = new Size(160, 25);
-            fpl_chwidth.TabIndex = 21;
-            fpl_chwidth.SelectedIndexChanged += fpl_chwidth_SelectedIndexChanged;
-            // 
-            // btn_applyfilter
-            // 
-            btn_applyfilter.Font = new Font("Comic Sans MS", 12F);
-            btn_applyfilter.Location = new Point(10, 385);
-            btn_applyfilter.Name = "btn_applyfilter";
-            btn_applyfilter.Size = new Size(160, 29);
-            btn_applyfilter.TabIndex = 18;
-            btn_applyfilter.Text = "Применить";
-            btn_applyfilter.UseVisualStyleBackColor = true;
-            btn_applyfilter.Click += btn_applyfilter_Click;
-            // 
-            // fpl_chnumberroom
-            // 
-            fpl_chnumberroom.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chnumberroom.Enabled = false;
-            fpl_chnumberroom.Location = new Point(10, 251);
-            fpl_chnumberroom.Name = "fpl_chnumberroom";
-            fpl_chnumberroom.Size = new Size(160, 25);
-            fpl_chnumberroom.TabIndex = 17;
-            fpl_chnumberroom.SelectedIndexChanged += fpl_chnumberroom_SelectedIndexChanged;
             // 
             // fpl_chbuild
             // 
@@ -333,7 +243,7 @@
             tabs.Location = new Point(4, 3);
             tabs.Name = "tabs";
             tabs.SelectedIndex = 0;
-            tabs.Size = new Size(792, 531);
+            tabs.Size = new Size(792, 405);
             tabs.TabIndex = 2;
             // 
             // page_edit
@@ -342,7 +252,7 @@
             page_edit.Location = new Point(4, 26);
             page_edit.Name = "page_edit";
             page_edit.Padding = new Padding(3);
-            page_edit.Size = new Size(725, 501);
+            page_edit.Size = new Size(784, 375);
             page_edit.TabIndex = 3;
             page_edit.Text = "Редактирование";
             page_edit.UseVisualStyleBackColor = true;
@@ -362,7 +272,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 566);
+            ClientSize = new Size(800, 449);
             Controls.Add(label_username);
             Controls.Add(btn_auth);
             Controls.Add(tabs);
@@ -390,10 +300,6 @@
         private GroupBox groupBox1;
         private DataGridView gridview_foundroomsinfo;
         private GroupBox gr_filtering;
-        private ComboBox fpl_chlength;
-        private ComboBox fpl_chwidth;
-        private Button btn_applyfilter;
-        private ComboBox fpl_chnumberroom;
         private ComboBox fpl_chbuild;
         private Label label3;
         private ComboBox fpl_chtyperoom;
@@ -403,13 +309,9 @@
         private TabControl tabs;
         private TabPage page_edit;
         private Label label9;
-        private Label lbl_chwidth;
-        private Label lbl_chnummberroom;
         private Label lbl_chtyperoom;
         private Label label2;
         private Label lbl_cheq;
         private Label lbl_chbuild;
-        private Label lbl_chlength;
-        private Button button1;
     }
 }

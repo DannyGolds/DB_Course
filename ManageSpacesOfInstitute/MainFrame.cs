@@ -1,8 +1,6 @@
 using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,73 +17,153 @@ namespace ManageSpacesOfInstitute
         public MainFrame()
         {
             InitializeComponent();
+            gridview_foundroomsinfo.CellDoubleClick += dataGridView1_CellContentClick_1;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
+        public struct FilterCriteria
         {
-            await LoadDataToComboBoxAsync("NAME", "BUILDINGS", fpl_chbuild);
-            await LoadDataToComboBoxAsync("NAME", "EQUIPMENT", fpl_cheq);
-            await LoadDataToComboBoxAsync("TYPE", "BUILDINGS", fpl_chtypebuild);
-            await LoadDataToComboBoxAsync("TYPE", "ROOMS", fpl_chtyperoom);
-            await LoadDataToComboBoxAsync("NUMBER", "ROOMS", fpl_chnumberroom);
-            await LoadDataToComboBoxAsync("WIDTH", "ROOMS", fpl_chwidth);
-            await LoadDataToComboBoxAsync("LENGTH", "ROOMS", fpl_chlength);
-            await LoadDataToTableAsync();
+            public string BuildingName;
+            public string Equipment;
+            public string BuildingType;
+            public string RoomType;
+            public string RoomNumber;
+            public string RoomWidth;
+            public string RoomLength;
         }
 
-        private async Task LoadDataToComboBoxAsync(string selectable_col, string selectable_table, ComboBox fpl)
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            // Загружаем списки из таблиц (не процедур!)
+            await LoadDataToComboBoxFromTableAsync("NAME", "BUILDINGS", fpl_chbuild);
+            await LoadDataToComboBoxFromTableAsync("NAME", "EQUIPMENT", fpl_cheq);
+            await LoadDataToComboBoxFromTableAsync("TYPE", "BUILDINGS", fpl_chtypebuild);
+            await LoadDataToComboBoxFromTableAsync("TYPE", "ROOMS", fpl_chtyperoom);
+
+            // Загружаем основные данные из процедуры
+            await LoadDataToTableAsync();
+
+            // Подписка на изменения фильтров
+            fpl_chbuild.SelectedIndexChanged += (s, _) => filterData();
+            fpl_cheq.SelectedIndexChanged += (s, _) => filterData();
+            fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
+            fpl_chtyperoom.SelectedIndexChanged += (s, _) => filterData();
+        }
+
+        /// <summary>
+        /// Загружает данные из обычной таблицы (не процедуры) в ComboBox
+        /// </summary>
+        private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, ComboBox comboBox)
         {
             try
             {
                 await using var db = new DBOperations();
-                string sql = $"SELECT {selectable_col} FROM {selectable_table} ORDER BY {selectable_col}";
+                string sql = $"SELECT DISTINCT {columnName} FROM {tableName} ORDER BY {columnName}";
                 var dt = await db.GetDataTableAsync(sql);
 
                 var list = new List<string> { "Не выбрано" };
-                list.AddRange(dt.AsEnumerable().Select(r => r[selectable_col].ToString()));
+                list.AddRange(dt.AsEnumerable()
+                    .Select(r => r[columnName]?.ToString() ?? string.Empty)
+                    .Where(s => !string.IsNullOrEmpty(s)));
 
-                fpl.DataSource = list;
-                fpl.SelectedIndex = 0;
-
+                comboBox.DataSource = list;
+                comboBox.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Ошибка при загрузке корпусов:\r\n" + ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, $"Ошибка при загрузке данных из таблицы {tableName}:\r\n{ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Загружает основную таблицу из хранимой процедуры
+        /// </summary>
         private async Task LoadDataToTableAsync()
         {
             try
             {
                 await using var db = new DBOperations();
-                List<string> col_list = new List<string>
+                var col_list = new List<string>
                 {
+                    "ROOM_ID",
                     "ROOMNUMBER",
                     "BUILDINGNAME",
                     "ROOMTYPE",
                     "BUILDINGTYPE",
-                    "EQUIPMENTLIST",
+                    "EQUIPMENTLIST"
                 };
 
                 var dt = await db.CallProcedureAsync("GETROOMFULLINFO", col_list);
+
+                // Переименовываем столбцы для отображения
+                dt.Columns["ROOM_ID"].ColumnName = "ROOM_ID";
                 dt.Columns["ROOMNUMBER"].ColumnName = "Номер кабинета";
                 dt.Columns["BUILDINGNAME"].ColumnName = "Корпус";
                 dt.Columns["ROOMTYPE"].ColumnName = "Тип кабинета";
                 dt.Columns["BUILDINGTYPE"].ColumnName = "Тип корпуса";
                 dt.Columns["EQUIPMENTLIST"].ColumnName = "Оборудование";
-                gridview_foundroomsinfo.DataSource = dt;
-                gridview_foundroomsinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+                _originalDataTable = dt.Copy();
+
+                var dv = new DataView(_originalDataTable);
+                gridview_foundroomsinfo.DataSource = dv;
+
+                if (gridview_foundroomsinfo.Columns.Contains("ROOM_ID"))
+                    gridview_foundroomsinfo.Columns["ROOM_ID"].Visible = false;
+
+                gridview_foundroomsinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Ошибка при загрузке данных:\r\n" + ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }   
+                MessageBox.Show(this, $"Ошибка при загрузке данных:\r\n{ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void filterData()
+        {
+            bool anythingSelected =
+                fpl_chbuild.SelectedIndex > 0 ||
+                fpl_cheq.SelectedIndex > 0 ||
+                fpl_chtypebuild.SelectedIndex > 0 ||
+                fpl_chtyperoom.SelectedIndex > 0;
+
+            var dv = gridview_foundroomsinfo.DataSource as DataView;
+            if (dv == null) return;
+
+            if (!anythingSelected)
+            {
+                dv.RowFilter = string.Empty;
+                return;
+            }
+
+            var filters = new System.Text.StringBuilder();
+
+            if (fpl_chbuild.SelectedIndex > 0)
+                filters.Append($"[Корпус] = '{fpl_chbuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
+
+            if (fpl_cheq.SelectedIndex > 0)
+                filters.Append($"[Оборудование] LIKE '%{fpl_cheq.SelectedItem.ToString().Replace("'", "''")}%' AND ");
+
+            if (fpl_chtypebuild.SelectedIndex > 0)
+                filters.Append($"[Тип корпуса] = '{fpl_chtypebuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
+
+            if (fpl_chtyperoom.SelectedIndex > 0)
+                filters.Append($"[Тип кабинета] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
+
+            string filter = filters.ToString();
+            if (filter.EndsWith(" AND "))
+                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+
+            dv.RowFilter = filter;
+            gridview_foundroomsinfo.Refresh();
+        }
+
+        // ======================
+        // Обработчики событий (оставлены без изменений)
+        // ======================
 
         private void tabPage1_Click(object sender, EventArgs e) { }
         private void textBox2_TextChanged(object sender, EventArgs e) { }
@@ -103,24 +181,29 @@ namespace ManageSpacesOfInstitute
         private void label10_Click(object sender, EventArgs e) { }
         private void label6_Click(object sender, EventArgs e) { }
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e) { }
-
         private void tabPage2_Click(object sender, EventArgs e) { }
         private void pictureBox1_Click(object sender, EventArgs e) { }
-        private void fpl_chbuild_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void fpl_chbuild_SelectedIndexChanged(object sender, EventArgs e) { }
         private void fpl_chnumberroom_SelectedIndexChanged(object sender, EventArgs e) { }
         private void fpl_cheq_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void btn_applyfilter_Click(object sender, EventArgs e) { }
+        private void page_struct_Click(object sender, EventArgs e) { }
 
-        private void btn_applyfilter_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-        }
+            if (e.RowIndex < 0) return;
 
-        private void page_struct_Click(object sender, EventArgs e)
-        {
+            var row = gridview_foundroomsinfo.Rows[e.RowIndex];
+            var roomId = row.Cells["ROOM_ID"].Value;
 
+            if (roomId == null || roomId == DBNull.Value)
+            {
+                MessageBox.Show("Не удалось определить кабинет.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
+            detailsForm.ShowDialog(this);
         }
     }
 }

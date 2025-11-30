@@ -65,27 +65,38 @@ namespace ManageSpacesOfInstitute
         public async Task<DataTable> CallProcedureAsync(string procName, List<string> col_list, params FbParameter[]? parameters)
         {
             var allowed = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    "GETROOMFULLINFO",
-                    "GETDEPARTMENTINFO",
-                    "GETBUILDINGINFO"
-                };
-                if (!allowed.Contains(procName))
-                    throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");
+    {
+        "GETROOMFULLINFO",
+        "GETDEPARTMENTINFO",
+        "GETBUILDINGINFO"
+    };
+            if (!allowed.Contains(procName))
+                throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");
 
-                var sql = $"SELECT {string.Join(", ", col_list.ToArray())} FROM {procName}(" +
-                        (parameters != null && parameters.Length > 0
-                            ? string.Join(", ", parameters.Select(p => "@" + p.ParameterName))
-                            : "NULL") +
-                        ")";
+            string sql;
+            if (parameters != null && parameters.Length > 0)
+            {
+                var placeholders = string.Join(", ", parameters.Select(_ => "?"));
+                sql = $"SELECT {string.Join(", ", col_list)} FROM {procName}({placeholders})";
+            }
+            else
+            {
+                // НЕТ параметров → НЕТ скобок!
+                sql = $"SELECT {string.Join(", ", col_list)} FROM {procName}";
+            }
 
             var table = new DataTable();
             await using var cn = new FbConnection(_connectionString);
             await cn.OpenAsync();
 
             await using var cmd = new FbCommand(sql, cn);
-            if (parameters != null && parameters.Length > 0)
-                cmd.Parameters.AddRange(parameters);
+            if (parameters != null)
+            {
+                foreach (var p in parameters)
+                {
+                    cmd.Parameters.Add(p);
+                }
+            }
 
             await using var reader = await cmd.ExecuteReaderAsync();
             table.Load(reader);
