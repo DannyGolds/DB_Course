@@ -57,6 +57,35 @@ namespace ManageSpacesOfInstitute
             }
         }
 
+        private async Task LoadEquipmentDetailAsync (int _roomId)
+        {
+            await using var db = new DBOperations();
+
+            var dt = await db.CallProcedureAsync("GETEQUIPMENTIMGS", new List<string>
+            {
+                "EQUIPMENTID",
+                "EQUIPMENTNAME",
+                "EQUIPMENTIMAGE"
+            }, new FbParameter("ROOMID", _roomId));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var card = new EquipmentCard();
+                card.EquipmentName = $"{row["EQUIPMENTNAME"]}";
+
+                // Если нужно загрузить картинку:
+                if (row["EQUIPMENTIMAGE"] is byte[] imageBytes && imageBytes.Length > 0)
+                {
+                    using var ms = new MemoryStream(imageBytes);
+                    card.EquipmentImage = Image.FromStream(ms);
+                }
+
+                flpEq.Controls.Add(card);
+            }
+
+
+        }
+
         private async Task LoadRoomDetailsAsync()
         {
             try
@@ -75,8 +104,8 @@ namespace ManageSpacesOfInstitute
                 "WIDTH",
                 "LENGTH",
                 "BUILDINGIMAGE",
-                "EQUIPMENTIMAGE",
-                "EQUIPMENTLIST"
+                "BUILDINGADRESS",
+                "DepName"
                     },
                     new FbParameter("ROOM_ID", _roomId)
                 );
@@ -94,6 +123,8 @@ namespace ManageSpacesOfInstitute
                 lblRoomType.Text = $"{row["ROOMTYPE"]}";
                 lblWidth.Text = $"{row["LENGTH"]}м x {row["WIDTH"]}м";
                 lblBuildingType.Text = $"{row["BUILDINGTYPE"]}";
+                lblDep.Text = $"{row["DepName"]}";
+                lblAdress.Text = $"{row["BUILDINGADRESS"]}";
 
                 decimal width = Convert.ToDecimal(row["WIDTH"] ?? 0);
                 decimal length = Convert.ToDecimal(row["LENGTH"] ?? 0);
@@ -101,11 +132,9 @@ namespace ManageSpacesOfInstitute
 
                 Text = $"Информация о кабинете {row["ROOMNUMBER"]} ({row["BUILDINGNAME"]})";
                 LoadImageFromBlob(BuildingImage, row["BUILDINGIMAGE"]);
+                _ = LoadEquipmentDetailAsync(_roomId);
 
-                var card = new EquipmentCard();
-                card.EquipmentName = $"{row["EQUIPMENTLIST"]}";
-
-                flpEq.Controls.Add(card);
+               
             }
             catch (Exception ex)
             {
@@ -139,6 +168,11 @@ namespace ManageSpacesOfInstitute
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }

@@ -13,6 +13,7 @@ namespace ManageSpacesOfInstitute
         /// Сохраняем исходную таблицу для фильтрации
         /// </summary>
         private DataTable _originalDataTable;
+        bool isAuthorized = true;
 
         public MainFrame()
         {
@@ -20,6 +21,22 @@ namespace ManageSpacesOfInstitute
             gridview_foundroomsinfo.CellDoubleClick += dataGridView1_CellContentClick_1;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            gridview_foundroomsinfo.ReadOnly = true;
+
+            if (!isAuthorized)
+            {
+                // Удаляем вкладку из TabControl
+                tabs.TabPages.Remove(page_edit);
+            }
+            else
+            {
+                // Добавляем обратно, если нужно
+                if (!tabs.TabPages.Contains(page_edit))
+                    tabs.TabPages.Add(page_edit);
+            }
+
         }
 
         public struct FilterCriteria
@@ -204,6 +221,51 @@ namespace ManageSpacesOfInstitute
 
             using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
             detailsForm.ShowDialog(this);
+        }
+
+        private void dataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void btnChFile_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_auth_Click(object sender, EventArgs e)
+        {
+            var auth = new Auth();
+            auth.ShowDialog(this);
         }
     }
 }

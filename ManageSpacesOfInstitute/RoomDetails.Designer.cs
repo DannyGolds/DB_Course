@@ -37,6 +37,8 @@
             lblArea = new Label();
             BuildingImage = new PictureBox();
             groupBox1 = new GroupBox();
+            lblDep = new Label();
+            label7 = new Label();
             lblBuildingType = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -46,6 +48,8 @@
             lbl_2 = new Label();
             groupBox2 = new GroupBox();
             flpEq = new FlowLayoutPanel();
+            lbl2 = new Label();
+            lblAdress = new Label();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -121,12 +125,16 @@
             // 
             BuildingImage.Location = new Point(12, 41);
             BuildingImage.Name = "BuildingImage";
-            BuildingImage.Size = new Size(327, 184);
+            BuildingImage.Size = new Size(513, 300);
             BuildingImage.TabIndex = 10;
             BuildingImage.TabStop = false;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(lblAdress);
+            groupBox1.Controls.Add(lbl2);
+            groupBox1.Controls.Add(lblDep);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(lblBuildingType);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
@@ -139,12 +147,31 @@
             groupBox1.Controls.Add(lblWidth);
             groupBox1.Controls.Add(lblArea);
             groupBox1.Controls.Add(lblBuilding);
-            groupBox1.Location = new Point(345, 41);
+            groupBox1.Location = new Point(531, 41);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(307, 184);
+            groupBox1.Size = new Size(386, 300);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Сведения";
+            // 
+            // lblDep
+            // 
+            lblDep.AutoSize = true;
+            lblDep.Location = new Point(84, 177);
+            lblDep.Name = "lblDep";
+            lblDep.Size = new Size(38, 15);
+            lblDep.TabIndex = 18;
+            lblDep.Text = "label8";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(43, 177);
+            label7.Name = "label7";
+            label7.Size = new Size(43, 15);
+            label7.TabIndex = 17;
+            label7.Text = "Отдел:";
+            label7.Click += label7_Click;
             // 
             // lblBuildingType
             // 
@@ -214,9 +241,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(flpEq);
-            groupBox2.Location = new Point(12, 231);
+            groupBox2.Location = new Point(12, 347);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(640, 134);
+            groupBox2.Size = new Size(905, 175);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "Оборудование в аудитории";
@@ -226,14 +253,32 @@
             // 
             flpEq.Location = new Point(6, 22);
             flpEq.Name = "flpEq";
-            flpEq.Size = new Size(628, 100);
+            flpEq.Size = new Size(893, 147);
             flpEq.TabIndex = 0;
+            // 
+            // lbl2
+            // 
+            lbl2.AutoSize = true;
+            lbl2.Location = new Point(49, 202);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(91, 15);
+            lbl2.TabIndex = 19;
+            lbl2.Text = "Адрес корпуса:";
+            // 
+            // lblAdress
+            // 
+            lblAdress.AutoSize = true;
+            lblAdress.Location = new Point(138, 202);
+            lblAdress.Name = "lblAdress";
+            lblAdress.Size = new Size(38, 15);
+            lblAdress.TabIndex = 20;
+            lblAdress.Text = "label8";
             // 
             // RoomDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(663, 378);
+            ClientSize = new Size(929, 534);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(BuildingImage);
@@ -269,5 +314,9 @@
         private Label lblBuildingType;
         private GroupBox groupBox2;
         private FlowLayoutPanel flpEq;
+        private Label lblDep;
+        private Label label7;
+        private Label lblAdress;
+        private Label lbl2;
     }
 }

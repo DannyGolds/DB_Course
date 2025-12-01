@@ -23,3 +23,5 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.pdb
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.genruntimeconfig.cache
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ref\ManageSpacesOfInstitute.dll
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Properties.Resources.resources
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Auth.resources

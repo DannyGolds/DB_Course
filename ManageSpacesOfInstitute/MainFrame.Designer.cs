@@ -47,13 +47,96 @@
             label1 = new Label();
             tabs = new TabControl();
             page_edit = new TabPage();
+            btnAdd = new Button();
+            btnDel = new Button();
+            btnEd = new Button();
+            btnRep = new Button();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            splitContainer1 = new SplitContainer();
+            dataGridView1 = new DataGridView();
+            btnChFile = new Button();
+            pictureBox1 = new PictureBox();
+            textBox2 = new TextBox();
+            label4 = new Label();
+            comboBox1 = new ComboBox();
+            textBox1 = new TextBox();
+            label7 = new Label();
+            lblBuildType = new Label();
+            lblBuildName = new Label();
+            tabPage3 = new TabPage();
+            splitContainer2 = new SplitContainer();
+            dataGridView2 = new DataGridView();
+            comboBox2 = new ComboBox();
+            label14 = new Label();
+            checkedListBox1 = new CheckedListBox();
+            comboBox6 = new ComboBox();
+            label13 = new Label();
+            comboBox5 = new ComboBox();
+            label12 = new Label();
+            textBox5 = new TextBox();
+            label11 = new Label();
+            textBox4 = new TextBox();
+            label10 = new Label();
+            comboBox4 = new ComboBox();
+            label8 = new Label();
+            textBox3 = new TextBox();
+            label6 = new Label();
+            comboBox3 = new ComboBox();
+            label5 = new Label();
+            tabPage4 = new TabPage();
+            splitContainer3 = new SplitContainer();
+            comboBox7 = new ComboBox();
+            dataGridView3 = new DataGridView();
+            pictureBox2 = new PictureBox();
+            label19 = new Label();
+            richTextBox1 = new RichTextBox();
+            label18 = new Label();
+            textBox7 = new TextBox();
+            label17 = new Label();
+            textBox6 = new TextBox();
+            label16 = new Label();
+            comboBox8 = new ComboBox();
+            label15 = new Label();
+            tabPage5 = new TabPage();
+            textBox10 = new TextBox();
+            label22 = new Label();
+            textBox9 = new TextBox();
+            label21 = new Label();
+            textBox8 = new TextBox();
+            label20 = new Label();
+            dataGridView4 = new DataGridView();
             label9 = new Label();
+            label23 = new Label();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridview_foundroomsinfo).BeginInit();
             gr_filtering.SuspendLayout();
             tabs.SuspendLayout();
             page_edit.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
+            splitContainer3.Panel1.SuspendLayout();
+            splitContainer3.Panel2.SuspendLayout();
+            splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
             SuspendLayout();
             // 
             // btn_auth
@@ -64,6 +147,7 @@
             btn_auth.TabIndex = 3;
             btn_auth.Text = "Авторизоваться";
             btn_auth.UseVisualStyleBackColor = true;
+            btn_auth.Click += btn_auth_Click;
             // 
             // label_username
             // 
@@ -88,6 +172,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label23);
             tabPage2.Controls.Add(groupBox1);
             tabPage2.Controls.Add(gr_filtering);
             tabPage2.Controls.Add(label1);
@@ -105,7 +190,7 @@
             groupBox1.Controls.Add(gridview_foundroomsinfo);
             groupBox1.Location = new Point(195, 39);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(583, 331);
+            groupBox1.Size = new Size(583, 308);
             groupBox1.TabIndex = 21;
             groupBox1.TabStop = false;
             groupBox1.Text = "Сведения о найденных помещениях";
@@ -119,7 +204,7 @@
             gridview_foundroomsinfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridview_foundroomsinfo.Location = new Point(6, 22);
             gridview_foundroomsinfo.Name = "gridview_foundroomsinfo";
-            gridview_foundroomsinfo.Size = new Size(571, 299);
+            gridview_foundroomsinfo.Size = new Size(571, 280);
             gridview_foundroomsinfo.TabIndex = 20;
             gridview_foundroomsinfo.CellContentClick += dataGridView1_CellContentClick_1;
             // 
@@ -248,6 +333,11 @@
             // 
             // page_edit
             // 
+            page_edit.Controls.Add(btnAdd);
+            page_edit.Controls.Add(btnDel);
+            page_edit.Controls.Add(btnEd);
+            page_edit.Controls.Add(btnRep);
+            page_edit.Controls.Add(tabControl1);
             page_edit.Controls.Add(label9);
             page_edit.Location = new Point(4, 26);
             page_edit.Name = "page_edit";
@@ -256,6 +346,591 @@
             page_edit.TabIndex = 3;
             page_edit.Text = "Редактирование";
             page_edit.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(371, 43);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(92, 28);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Добавить +";
+            btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnDel
+            // 
+            btnDel.Location = new Point(470, 43);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(93, 28);
+            btnDel.TabIndex = 1;
+            btnDel.Text = "Удалить -";
+            btnDel.UseVisualStyleBackColor = true;
+            // 
+            // btnEd
+            // 
+            btnEd.Location = new Point(569, 43);
+            btnEd.Name = "btnEd";
+            btnEd.Size = new Size(109, 28);
+            btnEd.TabIndex = 2;
+            btnEd.Text = "Отменить";
+            btnEd.UseVisualStyleBackColor = true;
+            // 
+            // btnRep
+            // 
+            btnRep.Location = new Point(684, 43);
+            btnRep.Name = "btnRep";
+            btnRep.Size = new Size(98, 28);
+            btnRep.TabIndex = 3;
+            btnRep.Text = "Сохранить";
+            btnRep.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Location = new Point(0, 51);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(784, 324);
+            tabControl1.TabIndex = 9;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(splitContainer1);
+            tabPage1.Location = new Point(4, 26);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(776, 294);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Здания";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 3);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(dataGridView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(btnChFile);
+            splitContainer1.Panel2.Controls.Add(pictureBox1);
+            splitContainer1.Panel2.Controls.Add(textBox2);
+            splitContainer1.Panel2.Controls.Add(label4);
+            splitContainer1.Panel2.Controls.Add(comboBox1);
+            splitContainer1.Panel2.Controls.Add(textBox1);
+            splitContainer1.Panel2.Controls.Add(label7);
+            splitContainer1.Panel2.Controls.Add(lblBuildType);
+            splitContainer1.Panel2.Controls.Add(lblBuildName);
+            splitContainer1.Size = new Size(770, 288);
+            splitContainer1.SplitterDistance = 256;
+            splitContainer1.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(256, 288);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_2;
+            // 
+            // btnChFile
+            // 
+            btnChFile.Location = new Point(191, 231);
+            btnChFile.Name = "btnChFile";
+            btnChFile.Size = new Size(168, 23);
+            btnChFile.TabIndex = 10;
+            btnChFile.Text = "Выберите изображение...";
+            btnChFile.UseVisualStyleBackColor = true;
+            btnChFile.Click += btnChFile_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = SystemColors.ButtonFace;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Image = Properties.Resources.LoadImage;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(191, 67);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(304, 158);
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(14, 188);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(162, 24);
+            textBox2.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(90, 17);
+            label4.TabIndex = 7;
+            label4.Text = "Адрес корпуса";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(14, 126);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(162, 25);
+            comboBox1.TabIndex = 6;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_2;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(14, 67);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(162, 24);
+            textBox1.TabIndex = 5;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(301, 47);
+            label7.Name = "label7";
+            label7.Size = new Size(82, 17);
+            label7.TabIndex = 3;
+            label7.Text = "Изображение";
+            // 
+            // lblBuildType
+            // 
+            lblBuildType.AutoSize = true;
+            lblBuildType.Location = new Point(14, 106);
+            lblBuildType.Name = "lblBuildType";
+            lblBuildType.Size = new Size(81, 17);
+            lblBuildType.TabIndex = 1;
+            lblBuildType.Text = "Тип корпуса";
+            // 
+            // lblBuildName
+            // 
+            lblBuildName.AutoSize = true;
+            lblBuildName.Location = new Point(14, 47);
+            lblBuildName.Name = "lblBuildName";
+            lblBuildName.Size = new Size(110, 17);
+            lblBuildName.TabIndex = 0;
+            lblBuildName.Text = "Название корпуса";
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(splitContainer2);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(776, 296);
+            tabPage3.TabIndex = 1;
+            tabPage3.Text = "Аудитории";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(3, 3);
+            splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(dataGridView2);
+            splitContainer2.Panel1.Controls.Add(comboBox2);
+            splitContainer2.Panel1.Paint += splitContainer2_Panel1_Paint;
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(label14);
+            splitContainer2.Panel2.Controls.Add(checkedListBox1);
+            splitContainer2.Panel2.Controls.Add(comboBox6);
+            splitContainer2.Panel2.Controls.Add(label13);
+            splitContainer2.Panel2.Controls.Add(comboBox5);
+            splitContainer2.Panel2.Controls.Add(label12);
+            splitContainer2.Panel2.Controls.Add(textBox5);
+            splitContainer2.Panel2.Controls.Add(label11);
+            splitContainer2.Panel2.Controls.Add(textBox4);
+            splitContainer2.Panel2.Controls.Add(label10);
+            splitContainer2.Panel2.Controls.Add(comboBox4);
+            splitContainer2.Panel2.Controls.Add(label8);
+            splitContainer2.Panel2.Controls.Add(textBox3);
+            splitContainer2.Panel2.Controls.Add(label6);
+            splitContainer2.Panel2.Controls.Add(comboBox3);
+            splitContainer2.Panel2.Controls.Add(label5);
+            splitContainer2.Panel2.Paint += splitContainer2_Panel2_Paint;
+            splitContainer2.Size = new Size(770, 290);
+            splitContainer2.SplitterDistance = 256;
+            splitContainer2.TabIndex = 0;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(3, 34);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(250, 251);
+            dataGridView2.TabIndex = 1;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(3, 3);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(250, 25);
+            comboBox2.TabIndex = 0;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(263, 173);
+            label14.Name = "label14";
+            label14.Size = new Size(166, 17);
+            label14.TabIndex = 22;
+            label14.Text = "Оборудование в аудитории";
+            // 
+            // checkedListBox1
+            // 
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(263, 193);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(162, 80);
+            checkedListBox1.TabIndex = 21;
+            // 
+            // comboBox6
+            // 
+            comboBox6.FormattingEnabled = true;
+            comboBox6.Location = new Point(63, 249);
+            comboBox6.Name = "comboBox6";
+            comboBox6.Size = new Size(162, 25);
+            comboBox6.TabIndex = 20;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(63, 229);
+            label13.Name = "label13";
+            label13.Size = new Size(175, 17);
+            label13.TabIndex = 19;
+            label13.Text = "Отвественный за аудиторию";
+            // 
+            // comboBox5
+            // 
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(263, 139);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(162, 25);
+            comboBox5.TabIndex = 18;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(263, 119);
+            label12.Name = "label12";
+            label12.Size = new Size(175, 17);
+            label12.TabIndex = 17;
+            label12.Text = "Отвественный за аудиторию";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(263, 87);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(162, 24);
+            textBox5.TabIndex = 16;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(263, 67);
+            label11.Name = "label11";
+            label11.Size = new Size(120, 17);
+            label11.TabIndex = 15;
+            label11.Text = "Ширина аудитории";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(263, 34);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(162, 24);
+            textBox4.TabIndex = 14;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(263, 14);
+            label10.Name = "label10";
+            label10.Size = new Size(112, 17);
+            label10.TabIndex = 13;
+            label10.Text = "Длина аудитории";
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(63, 179);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(162, 25);
+            comboBox4.TabIndex = 12;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(63, 159);
+            label8.Name = "label8";
+            label8.Size = new Size(98, 17);
+            label8.TabIndex = 11;
+            label8.Text = "Тип аудитории";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(63, 107);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(162, 24);
+            textBox3.TabIndex = 10;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(63, 87);
+            label6.Name = "label6";
+            label6.Size = new Size(111, 17);
+            label6.TabIndex = 9;
+            label6.Text = "Номер аудитории";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(63, 34);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(162, 25);
+            comboBox3.TabIndex = 8;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(63, 14);
+            label5.Name = "label5";
+            label5.Size = new Size(106, 17);
+            label5.TabIndex = 7;
+            label5.Text = "Выберите корпус";
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(splitContainer3);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(776, 296);
+            tabPage4.TabIndex = 2;
+            tabPage4.Text = "Оборудование";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer3
+            // 
+            splitContainer3.Dock = DockStyle.Fill;
+            splitContainer3.Location = new Point(3, 3);
+            splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            splitContainer3.Panel1.Controls.Add(comboBox7);
+            splitContainer3.Panel1.Controls.Add(dataGridView3);
+            // 
+            // splitContainer3.Panel2
+            // 
+            splitContainer3.Panel2.Controls.Add(pictureBox2);
+            splitContainer3.Panel2.Controls.Add(label19);
+            splitContainer3.Panel2.Controls.Add(richTextBox1);
+            splitContainer3.Panel2.Controls.Add(label18);
+            splitContainer3.Panel2.Controls.Add(textBox7);
+            splitContainer3.Panel2.Controls.Add(label17);
+            splitContainer3.Panel2.Controls.Add(textBox6);
+            splitContainer3.Panel2.Controls.Add(label16);
+            splitContainer3.Panel2.Controls.Add(comboBox8);
+            splitContainer3.Panel2.Controls.Add(label15);
+            splitContainer3.Size = new Size(770, 290);
+            splitContainer3.SplitterDistance = 256;
+            splitContainer3.TabIndex = 0;
+            // 
+            // comboBox7
+            // 
+            comboBox7.FormattingEnabled = true;
+            comboBox7.Location = new Point(3, 3);
+            comboBox7.Name = "comboBox7";
+            comboBox7.Size = new Size(250, 25);
+            comboBox7.TabIndex = 1;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Location = new Point(3, 34);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.Size = new Size(250, 251);
+            dataGridView3.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = SystemColors.ButtonFace;
+            pictureBox2.Image = Properties.Resources.LoadImage;
+            pictureBox2.Location = new Point(239, 134);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(246, 142);
+            pictureBox2.TabIndex = 18;
+            pictureBox2.TabStop = false;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(239, 114);
+            label19.Name = "label19";
+            label19.Size = new Size(82, 17);
+            label19.TabIndex = 17;
+            label19.Text = "Изображение";
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(239, 40);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(246, 56);
+            richTextBox1.TabIndex = 16;
+            richTextBox1.Text = "";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(239, 20);
+            label18.Name = "label18";
+            label18.Size = new Size(67, 17);
+            label18.TabIndex = 15;
+            label18.Text = "Описание";
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(24, 173);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(162, 24);
+            textBox7.TabIndex = 14;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(24, 153);
+            label17.Name = "label17";
+            label17.Size = new Size(124, 17);
+            label17.TabIndex = 13;
+            label17.Text = "Инвентарный номер";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(24, 111);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(162, 24);
+            textBox6.TabIndex = 12;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(24, 91);
+            label16.Name = "label16";
+            label16.Size = new Size(61, 17);
+            label16.TabIndex = 11;
+            label16.Text = "Название";
+            label16.Click += label16_Click;
+            // 
+            // comboBox8
+            // 
+            comboBox8.FormattingEnabled = true;
+            comboBox8.Location = new Point(24, 40);
+            comboBox8.Name = "comboBox8";
+            comboBox8.Size = new Size(162, 25);
+            comboBox8.TabIndex = 10;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(24, 20);
+            label15.Name = "label15";
+            label15.Size = new Size(67, 17);
+            label15.TabIndex = 9;
+            label15.Text = "Категория";
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(textBox10);
+            tabPage5.Controls.Add(label22);
+            tabPage5.Controls.Add(textBox9);
+            tabPage5.Controls.Add(label21);
+            tabPage5.Controls.Add(textBox8);
+            tabPage5.Controls.Add(label20);
+            tabPage5.Controls.Add(dataGridView4);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(776, 296);
+            tabPage5.TabIndex = 3;
+            tabPage5.Text = "Ответственные";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(487, 209);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(162, 24);
+            textBox10.TabIndex = 11;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(489, 189);
+            label22.Name = "label22";
+            label22.Size = new Size(160, 17);
+            label22.TabIndex = 10;
+            label22.Text = "Номер телефона(рабочий)";
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(487, 134);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(162, 24);
+            textBox9.TabIndex = 9;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(487, 114);
+            label21.Name = "label21";
+            label21.Size = new Size(165, 17);
+            label21.TabIndex = 8;
+            label21.Text = "Должность ответственного";
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(487, 69);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(162, 24);
+            textBox8.TabIndex = 7;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(501, 49);
+            label20.Name = "label20";
+            label20.Size = new Size(128, 17);
+            label20.TabIndex = 6;
+            label20.Text = "ФИО ответственного";
+            label20.Click += label20_Click;
+            // 
+            // dataGridView4
+            // 
+            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView4.Location = new Point(6, 6);
+            dataGridView4.Name = "dataGridView4";
+            dataGridView4.Size = new Size(369, 282);
+            dataGridView4.TabIndex = 0;
             // 
             // label9
             // 
@@ -267,6 +942,15 @@
             label9.Size = new Size(469, 33);
             label9.TabIndex = 8;
             label9.Text = "Редактирование информационной базы";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(8, 350);
+            label23.Name = "label23";
+            label23.Size = new Size(646, 17);
+            label23.TabIndex = 22;
+            label23.Text = "Чтобы узнать полную информацию о помещении нажмите на элемент, отображающий интересущий объект!";
             // 
             // MainFrame
             // 
@@ -288,6 +972,33 @@
             tabs.ResumeLayout(false);
             page_edit.ResumeLayout(false);
             page_edit.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tabPage3.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tabPage4.ResumeLayout(false);
+            splitContainer3.Panel1.ResumeLayout(false);
+            splitContainer3.Panel2.ResumeLayout(false);
+            splitContainer3.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
+            splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,5 +1024,65 @@
         private Label label2;
         private Label lbl_cheq;
         private Label lbl_chbuild;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage3;
+        private TabPage tabPage4;
+        private TabPage tabPage5;
+        private Button btnRep;
+        private Button btnEd;
+        private Button btnDel;
+        private Button btnAdd;
+        private SplitContainer splitContainer1;
+        private DataGridView dataGridView1;
+        private ComboBox comboBox1;
+        private TextBox textBox1;
+        private Label label7;
+        private Label lblBuildType;
+        private Label lblBuildName;
+        private TextBox textBox2;
+        private Label label4;
+        private PictureBox pictureBox1;
+        private Button btnChFile;
+        private SplitContainer splitContainer2;
+        private ComboBox comboBox2;
+        private DataGridView dataGridView2;
+        private TextBox textBox5;
+        private Label label11;
+        private TextBox textBox4;
+        private Label label10;
+        private ComboBox comboBox4;
+        private Label label8;
+        private TextBox textBox3;
+        private Label label6;
+        private ComboBox comboBox3;
+        private Label label5;
+        private Label label14;
+        private CheckedListBox checkedListBox1;
+        private ComboBox comboBox6;
+        private Label label13;
+        private ComboBox comboBox5;
+        private Label label12;
+        private SplitContainer splitContainer3;
+        private DataGridView dataGridView3;
+        private ComboBox comboBox7;
+        private RichTextBox richTextBox1;
+        private Label label18;
+        private TextBox textBox7;
+        private Label label17;
+        private TextBox textBox6;
+        private Label label16;
+        private ComboBox comboBox8;
+        private Label label15;
+        private PictureBox pictureBox2;
+        private Label label19;
+        private DataGridView dataGridView4;
+        private TextBox textBox10;
+        private Label label22;
+        private TextBox textBox9;
+        private Label label21;
+        private TextBox textBox8;
+        private Label label20;
+        private Label label23;
     }
 }
