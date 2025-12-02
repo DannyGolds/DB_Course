@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button2 = new Button();
-            textBox1 = new TextBox();
+            btnAuth = new Button();
+            txtLogin = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtPass = new TextBox();
             SuspendLayout();
             // 
-            // button2
+            // btnAuth
             // 
-            button2.Location = new Point(64, 112);
-            button2.Name = "button2";
-            button2.Size = new Size(102, 29);
-            button2.TabIndex = 1;
-            button2.Text = "Вход";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnAuth.Location = new Point(64, 112);
+            btnAuth.Name = "btnAuth";
+            btnAuth.Size = new Size(102, 29);
+            btnAuth.TabIndex = 1;
+            btnAuth.Text = "Вход";
+            btnAuth.UseVisualStyleBackColor = true;
+            btnAuth.Click += button2_Click;
             // 
-            // textBox1
+            // txtLogin
             // 
-            textBox1.Location = new Point(34, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(169, 23);
-            textBox1.TabIndex = 2;
+            txtLogin.Location = new Point(34, 30);
+            txtLogin.Name = "txtLogin";
+            txtLogin.Size = new Size(169, 23);
+            txtLogin.TabIndex = 2;
             // 
             // label1
             // 
@@ -70,12 +70,12 @@
             label2.TabIndex = 5;
             label2.Text = "Введите свой пароль";
             // 
-            // textBox2
+            // txtPass
             // 
-            textBox2.Location = new Point(34, 83);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(169, 23);
-            textBox2.TabIndex = 4;
+            txtPass.Location = new Point(34, 83);
+            txtPass.Name = "txtPass";
+            txtPass.Size = new Size(169, 23);
+            txtPass.TabIndex = 4;
             // 
             // Auth
             // 
@@ -83,10 +83,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(235, 147);
             Controls.Add(label2);
-            Controls.Add(textBox2);
+            Controls.Add(txtPass);
             Controls.Add(label1);
-            Controls.Add(textBox1);
-            Controls.Add(button2);
+            Controls.Add(txtLogin);
+            Controls.Add(btnAuth);
             Name = "Auth";
             Text = "Auth";
             ResumeLayout(false);
@@ -95,10 +95,10 @@
 
         #endregion
 
-        private Button button2;
-        private TextBox textBox1;
+        private Button btnAuth;
+        private TextBox txtLogin;
         private Label label1;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtPass;
     }
 }

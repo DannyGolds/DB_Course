@@ -16,14 +16,9 @@ namespace ManageSpacesOfInstitute
             _roomId = roomId;
             // Запуск async без ConfigureAwait(false) — иначе UI не обновится!
             _ = LoadRoomDetailsAsync(); // Используем "fire-and-forget" с подавлением предупреждения
-        }
-
-        public class EquipmentData
-        {
-            public int EquipmentId { get; set; }
-            public string Name { get; set; }
-            public byte[] ImageData { get; set; }
-            public Image Image { get; set; }
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            flp.Visible = true;
         }
 
         private void LoadImageFromBlob(PictureBox pictureBox, object blobData)
@@ -57,33 +52,42 @@ namespace ManageSpacesOfInstitute
             }
         }
 
-        private async Task LoadEquipmentDetailAsync (int _roomId)
+        private async Task LoadEquipmentDetailAsync(int _roomId)
         {
             await using var db = new DBOperations();
 
-            var dt = await db.CallProcedureAsync("GETEQUIPMENTIMGS", new List<string>
-            {
-                "EQUIPMENTID",
-                "EQUIPMENTNAME",
-                "EQUIPMENTIMAGE"
-            }, new FbParameter("ROOMID", _roomId));
+            var dt = await db.CallProcedureAsync("GET_EQUIPMENT_INFO", new List<string>
+    {
+        "EQUIPMENTID",
+        "EQUIPMENTNAME",
+        "EQUIPMENTIMAGE",
+        "EQUIPMDESCRIPTION"
+    }, new FbParameter("ROOMID", _roomId));
 
+            // Очистите flp перед добавлением, чтобы избежать дубликатов при повторных вызовах
+            flp.Controls.Clear();
+            if (dt.Rows.Count == 0)
+            {
+                var testCard = new EquipmentCard("Нет оборудования", "Нет описания");
+                flp.Controls.Add(testCard);
+            }
+            // Добавьте карточки из БД
             foreach (DataRow row in dt.Rows)
             {
-                var card = new EquipmentCard();
-                card.EquipmentName = $"{row["EQUIPMENTNAME"]}";
+                var eqName = row["EQUIPMENTNAME"].ToString();
+                var eqDesc = row["EQUIPMDESCRIPTION"].ToString();
+                var eqImage = row["EQUIPMENTIMAGE"];  // BLOB-данные
 
-                // Если нужно загрузить картинку:
-                if (row["EQUIPMENTIMAGE"] is byte[] imageBytes && imageBytes.Length > 0)
-                {
-                    using var ms = new MemoryStream(imageBytes);
-                    card.EquipmentImage = Image.FromStream(ms);
-                }
+                var card = new EquipmentCard(eqName, eqDesc);
 
-                flpEq.Controls.Add(card);
+                // Если нужно загрузить изображение (используйте ваш метод LoadImageFromBlob)
+                // Предполагаю, что в EquipmentCard есть PictureBox pcEq
+                LoadImageFromBlob(card.pcEq, eqImage);  // Добавьте доступ к pcEq, если нужно (сделайте public или property)
+
+                flp.Controls.Add(card);
             }
 
-
+            // Если dt пустая, добавьте тестовую или сообщение
         }
 
         private async Task LoadRoomDetailsAsync()
@@ -134,11 +138,18 @@ namespace ManageSpacesOfInstitute
                 LoadImageFromBlob(BuildingImage, row["BUILDINGIMAGE"]);
                 _ = LoadEquipmentDetailAsync(_roomId);
 
-               
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Ошибка загрузки данных:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() => MessageBox.Show(this, "Ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error)));
+                }
+                else
+                {
+                    MessageBox.Show(this, "Ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 Close();
             }
         }
@@ -173,6 +184,11 @@ namespace ManageSpacesOfInstitute
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flp_Paint(object sender, PaintEventArgs e)
         {
 
         }

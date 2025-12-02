@@ -12,45 +12,48 @@ namespace ManageSpacesOfInstitute
 {
     public partial class EquipmentCard : UserControl
     {
-        public EquipmentCard()
+        public EquipmentCard(string equipmentText, string descriptionText)
         {
             InitializeComponent();
+            lblEqNm.Text = equipmentText;
+            richTxt.Text = descriptionText;
+            pcEq.SizeMode = PictureBoxSizeMode.Zoom;
         }
-        private Image equipmentImage;
 
-        [Category("Data")]
-        [Description("Image shown on the card")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Image EquipmentImage
+        private void LoadImageFromBlob(PictureBox pictureBox, object blobData)
         {
-            get => equipmentImage;
-            set
+            // Скрываем PictureBox, если данных нет
+            pictureBox.Visible = false;
+
+            if (blobData == null || blobData == DBNull.Value)
+                return;
+
+            try
             {
-                equipmentImage = value;
-                pcEq.Image = value;
-                pcEq.SizeMode = PictureBoxSizeMode.Zoom;
-                pcEq.Visible = value != null;
+                byte[] imageData = (byte[])blobData;
+
+                // Проверка: не пустой массив?
+                if (imageData.Length == 0)
+                    return;
+
+                using (var ms = new MemoryStream(imageData))
+                {
+                    pictureBox.Image = Image.FromStream(ms);
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom; // или AutoSize, StretchImage
+                    pictureBox.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибки (опционально)
+                // Console.WriteLine($"Ошибка загрузки изображения: {ex.Message}");
+                pictureBox.Visible = false;
             }
         }
 
-        // Чтобы дизайнер не пытался сериализовать это свойство
-        public bool ShouldSerializeEquipmentImage() => false;
-        public void ResetEquipmentImage() => EquipmentImage = null;
-
-        // Остальные свойства (строки/числа) можно оставлять сериализуемыми
-        private string equipmentName;
-        [Category("Data")]
-        [Description("Equipment name text")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string EquipmentName
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            get => equipmentName;
-            set
-            {
-                equipmentName = value;
-                lblEqNm.Text = value;
-            }
-        }
 
+        }
     }
 }

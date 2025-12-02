@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="7.10.0" />
   </ItemGroup>
 

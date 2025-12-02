@@ -67,8 +67,10 @@ namespace ManageSpacesOfInstitute
             var allowed = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
         "GETROOMFULLINFO",
-        "GETDEPARTMENTINFO",
-        "GETBUILDINGINFO"
+        "GET_EQUIPMENT_INFO",
+        "INSERTUSER",
+        "GET_USER_BY_USERNAME"
+
     };
             if (!allowed.Contains(procName))
                 throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");

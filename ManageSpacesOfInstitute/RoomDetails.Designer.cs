@@ -37,6 +37,8 @@
             lblArea = new Label();
             BuildingImage = new PictureBox();
             groupBox1 = new GroupBox();
+            lblAdress = new Label();
+            lbl2 = new Label();
             lblDep = new Label();
             label7 = new Label();
             lblBuildingType = new Label();
@@ -47,9 +49,7 @@
             label2 = new Label();
             lbl_2 = new Label();
             groupBox2 = new GroupBox();
-            flpEq = new FlowLayoutPanel();
-            lbl2 = new Label();
-            lblAdress = new Label();
+            flp = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -149,10 +149,28 @@
             groupBox1.Controls.Add(lblBuilding);
             groupBox1.Location = new Point(531, 41);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(386, 300);
+            groupBox1.Size = new Size(436, 300);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Сведения";
+            // 
+            // lblAdress
+            // 
+            lblAdress.AutoSize = true;
+            lblAdress.Location = new Point(138, 202);
+            lblAdress.Name = "lblAdress";
+            lblAdress.Size = new Size(38, 15);
+            lblAdress.TabIndex = 20;
+            lblAdress.Text = "label8";
+            // 
+            // lbl2
+            // 
+            lbl2.AutoSize = true;
+            lbl2.Location = new Point(49, 202);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(91, 15);
+            lbl2.TabIndex = 19;
+            lbl2.Text = "Адрес корпуса:";
             // 
             // lblDep
             // 
@@ -240,45 +258,29 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(flpEq);
+            groupBox2.Controls.Add(flp);
             groupBox2.Location = new Point(12, 347);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(905, 175);
+            groupBox2.Size = new Size(955, 310);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "Оборудование в аудитории";
             groupBox2.Enter += groupBox2_Enter;
             // 
-            // flpEq
+            // flp
             // 
-            flpEq.Location = new Point(6, 22);
-            flpEq.Name = "flpEq";
-            flpEq.Size = new Size(893, 147);
-            flpEq.TabIndex = 0;
-            // 
-            // lbl2
-            // 
-            lbl2.AutoSize = true;
-            lbl2.Location = new Point(49, 202);
-            lbl2.Name = "lbl2";
-            lbl2.Size = new Size(91, 15);
-            lbl2.TabIndex = 19;
-            lbl2.Text = "Адрес корпуса:";
-            // 
-            // lblAdress
-            // 
-            lblAdress.AutoSize = true;
-            lblAdress.Location = new Point(138, 202);
-            lblAdress.Name = "lblAdress";
-            lblAdress.Size = new Size(38, 15);
-            lblAdress.TabIndex = 20;
-            lblAdress.Text = "label8";
+            flp.BackColor = SystemColors.ControlDark;
+            flp.Location = new Point(6, 22);
+            flp.Name = "flp";
+            flp.Size = new Size(943, 281);
+            flp.TabIndex = 0;
+            flp.Paint += flp_Paint;
             // 
             // RoomDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(929, 534);
+            ClientSize = new Size(987, 668);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(BuildingImage);
@@ -313,10 +315,10 @@
         private Label lbl_2;
         private Label lblBuildingType;
         private GroupBox groupBox2;
-        private FlowLayoutPanel flpEq;
         private Label lblDep;
         private Label label7;
         private Label lblAdress;
         private Label lbl2;
+        private FlowLayoutPanel flp;
     }
 }

@@ -13,7 +13,7 @@ namespace ManageSpacesOfInstitute
         /// Сохраняем исходную таблицу для фильтрации
         /// </summary>
         private DataTable _originalDataTable;
-        bool isAuthorized = true;
+        bool isAuthorizedAdmin = false;
 
         public MainFrame()
         {
@@ -24,19 +24,7 @@ namespace ManageSpacesOfInstitute
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             gridview_foundroomsinfo.ReadOnly = true;
-
-            if (!isAuthorized)
-            {
-                // Удаляем вкладку из TabControl
-                tabs.TabPages.Remove(page_edit);
-            }
-            else
-            {
-                // Добавляем обратно, если нужно
-                if (!tabs.TabPages.Contains(page_edit))
-                    tabs.TabPages.Add(page_edit);
-            }
-
+            UpdateTabs();
         }
 
         public struct FilterCriteria
@@ -48,6 +36,21 @@ namespace ManageSpacesOfInstitute
             public string RoomNumber;
             public string RoomWidth;
             public string RoomLength;
+        }
+        private void UpdateTabs()
+        {
+            if (isAuthorizedAdmin)
+            {
+                if (!tabs.TabPages.Contains(page_edit))
+                {
+                    tabs.TabPages.Add(page_edit);
+                }
+            }
+            else
+            {
+                tabs.TabPages.Remove(page_edit);
+            }
+            this.Refresh();  // Перерисовка для верности
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -264,8 +267,18 @@ namespace ManageSpacesOfInstitute
 
         private void btn_auth_Click(object sender, EventArgs e)
         {
-            var auth = new Auth();
-            auth.ShowDialog(this);
+            using var authForm = new Auth();
+            if (authForm.ShowDialog() == DialogResult.OK)
+            {
+                label_username.Text = $"Пользователь: {authForm.loggedUser}";
+                // Разблокируй вкладки или функционал (например, tabs.Enabled = true;)
+                MessageBox.Show("Авторизация успешна!");
+                if (authForm.accessLevel == "ADMIN")
+                {
+                    isAuthorizedAdmin = true;
+                    UpdateTabs();
+                }
+            }
         }
     }
 }
