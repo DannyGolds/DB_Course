@@ -37,9 +37,11 @@
             // 
             // btnAuth
             // 
-            btnAuth.Location = new Point(64, 112);
+            btnAuth.ForeColor = Color.DarkCyan;
+            btnAuth.Location = new Point(15, 163);
+            btnAuth.Margin = new Padding(6, 5, 6, 5);
             btnAuth.Name = "btnAuth";
-            btnAuth.Size = new Size(102, 29);
+            btnAuth.Size = new Size(234, 46);
             btnAuth.TabIndex = 1;
             btnAuth.Text = "Вход";
             btnAuth.UseVisualStyleBackColor = true;
@@ -47,47 +49,58 @@
             // 
             // txtLogin
             // 
-            txtLogin.Location = new Point(34, 30);
+            txtLogin.Font = new Font("Roboto", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtLogin.Location = new Point(15, 41);
+            txtLogin.Margin = new Padding(6, 5, 6, 5);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(169, 23);
+            txtLogin.Size = new Size(234, 30);
             txtLogin.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 12);
+            label1.ForeColor = Color.DarkCyan;
+            label1.Location = new Point(15, 12);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(115, 15);
+            label1.Size = new Size(226, 24);
             label1.TabIndex = 3;
             label1.Text = "Введите свой логин";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(34, 65);
+            label2.ForeColor = Color.DarkCyan;
+            label2.Location = new Point(15, 94);
+            label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(122, 15);
+            label2.Size = new Size(234, 24);
             label2.TabIndex = 5;
             label2.Text = "Введите свой пароль";
             // 
             // txtPass
             // 
-            txtPass.Location = new Point(34, 83);
+            txtPass.Font = new Font("Roboto", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtPass.Location = new Point(15, 123);
+            txtPass.Margin = new Padding(6, 5, 6, 5);
             txtPass.Name = "txtPass";
-            txtPass.Size = new Size(169, 23);
+            txtPass.Size = new Size(234, 30);
             txtPass.TabIndex = 4;
             // 
             // Auth
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(235, 147);
+            ClientSize = new Size(264, 223);
             Controls.Add(label2);
             Controls.Add(txtPass);
             Controls.Add(label1);
             Controls.Add(txtLogin);
             Controls.Add(btnAuth);
+            Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Margin = new Padding(6, 5, 6, 5);
             Name = "Auth";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Auth";
             ResumeLayout(false);
             PerformLayout();

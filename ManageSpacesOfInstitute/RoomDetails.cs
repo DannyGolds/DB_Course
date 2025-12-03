@@ -109,7 +109,8 @@ namespace ManageSpacesOfInstitute
                 "LENGTH",
                 "BUILDINGIMAGE",
                 "BUILDINGADRESS",
-                "DepName"
+                "DepName",
+                "ROOMPURPOSE"
                     },
                     new FbParameter("ROOM_ID", _roomId)
                 );
@@ -120,25 +121,25 @@ namespace ManageSpacesOfInstitute
                     Close();
                     return;
                 }
-
+                
                 var row = dt.Rows[0];
-                lblRoomNumber.Text = $"{row["ROOMNUMBER"]}";
-                lblBuilding.Text = $"{row["BUILDINGNAME"]}";
-                lblRoomType.Text = $"{row["ROOMTYPE"]}";
-                lblWidth.Text = $"{row["LENGTH"]}м x {row["WIDTH"]}м";
-                lblBuildingType.Text = $"{row["BUILDINGTYPE"]}";
-                lblDep.Text = $"{row["DepName"]}";
-                lblAdress.Text = $"{row["BUILDINGADRESS"]}";
-
+                dataGridView1.Rows.Add();
                 decimal width = Convert.ToDecimal(row["WIDTH"] ?? 0);
                 decimal length = Convert.ToDecimal(row["LENGTH"] ?? 0);
-                lblArea.Text = $"{width * length:F2} м²";
+                dataGridView1.Rows[0].Cells[0].Value = $"{row["ROOMNUMBER"]}";
+                dataGridView1.Rows[0].Cells[1].Value = $"{row["ROOMTYPE"]}";
+                dataGridView1.Rows[0].Cells[2].Value = $"{row["ROOMPURPOSE"]}";
+                dataGridView1.Rows[0].Cells[3].Value = $"{width * length:F2} м²";
+                dataGridView1.Rows[0].Cells[4].Value = $"{row["LENGTH"]}м x {row["WIDTH"]}м";
+                dataGridView1.Rows[0].Cells[5].Value = $"{row["DepName"]}";
+                dataGridView1.Rows[0].Cells[6].Value = $"{row["BUILDINGNAME"]}";
+                dataGridView1.Rows[0].Cells[7].Value = $"{row["BUILDINGTYPE"]}";
+                dataGridView1.Rows[0].Cells[8].Value = $"{row["BUILDINGADRESS"]}";
+
 
                 Text = $"Информация о кабинете {row["ROOMNUMBER"]} ({row["BUILDINGNAME"]})";
                 LoadImageFromBlob(BuildingImage, row["BUILDINGIMAGE"]);
                 _ = LoadEquipmentDetailAsync(_roomId);
-
-
             }
             catch (Exception ex)
             {
@@ -189,6 +190,11 @@ namespace ManageSpacesOfInstitute
         }
 
         private void flp_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblDep_Click(object sender, EventArgs e)
         {
 
         }

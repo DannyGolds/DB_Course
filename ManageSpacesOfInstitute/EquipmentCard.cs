@@ -55,5 +55,10 @@ namespace ManageSpacesOfInstitute
         {
 
         }
+
+        private void lblEqNm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

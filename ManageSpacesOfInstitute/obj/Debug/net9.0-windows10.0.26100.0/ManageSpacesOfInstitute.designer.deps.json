@@ -15,17 +15,13 @@
         }
       },
       "FirebirdSql.Data.FirebirdClient/7.10.0": {
-        "dependencies": {
-          "System.Reflection.Emit": "4.7.0"
-        },
         "runtime": {
           "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll": {
             "assemblyVersion": "7.10.0.0",
             "fileVersion": "7.10.0.0"
           }
         }
-      },
-      "System.Reflection.Emit/4.7.0": {}
+      }
     }
   },
   "libraries": {
@@ -42,13 +38,6 @@
       "sha512": "sha512-KTB61XmhM5S0xZ9zjjFtNgtnwqRdztwD0cSJza7O2QOV6rOk3owpCx/ETBuj/Ugz5AEgVCEQMFUlirLdTi1lcw==",
       "path": "firebirdsql.data.firebirdclient/7.10.0",
       "hashPath": "firebirdsql.data.firebirdclient.7.10.0.nupkg.sha512"
-    },
-    "System.Reflection.Emit/4.7.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ==",
-      "path": "system.reflection.emit/4.7.0",
-      "hashPath": "system.reflection.emit.4.7.0.nupkg.sha512"
     }
   }
 }

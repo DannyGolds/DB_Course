@@ -30,268 +30,170 @@
         {
             label1 = new Label();
             lbl_id_input = new Label();
-            lblRoomNumber = new Label();
-            lblBuilding = new Label();
-            lblRoomType = new Label();
-            lblWidth = new Label();
-            lblArea = new Label();
             BuildingImage = new PictureBox();
-            groupBox1 = new GroupBox();
-            lblAdress = new Label();
-            lbl2 = new Label();
-            lblDep = new Label();
-            label7 = new Label();
-            lblBuildingType = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            lbl_2 = new Label();
-            groupBox2 = new GroupBox();
+            dataGridView1 = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Габариты = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column9 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
+            Column8 = new DataGridViewTextBoxColumn();
             flp = new FlowLayoutPanel();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.ForeColor = SystemColors.InfoText;
-            label1.Location = new Point(12, 9);
+            label1.Font = new Font("Zero Cool", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.ForeColor = Color.DarkCyan;
+            label1.Location = new Point(14, 6);
             label1.Name = "label1";
-            label1.Size = new Size(276, 19);
+            label1.Size = new Size(272, 18);
             label1.TabIndex = 0;
             label1.Text = "Полная информация аудитории";
             // 
             // lbl_id_input
             // 
             lbl_id_input.AutoSize = true;
-            lbl_id_input.Location = new Point(54, 76);
+            lbl_id_input.Location = new Point(62, 56);
             lbl_id_input.Name = "lbl_id_input";
-            lbl_id_input.Size = new Size(0, 15);
+            lbl_id_input.Size = new Size(0, 11);
             lbl_id_input.TabIndex = 2;
-            // 
-            // lblRoomNumber
-            // 
-            lblRoomNumber.AutoSize = true;
-            lblRoomNumber.Location = new Point(153, 29);
-            lblRoomNumber.Name = "lblRoomNumber";
-            lblRoomNumber.Size = new Size(38, 15);
-            lblRoomNumber.TabIndex = 3;
-            lblRoomNumber.Text = "label2";
-            lblRoomNumber.Click += lblRoomNumber_Click;
-            // 
-            // lblBuilding
-            // 
-            lblBuilding.AutoSize = true;
-            lblBuilding.Location = new Point(139, 55);
-            lblBuilding.Name = "lblBuilding";
-            lblBuilding.Size = new Size(38, 15);
-            lblBuilding.TabIndex = 4;
-            lblBuilding.Text = "label2";
-            // 
-            // lblRoomType
-            // 
-            lblRoomType.AutoSize = true;
-            lblRoomType.Location = new Point(127, 80);
-            lblRoomType.Name = "lblRoomType";
-            lblRoomType.Size = new Size(38, 15);
-            lblRoomType.TabIndex = 5;
-            lblRoomType.Text = "label2";
-            // 
-            // lblWidth
-            // 
-            lblWidth.AutoSize = true;
-            lblWidth.Location = new Point(105, 128);
-            lblWidth.Name = "lblWidth";
-            lblWidth.Size = new Size(38, 15);
-            lblWidth.TabIndex = 6;
-            lblWidth.Text = "label2";
-            // 
-            // lblArea
-            // 
-            lblArea.AutoSize = true;
-            lblArea.Location = new Point(164, 150);
-            lblArea.Name = "lblArea";
-            lblArea.Size = new Size(38, 15);
-            lblArea.TabIndex = 7;
-            lblArea.Text = "label2";
-            lblArea.Click += lblArea_Click;
             // 
             // BuildingImage
             // 
-            BuildingImage.Location = new Point(12, 41);
+            BuildingImage.Location = new Point(14, 30);
+            BuildingImage.Margin = new Padding(3, 2, 3, 2);
             BuildingImage.Name = "BuildingImage";
-            BuildingImage.Size = new Size(513, 300);
+            BuildingImage.Size = new Size(403, 227);
             BuildingImage.TabIndex = 10;
             BuildingImage.TabStop = false;
             // 
-            // groupBox1
+            // dataGridView1
             // 
-            groupBox1.Controls.Add(lblAdress);
-            groupBox1.Controls.Add(lbl2);
-            groupBox1.Controls.Add(lblDep);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(lblBuildingType);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(lbl_2);
-            groupBox1.Controls.Add(lblRoomNumber);
-            groupBox1.Controls.Add(lblRoomType);
-            groupBox1.Controls.Add(lblWidth);
-            groupBox1.Controls.Add(lblArea);
-            groupBox1.Controls.Add(lblBuilding);
-            groupBox1.Location = new Point(531, 41);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(436, 300);
-            groupBox1.TabIndex = 11;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Сведения";
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Габариты, Column4, Column9, Column3, Column2, Column6, Column8 });
+            dataGridView1.Location = new Point(14, 262);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView1.Size = new Size(798, 70);
+            dataGridView1.TabIndex = 0;
             // 
-            // lblAdress
+            // Column1
             // 
-            lblAdress.AutoSize = true;
-            lblAdress.Location = new Point(138, 202);
-            lblAdress.Name = "lblAdress";
-            lblAdress.Size = new Size(38, 15);
-            lblAdress.TabIndex = 20;
-            lblAdress.Text = "label8";
+            Column1.HeaderText = "Аудитория";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 104;
             // 
-            // lbl2
+            // Column5
             // 
-            lbl2.AutoSize = true;
-            lbl2.Location = new Point(49, 202);
-            lbl2.Name = "lbl2";
-            lbl2.Size = new Size(91, 15);
-            lbl2.TabIndex = 19;
-            lbl2.Text = "Адрес корпуса:";
+            Column5.HeaderText = "Тип аудитории";
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Width = 119;
             // 
-            // lblDep
+            // Габариты
             // 
-            lblDep.AutoSize = true;
-            lblDep.Location = new Point(84, 177);
-            lblDep.Name = "lblDep";
-            lblDep.Size = new Size(38, 15);
-            lblDep.TabIndex = 18;
-            lblDep.Text = "label8";
+            Габариты.HeaderText = "Назначение аудитории";
+            Габариты.Name = "Габариты";
+            Габариты.ReadOnly = true;
+            Габариты.Width = 169;
             // 
-            // label7
+            // Column4
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(43, 177);
-            label7.Name = "label7";
-            label7.Size = new Size(43, 15);
-            label7.TabIndex = 17;
-            label7.Text = "Отдел:";
-            label7.Click += label7_Click;
+            Column4.HeaderText = "Площадь аудитории";
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Width = 153;
             // 
-            // lblBuildingType
+            // Column9
             // 
-            lblBuildingType.AutoSize = true;
-            lblBuildingType.Location = new Point(122, 105);
-            lblBuildingType.Name = "lblBuildingType";
-            lblBuildingType.Size = new Size(38, 15);
-            lblBuildingType.TabIndex = 16;
-            lblBuildingType.Text = "label7";
+            Column9.HeaderText = "Габариты";
+            Column9.Name = "Column9";
+            Column9.ReadOnly = true;
+            Column9.Width = 95;
             // 
-            // label6
+            // Column3
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(43, 150);
-            label6.Name = "label6";
-            label6.Size = new Size(123, 15);
-            label6.TabIndex = 15;
-            label6.Text = "Площадь аудитории:";
-            label6.Click += label6_Click;
+            Column3.HeaderText = "Отдел";
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Width = 73;
             // 
-            // label5
+            // Column2
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(44, 128);
-            label5.Name = "label5";
-            label5.Size = new Size(63, 15);
-            label5.TabIndex = 14;
-            label5.Text = "Габариты:";
+            Column2.HeaderText = "Корпус";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 79;
             // 
-            // label4
+            // Column6
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(45, 105);
-            label4.Name = "label4";
-            label4.Size = new Size(79, 15);
-            label4.TabIndex = 13;
-            label4.Text = "Тип корпуса:";
+            Column6.HeaderText = "Тип корпуса";
+            Column6.Name = "Column6";
+            Column6.ReadOnly = true;
+            Column6.Width = 104;
             // 
-            // label3
+            // Column8
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(45, 80);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 15);
-            label3.TabIndex = 12;
-            label3.Text = "Тип кабинета:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(45, 55);
-            label2.Name = "label2";
-            label2.Size = new Size(96, 15);
-            label2.TabIndex = 11;
-            label2.Text = "Номер корпуса:";
-            label2.Click += label2_Click_1;
-            // 
-            // lbl_2
-            // 
-            lbl_2.AutoSize = true;
-            lbl_2.Location = new Point(45, 29);
-            lbl_2.Name = "lbl_2";
-            lbl_2.Size = new Size(109, 15);
-            lbl_2.TabIndex = 10;
-            lbl_2.Text = "Номер аудитории:";
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(flp);
-            groupBox2.Location = new Point(12, 347);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(955, 310);
-            groupBox2.TabIndex = 12;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Оборудование в аудитории";
-            groupBox2.Enter += groupBox2_Enter;
+            Column8.HeaderText = "Адрес корпуса";
+            Column8.Name = "Column8";
+            Column8.ReadOnly = true;
+            Column8.Width = 120;
             // 
             // flp
             // 
-            flp.BackColor = SystemColors.ControlDark;
-            flp.Location = new Point(6, 22);
+            flp.AutoScroll = true;
+            flp.BackColor = SystemColors.Menu;
+            flp.Location = new Point(420, 30);
+            flp.Margin = new Padding(0);
             flp.Name = "flp";
-            flp.Size = new Size(943, 281);
+            flp.Size = new Size(392, 227);
             flp.TabIndex = 0;
             flp.Paint += flp_Paint;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button1.Location = new Point(14, 338);
+            button1.Name = "button1";
+            button1.Size = new Size(213, 40);
+            button1.TabIndex = 11;
+            button1.Text = "Показать структуру по аудитории";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // RoomDetails
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(987, 668);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(824, 390);
+            Controls.Add(button1);
+            Controls.Add(flp);
+            Controls.Add(dataGridView1);
             Controls.Add(BuildingImage);
             Controls.Add(lbl_id_input);
             Controls.Add(label1);
+            Font = new Font("Yuruka Kerning (sherbackoffalex", 8.25F, FontStyle.Bold);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "RoomDetails";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "RoomDetails";
             ((System.ComponentModel.ISupportInitialize)BuildingImage).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -300,25 +202,18 @@
 
         private Label label1;
         private Label lbl_id_input;
-        private Label lblRoomNumber;
-        private Label lblBuilding;
-        private Label lblRoomType;
-        private Label lblWidth;
-        private Label lblArea;
         private PictureBox BuildingImage;
-        private GroupBox groupBox1;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label lbl_2;
-        private Label lblBuildingType;
-        private GroupBox groupBox2;
-        private Label lblDep;
-        private Label label7;
-        private Label lblAdress;
-        private Label lbl2;
+        private DataGridView dataGridView1;
         private FlowLayoutPanel flp;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Габариты;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column8;
+        private Button button1;
     }
 }

@@ -29,50 +29,60 @@
         private void InitializeComponent()
         {
             pcEq = new PictureBox();
-            richTxt = new RichTextBox();
             lblEqNm = new Label();
+            richTxt = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)pcEq).BeginInit();
             SuspendLayout();
             // 
             // pcEq
             // 
-            pcEq.BackgroundImage = Properties.Resources.LoadImage;
-            pcEq.Location = new Point(3, 24);
+            pcEq.Location = new Point(3, 29);
+            pcEq.Margin = new Padding(3, 4, 3, 4);
             pcEq.Name = "pcEq";
-            pcEq.Size = new Size(302, 171);
+            pcEq.Size = new Size(167, 143);
             pcEq.TabIndex = 0;
             pcEq.TabStop = false;
-            // 
-            // richTxt
-            // 
-            richTxt.Enabled = false;
-            richTxt.Location = new Point(3, 201);
-            richTxt.Name = "richTxt";
-            richTxt.ReadOnly = true;
-            richTxt.Size = new Size(302, 71);
-            richTxt.TabIndex = 2;
-            richTxt.Text = "";
-            richTxt.TextChanged += richTextBox1_TextChanged;
             // 
             // lblEqNm
             // 
             lblEqNm.AutoSize = true;
-            lblEqNm.Location = new Point(3, 6);
+            lblEqNm.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblEqNm.ForeColor = Color.DarkCyan;
+            lblEqNm.Location = new Point(5, 3);
             lblEqNm.Name = "lblEqNm";
-            lblEqNm.Size = new Size(38, 15);
+            lblEqNm.Size = new Size(72, 22);
             lblEqNm.TabIndex = 3;
             lblEqNm.Text = "label1";
+            lblEqNm.Click += lblEqNm_Click;
+            // 
+            // richTxt
+            // 
+            richTxt.BackColor = Color.Black;
+            richTxt.BorderStyle = BorderStyle.None;
+            richTxt.Enabled = false;
+            richTxt.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            richTxt.Location = new Point(3, 180);
+            richTxt.Margin = new Padding(3, 4, 3, 4);
+            richTxt.Name = "richTxt";
+            richTxt.ReadOnly = true;
+            richTxt.Size = new Size(167, 36);
+            richTxt.TabIndex = 2;
+            richTxt.Text = "";
+            richTxt.TextChanged += richTextBox1_TextChanged;
             // 
             // EquipmentCard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(5F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = Color.Gainsboro;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(lblEqNm);
             Controls.Add(richTxt);
             Controls.Add(pcEq);
+            Font = new Font("Doloto", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "EquipmentCard";
-            Size = new Size(308, 275);
+            Size = new Size(176, 223);
             ((System.ComponentModel.ISupportInitialize)pcEq).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -81,7 +91,7 @@
         #endregion
 
         public PictureBox pcEq;
-        private RichTextBox richTxt;
         private Label lblEqNm;
+        private RichTextBox richTxt;
     }
 }

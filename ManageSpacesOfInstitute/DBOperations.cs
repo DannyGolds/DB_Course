@@ -69,7 +69,8 @@ namespace ManageSpacesOfInstitute
         "GETROOMFULLINFO",
         "GET_EQUIPMENT_INFO",
         "INSERTUSER",
-        "GET_USER_BY_USERNAME"
+        "GET_USER_BY_USERNAME",
+        "GET_PARTIAL_ROOM_INFO"
 
     };
             if (!allowed.Contains(procName))

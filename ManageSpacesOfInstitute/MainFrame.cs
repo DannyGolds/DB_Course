@@ -13,7 +13,7 @@ namespace ManageSpacesOfInstitute
         /// Сохраняем исходную таблицу для фильтрации
         /// </summary>
         private DataTable _originalDataTable;
-        bool isAuthorizedAdmin = false;
+        bool isAuthorizedAdmin = true;
 
         public MainFrame()
         {
@@ -60,6 +60,7 @@ namespace ManageSpacesOfInstitute
             await LoadDataToComboBoxFromTableAsync("NAME", "EQUIPMENT", fpl_cheq);
             await LoadDataToComboBoxFromTableAsync("TYPE", "BUILDINGS", fpl_chtypebuild);
             await LoadDataToComboBoxFromTableAsync("TYPE", "ROOMS", fpl_chtyperoom);
+            await LoadDataToComboBoxFromTableAsync("PURPOSE", "ROOMS", fpl_chpurproom);
 
             // Загружаем основные данные из процедуры
             await LoadDataToTableAsync();
@@ -69,11 +70,9 @@ namespace ManageSpacesOfInstitute
             fpl_cheq.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtyperoom.SelectedIndexChanged += (s, _) => filterData();
+            fpl_chpurproom.SelectedIndexChanged += (s, _) => filterData();
         }
 
-        /// <summary>
-        /// Загружает данные из обычной таблицы (не процедуры) в ComboBox
-        /// </summary>
         private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, ComboBox comboBox)
         {
             try
@@ -97,9 +96,6 @@ namespace ManageSpacesOfInstitute
             }
         }
 
-        /// <summary>
-        /// Загружает основную таблицу из хранимой процедуры
-        /// </summary>
         private async Task LoadDataToTableAsync()
         {
             try
@@ -112,10 +108,11 @@ namespace ManageSpacesOfInstitute
                     "BUILDINGNAME",
                     "ROOMTYPE",
                     "BUILDINGTYPE",
-                    "EQUIPMENTLIST"
+                    "EQUIPMENTLIST",
+                    "ROOMPURPOSE"
                 };
 
-                var dt = await db.CallProcedureAsync("GETROOMFULLINFO", col_list);
+                var dt = await db.CallProcedureAsync("GET_PARTIAL_ROOM_INFO", col_list);
 
                 // Переименовываем столбцы для отображения
                 dt.Columns["ROOM_ID"].ColumnName = "ROOM_ID";
@@ -124,6 +121,7 @@ namespace ManageSpacesOfInstitute
                 dt.Columns["ROOMTYPE"].ColumnName = "Тип кабинета";
                 dt.Columns["BUILDINGTYPE"].ColumnName = "Тип корпуса";
                 dt.Columns["EQUIPMENTLIST"].ColumnName = "Оборудование";
+                dt.Columns["ROOMPURPOSE"].ColumnName = "Назначение";
 
                 _originalDataTable = dt.Copy();
 
@@ -148,7 +146,8 @@ namespace ManageSpacesOfInstitute
                 fpl_chbuild.SelectedIndex > 0 ||
                 fpl_cheq.SelectedIndex > 0 ||
                 fpl_chtypebuild.SelectedIndex > 0 ||
-                fpl_chtyperoom.SelectedIndex > 0;
+                fpl_chtyperoom.SelectedIndex > 0 ||
+                fpl_chpurproom.SelectedIndex > 0;
 
             var dv = gridview_foundroomsinfo.DataSource as DataView;
             if (dv == null) return;
@@ -172,7 +171,8 @@ namespace ManageSpacesOfInstitute
 
             if (fpl_chtyperoom.SelectedIndex > 0)
                 filters.Append($"[Тип кабинета] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
-
+            if (fpl_chpurproom.SelectedIndex > 0)
+                filters.Append($"[Назначение] = '{fpl_chpurproom.SelectedItem.ToString().Replace("'", "''")}' AND ");
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
                 filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
@@ -270,15 +270,18 @@ namespace ManageSpacesOfInstitute
             using var authForm = new Auth();
             if (authForm.ShowDialog() == DialogResult.OK)
             {
-                label_username.Text = $"Пользователь: {authForm.loggedUser}";
-                // Разблокируй вкладки или функционал (например, tabs.Enabled = true;)
-                MessageBox.Show("Авторизация успешна!");
+                label_username.Text = authForm.loggedUser;
                 if (authForm.accessLevel == "ADMIN")
                 {
                     isAuthorizedAdmin = true;
                     UpdateTabs();
                 }
             }
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
