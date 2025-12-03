@@ -48,14 +48,14 @@
             label1 = new Label();
             tabs = new TabControl();
             page_edit = new TabPage();
-            btnAdd = new Button();
-            btnDel = new Button();
-            btnEd = new Button();
-            btnRep = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
             dataGridView1 = new DataGridView();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             btnChFile = new Button();
             pictureBox1 = new PictureBox();
             textBox2 = new TextBox();
@@ -69,6 +69,10 @@
             splitContainer2 = new SplitContainer();
             dataGridView2 = new DataGridView();
             comboBox2 = new ComboBox();
+            btnAdd = new Button();
+            btnDel = new Button();
+            btnEd = new Button();
+            btnRep = new Button();
             label14 = new Label();
             checkedListBox1 = new CheckedListBox();
             comboBox6 = new ComboBox();
@@ -89,6 +93,10 @@
             splitContainer3 = new SplitContainer();
             comboBox7 = new ComboBox();
             dataGridView3 = new DataGridView();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            button8 = new Button();
             pictureBox2 = new PictureBox();
             label19 = new Label();
             richTextBox1 = new RichTextBox();
@@ -108,6 +116,10 @@
             label20 = new Label();
             dataGridView4 = new DataGridView();
             label9 = new Label();
+            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
+            button12 = new Button();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridview_foundroomsinfo).BeginInit();
@@ -369,10 +381,6 @@
             // 
             // page_edit
             // 
-            page_edit.Controls.Add(btnAdd);
-            page_edit.Controls.Add(btnDel);
-            page_edit.Controls.Add(btnEd);
-            page_edit.Controls.Add(btnRep);
             page_edit.Controls.Add(tabControl1);
             page_edit.Controls.Add(label9);
             page_edit.Location = new Point(4, 24);
@@ -383,46 +391,6 @@
             page_edit.Text = "Редактирование базы";
             page_edit.UseVisualStyleBackColor = true;
             // 
-            // btnAdd
-            // 
-            btnAdd.ForeColor = Color.ForestGreen;
-            btnAdd.Location = new Point(446, 3);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(92, 28);
-            btnAdd.TabIndex = 0;
-            btnAdd.Text = "Добавить +";
-            btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnDel
-            // 
-            btnDel.ForeColor = Color.Firebrick;
-            btnDel.Location = new Point(544, 3);
-            btnDel.Name = "btnDel";
-            btnDel.Size = new Size(93, 28);
-            btnDel.TabIndex = 1;
-            btnDel.Text = "Удалить -";
-            btnDel.UseVisualStyleBackColor = true;
-            // 
-            // btnEd
-            // 
-            btnEd.ForeColor = Color.SteelBlue;
-            btnEd.Location = new Point(643, 3);
-            btnEd.Name = "btnEd";
-            btnEd.Size = new Size(109, 28);
-            btnEd.TabIndex = 2;
-            btnEd.Text = "Отменить";
-            btnEd.UseVisualStyleBackColor = true;
-            // 
-            // btnRep
-            // 
-            btnRep.ForeColor = Color.SlateBlue;
-            btnRep.Location = new Point(758, 3);
-            btnRep.Name = "btnRep";
-            btnRep.Size = new Size(98, 28);
-            btnRep.TabIndex = 3;
-            btnRep.Text = "Сохранить";
-            btnRep.UseVisualStyleBackColor = true;
-            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
@@ -432,7 +400,7 @@
             tabControl1.Location = new Point(0, 51);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(863, 359);
+            tabControl1.Size = new Size(859, 359);
             tabControl1.TabIndex = 9;
             // 
             // tabPage1
@@ -458,6 +426,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(button1);
+            splitContainer1.Panel2.Controls.Add(button2);
+            splitContainer1.Panel2.Controls.Add(button3);
+            splitContainer1.Panel2.Controls.Add(button4);
             splitContainer1.Panel2.Controls.Add(btnChFile);
             splitContainer1.Panel2.Controls.Add(pictureBox1);
             splitContainer1.Panel2.Controls.Add(textBox2);
@@ -480,6 +452,46 @@
             dataGridView1.Size = new Size(282, 325);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_2;
+            // 
+            // button1
+            // 
+            button1.ForeColor = Color.ForestGreen;
+            button1.Location = new Point(3, 294);
+            button1.Name = "button1";
+            button1.Size = new Size(92, 28);
+            button1.TabIndex = 11;
+            button1.Text = "Добавить +";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.ForeColor = Color.Firebrick;
+            button2.Location = new Point(101, 294);
+            button2.Name = "button2";
+            button2.Size = new Size(93, 28);
+            button2.TabIndex = 12;
+            button2.Text = "Удалить -";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.ForeColor = Color.SteelBlue;
+            button3.Location = new Point(200, 294);
+            button3.Name = "button3";
+            button3.Size = new Size(109, 28);
+            button3.TabIndex = 13;
+            button3.Text = "Отменить";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.ForeColor = Color.SlateBlue;
+            button4.Location = new Point(315, 294);
+            button4.Name = "button4";
+            button4.Size = new Size(98, 28);
+            button4.TabIndex = 14;
+            button4.Text = "Сохранить";
+            button4.UseVisualStyleBackColor = true;
             // 
             // btnChFile
             // 
@@ -589,6 +601,10 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.Controls.Add(btnAdd);
+            splitContainer2.Panel2.Controls.Add(btnDel);
+            splitContainer2.Panel2.Controls.Add(btnEd);
+            splitContainer2.Panel2.Controls.Add(btnRep);
             splitContainer2.Panel2.Controls.Add(label14);
             splitContainer2.Panel2.Controls.Add(checkedListBox1);
             splitContainer2.Panel2.Controls.Add(comboBox6);
@@ -626,6 +642,46 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(276, 23);
             comboBox2.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            btnAdd.ForeColor = Color.ForestGreen;
+            btnAdd.Location = new Point(3, 294);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(92, 28);
+            btnAdd.TabIndex = 23;
+            btnAdd.Text = "Добавить +";
+            btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnDel
+            // 
+            btnDel.ForeColor = Color.Firebrick;
+            btnDel.Location = new Point(101, 294);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(93, 28);
+            btnDel.TabIndex = 24;
+            btnDel.Text = "Удалить -";
+            btnDel.UseVisualStyleBackColor = true;
+            // 
+            // btnEd
+            // 
+            btnEd.ForeColor = Color.SteelBlue;
+            btnEd.Location = new Point(200, 294);
+            btnEd.Name = "btnEd";
+            btnEd.Size = new Size(109, 28);
+            btnEd.TabIndex = 25;
+            btnEd.Text = "Отменить";
+            btnEd.UseVisualStyleBackColor = true;
+            // 
+            // btnRep
+            // 
+            btnRep.ForeColor = Color.SlateBlue;
+            btnRep.Location = new Point(315, 294);
+            btnRep.Name = "btnRep";
+            btnRep.Size = new Size(98, 28);
+            btnRep.TabIndex = 26;
+            btnRep.Text = "Сохранить";
+            btnRep.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -791,6 +847,10 @@
             // 
             // splitContainer3.Panel2
             // 
+            splitContainer3.Panel2.Controls.Add(button5);
+            splitContainer3.Panel2.Controls.Add(button6);
+            splitContainer3.Panel2.Controls.Add(button7);
+            splitContainer3.Panel2.Controls.Add(button8);
             splitContainer3.Panel2.Controls.Add(pictureBox2);
             splitContainer3.Panel2.Controls.Add(label19);
             splitContainer3.Panel2.Controls.Add(richTextBox1);
@@ -822,21 +882,61 @@
             dataGridView3.Size = new Size(276, 288);
             dataGridView3.TabIndex = 0;
             // 
+            // button5
+            // 
+            button5.ForeColor = Color.ForestGreen;
+            button5.Location = new Point(3, 294);
+            button5.Name = "button5";
+            button5.Size = new Size(92, 28);
+            button5.TabIndex = 19;
+            button5.Text = "Добавить +";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.ForeColor = Color.Firebrick;
+            button6.Location = new Point(101, 294);
+            button6.Name = "button6";
+            button6.Size = new Size(93, 28);
+            button6.TabIndex = 20;
+            button6.Text = "Удалить -";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.ForeColor = Color.SteelBlue;
+            button7.Location = new Point(200, 294);
+            button7.Name = "button7";
+            button7.Size = new Size(109, 28);
+            button7.TabIndex = 21;
+            button7.Text = "Отменить";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.ForeColor = Color.SlateBlue;
+            button8.Location = new Point(315, 294);
+            button8.Name = "button8";
+            button8.Size = new Size(98, 28);
+            button8.TabIndex = 22;
+            button8.Text = "Сохранить";
+            button8.UseVisualStyleBackColor = true;
+            // 
             // pictureBox2
             // 
             pictureBox2.BackColor = SystemColors.ButtonFace;
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Image = Properties.Resources.LoadImage;
-            pictureBox2.Location = new Point(239, 134);
+            pictureBox2.Location = new Point(259, 134);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(294, 165);
+            pictureBox2.Size = new Size(277, 154);
             pictureBox2.TabIndex = 18;
             pictureBox2.TabStop = false;
             // 
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(239, 114);
+            label19.Location = new Point(259, 114);
             label19.Name = "label19";
             label19.Size = new Size(97, 15);
             label19.TabIndex = 17;
@@ -845,16 +945,16 @@
             // richTextBox1
             // 
             richTextBox1.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox1.Location = new Point(239, 40);
+            richTextBox1.Location = new Point(259, 40);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(294, 66);
+            richTextBox1.Size = new Size(277, 66);
             richTextBox1.TabIndex = 16;
             richTextBox1.Text = "";
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(239, 20);
+            label18.Location = new Point(259, 20);
             label18.Name = "label18";
             label18.Size = new Size(74, 15);
             label18.TabIndex = 15;
@@ -915,6 +1015,10 @@
             // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(button9);
+            tabPage5.Controls.Add(button10);
+            tabPage5.Controls.Add(button11);
+            tabPage5.Controls.Add(button12);
             tabPage5.Controls.Add(textBox10);
             tabPage5.Controls.Add(label22);
             tabPage5.Controls.Add(textBox9);
@@ -925,7 +1029,7 @@
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(855, 331);
+            tabPage5.Size = new Size(851, 331);
             tabPage5.TabIndex = 3;
             tabPage5.Text = "Ответственные";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1000,6 +1104,46 @@
             label9.Size = new Size(348, 18);
             label9.TabIndex = 8;
             label9.Text = "Редактирование информационной базы";
+            // 
+            // button9
+            // 
+            button9.ForeColor = Color.ForestGreen;
+            button9.Location = new Point(401, 297);
+            button9.Name = "button9";
+            button9.Size = new Size(92, 28);
+            button9.TabIndex = 15;
+            button9.Text = "Добавить +";
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            button10.ForeColor = Color.Firebrick;
+            button10.Location = new Point(499, 297);
+            button10.Name = "button10";
+            button10.Size = new Size(93, 28);
+            button10.TabIndex = 16;
+            button10.Text = "Удалить -";
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            button11.ForeColor = Color.SteelBlue;
+            button11.Location = new Point(598, 297);
+            button11.Name = "button11";
+            button11.Size = new Size(109, 28);
+            button11.TabIndex = 17;
+            button11.Text = "Отменить";
+            button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            button12.ForeColor = Color.SlateBlue;
+            button12.Location = new Point(713, 297);
+            button12.Name = "button12";
+            button12.Size = new Size(98, 28);
+            button12.TabIndex = 18;
+            button12.Text = "Сохранить";
+            button12.UseVisualStyleBackColor = true;
             // 
             // MainFrame
             // 
@@ -1077,10 +1221,6 @@
         private TabPage tabPage3;
         private TabPage tabPage4;
         private TabPage tabPage5;
-        private Button btnRep;
-        private Button btnEd;
-        private Button btnDel;
-        private Button btnAdd;
         private SplitContainer splitContainer1;
         private DataGridView dataGridView1;
         private ComboBox comboBox1;
@@ -1133,5 +1273,21 @@
         private Label label20;
         private Label label23;
         private ComboBox fpl_chpurproom;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button btnAdd;
+        private Button btnDel;
+        private Button btnEd;
+        private Button btnRep;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Button button8;
+        private Button button9;
+        private Button button10;
+        private Button button11;
+        private Button button12;
     }
 }

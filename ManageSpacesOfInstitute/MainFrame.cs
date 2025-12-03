@@ -63,7 +63,93 @@ namespace ManageSpacesOfInstitute
             await LoadDataToComboBoxFromTableAsync("PURPOSE", "ROOMS", fpl_chpurproom);
 
             // Загружаем основные данные из процедуры
-            await LoadDataToTableAsync();
+            await LoadDataToTableAsync(new List<string>
+                {
+                    "ROOM_ID",
+                    "ROOMNUMBER",
+                    "BUILDINGNAME",
+                    "ROOMTYPE",
+                    "BUILDINGTYPE",
+                    "EQUIPMENTLIST",
+                    "ROOMPURPOSE"
+                }, "GET_PARTIAL_ROOM_INFO", new List<string> { "ROOM_ID" }, gridview_foundroomsinfo, new List<string>
+                {
+                    "ROOM_ID",
+                    "Номер аудитории",
+                    "Корпус",
+                    "Тип аудитории",
+                    "Тип корпуса",
+                    "Оборудование",
+                    "Назначение аудитории"
+                });
+
+            await LoadDataToTableAsync(new List<string>
+                {
+                    "EQUIPMENTID",
+                    "EQUIPMENTNAME",
+                    "EQUIPMENTIMAGE",
+                    "EQUIPMDESCRIPTION"
+                }, "GET_EQUIPMENT_INFO", new List<string> { "EQUIPMENTID" }, dataGridView3, new List<string>
+                {
+                    "EQUIPMENTID",
+                    "Название оборудования",
+                    "Изображение оборудования",
+                    "Описание оборудования"
+                });
+
+            await LoadDataToTableAsync(new List<string> {
+                "ROOMNUMBER",
+                "BUILDINGNAME",
+                "BUILDINGTYPE",
+                "ROOMTYPE",
+                "WIDTH",
+                "LENGTH",
+                "DepName",
+                "ROOMPURPOSE"}, "GETROOMFULLINFO", new List<string> { "ROOM_ID" }, dataGridView2, new List<string>
+                {
+                    "Номер аудитории",
+                    "Корпус",
+                    "Тип корпуса",
+                    "Тип аудитории",
+                    "Ширина",
+                    "Длина",
+                    "Подразделение",
+                    "Назначение аудитории"
+                });
+
+            await LoadDataToTableAsync(new List<string>
+                {
+                    "ROOM_ID",
+                    "ROOMNUMBER",
+                    "BUILDINGNAME",
+                    "ROOMTYPE",
+                    "BUILDINGTYPE",
+                    "EQUIPMENTLIST",
+                    "ROOMPURPOSE"
+                }, "GET_PARTIAL_ROOM_INFO", new List<string> { "ROOM_ID" }, gridview_foundroomsinfo, new List<string>
+                {
+                    "ROOM_ID",
+                    "Номер аудитории",
+                    "Корпус",
+                    "Тип аудитории",
+                    "Тип корпуса",
+                    "Оборудование",
+                    "Назначение аудитории"
+                });
+
+            await LoadDataToTableAsync(new List<string>
+                {
+                    "NAME",
+                    "TYPE",
+                    "IMAGE",
+                    "ADRESS",
+                }, "GET_BUILDINGS", new List<string> {}, dataGridView1, new List<string>
+                {
+                    "Корпус",
+                    "Тип корпуса",
+                    "Изображение",
+                    "Адресс"
+                });
 
             // Подписка на изменения фильтров
             fpl_chbuild.SelectedIndexChanged += (s, _) => filterData();
@@ -96,42 +182,29 @@ namespace ManageSpacesOfInstitute
             }
         }
 
-        private async Task LoadDataToTableAsync()
+
+        private async Task LoadDataToTableAsync(List<string> col_list, string proc_name, List<string> unvisible_cols, DataGridView grid, List<string> cols_naming)
         {
             try
             {
                 await using var db = new DBOperations();
-                var col_list = new List<string>
+
+                var dt = await db.CallProcedureAsync(proc_name, col_list);
+                for (var index = 0; index < col_list.Count; index++)  // Или index < dt.Columns.Count
                 {
-                    "ROOM_ID",
-                    "ROOMNUMBER",
-                    "BUILDINGNAME",
-                    "ROOMTYPE",
-                    "BUILDINGTYPE",
-                    "EQUIPMENTLIST",
-                    "ROOMPURPOSE"
-                };
-
-                var dt = await db.CallProcedureAsync("GET_PARTIAL_ROOM_INFO", col_list);
-
-                // Переименовываем столбцы для отображения
-                dt.Columns["ROOM_ID"].ColumnName = "ROOM_ID";
-                dt.Columns["ROOMNUMBER"].ColumnName = "Номер кабинета";
-                dt.Columns["BUILDINGNAME"].ColumnName = "Корпус";
-                dt.Columns["ROOMTYPE"].ColumnName = "Тип кабинета";
-                dt.Columns["BUILDINGTYPE"].ColumnName = "Тип корпуса";
-                dt.Columns["EQUIPMENTLIST"].ColumnName = "Оборудование";
-                dt.Columns["ROOMPURPOSE"].ColumnName = "Назначение";
+                    dt.Columns[index].ColumnName = cols_naming[index];
+                }
 
                 _originalDataTable = dt.Copy();
 
                 var dv = new DataView(_originalDataTable);
-                gridview_foundroomsinfo.DataSource = dv;
+                grid.DataSource = dv;
 
-                if (gridview_foundroomsinfo.Columns.Contains("ROOM_ID"))
-                    gridview_foundroomsinfo.Columns["ROOM_ID"].Visible = false;
-
-                gridview_foundroomsinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                for (var index = 0; index < unvisible_cols.Count; index++)
+                {
+                    if (grid.Columns.Contains($"{unvisible_cols[index]}"))
+                        grid.Columns[$"{unvisible_cols[index]}"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
