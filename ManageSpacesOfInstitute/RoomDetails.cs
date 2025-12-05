@@ -9,13 +9,16 @@ namespace ManageSpacesOfInstitute
     public partial class RoomDetails : Form
     {
         private int _roomId;
-
+        private List<string> _structure;
+        private bool _structureLoaded = false;
+        private readonly object _structureLock = new object();
         public RoomDetails(int roomId)
         {
             InitializeComponent();
             _roomId = roomId;
             // Запуск async без ConfigureAwait(false) — иначе UI не обновится!
             _ = LoadRoomDetailsAsync(); // Используем "fire-and-forget" с подавлением предупреждения
+            _ = GetRoomChainAsync();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             flp.Visible = true;
@@ -59,9 +62,14 @@ namespace ManageSpacesOfInstitute
             var dt = await db.CallProcedureAsync("GET_EQUIPMENT_INFO", new List<string>
     {
         "EQUIPMENTID",
-        "EQUIPMENTNAME",
-        "EQUIPMENTIMAGE",
-        "EQUIPMDESCRIPTION"
+        "NAME",
+        "IMAGE",
+        "SERIAL_NUMBER",
+        "QUANTITY",
+        "STATUS",
+        "IMAGE",
+        "PURCHASE_DATE",
+        "NOTES"
     }, new FbParameter("ROOMID", _roomId));
 
             // Очистите flp перед добавлением, чтобы избежать дубликатов при повторных вызовах
@@ -74,9 +82,9 @@ namespace ManageSpacesOfInstitute
             // Добавьте карточки из БД
             foreach (DataRow row in dt.Rows)
             {
-                var eqName = row["EQUIPMENTNAME"].ToString();
-                var eqDesc = row["EQUIPMDESCRIPTION"].ToString();
-                var eqImage = row["EQUIPMENTIMAGE"];  // BLOB-данные
+                var eqName = row["NAME"].ToString();
+                var eqDesc = row["NOTES"].ToString();
+                var eqImage = row["IMAGE"];  // BLOB-данные
 
                 var card = new EquipmentCard(eqName, eqDesc);
 
@@ -106,10 +114,11 @@ namespace ManageSpacesOfInstitute
                 "BUILDINGTYPE",
                 "ROOMTYPE",
                 "WIDTH",
-                "LENGTH",
+                "ROOM_LENGTH",
                 "BUILDINGIMAGE",
                 "BUILDINGADRESS",
-                "DepName",
+                "CHAIR",
+                "FACULTY",
                 "ROOMPURPOSE"
                     },
                     new FbParameter("ROOM_ID", _roomId)
@@ -121,20 +130,21 @@ namespace ManageSpacesOfInstitute
                     Close();
                     return;
                 }
-                
+
                 var row = dt.Rows[0];
                 dataGridView1.Rows.Add();
                 decimal width = Convert.ToDecimal(row["WIDTH"] ?? 0);
-                decimal length = Convert.ToDecimal(row["LENGTH"] ?? 0);
+                decimal length = Convert.ToDecimal(row["ROOM_LENGTH"] ?? 0);
                 dataGridView1.Rows[0].Cells[0].Value = $"{row["ROOMNUMBER"]}";
                 dataGridView1.Rows[0].Cells[1].Value = $"{row["ROOMTYPE"]}";
                 dataGridView1.Rows[0].Cells[2].Value = $"{row["ROOMPURPOSE"]}";
                 dataGridView1.Rows[0].Cells[3].Value = $"{width * length:F2} м²";
-                dataGridView1.Rows[0].Cells[4].Value = $"{row["LENGTH"]}м x {row["WIDTH"]}м";
-                dataGridView1.Rows[0].Cells[5].Value = $"{row["DepName"]}";
-                dataGridView1.Rows[0].Cells[6].Value = $"{row["BUILDINGNAME"]}";
-                dataGridView1.Rows[0].Cells[7].Value = $"{row["BUILDINGTYPE"]}";
-                dataGridView1.Rows[0].Cells[8].Value = $"{row["BUILDINGADRESS"]}";
+                dataGridView1.Rows[0].Cells[4].Value = $"{row["ROOM_LENGTH"]}м x {row["WIDTH"]}м";
+                dataGridView1.Rows[0].Cells[6].Value = $"{row["CHAIR"]}";
+                dataGridView1.Rows[0].Cells[5].Value = $"{row["FACULTY"]}";
+                dataGridView1.Rows[0].Cells[7].Value = $"{row["BUILDINGNAME"]}";
+                dataGridView1.Rows[0].Cells[8].Value = $"{row["BUILDINGTYPE"]}";
+                dataGridView1.Rows[0].Cells[9].Value = $"{row["BUILDINGADRESS"]}";
 
 
                 Text = $"Информация о кабинете {row["ROOMNUMBER"]} ({row["BUILDINGNAME"]})";
@@ -153,6 +163,30 @@ namespace ManageSpacesOfInstitute
                 }
                 Close();
             }
+        }
+
+        async Task GetRoomChainAsync()
+        {
+            await using var db = new DBOperations();
+            var dt = await db.CallProcedureAsync(
+                "GET_ROOM_CHAIN",
+                new List<string> { "NUMBER", "CHAIR", "FACULTY" },
+                new FbParameter("IN_ROOMID", _roomId)
+            );
+
+            if (dt.Rows.Count == 0)
+            {
+                _structure = new List<string>();
+            }
+            else
+            {
+                var row = dt.Rows[0];
+                _structure = new List<string> { row["NUMBER"].ToString(), row["CHAIR"].ToString(), row["FACULTY"].ToString() };
+            }
+
+            lock (_structureLock) { _structureLoaded = true; }
+
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -196,6 +230,22 @@ namespace ManageSpacesOfInstitute
 
         private void lblDep_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            if (!_structureLoaded)
+            {
+                // можно показать индикатор загрузки
+                button1.Enabled = false;
+                await GetRoomChainAsync(); // если уже выполняется, второй вызов быстро завершится
+                button1.Enabled = true;
+            }
+
+            // теперь _structure гарантированно не null (в worst-case — пустой список)
+            var structureWindow = new Structure(_structure);
+            structureWindow.ShowDialog(this);
 
         }
     }

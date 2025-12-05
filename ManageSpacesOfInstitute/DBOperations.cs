@@ -71,8 +71,12 @@ namespace ManageSpacesOfInstitute
         "INSERTUSER",
         "GET_USER_BY_USERNAME",
         "GET_PARTIAL_ROOM_INFO",
-        "GET_BUILDINGS"
-
+        "GET_BUILDINGS",
+        "GET_RESPONSIBLES",
+        "GET_ROOM_CHAIN",
+        "GET_EQUIPMENT_LIST",
+        "GET_CHAIRS",
+        "GET_FACULTIES"
     };
             if (!allowed.Contains(procName))
                 throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");

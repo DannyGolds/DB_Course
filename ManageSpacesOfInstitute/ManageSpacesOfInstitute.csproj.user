@@ -16,5 +16,8 @@
     <Compile Update="RoomDetails.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Structure.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -46,11 +46,11 @@
             // lblEqNm
             // 
             lblEqNm.AutoSize = true;
-            lblEqNm.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblEqNm.Font = new Font("Zero Cool", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblEqNm.ForeColor = Color.DarkCyan;
             lblEqNm.Location = new Point(5, 3);
             lblEqNm.Name = "lblEqNm";
-            lblEqNm.Size = new Size(72, 22);
+            lblEqNm.Size = new Size(62, 18);
             lblEqNm.TabIndex = 3;
             lblEqNm.Text = "label1";
             lblEqNm.Click += lblEqNm_Click;
@@ -65,7 +65,7 @@
             richTxt.Margin = new Padding(3, 4, 3, 4);
             richTxt.Name = "richTxt";
             richTxt.ReadOnly = true;
-            richTxt.Size = new Size(167, 36);
+            richTxt.Size = new Size(167, 39);
             richTxt.TabIndex = 2;
             richTxt.Text = "";
             richTxt.TextChanged += richTextBox1_TextChanged;

@@ -9,11 +9,8 @@ namespace ManageSpacesOfInstitute
 {
     public partial class MainFrame : Form
     {
-        /// <summary>
-        /// Сохраняем исходную таблицу для фильтрации
-        /// </summary>
         private DataTable _originalDataTable;
-        bool isAuthorizedAdmin = true;
+        private bool isAuthorizedAdmin = false;
 
         public MainFrame()
         {
@@ -24,132 +21,20 @@ namespace ManageSpacesOfInstitute
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             gridview_foundroomsinfo.ReadOnly = true;
-            UpdateTabs();
-        }
-
-        public struct FilterCriteria
-        {
-            public string BuildingName;
-            public string Equipment;
-            public string BuildingType;
-            public string RoomType;
-            public string RoomNumber;
-            public string RoomWidth;
-            public string RoomLength;
-        }
-        private void UpdateTabs()
-        {
-            if (isAuthorizedAdmin)
-            {
-                if (!tabs.TabPages.Contains(page_edit))
-                {
-                    tabs.TabPages.Add(page_edit);
-                }
-            }
-            else
-            {
-                tabs.TabPages.Remove(page_edit);
-            }
-            this.Refresh();  // Перерисовка для верности
+            UpdateTabsAsync();
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // Загружаем списки из таблиц (не процедур!)
+            // Загружаем списки из таблиц
             await LoadDataToComboBoxFromTableAsync("NAME", "BUILDINGS", fpl_chbuild);
-            await LoadDataToComboBoxFromTableAsync("NAME", "EQUIPMENT", fpl_cheq);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_EQUIPMENT_LIST", fpl_cheq);
             await LoadDataToComboBoxFromTableAsync("TYPE", "BUILDINGS", fpl_chtypebuild);
             await LoadDataToComboBoxFromTableAsync("TYPE", "ROOMS", fpl_chtyperoom);
             await LoadDataToComboBoxFromTableAsync("PURPOSE", "ROOMS", fpl_chpurproom);
 
             // Загружаем основные данные из процедуры
-            await LoadDataToTableAsync(new List<string>
-                {
-                    "ROOM_ID",
-                    "ROOMNUMBER",
-                    "BUILDINGNAME",
-                    "ROOMTYPE",
-                    "BUILDINGTYPE",
-                    "EQUIPMENTLIST",
-                    "ROOMPURPOSE"
-                }, "GET_PARTIAL_ROOM_INFO", new List<string> { "ROOM_ID" }, gridview_foundroomsinfo, new List<string>
-                {
-                    "ROOM_ID",
-                    "Номер аудитории",
-                    "Корпус",
-                    "Тип аудитории",
-                    "Тип корпуса",
-                    "Оборудование",
-                    "Назначение аудитории"
-                });
-
-            await LoadDataToTableAsync(new List<string>
-                {
-                    "EQUIPMENTID",
-                    "EQUIPMENTNAME",
-                    "EQUIPMENTIMAGE",
-                    "EQUIPMDESCRIPTION"
-                }, "GET_EQUIPMENT_INFO", new List<string> { "EQUIPMENTID" }, dataGridView3, new List<string>
-                {
-                    "EQUIPMENTID",
-                    "Название оборудования",
-                    "Изображение оборудования",
-                    "Описание оборудования"
-                });
-
-            await LoadDataToTableAsync(new List<string> {
-                "ROOMNUMBER",
-                "BUILDINGNAME",
-                "BUILDINGTYPE",
-                "ROOMTYPE",
-                "WIDTH",
-                "LENGTH",
-                "DepName",
-                "ROOMPURPOSE"}, "GETROOMFULLINFO", new List<string> { "ROOM_ID" }, dataGridView2, new List<string>
-                {
-                    "Номер аудитории",
-                    "Корпус",
-                    "Тип корпуса",
-                    "Тип аудитории",
-                    "Ширина",
-                    "Длина",
-                    "Подразделение",
-                    "Назначение аудитории"
-                });
-
-            await LoadDataToTableAsync(new List<string>
-                {
-                    "ROOM_ID",
-                    "ROOMNUMBER",
-                    "BUILDINGNAME",
-                    "ROOMTYPE",
-                    "BUILDINGTYPE",
-                    "EQUIPMENTLIST",
-                    "ROOMPURPOSE"
-                }, "GET_PARTIAL_ROOM_INFO", new List<string> { "ROOM_ID" }, gridview_foundroomsinfo, new List<string>
-                {
-                    "ROOM_ID",
-                    "Номер аудитории",
-                    "Корпус",
-                    "Тип аудитории",
-                    "Тип корпуса",
-                    "Оборудование",
-                    "Назначение аудитории"
-                });
-
-            await LoadDataToTableAsync(new List<string>
-                {
-                    "NAME",
-                    "TYPE",
-                    "IMAGE",
-                    "ADRESS",
-                }, "GET_BUILDINGS", new List<string> {}, dataGridView1, new List<string>
-                {
-                    "Корпус",
-                    "Тип корпуса",
-                    "Изображение",
-                    "Адресс"
-                });
+            await LoadDataToTableAsync(Shared.Partial.info, Shared.Partial.proc, Shared.Partial.to_hide, gridview_foundroomsinfo, Shared.Partial.naming);
 
             // Подписка на изменения фильтров
             fpl_chbuild.SelectedIndexChanged += (s, _) => filterData();
@@ -157,6 +42,36 @@ namespace ManageSpacesOfInstitute
             fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtyperoom.SelectedIndexChanged += (s, _) => filterData();
             fpl_chpurproom.SelectedIndexChanged += (s, _) => filterData();
+        }
+
+        private async Task UpdateTabsAsync()
+        {
+            if (isAuthorizedAdmin)
+            {
+                if (!tabs.TabPages.Contains(page_edit))
+                {
+                    tabs.TabPages.Add(page_edit);
+                }
+                await LoadDataToEditPageAsync();
+            }
+            else
+            {
+                tabs.TabPages.Remove(page_edit);
+            }
+        }
+
+        async Task LoadDataToEditPageAsync()
+        {
+            await LoadDataToComboBoxFromTableAsync("NAME", "BUILDINGS", comboBox2);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_EQUIPMENT_LIST", comboBox7);
+            await LoadDataToTableAsync(Shared.Responsible.info, Shared.Responsible.to_hide, Shared.Responsible.proc, dataGridView4, Shared.Responsible.naming);
+            await LoadDataToTableAsync(Shared.Equipment.info, Shared.Equipment.proc, Shared.Equipment.to_hide, dataGridView3, Shared.Equipment.naming);
+            await LoadDataToTableAsync(Shared.RoomFull.info, Shared.RoomFull.proc, Shared.RoomFull.to_hide, dataGridView2, Shared.RoomFull.naming);
+            await LoadDataToTableAsync(Shared.Buildings.info, Shared.Buildings.proc, Shared.Buildings.to_hide, dataGridView1, Shared.Buildings.naming);
+            await LoadDataToTableAsync(Shared.Chairs.info, Shared.Chairs.proc, Shared.Chairs.to_hide, dataGridView5, Shared.Chairs.naming);
+            await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
+            comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
+            comboBox7.SelectedIndexChanged += (s, _) => filterEditEquipment();
         }
 
         private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, ComboBox comboBox)
@@ -243,15 +158,69 @@ namespace ManageSpacesOfInstitute
                 filters.Append($"[Тип корпуса] = '{fpl_chtypebuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
 
             if (fpl_chtyperoom.SelectedIndex > 0)
-                filters.Append($"[Тип кабинета] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[Тип аудитории] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
             if (fpl_chpurproom.SelectedIndex > 0)
-                filters.Append($"[Назначение] = '{fpl_chpurproom.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[Назначение аудитории] = '{fpl_chpurproom.SelectedItem.ToString().Replace("'", "''")}' AND ");
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
                 filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
 
             dv.RowFilter = filter;
             gridview_foundroomsinfo.Refresh();
+        }
+
+        private void filterEditRoom()
+        {
+            bool anythingSelected =
+                comboBox2.SelectedIndex > 0;
+
+            var dv = dataGridView2.DataSource as DataView;
+            if (dv == null) return;
+
+            if (!anythingSelected)
+            {
+                dv.RowFilter = string.Empty;
+                return;
+            }
+
+            var filters = new System.Text.StringBuilder();
+
+            if (comboBox2.SelectedIndex > 0)
+                filters.Append($"[Корпус] = '{comboBox2.SelectedItem.ToString().Replace("'", "''")}' AND ");
+            string filter = filters.ToString();
+            if (filter.EndsWith(" AND "))
+                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+
+            dv.RowFilter = filter;
+            dataGridView2.Refresh();
+
+        }
+
+        private void filterEditEquipment()
+        {
+            bool anythingSelected =
+                comboBox7.SelectedIndex > 0;
+
+            var dv = dataGridView3.DataSource as DataView;
+            if (dv == null) return;
+
+            if (!anythingSelected)
+            {
+                dv.RowFilter = string.Empty;
+                return;
+            }
+
+            var filters = new System.Text.StringBuilder();
+
+            if (comboBox7.SelectedIndex > 0)
+                filters.Append($"[Название оборудования] = '{comboBox7.SelectedItem.ToString().Replace("'", "''")}' AND ");
+            string filter = filters.ToString();
+            if (filter.EndsWith(" AND "))
+                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+
+            dv.RowFilter = filter;
+            dataGridView3.Refresh();
+
         }
 
         // ======================
@@ -347,12 +316,37 @@ namespace ManageSpacesOfInstitute
                 if (authForm.accessLevel == "ADMIN")
                 {
                     isAuthorizedAdmin = true;
-                    UpdateTabs();
+                    UpdateTabsAsync();
                 }
             }
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label25_Click(object sender, EventArgs e)
         {
 
         }

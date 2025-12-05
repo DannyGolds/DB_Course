@@ -49,11 +49,11 @@
             // 
             // txtLogin
             // 
-            txtLogin.Font = new Font("Roboto", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtLogin.Font = new Font("Doloto", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             txtLogin.Location = new Point(15, 41);
             txtLogin.Margin = new Padding(6, 5, 6, 5);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(234, 30);
+            txtLogin.Size = new Size(234, 31);
             txtLogin.TabIndex = 2;
             // 
             // label1
@@ -71,7 +71,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.DarkCyan;
-            label2.Location = new Point(15, 94);
+            label2.Location = new Point(15, 93);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
             label2.Size = new Size(234, 24);
@@ -80,11 +80,11 @@
             // 
             // txtPass
             // 
-            txtPass.Font = new Font("Roboto", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            txtPass.Location = new Point(15, 123);
+            txtPass.Font = new Font("Doloto", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtPass.Location = new Point(15, 122);
             txtPass.Margin = new Padding(6, 5, 6, 5);
             txtPass.Name = "txtPass";
-            txtPass.Size = new Size(234, 30);
+            txtPass.Size = new Size(234, 31);
             txtPass.TabIndex = 4;
             // 
             // Auth
