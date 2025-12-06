@@ -27,3 +27,6 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Auth.resources
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows10.0.26100.0\BCrypt.Net-Next.dll
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\Debug\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Structure.resources
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows10.0.26100.0\Doloto-Regular.ttf
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows10.0.26100.0\Yuruka Kerning (sherbackoffalex).otf
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Debug\net9.0-windows10.0.26100.0\ZeroCool.otf

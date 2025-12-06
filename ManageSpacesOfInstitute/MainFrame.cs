@@ -20,8 +20,13 @@ namespace ManageSpacesOfInstitute
         private DataGridViewRow row;
         private int prevAction;
 
-        private FbParameter[] ParamToCancel;
-        private string ProcToCancel;
+        private struct LastState
+        {
+            public string buildingName;
+            public string buildingType;
+            public string buildingAdress;
+        };
+        private LastState lastState;
 
         public MainFrame()
         {
@@ -82,7 +87,7 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
             comboBox7.SelectedIndexChanged += (s, _) => filterEditEquipment();
-            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDINGS", comboBox1);
+            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDING_TYPES", comboBox1);
         }
 
         private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, System.Windows.Forms.ComboBox comboBox)
@@ -281,6 +286,19 @@ namespace ManageSpacesOfInstitute
 
         private void btnChFile_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Выберите изображение";
+                ofd.Filter = "JPEG файлы (*.jpg;*.jpeg)|*.jpg;*.jpeg|Все файлы (*.*)|*.*";
+                ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    // Загружаем выбранное изображение в PictureBox
+                    pictureBox1.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+
         }
 
         private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
@@ -353,6 +371,9 @@ namespace ManageSpacesOfInstitute
         {
             prevAction = 5;
             EnableItems();
+            lastState.buildingName = textBox1.Text;
+            lastState.buildingType = comboBox1.SelectedItem.ToString();
+            lastState.buildingAdress = textBox2.Text;
         }
 
 
@@ -379,13 +400,12 @@ namespace ManageSpacesOfInstitute
             textBox1.Text = "";
             comboBox1.SelectedIndex = 0;
             textBox2.Text = "";
+            pictureBox1.Image = null;
         }
 
         private async Task ExecuteEditAsync(FbParameter[] param, string proc)
         {
             await using var db = new DBOperations();
-            //param.CopyTo(ParamToCancel, 0);
-            ProcToCancel = proc;
             await db.ExecProcedureAsync(proc, param);
             await LoadDataToEditPageAsync();
             clearItems();
@@ -405,11 +425,18 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
+                    if(textBox1.Text.Length == 0 || comboBox1.SelectedIndex == 0 || textBox2.Text.Length == 0)
+                    {
+                        MessageBox.Show("Поля не должны быть пустыми, а в списке должен быть выбран элемент.");
+                        return;
+                    }
                     await ExecuteEditAsync(new[]
             {
     new FbParameter("NAME",   FbDbType.VarChar) { Value = textBox1.Text ?? (object)DBNull.Value },
     new FbParameter("TYPE",   FbDbType.VarChar) { Value = comboBox1.SelectedItem?.ToString() ?? (object)DBNull.Value },
-    new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value } }, "INSERT_TO_BUILDINGS");
+    new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value },
+    new FbParameter("IMG", FbDbType.Binary) {Value = ImageToByteArray(pictureBox1.Image) ?? (object)DBNull.Value }}, "INSERT_TO_BUILDINGS");
+
                 }
             }
             else if (prevAction == 2)
@@ -424,10 +451,31 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
+                    if (dataGridView1.CurrentRow == null)
+                    {
+                        MessageBox.Show("Нет выбранной строки для удаления.");
+                        return;
+                    }
+
+                    var row = dataGridView1.CurrentRow;
+
+                    if (!dataGridView1.Columns.Contains("BUILDINGID"))
+                    {
+                        MessageBox.Show("Колонка BUILDINGID не найдена.");
+                        return;
+                    }
+
+                    var idValue = row.Cells["BUILDINGID"].Value;
+                    if (idValue == null)
+                    {
+                        MessageBox.Show("У выбранной строки нет значения BUILDINGID.");
+                        return;
+                    }
+
                     await ExecuteEditAsync(new[]
-            {
-        new FbParameter("ID",     FbDbType.Integer) { Value = Convert.ToInt32(row.Cells["BUILDINGID"].Value) }
-         }, "DELETE_BUILDING");
+                    {
+            new FbParameter("ID", FbDbType.Integer) { Value = Convert.ToInt32(idValue) }
+        }, "DELETE_BUILDING");
                 }
             }
             else if (prevAction == 5)
@@ -442,13 +490,26 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
+                    if ((textBox1.Text == lastState.buildingName && comboBox1.SelectedItem.ToString() == lastState.buildingType && textBox2.Text == lastState.buildingAdress) || (comboBox2.SelectedIndex == 0))
+                    {
+                        MessageBox.Show("Измените хотябы одно поле для применения изменений. Тип корпуса также должен быть определен.");
+                        return;
+                    }
+                    var imgBytes = ImageToByteArray(pictureBox1.Image);
+
                     await ExecuteEditAsync(new[]
             {
         new FbParameter("ID",     FbDbType.Integer) { Value = Convert.ToInt32(row.Cells["BUILDINGID"].Value) },
         new FbParameter("NAME",   FbDbType.VarChar) { Value = textBox1.Text ?? (object)DBNull.Value },
         new FbParameter("TYPE",   FbDbType.VarChar) { Value = comboBox1.SelectedItem?.ToString() ?? (object)DBNull.Value },
-        new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value }
-         }, "UPDATE_BUILDINGS");
+        new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value },
+           new FbParameter
+{
+    ParameterName = "IMG",           // точно так же как в процедуре (регистр важен!)
+    FbDbType = FbDbType.Binary,      // явно!
+    Value = (object)imgBytes ?? DBNull.Value
+}
+                }, "UPDATE_BUILDINGS");
                 }
             }
 
@@ -480,12 +541,20 @@ namespace ManageSpacesOfInstitute
 
         private void dtgv3_onselch(object sender, EventArgs e)
         {
+            if (dataGridView1.CurrentRow == null) return;
+
             button17.Enabled = true;
-            row = dataGridView1.CurrentRow;
-            textBox1.Text = $"{row.Cells["Корпус"].Value}";
-            comboBox1.SelectedItem = $"{row.Cells["Тип корпуса"].Value}";
-            textBox2.Text = $"{row.Cells["Адрес"].Value}";
-            Shared.LoadImageFromBlob(pictureBox1, row.Cells["IMAGE"].Value);
+            var row = dataGridView1.CurrentRow;
+
+            textBox1.Text = row.Cells["Корпус"].Value?.ToString() ?? "";
+            comboBox1.SelectedItem = row.Cells["Тип корпуса"].Value?.ToString() ?? "";
+            textBox2.Text = row.Cells["Адрес"].Value?.ToString() ?? "";
+
+            var imageData = row.Cells["IMAGE"].Value;
+            if (imageData != null)
+                Shared.LoadImageFromBlob(pictureBox1, imageData);
+            else
+                pictureBox1.Image = null;
         }
 
         private void dtg1_cdblclk(object sender, DataGridViewCellEventArgs e)
