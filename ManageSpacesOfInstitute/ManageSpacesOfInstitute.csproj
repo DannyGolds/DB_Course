@@ -9,6 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Doloto-Regular.ttf" />
+    <None Remove="Yuruka Kerning %28sherbackoffalex%29.otf" />
+    <None Remove="ZeroCool.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Doloto-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Yuruka Kerning (sherbackoffalex).otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZeroCool.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="7.10.0" />
   </ItemGroup>

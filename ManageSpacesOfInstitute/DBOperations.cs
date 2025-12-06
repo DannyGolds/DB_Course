@@ -76,7 +76,9 @@ namespace ManageSpacesOfInstitute
         "GET_ROOM_CHAIN",
         "GET_EQUIPMENT_LIST",
         "GET_CHAIRS",
-        "GET_FACULTIES"
+        "GET_FACULTIES",
+        "GET_BUILDINGS",
+        "INSERT_TO_BUILDINGS"
     };
             if (!allowed.Contains(procName))
                 throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");
@@ -112,6 +114,19 @@ namespace ManageSpacesOfInstitute
             return table;
         }
 
+        public async Task<int> ExecProcedureAsync(string procName, params FbParameter[] parameters)
+        {
+            await using var cn = new FbConnection(_connectionString);
+            await cn.OpenAsync();
+
+            var placeholders = string.Join(", ", parameters.Select(_ => "?"));
+            var sql = $"EXECUTE PROCEDURE {procName}({placeholders})";
+
+            await using var cmd = new FbCommand(sql, cn);
+            cmd.Parameters.AddRange(parameters);
+
+            return await cmd.ExecuteNonQueryAsync(); // вернёт число затронутых строк
+        }
         // Асинхронный ExecuteNonQuery
         public async Task<int> ExecuteNonQueryAsync(string sql, params FbParameter[]? parameters)
         {
@@ -139,6 +154,11 @@ namespace ManageSpacesOfInstitute
             // Если в будущем появятся async-ресурсы, освободите их асинхронно здесь.
             Dispose();
             return ValueTask.CompletedTask;
+        }
+
+        internal async Task CallProcedureAsync(string v, FbParameter[] parameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }

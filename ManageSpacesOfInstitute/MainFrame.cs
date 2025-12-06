@@ -1,21 +1,31 @@
-using FirebirdSql.Data.FirebirdClient;
+п»їusing FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+
+
 
 namespace ManageSpacesOfInstitute
 {
     public partial class MainFrame : Form
     {
         private DataTable _originalDataTable;
-        private bool isAuthorizedAdmin = false;
+        private bool isAuthorizedAdmin = true;
+        private DataGridViewRow row;
+        private int prevAction;
+
+        private FbParameter[] ParamToCancel;
+        private string ProcToCancel;
 
         public MainFrame()
         {
             InitializeComponent();
-            gridview_foundroomsinfo.CellDoubleClick += dataGridView1_CellContentClick_1;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -26,17 +36,17 @@ namespace ManageSpacesOfInstitute
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // Загружаем списки из таблиц
-            await LoadDataToComboBoxFromTableAsync("NAME", "BUILDINGS", fpl_chbuild);
+            // Р—Р°РіСЂСѓР¶Р°РµРј СЃРїРёСЃРєРё РёР· С‚Р°Р±Р»РёС†
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_BUILDINGS", fpl_chbuild);
             await LoadDataToComboBoxFromTableAsync("NAME", "GET_EQUIPMENT_LIST", fpl_cheq);
-            await LoadDataToComboBoxFromTableAsync("TYPE", "BUILDINGS", fpl_chtypebuild);
+            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDINGS", fpl_chtypebuild);
             await LoadDataToComboBoxFromTableAsync("TYPE", "ROOMS", fpl_chtyperoom);
             await LoadDataToComboBoxFromTableAsync("PURPOSE", "ROOMS", fpl_chpurproom);
 
-            // Загружаем основные данные из процедуры
+            // Р—Р°РіСЂСѓР¶Р°РµРј РѕСЃРЅРѕРІРЅС‹Рµ РґР°РЅРЅС‹Рµ РёР· РїСЂРѕС†РµРґСѓСЂС‹
             await LoadDataToTableAsync(Shared.Partial.info, Shared.Partial.proc, Shared.Partial.to_hide, gridview_foundroomsinfo, Shared.Partial.naming);
 
-            // Подписка на изменения фильтров
+            // РџРѕРґРїРёСЃРєР° РЅР° РёР·РјРµРЅРµРЅРёСЏ С„РёР»СЊС‚СЂРѕРІ
             fpl_chbuild.SelectedIndexChanged += (s, _) => filterData();
             fpl_cheq.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
@@ -62,9 +72,9 @@ namespace ManageSpacesOfInstitute
 
         async Task LoadDataToEditPageAsync()
         {
-            await LoadDataToComboBoxFromTableAsync("NAME", "BUILDINGS", comboBox2);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_BUILDINGS", comboBox2);
             await LoadDataToComboBoxFromTableAsync("NAME", "GET_EQUIPMENT_LIST", comboBox7);
-            await LoadDataToTableAsync(Shared.Responsible.info, Shared.Responsible.to_hide, Shared.Responsible.proc, dataGridView4, Shared.Responsible.naming);
+            await LoadDataToTableAsync(Shared.Responsible.info, Shared.Responsible.proc, Shared.Responsible.to_hide, dataGridView4, Shared.Responsible.naming);
             await LoadDataToTableAsync(Shared.Equipment.info, Shared.Equipment.proc, Shared.Equipment.to_hide, dataGridView3, Shared.Equipment.naming);
             await LoadDataToTableAsync(Shared.RoomFull.info, Shared.RoomFull.proc, Shared.RoomFull.to_hide, dataGridView2, Shared.RoomFull.naming);
             await LoadDataToTableAsync(Shared.Buildings.info, Shared.Buildings.proc, Shared.Buildings.to_hide, dataGridView1, Shared.Buildings.naming);
@@ -72,9 +82,10 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
             comboBox7.SelectedIndexChanged += (s, _) => filterEditEquipment();
+            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDINGS", comboBox1);
         }
 
-        private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, ComboBox comboBox)
+        private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, System.Windows.Forms.ComboBox comboBox)
         {
             try
             {
@@ -82,7 +93,7 @@ namespace ManageSpacesOfInstitute
                 string sql = $"SELECT DISTINCT {columnName} FROM {tableName} ORDER BY {columnName}";
                 var dt = await db.GetDataTableAsync(sql);
 
-                var list = new List<string> { "Не выбрано" };
+                var list = new List<string> { "РќРµ РІС‹Р±СЂР°РЅРѕ" };
                 list.AddRange(dt.AsEnumerable()
                     .Select(r => r[columnName]?.ToString() ?? string.Empty)
                     .Where(s => !string.IsNullOrEmpty(s)));
@@ -92,12 +103,10 @@ namespace ManageSpacesOfInstitute
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, $"Ошибка при загрузке данных из таблицы {tableName}:\r\n{ex.Message}", "Ошибка",
+                MessageBox.Show(this, $"РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С… РёР· С‚Р°Р±Р»РёС†С‹ {tableName}:\r\n{ex.Message}", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private async Task LoadDataToTableAsync(List<string> col_list, string proc_name, List<string> unvisible_cols, DataGridView grid, List<string> cols_naming)
         {
             try
@@ -105,7 +114,7 @@ namespace ManageSpacesOfInstitute
                 await using var db = new DBOperations();
 
                 var dt = await db.CallProcedureAsync(proc_name, col_list);
-                for (var index = 0; index < col_list.Count; index++)  // Или index < dt.Columns.Count
+                for (var index = 0; index < col_list.Count; index++)  // РР»Рё index < dt.Columns.Count
                 {
                     dt.Columns[index].ColumnName = cols_naming[index];
                 }
@@ -123,7 +132,7 @@ namespace ManageSpacesOfInstitute
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, $"Ошибка при загрузке данных:\r\n{ex.Message}", "Ошибка",
+                MessageBox.Show(this, $"РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С…:\r\n{ex.Message}", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -149,21 +158,21 @@ namespace ManageSpacesOfInstitute
             var filters = new System.Text.StringBuilder();
 
             if (fpl_chbuild.SelectedIndex > 0)
-                filters.Append($"[Корпус] = '{fpl_chbuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РљРѕСЂРїСѓСЃ] = '{fpl_chbuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
 
             if (fpl_cheq.SelectedIndex > 0)
-                filters.Append($"[Оборудование] LIKE '%{fpl_cheq.SelectedItem.ToString().Replace("'", "''")}%' AND ");
+                filters.Append($"[РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ] LIKE '%{fpl_cheq.SelectedItem.ToString().Replace("'", "''")}%' AND ");
 
             if (fpl_chtypebuild.SelectedIndex > 0)
-                filters.Append($"[Тип корпуса] = '{fpl_chtypebuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РўРёРї РєРѕСЂРїСѓСЃР°] = '{fpl_chtypebuild.SelectedItem.ToString().Replace("'", "''")}' AND ");
 
             if (fpl_chtyperoom.SelectedIndex > 0)
-                filters.Append($"[Тип аудитории] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РўРёРї Р°СѓРґРёС‚РѕСЂРёРё] = '{fpl_chtyperoom.SelectedItem.ToString().Replace("'", "''")}' AND ");
             if (fpl_chpurproom.SelectedIndex > 0)
-                filters.Append($"[Назначение аудитории] = '{fpl_chpurproom.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РќР°Р·РЅР°С‡РµРЅРёРµ Р°СѓРґРёС‚РѕСЂРёРё] = '{fpl_chpurproom.SelectedItem.ToString().Replace("'", "''")}' AND ");
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
-                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+                filter = filter[..^5]; // СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёРµ 5 СЃРёРјРІРѕР»РѕРІ (" AND ")
 
             dv.RowFilter = filter;
             gridview_foundroomsinfo.Refresh();
@@ -186,10 +195,10 @@ namespace ManageSpacesOfInstitute
             var filters = new System.Text.StringBuilder();
 
             if (comboBox2.SelectedIndex > 0)
-                filters.Append($"[Корпус] = '{comboBox2.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РљРѕСЂРїСѓСЃ] = '{comboBox2.SelectedItem.ToString().Replace("'", "''")}' AND ");
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
-                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+                filter = filter[..^5]; // СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёРµ 5 СЃРёРјРІРѕР»РѕРІ (" AND ")
 
             dv.RowFilter = filter;
             dataGridView2.Refresh();
@@ -213,10 +222,10 @@ namespace ManageSpacesOfInstitute
             var filters = new System.Text.StringBuilder();
 
             if (comboBox7.SelectedIndex > 0)
-                filters.Append($"[Название оборудования] = '{comboBox7.SelectedItem.ToString().Replace("'", "''")}' AND ");
+                filters.Append($"[РќР°Р·РІР°РЅРёРµ РѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ] = '{comboBox7.SelectedItem.ToString().Replace("'", "''")}' AND ");
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
-                filter = filter[..^5]; // удаляем последние 5 символов (" AND ")
+                filter = filter[..^5]; // СѓРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёРµ 5 СЃРёРјРІРѕР»РѕРІ (" AND ")
 
             dv.RowFilter = filter;
             dataGridView3.Refresh();
@@ -224,7 +233,7 @@ namespace ManageSpacesOfInstitute
         }
 
         // ======================
-        // Обработчики событий (оставлены без изменений)
+        // РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕР±С‹С‚РёР№ (РѕСЃС‚Р°РІР»РµРЅС‹ Р±РµР· РёР·РјРµРЅРµРЅРёР№)
         // ======================
 
         private void tabPage1_Click(object sender, EventArgs e) { }
@@ -253,19 +262,6 @@ namespace ManageSpacesOfInstitute
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-
-            var row = gridview_foundroomsinfo.Rows[e.RowIndex];
-            var roomId = row.Cells["ROOM_ID"].Value;
-
-            if (roomId == null || roomId == DBNull.Value)
-            {
-                MessageBox.Show("Не удалось определить кабинет.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
-            detailsForm.ShowDialog(this);
         }
 
         private void dataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
@@ -341,14 +337,172 @@ namespace ManageSpacesOfInstitute
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-
+            prevAction = 1;
+            EnableItems();
+            clearItems();
         }
 
         private void label25_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            prevAction = 5;
+            EnableItems();
+        }
+
+
+        private void EnableItems()
+        {
+            textBox1.Enabled = true;
+            comboBox1.Enabled = true;
+            textBox2.Enabled = true;
+            btnChFile.Enabled = true;
+            button4.Enabled = true;
+        }
+
+        private void DisableItems()
+        {
+            textBox1.Enabled = false;
+            comboBox1.Enabled = false;
+            textBox2.Enabled = false;
+            btnChFile.Enabled = false;
+            button4.Enabled = false;
+        }
+
+        private void clearItems()
+        {
+            textBox1.Text = "";
+            comboBox1.SelectedIndex = 0;
+            textBox2.Text = "";
+        }
+
+        private async Task ExecuteEditAsync(FbParameter[] param, string proc)
+        {
+            await using var db = new DBOperations();
+            //param.CopyTo(ParamToCancel, 0);
+            ProcToCancel = proc;
+            await db.ExecProcedureAsync(proc, param);
+            await LoadDataToEditPageAsync();
+            clearItems();
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            if (prevAction == 1)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РґРѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ?",
+                    "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    await ExecuteEditAsync(new[]
+            {
+    new FbParameter("NAME",   FbDbType.VarChar) { Value = textBox1.Text ?? (object)DBNull.Value },
+    new FbParameter("TYPE",   FbDbType.VarChar) { Value = comboBox1.SelectedItem?.ToString() ?? (object)DBNull.Value },
+    new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value } }, "INSERT_TO_BUILDINGS");
+                }
+            }
+            else if (prevAction == 2)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ?",
+                    "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    await ExecuteEditAsync(new[]
+            {
+        new FbParameter("ID",     FbDbType.Integer) { Value = Convert.ToInt32(row.Cells["BUILDINGID"].Value) }
+         }, "DELETE_BUILDING");
+                }
+            }
+            else if (prevAction == 5)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РѕР±РЅРѕРІРёС‚СЊ С‚Р°Р±Р»РёС†Сѓ?",
+                    "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    await ExecuteEditAsync(new[]
+            {
+        new FbParameter("ID",     FbDbType.Integer) { Value = Convert.ToInt32(row.Cells["BUILDINGID"].Value) },
+        new FbParameter("NAME",   FbDbType.VarChar) { Value = textBox1.Text ?? (object)DBNull.Value },
+        new FbParameter("TYPE",   FbDbType.VarChar) { Value = comboBox1.SelectedItem?.ToString() ?? (object)DBNull.Value },
+        new FbParameter("ADRESS", FbDbType.VarChar) { Value = textBox2.Text ?? (object)DBNull.Value }
+         }, "UPDATE_BUILDINGS");
+                }
+            }
+
+            DisableItems();
+        }
+
+        private static byte[] ImageToByteArray(Image image)
+        {
+            if (image == null) return null;
+
+            using var ms = new MemoryStream();
+            using var bmp = new Bitmap(image);               // в†ђ СЌС‚Рѕ СЃРїР°СЃР°РµС‚ РѕС‚ РІСЃРµС… РѕС€РёР±РѕРє GDI+
+            bmp.Save(ms, ImageFormat.Jpeg);                    // РёР»Рё Jpeg вЂ” РєР°Рє С…РѕС‡РµС€СЊ
+            return ms.ToArray();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            button4.Enabled = true;
+            prevAction = 2;
+            button4_Click(sender, e);
+            clearItems();
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgv3_onselch(object sender, EventArgs e)
+        {
+            button17.Enabled = true;
+            row = dataGridView1.CurrentRow;
+            textBox1.Text = $"{row.Cells["РљРѕСЂРїСѓСЃ"].Value}";
+            comboBox1.SelectedItem = $"{row.Cells["РўРёРї РєРѕСЂРїСѓСЃР°"].Value}";
+            textBox2.Text = $"{row.Cells["РђРґСЂРµСЃ"].Value}";
+            Shared.LoadImageFromBlob(pictureBox1, row.Cells["IMAGE"].Value);
+        }
+
+        private void dtg1_cdblclk(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = gridview_foundroomsinfo.Rows[e.RowIndex];
+            var roomId = row.Cells["ROOM_ID"].Value;
+
+            if (roomId == null || roomId == DBNull.Value)
+            {
+                MessageBox.Show("РќРµ СѓРґР°Р»РѕСЃСЊ РѕРїСЂРµРґРµР»РёС‚СЊ РєР°Р±РёРЅРµС‚.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
+            detailsForm.ShowDialog(this);
         }
     }
 }

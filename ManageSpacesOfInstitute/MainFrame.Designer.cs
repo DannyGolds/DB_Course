@@ -251,11 +251,14 @@
             gridview_foundroomsinfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridview_foundroomsinfo.GridColor = SystemColors.Menu;
             gridview_foundroomsinfo.Location = new Point(6, 20);
+            gridview_foundroomsinfo.MultiSelect = false;
             gridview_foundroomsinfo.Name = "gridview_foundroomsinfo";
             gridview_foundroomsinfo.RowHeadersVisible = false;
+            gridview_foundroomsinfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridview_foundroomsinfo.Size = new Size(655, 335);
             gridview_foundroomsinfo.TabIndex = 20;
             gridview_foundroomsinfo.CellContentClick += dataGridView1_CellContentClick_1;
+            gridview_foundroomsinfo.CellContentDoubleClick += dtg1_cdblclk;
             // 
             // gr_filtering
             // 
@@ -498,12 +501,15 @@
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(350, 325);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_2;
+            dataGridView1.SelectionChanged += dtgv3_onselch;
             // 
             // button17
             // 
+            button17.Enabled = false;
             button17.ForeColor = Color.DarkGoldenrod;
             button17.Location = new Point(419, 294);
             button17.Name = "button17";
@@ -511,6 +517,7 @@
             button17.TabIndex = 15;
             button17.Text = "РЕД";
             button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
             // 
             // button1
             // 
@@ -532,6 +539,7 @@
             button2.TabIndex = 12;
             button2.Text = "Удалить -";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -542,9 +550,11 @@
             button3.TabIndex = 13;
             button3.Text = "Отменить";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.ForeColor = Color.SlateBlue;
             button4.Location = new Point(315, 294);
             button4.Name = "button4";
@@ -552,11 +562,12 @@
             button4.TabIndex = 14;
             button4.Text = "Сохранить";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // btnChFile
             // 
             btnChFile.Enabled = false;
-            btnChFile.Location = new Point(173, 211);
+            btnChFile.Location = new Point(200, 211);
             btnChFile.Name = "btnChFile";
             btnChFile.Size = new Size(229, 23);
             btnChFile.TabIndex = 10;
@@ -571,15 +582,16 @@
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = Properties.Resources.LoadImage;
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(173, 47);
+            pictureBox1.Location = new Point(200, 47);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(304, 158);
+            pictureBox1.Size = new Size(280, 158);
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
             // textBox2
             // 
             textBox2.Enabled = false;
+            textBox2.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(14, 216);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(132, 22);
@@ -598,16 +610,18 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Enabled = false;
+            comboBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(14, 143);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(132, 23);
+            comboBox1.Size = new Size(132, 22);
             comboBox1.TabIndex = 6;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_2;
             // 
             // textBox1
             // 
             textBox1.Enabled = false;
+            textBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(14, 67);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(132, 22);
@@ -616,7 +630,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(283, 27);
+            label7.Location = new Point(288, 29);
             label7.Name = "label7";
             label7.Size = new Size(97, 15);
             label7.TabIndex = 3;

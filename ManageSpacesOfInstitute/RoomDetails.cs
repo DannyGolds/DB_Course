@@ -24,36 +24,7 @@ namespace ManageSpacesOfInstitute
             flp.Visible = true;
         }
 
-        private void LoadImageFromBlob(PictureBox pictureBox, object blobData)
-        {
-            // Скрываем PictureBox, если данных нет
-            pictureBox.Visible = false;
-
-            if (blobData == null || blobData == DBNull.Value)
-                return;
-
-            try
-            {
-                byte[] imageData = (byte[])blobData;
-
-                // Проверка: не пустой массив?
-                if (imageData.Length == 0)
-                    return;
-
-                using (var ms = new MemoryStream(imageData))
-                {
-                    pictureBox.Image = Image.FromStream(ms);
-                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom; // или AutoSize, StretchImage
-                    pictureBox.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Логирование ошибки (опционально)
-                // Console.WriteLine($"Ошибка загрузки изображения: {ex.Message}");
-                pictureBox.Visible = false;
-            }
-        }
+        
 
         private async Task LoadEquipmentDetailAsync(int _roomId)
         {
@@ -90,7 +61,7 @@ namespace ManageSpacesOfInstitute
 
                 // Если нужно загрузить изображение (используйте ваш метод LoadImageFromBlob)
                 // Предполагаю, что в EquipmentCard есть PictureBox pcEq
-                LoadImageFromBlob(card.pcEq, eqImage);  // Добавьте доступ к pcEq, если нужно (сделайте public или property)
+                Shared.LoadImageFromBlob(card.pcEq, eqImage);  // Добавьте доступ к pcEq, если нужно (сделайте public или property)
 
                 flp.Controls.Add(card);
             }
@@ -148,7 +119,7 @@ namespace ManageSpacesOfInstitute
 
 
                 Text = $"Информация о кабинете {row["ROOMNUMBER"]} ({row["BUILDINGNAME"]})";
-                LoadImageFromBlob(BuildingImage, row["BUILDINGIMAGE"]);
+                Shared.LoadImageFromBlob(BuildingImage, row["BUILDINGIMAGE"]);
                 _ = LoadEquipmentDetailAsync(_roomId);
             }
             catch (Exception ex)

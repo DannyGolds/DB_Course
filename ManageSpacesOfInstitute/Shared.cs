@@ -5,6 +5,36 @@ namespace ManageSpacesOfInstitute
 {
     public static class Shared
     {
+        public static void LoadImageFromBlob(PictureBox pictureBox, object blobData)
+        {
+            // Скрываем PictureBox, если данных нет
+            pictureBox.Visible = false;
+
+            if (blobData == null || blobData == DBNull.Value)
+                return;
+
+            try
+            {
+                byte[] imageData = (byte[])blobData;
+
+                // Проверка: не пустой массив?
+                if (imageData.Length == 0)
+                    return;
+
+                using (var ms = new MemoryStream(imageData))
+                {
+                    pictureBox.Image = Image.FromStream(ms);
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom; // или AutoSize, StretchImage
+                    pictureBox.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибки (опционально)
+                // Console.WriteLine($"Ошибка загрузки изображения: {ex.Message}");
+                pictureBox.Visible = false;
+            }
+        }
         public static class Partial
         {
             public static List<string> info = new List<string>
@@ -41,8 +71,8 @@ namespace ManageSpacesOfInstitute
                 "JOBPOSITION",
                 "PHONE",
             };
-            public static string to_hide = "GET_RESPONSIBLES";
-            public static List<string> proc = new List<string> { "PERSONID" };
+            public static string proc = "GET_RESPONSIBLES";
+            public static List<string> to_hide = new List<string> { "PERSONID" };
             public static List<string> naming = new List<string>
             {
                 "PERSONID",
@@ -117,16 +147,18 @@ namespace ManageSpacesOfInstitute
                 "BUILDINGID",
                 "NAME",
                 "TYPE",
+                "IMAGE",
                 "ADRESS",
             };
             public static string proc = "GET_BUILDINGS";
-            public static List<string> to_hide = new List<string> { "BUILDINGID" };
+            public static List<string> to_hide = new List<string> { "BUILDINGID", "IMAGE", "TYPEID" };
             public static List<string> naming = new List<string>
             {
                 "BUILDINGID",
                 "Корпус",
                 "Тип корпуса",
-                "Адресс"
+                "IMAGE",
+                "Адрес"
             };
         }
 
