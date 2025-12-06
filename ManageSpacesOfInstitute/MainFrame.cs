@@ -77,8 +77,13 @@ namespace ManageSpacesOfInstitute
 
         async Task LoadDataToEditPageAsync()
         {
+            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDING_TYPES", comboBox1);
             await LoadDataToComboBoxFromTableAsync("NAME", "GET_BUILDINGS", comboBox2);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_BUILDINGS", comboBox3);
             await LoadDataToComboBoxFromTableAsync("NAME", "GET_EQUIPMENT_LIST", comboBox7);
+            await LoadDataToComboBoxFromTableAsync("TYPE", "ROOMS", comboBox4);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_RESPONSIBLES", comboBox6);
+            await LoadDataToComboBoxFromTableAsync("NAME", "GET_CHAIRS", comboBox5);
             await LoadDataToTableAsync(Shared.Responsible.info, Shared.Responsible.proc, Shared.Responsible.to_hide, dataGridView4, Shared.Responsible.naming);
             await LoadDataToTableAsync(Shared.Equipment.info, Shared.Equipment.proc, Shared.Equipment.to_hide, dataGridView3, Shared.Equipment.naming);
             await LoadDataToTableAsync(Shared.RoomFull.info, Shared.RoomFull.proc, Shared.RoomFull.to_hide, dataGridView2, Shared.RoomFull.naming);
@@ -87,7 +92,6 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
             comboBox7.SelectedIndexChanged += (s, _) => filterEditEquipment();
-            await LoadDataToComboBoxFromTableAsync("TYPE", "GET_BUILDING_TYPES", comboBox1);
         }
 
         private async Task LoadDataToComboBoxFromTableAsync(string columnName, string tableName, System.Windows.Forms.ComboBox comboBox)
@@ -237,6 +241,26 @@ namespace ManageSpacesOfInstitute
 
         }
 
+
+        ///______________________________________________________________________________
+        private async Task ExecuteEditAsync(FbParameter[] param, string proc)
+        {
+            await using var db = new DBOperations();
+            await db.ExecProcedureAsync(proc, param);
+            await LoadDataToEditPageAsync();
+            clearBuildingsItems();
+        }
+
+        private static byte[] ImageToByteArray(Image image)
+        {
+            if (image == null) return null;
+
+            using var ms = new MemoryStream();
+            using var bmp = new Bitmap(image);               // ← это спасает от всех ошибок GDI+
+            bmp.Save(ms, ImageFormat.Jpeg);                    // или Jpeg — как хочешь
+            return ms.ToArray();
+        }
+
         // ======================
         // Обработчики событий (оставлены без изменений)
         // ======================
@@ -264,7 +288,7 @@ namespace ManageSpacesOfInstitute
         private void fpl_cheq_SelectedIndexChanged(object sender, EventArgs e) { }
         private void btn_applyfilter_Click(object sender, EventArgs e) { }
         private void page_struct_Click(object sender, EventArgs e) { }
-
+        ///______________________________________________________________________________
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
         }
@@ -349,17 +373,12 @@ namespace ManageSpacesOfInstitute
         {
 
         }
-
-        private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        ///__________________________________editBuildingsPage____________________________________________
         private async void button1_Click(object sender, EventArgs e)
         {
             prevAction = 1;
-            EnableItems();
-            clearItems();
+            EnableBuildingsItems();
+            clearBuildingsItems();
         }
 
         private void label25_Click(object sender, EventArgs e)
@@ -370,14 +389,14 @@ namespace ManageSpacesOfInstitute
         private void button17_Click(object sender, EventArgs e)
         {
             prevAction = 5;
-            EnableItems();
+            EnableBuildingsItems();
             lastState.buildingName = textBox1.Text;
             lastState.buildingType = comboBox1.SelectedItem.ToString();
             lastState.buildingAdress = textBox2.Text;
         }
 
 
-        private void EnableItems()
+        private void EnableBuildingsItems()
         {
             textBox1.Enabled = true;
             comboBox1.Enabled = true;
@@ -386,7 +405,7 @@ namespace ManageSpacesOfInstitute
             button4.Enabled = true;
         }
 
-        private void DisableItems()
+        private void DisableBuildingsItems()
         {
             textBox1.Enabled = false;
             comboBox1.Enabled = false;
@@ -395,22 +414,13 @@ namespace ManageSpacesOfInstitute
             button4.Enabled = false;
         }
 
-        private void clearItems()
+        private void clearBuildingsItems()
         {
             textBox1.Text = "";
             comboBox1.SelectedIndex = 0;
             textBox2.Text = "";
             pictureBox1.Image = null;
         }
-
-        private async Task ExecuteEditAsync(FbParameter[] param, string proc)
-        {
-            await using var db = new DBOperations();
-            await db.ExecProcedureAsync(proc, param);
-            await LoadDataToEditPageAsync();
-            clearItems();
-        }
-
         private async void button4_Click(object sender, EventArgs e)
         {
             if (prevAction == 1)
@@ -425,7 +435,7 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if(textBox1.Text.Length == 0 || comboBox1.SelectedIndex == 0 || textBox2.Text.Length == 0)
+                    if (textBox1.Text.Length == 0 || comboBox1.SelectedIndex == 0 || textBox2.Text.Length == 0)
                     {
                         MessageBox.Show("Поля не должны быть пустыми, а в списке должен быть выбран элемент.");
                         return;
@@ -513,17 +523,7 @@ namespace ManageSpacesOfInstitute
                 }
             }
 
-            DisableItems();
-        }
-
-        private static byte[] ImageToByteArray(Image image)
-        {
-            if (image == null) return null;
-
-            using var ms = new MemoryStream();
-            using var bmp = new Bitmap(image);               // ← это спасает от всех ошибок GDI+
-            bmp.Save(ms, ImageFormat.Jpeg);                    // или Jpeg — как хочешь
-            return ms.ToArray();
+            DisableBuildingsItems();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -531,7 +531,7 @@ namespace ManageSpacesOfInstitute
             button4.Enabled = true;
             prevAction = 2;
             button4_Click(sender, e);
-            clearItems();
+            clearBuildingsItems();
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -539,6 +539,40 @@ namespace ManageSpacesOfInstitute
 
         }
 
+        private void roomsEditGrid_OnSelect(object sender, EventArgs e)
+        {
+            if (dataGridView2.CurrentRow == null) return;
+
+            button18.Enabled = true;
+            var row = dataGridView2.CurrentRow;
+
+            textBox3.Text = row.Cells["Номер аудитории"].Value?.ToString() ?? "";
+            textBox4.Text = row.Cells["Длина"].Value?.ToString() ?? "";
+            textBox5.Text = row.Cells["Ширина"].Value?.ToString() ?? "";
+        }
+        ///____________________________mainPage__________________________________________________
+        private void dtg1_cdblclk(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = gridview_foundroomsinfo.Rows[e.RowIndex];
+            var roomId = row.Cells["ROOM_ID"].Value;
+
+            if (roomId == null || roomId == DBNull.Value)
+            {
+                MessageBox.Show("Не удалось определить кабинет.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
+            detailsForm.ShowDialog(this);
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        ///______________________________________________________________________________
         private void dtgv3_onselch(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
@@ -556,22 +590,7 @@ namespace ManageSpacesOfInstitute
             else
                 pictureBox1.Image = null;
         }
+        
 
-        private void dtg1_cdblclk(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            var row = gridview_foundroomsinfo.Rows[e.RowIndex];
-            var roomId = row.Cells["ROOM_ID"].Value;
-
-            if (roomId == null || roomId == DBNull.Value)
-            {
-                MessageBox.Show("Не удалось определить кабинет.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
-            detailsForm.ShowDialog(this);
-        }
     }
 }

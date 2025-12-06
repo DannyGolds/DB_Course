@@ -77,8 +77,6 @@
             btnRep = new Button();
             comboBox6 = new ComboBox();
             label13 = new Label();
-            comboBox5 = new ComboBox();
-            label12 = new Label();
             textBox5 = new TextBox();
             label11 = new Label();
             textBox4 = new TextBox();
@@ -144,7 +142,10 @@
             button26 = new Button();
             textBox12 = new TextBox();
             label26 = new Label();
+            tabPage6 = new TabPage();
             label9 = new Label();
+            label12 = new Label();
+            comboBox5 = new ComboBox();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridview_foundroomsinfo).BeginInit();
@@ -443,6 +444,7 @@
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabChairs);
             tabControl1.Controls.Add(tabFacult);
+            tabControl1.Controls.Add(tabPage6);
             tabControl1.Location = new Point(0, 51);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -504,7 +506,6 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(350, 325);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick_2;
             dataGridView1.SelectionChanged += dtgv3_onselch;
             // 
             // button17
@@ -679,6 +680,8 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.Controls.Add(comboBox5);
+            splitContainer2.Panel2.Controls.Add(label12);
             splitContainer2.Panel2.Controls.Add(button18);
             splitContainer2.Panel2.Controls.Add(btnAdd);
             splitContainer2.Panel2.Controls.Add(btnDel);
@@ -686,8 +689,6 @@
             splitContainer2.Panel2.Controls.Add(btnRep);
             splitContainer2.Panel2.Controls.Add(comboBox6);
             splitContainer2.Panel2.Controls.Add(label13);
-            splitContainer2.Panel2.Controls.Add(comboBox5);
-            splitContainer2.Panel2.Controls.Add(label12);
             splitContainer2.Panel2.Controls.Add(textBox5);
             splitContainer2.Panel2.Controls.Add(label11);
             splitContainer2.Panel2.Controls.Add(textBox4);
@@ -714,6 +715,7 @@
             dataGridView2.ReadOnly = true;
             dataGridView2.Size = new Size(344, 288);
             dataGridView2.TabIndex = 1;
+            dataGridView2.SelectionChanged += roomsEditGrid_OnSelect;
             // 
             // comboBox2
             // 
@@ -793,30 +795,11 @@
             label13.TabIndex = 19;
             label13.Text = "Отвественный за аудиторию";
             // 
-            // comboBox5
-            // 
-            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox5.Enabled = false;
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(262, 153);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(206, 23);
-            comboBox5.TabIndex = 18;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(262, 133);
-            label12.Name = "label12";
-            label12.Size = new Size(206, 15);
-            label12.TabIndex = 17;
-            label12.Text = "Отвественный за аудиторию";
-            // 
             // textBox5
             // 
             textBox5.BorderStyle = BorderStyle.FixedSingle;
             textBox5.Enabled = false;
-            textBox5.Location = new Point(262, 96);
+            textBox5.Location = new Point(262, 109);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(206, 22);
             textBox5.TabIndex = 16;
@@ -824,7 +807,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(262, 76);
+            label11.Location = new Point(262, 89);
             label11.Name = "label11";
             label11.Size = new Size(135, 15);
             label11.TabIndex = 15;
@@ -955,6 +938,7 @@
             comboBox7.Name = "comboBox7";
             comboBox7.Size = new Size(344, 23);
             comboBox7.TabIndex = 1;
+            comboBox7.SelectedIndexChanged += comboBox7_SelectedIndexChanged;
             // 
             // dataGridView3
             // 
@@ -1522,6 +1506,16 @@
             label26.TabIndex = 2;
             label26.Text = "Наименование факультета";
             // 
+            // tabPage6
+            // 
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(851, 331);
+            tabPage6.TabIndex = 6;
+            tabPage6.Text = "Типы корпусов";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -1532,6 +1526,25 @@
             label9.Size = new Size(348, 18);
             label9.TabIndex = 8;
             label9.Text = "Редактирование информационной базы";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(262, 161);
+            label12.Name = "label12";
+            label12.Size = new Size(65, 15);
+            label12.TabIndex = 28;
+            label12.Text = "Кафедра";
+            // 
+            // comboBox5
+            // 
+            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox5.Enabled = false;
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(262, 181);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(206, 23);
+            comboBox5.TabIndex = 29;
             // 
             // MainFrame
             // 
@@ -1651,8 +1664,6 @@
         private Label label5;
         private ComboBox comboBox6;
         private Label label13;
-        private ComboBox comboBox5;
-        private Label label12;
         private SplitContainer splitContainer3;
         private DataGridView dataGridView3;
         private ComboBox comboBox7;
@@ -1721,5 +1732,8 @@
         private Button button26;
         private TextBox textBox12;
         private Label label26;
+        private TabPage tabPage6;
+        private ComboBox comboBox5;
+        private Label label12;
     }
 }
