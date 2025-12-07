@@ -121,7 +121,8 @@ namespace ManageSpacesOfInstitute
                 "ROOM_LENGTH",
                 "CHAIR",
                 "FACULTY",
-                "ROOMPURPOSE"
+                "ROOMPURPOSE",
+                "RESP"
             };
             public static string proc = "GETROOMFULLINFO";
             public static List<string> to_hide = new List<string> { "ROOM_ID" };
@@ -136,7 +137,8 @@ namespace ManageSpacesOfInstitute
                 "Длина",
                 "Кафедра",
                 "Факультет",
-                "Назначение аудитории"
+                "Назначение аудитории",
+                "Ответственный"
             };
         }
 
@@ -147,16 +149,20 @@ namespace ManageSpacesOfInstitute
                 "BUILDINGID",
                 "NAME",
                 "TYPE",
+                "TYPEID",
                 "IMAGE",
                 "ADRESS",
             };
             public static string proc = "GET_BUILDINGS";
-            public static List<string> to_hide = new List<string> { "BUILDINGID", "IMAGE", "TYPEID" };
+            public static List<string> to_hide = new List<string> {
+                //"BUILDINGID"                , 
+                "IMAGE", "TYPEID" };
             public static List<string> naming = new List<string>
             {
                 "BUILDINGID",
                 "Корпус",
                 "Тип корпуса",
+                "TYPEID",
                 "IMAGE",
                 "Адрес"
             };

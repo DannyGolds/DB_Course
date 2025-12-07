@@ -30,3 +30,35 @@ C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\obj\
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\Doloto-Regular.ttf
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\Yuruka Kerning (sherbackoffalex).otf
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ZeroCool.otf
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\Doloto-Regular.ttf
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\Yuruka Kerning (sherbackoffalex).otf
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ZeroCool.otf
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.exe
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.deps.json
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.runtimeconfig.json
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.pdb
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\BCrypt.Net-Next.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\Microsoft.Windows.SDK.NET.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\WinRT.Runtime.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.csproj.AssemblyReference.cache
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Auth.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.DetailForm.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.EquipmentCard.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.MainFrame.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Properties.Resources.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.RoomDetails.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.Structure.resources
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.csproj.GenerateResource.cache
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.AssemblyInfoInputs.cache
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.AssemblyInfo.cs
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.csproj.CoreCompileInputs.cache
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.sourcelink.json
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSp.27195303.Up2Date
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\refint\ManageSpacesOfInstitute.dll
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.pdb
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.genruntimeconfig.cache
+C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ref\ManageSpacesOfInstitute.dll

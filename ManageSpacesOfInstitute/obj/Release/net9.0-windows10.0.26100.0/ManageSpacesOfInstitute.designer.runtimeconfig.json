@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\GOLDS\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\GOLDS\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Golds\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Golds\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,

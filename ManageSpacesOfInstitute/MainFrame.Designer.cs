@@ -55,7 +55,6 @@
             button17 = new Button();
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
             button4 = new Button();
             btnChFile = new Button();
             pictureBox1 = new PictureBox();
@@ -70,16 +69,19 @@
             splitContainer2 = new SplitContainer();
             dataGridView2 = new DataGridView();
             comboBox2 = new ComboBox();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown1 = new NumericUpDown();
+            textBox13 = new TextBox();
+            label14 = new Label();
+            comboBox6 = new ComboBox();
+            label13 = new Label();
+            comboBox5 = new ComboBox();
+            label12 = new Label();
             button18 = new Button();
             btnAdd = new Button();
             btnDel = new Button();
-            btnEd = new Button();
             btnRep = new Button();
-            comboBox6 = new ComboBox();
-            label13 = new Label();
-            textBox5 = new TextBox();
             label11 = new Label();
-            textBox4 = new TextBox();
             label10 = new Label();
             comboBox4 = new ComboBox();
             label8 = new Label();
@@ -144,8 +146,6 @@
             label26 = new Label();
             tabPage6 = new TabPage();
             label9 = new Label();
-            label12 = new Label();
-            comboBox5 = new ComboBox();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridview_foundroomsinfo).BeginInit();
@@ -166,6 +166,8 @@
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
             splitContainer3.Panel1.SuspendLayout();
@@ -411,7 +413,6 @@
             label1.Size = new Size(239, 18);
             label1.TabIndex = 7;
             label1.Text = "Информация о помещениях";
-            label1.Click += label1_Click;
             // 
             // tabs
             // 
@@ -477,7 +478,6 @@
             splitContainer1.Panel2.Controls.Add(button17);
             splitContainer1.Panel2.Controls.Add(button1);
             splitContainer1.Panel2.Controls.Add(button2);
-            splitContainer1.Panel2.Controls.Add(button3);
             splitContainer1.Panel2.Controls.Add(button4);
             splitContainer1.Panel2.Controls.Add(btnChFile);
             splitContainer1.Panel2.Controls.Add(pictureBox1);
@@ -488,6 +488,7 @@
             splitContainer1.Panel2.Controls.Add(label7);
             splitContainer1.Panel2.Controls.Add(lblBuildType);
             splitContainer1.Panel2.Controls.Add(lblBuildName);
+            splitContainer1.Panel2.Paint += splitContainer1_Panel2_Paint_2;
             splitContainer1.Size = new Size(845, 325);
             splitContainer1.SplitterDistance = 350;
             splitContainer1.TabIndex = 0;
@@ -512,11 +513,11 @@
             // 
             button17.Enabled = false;
             button17.ForeColor = Color.DarkGoldenrod;
-            button17.Location = new Point(419, 294);
+            button17.Location = new Point(304, 294);
             button17.Name = "button17";
-            button17.Size = new Size(58, 28);
+            button17.Size = new Size(125, 28);
             button17.TabIndex = 15;
-            button17.Text = "РЕД";
+            button17.Text = "РЕДактировать";
             button17.UseVisualStyleBackColor = true;
             button17.Click += button17_Click;
             // 
@@ -542,22 +543,11 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
-            // 
-            button3.ForeColor = Color.SteelBlue;
-            button3.Location = new Point(200, 294);
-            button3.Name = "button3";
-            button3.Size = new Size(109, 28);
-            button3.TabIndex = 13;
-            button3.Text = "Отменить";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
             // button4
             // 
             button4.Enabled = false;
             button4.ForeColor = Color.SlateBlue;
-            button4.Location = new Point(315, 294);
+            button4.Location = new Point(200, 294);
             button4.Name = "button4";
             button4.Size = new Size(98, 28);
             button4.TabIndex = 14;
@@ -680,18 +670,19 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.Controls.Add(numericUpDown2);
+            splitContainer2.Panel2.Controls.Add(numericUpDown1);
+            splitContainer2.Panel2.Controls.Add(textBox13);
+            splitContainer2.Panel2.Controls.Add(label14);
+            splitContainer2.Panel2.Controls.Add(comboBox6);
+            splitContainer2.Panel2.Controls.Add(label13);
             splitContainer2.Panel2.Controls.Add(comboBox5);
             splitContainer2.Panel2.Controls.Add(label12);
             splitContainer2.Panel2.Controls.Add(button18);
             splitContainer2.Panel2.Controls.Add(btnAdd);
             splitContainer2.Panel2.Controls.Add(btnDel);
-            splitContainer2.Panel2.Controls.Add(btnEd);
             splitContainer2.Panel2.Controls.Add(btnRep);
-            splitContainer2.Panel2.Controls.Add(comboBox6);
-            splitContainer2.Panel2.Controls.Add(label13);
-            splitContainer2.Panel2.Controls.Add(textBox5);
             splitContainer2.Panel2.Controls.Add(label11);
-            splitContainer2.Panel2.Controls.Add(textBox4);
             splitContainer2.Panel2.Controls.Add(label10);
             splitContainer2.Panel2.Controls.Add(comboBox4);
             splitContainer2.Panel2.Controls.Add(label8);
@@ -711,8 +702,10 @@
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(3, 34);
+            dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
             dataGridView2.ReadOnly = true;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(344, 288);
             dataGridView2.TabIndex = 1;
             dataGridView2.SelectionChanged += roomsEditGrid_OnSelect;
@@ -726,15 +719,93 @@
             comboBox2.Size = new Size(344, 23);
             comboBox2.TabIndex = 0;
             // 
+            // numericUpDown2
+            // 
+            numericUpDown2.DecimalPlaces = 2;
+            numericUpDown2.Enabled = false;
+            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown2.Location = new Point(262, 37);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(206, 22);
+            numericUpDown2.TabIndex = 35;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.DecimalPlaces = 2;
+            numericUpDown1.Enabled = false;
+            numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown1.Location = new Point(262, 109);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(206, 22);
+            numericUpDown1.TabIndex = 34;
+            // 
+            // textBox13
+            // 
+            textBox13.BorderStyle = BorderStyle.FixedSingle;
+            textBox13.Enabled = false;
+            textBox13.Location = new Point(262, 247);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(206, 22);
+            textBox13.TabIndex = 33;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(262, 227);
+            label14.Name = "label14";
+            label14.Size = new Size(165, 15);
+            label14.TabIndex = 32;
+            label14.Text = "Назначение аудитории";
+            // 
+            // comboBox6
+            // 
+            comboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox6.Enabled = false;
+            comboBox6.FormattingEnabled = true;
+            comboBox6.Location = new Point(20, 247);
+            comboBox6.Name = "comboBox6";
+            comboBox6.Size = new Size(206, 23);
+            comboBox6.TabIndex = 31;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(20, 227);
+            label13.Name = "label13";
+            label13.Size = new Size(111, 15);
+            label13.TabIndex = 30;
+            label13.Text = "Ответсвенный";
+            // 
+            // comboBox5
+            // 
+            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox5.Enabled = false;
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(262, 181);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(206, 23);
+            comboBox5.TabIndex = 29;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(262, 161);
+            label12.Name = "label12";
+            label12.Size = new Size(65, 15);
+            label12.TabIndex = 28;
+            label12.Text = "Кафедра";
+            // 
             // button18
             // 
+            button18.Enabled = false;
             button18.ForeColor = Color.DarkGoldenrod;
-            button18.Location = new Point(419, 294);
+            button18.Location = new Point(304, 294);
             button18.Name = "button18";
-            button18.Size = new Size(58, 28);
+            button18.Size = new Size(123, 28);
             button18.TabIndex = 27;
-            button18.Text = "РЕД";
+            button18.Text = "РЕДактировать";
             button18.UseVisualStyleBackColor = true;
+            button18.Click += button18_Click;
             // 
             // btnAdd
             // 
@@ -745,6 +816,7 @@
             btnAdd.TabIndex = 23;
             btnAdd.Text = "Добавить +";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnDel
             // 
@@ -755,54 +827,19 @@
             btnDel.TabIndex = 24;
             btnDel.Text = "Удалить -";
             btnDel.UseVisualStyleBackColor = true;
-            // 
-            // btnEd
-            // 
-            btnEd.ForeColor = Color.SteelBlue;
-            btnEd.Location = new Point(200, 294);
-            btnEd.Name = "btnEd";
-            btnEd.Size = new Size(109, 28);
-            btnEd.TabIndex = 25;
-            btnEd.Text = "Отменить";
-            btnEd.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
             // 
             // btnRep
             // 
+            btnRep.Enabled = false;
             btnRep.ForeColor = Color.SlateBlue;
-            btnRep.Location = new Point(315, 294);
+            btnRep.Location = new Point(200, 294);
             btnRep.Name = "btnRep";
             btnRep.Size = new Size(98, 28);
             btnRep.TabIndex = 26;
             btnRep.Text = "Сохранить";
             btnRep.UseVisualStyleBackColor = true;
-            // 
-            // comboBox6
-            // 
-            comboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox6.Enabled = false;
-            comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(20, 251);
-            comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(206, 23);
-            comboBox6.TabIndex = 20;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(20, 231);
-            label13.Name = "label13";
-            label13.Size = new Size(206, 15);
-            label13.TabIndex = 19;
-            label13.Text = "Отвественный за аудиторию";
-            // 
-            // textBox5
-            // 
-            textBox5.BorderStyle = BorderStyle.FixedSingle;
-            textBox5.Enabled = false;
-            textBox5.Location = new Point(262, 109);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(206, 22);
-            textBox5.TabIndex = 16;
+            btnRep.Click += btnRep_Click;
             // 
             // label11
             // 
@@ -812,15 +849,6 @@
             label11.Size = new Size(135, 15);
             label11.TabIndex = 15;
             label11.Text = "Ширина аудитории";
-            // 
-            // textBox4
-            // 
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-            textBox4.Enabled = false;
-            textBox4.Location = new Point(262, 36);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(206, 22);
-            textBox4.TabIndex = 14;
             // 
             // label10
             // 
@@ -1077,7 +1105,6 @@
             label16.Size = new Size(74, 15);
             label16.TabIndex = 11;
             label16.Text = "Название";
-            label16.Click += label16_Click;
             // 
             // comboBox8
             // 
@@ -1320,7 +1347,6 @@
             label25.Size = new Size(234, 24);
             label25.TabIndex = 24;
             label25.Text = "Выберите факультет";
-            label25.Click += label25_Click;
             // 
             // button21
             // 
@@ -1527,25 +1553,6 @@
             label9.TabIndex = 8;
             label9.Text = "Редактирование информационной базы";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(262, 161);
-            label12.Name = "label12";
-            label12.Size = new Size(65, 15);
-            label12.TabIndex = 28;
-            label12.Text = "Кафедра";
-            // 
-            // comboBox5
-            // 
-            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox5.Enabled = false;
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(262, 181);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(206, 23);
-            comboBox5.TabIndex = 29;
-            // 
             // MainFrame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1583,6 +1590,8 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage4.ResumeLayout(false);
             splitContainer3.Panel1.ResumeLayout(false);
             splitContainer3.Panel2.ResumeLayout(false);
@@ -1652,9 +1661,7 @@
         private SplitContainer splitContainer2;
         private ComboBox comboBox2;
         private DataGridView dataGridView2;
-        private TextBox textBox5;
         private Label label11;
-        private TextBox textBox4;
         private Label label10;
         private ComboBox comboBox4;
         private Label label8;
@@ -1662,8 +1669,6 @@
         private Label label6;
         private ComboBox comboBox3;
         private Label label5;
-        private ComboBox comboBox6;
-        private Label label13;
         private SplitContainer splitContainer3;
         private DataGridView dataGridView3;
         private ComboBox comboBox7;
@@ -1688,11 +1693,9 @@
         private ComboBox fpl_chpurproom;
         private Button button1;
         private Button button2;
-        private Button button3;
         private Button button4;
         private Button btnAdd;
         private Button btnDel;
-        private Button btnEd;
         private Button btnRep;
         private Button button5;
         private Button button6;
@@ -1735,5 +1738,11 @@
         private TabPage tabPage6;
         private ComboBox comboBox5;
         private Label label12;
+        private ComboBox comboBox6;
+        private Label label13;
+        private TextBox textBox13;
+        private Label label14;
+        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericUpDown1;
     }
 }

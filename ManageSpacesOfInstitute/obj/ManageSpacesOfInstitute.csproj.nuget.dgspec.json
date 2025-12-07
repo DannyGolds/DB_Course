@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj": {}
+    "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj": {
+    "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
+        "projectUniqueName": "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
         "projectName": "ManageSpacesOfInstitute",
-        "projectPath": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
-        "packagesPath": "C:\\Users\\GOLDS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\obj\\",
+        "projectPath": "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
+        "packagesPath": "C:\\Users\\Golds\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\GOLDS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Golds\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
