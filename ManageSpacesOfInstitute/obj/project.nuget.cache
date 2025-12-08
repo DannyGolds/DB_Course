@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "C6G5AVosm9o=",
+  "dgSpecHash": "5hmVq0d+1Yk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Golds\\Documents\\Database_Project\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
+  "projectFilePath": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Golds\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
-    "C:\\Users\\Golds\\.nuget\\packages\\firebirdsql.data.firebirdclient\\7.10.0\\firebirdsql.data.firebirdclient.7.10.0.nupkg.sha512",
-    "C:\\Users\\Golds\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
-    "C:\\Users\\Golds\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.26100.57\\microsoft.windows.sdk.net.ref.10.0.26100.57.nupkg.sha512"
+    "C:\\Users\\GOLDS\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\GOLDS\\.nuget\\packages\\firebirdsql.data.firebirdclient\\7.10.0\\firebirdsql.data.firebirdclient.7.10.0.nupkg.sha512",
+    "C:\\Users\\GOLDS\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\GOLDS\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.26100.57\\microsoft.windows.sdk.net.ref.10.0.26100.57.nupkg.sha512"
   ],
   "logs": []
 }

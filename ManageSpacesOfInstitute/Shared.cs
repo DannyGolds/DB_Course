@@ -30,8 +30,6 @@ namespace ManageSpacesOfInstitute
             }
             catch (Exception ex)
             {
-                // Логирование ошибки (опционально)
-                // Console.WriteLine($"Ошибка загрузки изображения: {ex.Message}");
                 pictureBox.Visible = false;
             }
         }
@@ -87,23 +85,21 @@ namespace ManageSpacesOfInstitute
             public static List<string> info = new List<string>
             {
                 "EQUIPMENTID",
+                "IMAGE",
+                "ROOMID",
                 "NAME",
                 "SERIAL_NUMBER",
-                "QUANTITY",
-                "STATUS",
-                "PURCHASE_DATE",
                 "NOTES"
             };
             public static string proc = "GET_EQUIPMENT_LIST";
-            public static List<string> to_hide = new List<string> { "EQUIPMENTID" };
+            public static List<string> to_hide = new List<string> { "ROOMID","IMAGE" };
             public static List<string> naming = new List<string>
             {
                 "EQUIPMENTID",
+                "IMAGE",
+                "ROOMID",
                 "Название оборудования",
                 "Серийный номер",
-                "Количество",
-                "Статус",
-                "Дата постановки на учет",
                 "Описание оборудования"
             };
         }
@@ -154,9 +150,7 @@ namespace ManageSpacesOfInstitute
                 "ADRESS",
             };
             public static string proc = "GET_BUILDINGS";
-            public static List<string> to_hide = new List<string> {
-                //"BUILDINGID"                , 
-                "IMAGE", "TYPEID" };
+            public static List<string> to_hide = new List<string> { "BUILDINGID", "IMAGE", "TYPEID" };
             public static List<string> naming = new List<string>
             {
                 "BUILDINGID",
@@ -175,14 +169,16 @@ namespace ManageSpacesOfInstitute
                 "ID",
                 "NAME",
                 "FACULTY",
+                "FACID"
             };
             public static string proc = "GET_CHAIRS";
-            public static List<string> to_hide = new List<string> { "ID" };
+            public static List<string> to_hide = new List<string> { "ID", "FACID" };
             public static List<string> naming = new List<string>
             {
                 "ID",
                 "Кафедра",
-                "Факультет"
+                "Факультет",
+                "FACID"
             };
         }
         public static class Faculties

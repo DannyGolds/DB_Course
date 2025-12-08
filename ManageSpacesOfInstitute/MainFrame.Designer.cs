@@ -52,6 +52,7 @@
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
             dataGridView1 = new DataGridView();
+            button7 = new Button();
             button17 = new Button();
             button1 = new Button();
             button2 = new Button();
@@ -91,12 +92,13 @@
             label5 = new Label();
             tabPage4 = new TabPage();
             splitContainer3 = new SplitContainer();
-            comboBox7 = new ComboBox();
             dataGridView3 = new DataGridView();
+            button3 = new Button();
+            comboBox10 = new ComboBox();
+            label27 = new Label();
             button19 = new Button();
             button5 = new Button();
             button6 = new Button();
-            button7 = new Button();
             button8 = new Button();
             pictureBox2 = new PictureBox();
             label19 = new Label();
@@ -106,8 +108,6 @@
             label17 = new Label();
             textBox6 = new TextBox();
             label16 = new Label();
-            comboBox8 = new ComboBox();
-            label15 = new Label();
             tabPage5 = new TabPage();
             splitContainer5 = new SplitContainer();
             dataGridView4 = new DataGridView();
@@ -118,7 +118,6 @@
             button10 = new Button();
             textBox8 = new TextBox();
             label20 = new Label();
-            button11 = new Button();
             label22 = new Label();
             textBox10 = new TextBox();
             button12 = new Button();
@@ -130,7 +129,6 @@
             button21 = new Button();
             button13 = new Button();
             button14 = new Button();
-            button15 = new Button();
             button16 = new Button();
             textBox11 = new TextBox();
             label24 = new Label();
@@ -140,7 +138,6 @@
             button22 = new Button();
             button23 = new Button();
             button24 = new Button();
-            button25 = new Button();
             button26 = new Button();
             textBox12 = new TextBox();
             label26 = new Label();
@@ -475,6 +472,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(button7);
             splitContainer1.Panel2.Controls.Add(button17);
             splitContainer1.Panel2.Controls.Add(button1);
             splitContainer1.Panel2.Controls.Add(button2);
@@ -508,6 +506,17 @@
             dataGridView1.Size = new Size(350, 325);
             dataGridView1.TabIndex = 0;
             dataGridView1.SelectionChanged += dtgv3_onselch;
+            // 
+            // button7
+            // 
+            button7.ForeColor = Color.Teal;
+            button7.Location = new Point(435, 294);
+            button7.Name = "button7";
+            button7.Size = new Size(36, 28);
+            button7.TabIndex = 16;
+            button7.Text = "X";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += bldCanc;
             // 
             // button17
             // 
@@ -743,9 +752,10 @@
             // 
             textBox13.BorderStyle = BorderStyle.FixedSingle;
             textBox13.Enabled = false;
+            textBox13.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox13.Location = new Point(262, 247);
             textBox13.Name = "textBox13";
-            textBox13.Size = new Size(206, 22);
+            textBox13.Size = new Size(206, 25);
             textBox13.TabIndex = 33;
             // 
             // label14
@@ -761,10 +771,11 @@
             // 
             comboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox6.Enabled = false;
+            comboBox6.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox6.FormattingEnabled = true;
             comboBox6.Location = new Point(20, 247);
             comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(206, 23);
+            comboBox6.Size = new Size(206, 24);
             comboBox6.TabIndex = 31;
             // 
             // label13
@@ -863,10 +874,11 @@
             // 
             comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox4.Enabled = false;
+            comboBox4.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox4.FormattingEnabled = true;
             comboBox4.Location = new Point(20, 181);
             comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(206, 23);
+            comboBox4.Size = new Size(206, 24);
             comboBox4.TabIndex = 12;
             // 
             // label8
@@ -882,9 +894,10 @@
             // 
             textBox3.BorderStyle = BorderStyle.FixedSingle;
             textBox3.Enabled = false;
+            textBox3.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox3.Location = new Point(20, 109);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(206, 22);
+            textBox3.Size = new Size(206, 25);
             textBox3.TabIndex = 10;
             // 
             // label6
@@ -900,10 +913,11 @@
             // 
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.Enabled = false;
+            comboBox3.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox3.FormattingEnabled = true;
             comboBox3.Location = new Point(20, 36);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(206, 23);
+            comboBox3.Size = new Size(206, 24);
             comboBox3.TabIndex = 8;
             // 
             // label5
@@ -934,15 +948,16 @@
             // 
             // splitContainer3.Panel1
             // 
-            splitContainer3.Panel1.Controls.Add(comboBox7);
             splitContainer3.Panel1.Controls.Add(dataGridView3);
             // 
             // splitContainer3.Panel2
             // 
+            splitContainer3.Panel2.Controls.Add(button3);
+            splitContainer3.Panel2.Controls.Add(comboBox10);
+            splitContainer3.Panel2.Controls.Add(label27);
             splitContainer3.Panel2.Controls.Add(button19);
             splitContainer3.Panel2.Controls.Add(button5);
             splitContainer3.Panel2.Controls.Add(button6);
-            splitContainer3.Panel2.Controls.Add(button7);
             splitContainer3.Panel2.Controls.Add(button8);
             splitContainer3.Panel2.Controls.Add(pictureBox2);
             splitContainer3.Panel2.Controls.Add(label19);
@@ -952,21 +967,9 @@
             splitContainer3.Panel2.Controls.Add(label17);
             splitContainer3.Panel2.Controls.Add(textBox6);
             splitContainer3.Panel2.Controls.Add(label16);
-            splitContainer3.Panel2.Controls.Add(comboBox8);
-            splitContainer3.Panel2.Controls.Add(label15);
             splitContainer3.Size = new Size(845, 325);
             splitContainer3.SplitterDistance = 350;
             splitContainer3.TabIndex = 0;
-            // 
-            // comboBox7
-            // 
-            comboBox7.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox7.FormattingEnabled = true;
-            comboBox7.Location = new Point(3, 3);
-            comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(344, 23);
-            comboBox7.TabIndex = 1;
-            comboBox7.SelectedIndexChanged += comboBox7_SelectedIndexChanged;
             // 
             // dataGridView3
             // 
@@ -974,21 +977,55 @@
             dataGridView3.AllowUserToDeleteRows = false;
             dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(3, 34);
+            dataGridView3.Location = new Point(3, 3);
+            dataGridView3.MultiSelect = false;
             dataGridView3.Name = "dataGridView3";
             dataGridView3.ReadOnly = true;
-            dataGridView3.Size = new Size(344, 288);
+            dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView3.Size = new Size(344, 319);
             dataGridView3.TabIndex = 0;
+            dataGridView3.SelectionChanged += dataGridView3_Select;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(312, 110);
+            button3.Name = "button3";
+            button3.Size = new Size(165, 23);
+            button3.TabIndex = 26;
+            button3.Text = "Выбрать файл...";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_1;
+            // 
+            // comboBox10
+            // 
+            comboBox10.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox10.Enabled = false;
+            comboBox10.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBox10.FormattingEnabled = true;
+            comboBox10.Location = new Point(17, 173);
+            comboBox10.Name = "comboBox10";
+            comboBox10.Size = new Size(162, 24);
+            comboBox10.TabIndex = 25;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(17, 153);
+            label27.Name = "label27";
+            label27.Size = new Size(78, 15);
+            label27.TabIndex = 24;
+            label27.Text = "Аудитория";
             // 
             // button19
             // 
             button19.ForeColor = Color.DarkGoldenrod;
-            button19.Location = new Point(419, 294);
+            button19.Location = new Point(304, 294);
             button19.Name = "button19";
-            button19.Size = new Size(58, 28);
+            button19.Size = new Size(125, 28);
             button19.TabIndex = 23;
-            button19.Text = "РЕД";
+            button19.Text = "Редактировать";
             button19.UseVisualStyleBackColor = true;
+            button19.Click += button19_Click;
             // 
             // button5
             // 
@@ -999,6 +1036,7 @@
             button5.TabIndex = 19;
             button5.Text = "Добавить +";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button6
             // 
@@ -1009,26 +1047,18 @@
             button6.TabIndex = 20;
             button6.Text = "Удалить -";
             button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.ForeColor = Color.SteelBlue;
-            button7.Location = new Point(200, 294);
-            button7.Name = "button7";
-            button7.Size = new Size(109, 28);
-            button7.TabIndex = 21;
-            button7.Text = "Отменить";
-            button7.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button8
             // 
             button8.ForeColor = Color.SlateBlue;
-            button8.Location = new Point(315, 294);
+            button8.Location = new Point(200, 294);
             button8.Name = "button8";
             button8.Size = new Size(98, 28);
             button8.TabIndex = 22;
             button8.Text = "Сохранить";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // pictureBox2
             // 
@@ -1055,6 +1085,7 @@
             // 
             richTextBox1.BorderStyle = BorderStyle.FixedSingle;
             richTextBox1.Enabled = false;
+            richTextBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextBox1.Location = new Point(200, 40);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(277, 66);
@@ -1074,15 +1105,16 @@
             // 
             textBox7.BorderStyle = BorderStyle.FixedSingle;
             textBox7.Enabled = false;
-            textBox7.Location = new Point(15, 186);
+            textBox7.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox7.Location = new Point(17, 114);
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(162, 22);
+            textBox7.Size = new Size(162, 25);
             textBox7.TabIndex = 14;
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(15, 166);
+            label17.Location = new Point(15, 95);
             label17.Name = "label17";
             label17.Size = new Size(151, 15);
             label17.TabIndex = 13;
@@ -1092,38 +1124,20 @@
             // 
             textBox6.BorderStyle = BorderStyle.FixedSingle;
             textBox6.Enabled = false;
-            textBox6.Location = new Point(15, 111);
+            textBox6.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox6.Location = new Point(15, 40);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(162, 22);
+            textBox6.Size = new Size(162, 25);
             textBox6.TabIndex = 12;
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(15, 91);
+            label16.Location = new Point(15, 20);
             label16.Name = "label16";
             label16.Size = new Size(74, 15);
             label16.TabIndex = 11;
             label16.Text = "Название";
-            // 
-            // comboBox8
-            // 
-            comboBox8.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox8.Enabled = false;
-            comboBox8.FormattingEnabled = true;
-            comboBox8.Location = new Point(15, 40);
-            comboBox8.Name = "comboBox8";
-            comboBox8.Size = new Size(162, 23);
-            comboBox8.TabIndex = 10;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(15, 20);
-            label15.Name = "label15";
-            label15.Size = new Size(78, 15);
-            label15.TabIndex = 9;
-            label15.Text = "Категория";
             // 
             // tabPage5
             // 
@@ -1155,7 +1169,6 @@
             splitContainer5.Panel2.Controls.Add(button10);
             splitContainer5.Panel2.Controls.Add(textBox8);
             splitContainer5.Panel2.Controls.Add(label20);
-            splitContainer5.Panel2.Controls.Add(button11);
             splitContainer5.Panel2.Controls.Add(label22);
             splitContainer5.Panel2.Controls.Add(textBox10);
             splitContainer5.Panel2.Controls.Add(button12);
@@ -1170,20 +1183,24 @@
             dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView4.Location = new Point(3, 3);
+            dataGridView4.MultiSelect = false;
             dataGridView4.Name = "dataGridView4";
             dataGridView4.ReadOnly = true;
+            dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView4.Size = new Size(344, 319);
             dataGridView4.TabIndex = 0;
+            dataGridView4.SelectionChanged += dataGridView4_SelectionChanged;
             // 
             // button20
             // 
             button20.ForeColor = Color.DarkGoldenrod;
-            button20.Location = new Point(419, 294);
+            button20.Location = new Point(304, 294);
             button20.Name = "button20";
-            button20.Size = new Size(58, 28);
+            button20.Size = new Size(126, 28);
             button20.TabIndex = 19;
-            button20.Text = "РЕД";
+            button20.Text = "РЕДактировать";
             button20.UseVisualStyleBackColor = true;
+            button20.Click += button20_Click;
             // 
             // button9
             // 
@@ -1194,6 +1211,7 @@
             button9.TabIndex = 15;
             button9.Text = "Добавить +";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // textBox9
             // 
@@ -1222,6 +1240,7 @@
             button10.TabIndex = 16;
             button10.Text = "Удалить -";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // textBox8
             // 
@@ -1241,16 +1260,6 @@
             label20.TabIndex = 6;
             label20.Text = "ФИО ответственного";
             label20.Click += label20_Click;
-            // 
-            // button11
-            // 
-            button11.ForeColor = Color.SteelBlue;
-            button11.Location = new Point(200, 294);
-            button11.Name = "button11";
-            button11.Size = new Size(109, 28);
-            button11.TabIndex = 17;
-            button11.Text = "Отменить";
-            button11.UseVisualStyleBackColor = true;
             // 
             // label22
             // 
@@ -1273,12 +1282,13 @@
             // button12
             // 
             button12.ForeColor = Color.SlateBlue;
-            button12.Location = new Point(315, 294);
+            button12.Location = new Point(200, 294);
             button12.Name = "button12";
             button12.Size = new Size(98, 28);
             button12.TabIndex = 18;
             button12.Text = "Сохранить";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // tabChairs
             // 
@@ -1308,7 +1318,6 @@
             splitContainer6.Panel2.Controls.Add(button21);
             splitContainer6.Panel2.Controls.Add(button13);
             splitContainer6.Panel2.Controls.Add(button14);
-            splitContainer6.Panel2.Controls.Add(button15);
             splitContainer6.Panel2.Controls.Add(button16);
             splitContainer6.Panel2.Controls.Add(textBox11);
             splitContainer6.Panel2.Controls.Add(label24);
@@ -1323,13 +1332,17 @@
             dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView5.Location = new Point(3, 3);
+            dataGridView5.MultiSelect = false;
             dataGridView5.Name = "dataGridView5";
             dataGridView5.ReadOnly = true;
+            dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView5.Size = new Size(344, 319);
             dataGridView5.TabIndex = 0;
+            dataGridView5.SelectionChanged += dataGridView5_SelectionChanged;
             // 
             // comboBox9
             // 
+            comboBox9.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox9.Enabled = false;
             comboBox9.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             comboBox9.FormattingEnabled = true;
@@ -1351,12 +1364,13 @@
             // button21
             // 
             button21.ForeColor = Color.DarkGoldenrod;
-            button21.Location = new Point(419, 294);
+            button21.Location = new Point(304, 294);
             button21.Name = "button21";
-            button21.Size = new Size(58, 28);
+            button21.Size = new Size(123, 28);
             button21.TabIndex = 23;
-            button21.Text = "РЕД";
+            button21.Text = "РЕДактировать";
             button21.UseVisualStyleBackColor = true;
+            button21.Click += button21_Click;
             // 
             // button13
             // 
@@ -1367,6 +1381,7 @@
             button13.TabIndex = 19;
             button13.Text = "Добавить +";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // button14
             // 
@@ -1377,26 +1392,18 @@
             button14.TabIndex = 20;
             button14.Text = "Удалить -";
             button14.UseVisualStyleBackColor = true;
-            // 
-            // button15
-            // 
-            button15.ForeColor = Color.SteelBlue;
-            button15.Location = new Point(200, 294);
-            button15.Name = "button15";
-            button15.Size = new Size(109, 28);
-            button15.TabIndex = 21;
-            button15.Text = "Отменить";
-            button15.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
             // 
             // button16
             // 
             button16.ForeColor = Color.SlateBlue;
-            button16.Location = new Point(315, 294);
+            button16.Location = new Point(200, 294);
             button16.Name = "button16";
             button16.Size = new Size(98, 28);
             button16.TabIndex = 22;
             button16.Text = "Сохранить";
             button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
             // 
             // textBox11
             // 
@@ -1443,7 +1450,6 @@
             splitContainer4.Panel2.Controls.Add(button22);
             splitContainer4.Panel2.Controls.Add(button23);
             splitContainer4.Panel2.Controls.Add(button24);
-            splitContainer4.Panel2.Controls.Add(button25);
             splitContainer4.Panel2.Controls.Add(button26);
             splitContainer4.Panel2.Controls.Add(textBox12);
             splitContainer4.Panel2.Controls.Add(label26);
@@ -1458,20 +1464,24 @@
             dataGridView6.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView6.Location = new Point(3, 3);
+            dataGridView6.MultiSelect = false;
             dataGridView6.Name = "dataGridView6";
             dataGridView6.ReadOnly = true;
+            dataGridView6.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView6.Size = new Size(344, 319);
             dataGridView6.TabIndex = 0;
+            dataGridView6.SelectionChanged += dataGridView6_SelectionChanged;
             // 
             // button22
             // 
             button22.ForeColor = Color.DarkGoldenrod;
-            button22.Location = new Point(419, 294);
+            button22.Location = new Point(304, 294);
             button22.Name = "button22";
-            button22.Size = new Size(58, 28);
+            button22.Size = new Size(120, 28);
             button22.TabIndex = 24;
-            button22.Text = "РЕД";
+            button22.Text = "РЕДАКТИРОВАТЬ";
             button22.UseVisualStyleBackColor = true;
+            button22.Click += button22_Click;
             // 
             // button23
             // 
@@ -1482,6 +1492,7 @@
             button23.TabIndex = 20;
             button23.Text = "Добавить +";
             button23.UseVisualStyleBackColor = true;
+            button23.Click += button23_Click;
             // 
             // button24
             // 
@@ -1492,26 +1503,18 @@
             button24.TabIndex = 21;
             button24.Text = "Удалить -";
             button24.UseVisualStyleBackColor = true;
-            // 
-            // button25
-            // 
-            button25.ForeColor = Color.SteelBlue;
-            button25.Location = new Point(200, 294);
-            button25.Name = "button25";
-            button25.Size = new Size(109, 28);
-            button25.TabIndex = 22;
-            button25.Text = "Отменить";
-            button25.UseVisualStyleBackColor = true;
+            button24.Click += button24_Click;
             // 
             // button26
             // 
             button26.ForeColor = Color.SlateBlue;
-            button26.Location = new Point(315, 294);
+            button26.Location = new Point(200, 294);
             button26.Name = "button26";
             button26.Size = new Size(98, 28);
             button26.TabIndex = 23;
             button26.Text = "Сохранить";
             button26.UseVisualStyleBackColor = true;
+            button26.Click += button26_Click;
             // 
             // textBox12
             // 
@@ -1671,15 +1674,12 @@
         private Label label5;
         private SplitContainer splitContainer3;
         private DataGridView dataGridView3;
-        private ComboBox comboBox7;
         private RichTextBox richTextBox1;
         private Label label18;
         private TextBox textBox7;
         private Label label17;
         private TextBox textBox6;
         private Label label16;
-        private ComboBox comboBox8;
-        private Label label15;
         private PictureBox pictureBox2;
         private Label label19;
         private DataGridView dataGridView4;
@@ -1699,11 +1699,9 @@
         private Button btnRep;
         private Button button5;
         private Button button6;
-        private Button button7;
         private Button button8;
         private Button button9;
         private Button button10;
-        private Button button11;
         private Button button12;
         private TabPage tabPage1;
         private SplitContainer splitContainer1;
@@ -1723,7 +1721,6 @@
         private Button button21;
         private Button button13;
         private Button button14;
-        private Button button15;
         private Button button16;
         private TextBox textBox11;
         private Label label24;
@@ -1731,7 +1728,6 @@
         private Button button22;
         private Button button23;
         private Button button24;
-        private Button button25;
         private Button button26;
         private TextBox textBox12;
         private Label label26;
@@ -1744,5 +1740,9 @@
         private Label label14;
         private NumericUpDown numericUpDown2;
         private NumericUpDown numericUpDown1;
+        private ComboBox comboBox10;
+        private Label label27;
+        private Button button3;
+        private Button button7;
     }
 }

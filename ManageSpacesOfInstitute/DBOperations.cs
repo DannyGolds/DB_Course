@@ -21,7 +21,7 @@ namespace ManageSpacesOfInstitute
             {
                 UserID = "SYSDBA",
                 Password = "masterkey",
-                Database = @"C:\Users\Golds\Documents\Database_Project\DB_Course_DB\DB_Course_DB\INSTITUTEDBNEW.FDB",
+                Database = @"C:\Users\PC\3D Objects\DB\INSTITUTEDBNEW.FDB",
                 DataSource = "127.0.0.1",
                 Port = 3050,
                 Dialect = 3
