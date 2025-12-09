@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
             btn_auth = new Button();
             label_username = new Label();
             tabPage2 = new TabPage();
@@ -52,7 +53,6 @@
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
             dataGridView1 = new DataGridView();
-            button7 = new Button();
             button17 = new Button();
             button1 = new Button();
             button2 = new Button();
@@ -142,6 +142,14 @@
             textBox12 = new TextBox();
             label26 = new Label();
             tabPage6 = new TabPage();
+            splitContainer7 = new SplitContainer();
+            dataGridView7 = new DataGridView();
+            button7 = new Button();
+            button11 = new Button();
+            button15 = new Button();
+            button25 = new Button();
+            label15 = new Label();
+            textBox4 = new TextBox();
             label9 = new Label();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -190,6 +198,12 @@
             splitContainer4.Panel2.SuspendLayout();
             splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView6).BeginInit();
+            tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer7).BeginInit();
+            splitContainer7.Panel1.SuspendLayout();
+            splitContainer7.Panel2.SuspendLayout();
+            splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView7).BeginInit();
             SuspendLayout();
             // 
             // btn_auth
@@ -472,7 +486,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(button7);
             splitContainer1.Panel2.Controls.Add(button17);
             splitContainer1.Panel2.Controls.Add(button1);
             splitContainer1.Panel2.Controls.Add(button2);
@@ -507,20 +520,8 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.SelectionChanged += dtgv3_onselch;
             // 
-            // button7
-            // 
-            button7.ForeColor = Color.Teal;
-            button7.Location = new Point(435, 294);
-            button7.Name = "button7";
-            button7.Size = new Size(36, 28);
-            button7.TabIndex = 16;
-            button7.Text = "X";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += bldCanc;
-            // 
             // button17
             // 
-            button17.Enabled = false;
             button17.ForeColor = Color.DarkGoldenrod;
             button17.Location = new Point(304, 294);
             button17.Name = "button17";
@@ -554,7 +555,6 @@
             // 
             // button4
             // 
-            button4.Enabled = false;
             button4.ForeColor = Color.SlateBlue;
             button4.Location = new Point(200, 294);
             button4.Name = "button4";
@@ -732,21 +732,25 @@
             // 
             numericUpDown2.DecimalPlaces = 2;
             numericUpDown2.Enabled = false;
-            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown2.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             numericUpDown2.Location = new Point(262, 37);
+            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(206, 22);
             numericUpDown2.TabIndex = 35;
+            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericUpDown1
             // 
             numericUpDown1.DecimalPlaces = 2;
             numericUpDown1.Enabled = false;
-            numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown1.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             numericUpDown1.Location = new Point(262, 109);
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(206, 22);
             numericUpDown1.TabIndex = 34;
+            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // textBox13
             // 
@@ -808,7 +812,6 @@
             // 
             // button18
             // 
-            button18.Enabled = false;
             button18.ForeColor = Color.DarkGoldenrod;
             button18.Location = new Point(304, 294);
             button18.Name = "button18";
@@ -842,7 +845,6 @@
             // 
             // btnRep
             // 
-            btnRep.Enabled = false;
             btnRep.ForeColor = Color.SlateBlue;
             btnRep.Location = new Point(200, 294);
             btnRep.Name = "btnRep";
@@ -1518,11 +1520,12 @@
             // 
             // textBox12
             // 
+            textBox12.BorderStyle = BorderStyle.None;
             textBox12.Enabled = false;
-            textBox12.Font = new Font("Yuruka Kerning (sherbackoffalex", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox12.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox12.Location = new Point(64, 166);
             textBox12.Name = "textBox12";
-            textBox12.Size = new Size(313, 29);
+            textBox12.Size = new Size(313, 28);
             textBox12.TabIndex = 3;
             // 
             // label26
@@ -1537,6 +1540,7 @@
             // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(splitContainer7);
             tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
@@ -1544,6 +1548,105 @@
             tabPage6.TabIndex = 6;
             tabPage6.Text = "Типы корпусов";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer7
+            // 
+            splitContainer7.Dock = DockStyle.Fill;
+            splitContainer7.Location = new Point(3, 3);
+            splitContainer7.Name = "splitContainer7";
+            // 
+            // splitContainer7.Panel1
+            // 
+            splitContainer7.Panel1.Controls.Add(dataGridView7);
+            // 
+            // splitContainer7.Panel2
+            // 
+            splitContainer7.Panel2.Controls.Add(button7);
+            splitContainer7.Panel2.Controls.Add(button11);
+            splitContainer7.Panel2.Controls.Add(button15);
+            splitContainer7.Panel2.Controls.Add(button25);
+            splitContainer7.Panel2.Controls.Add(label15);
+            splitContainer7.Panel2.Controls.Add(textBox4);
+            splitContainer7.Size = new Size(845, 325);
+            splitContainer7.SplitterDistance = 250;
+            splitContainer7.TabIndex = 0;
+            // 
+            // dataGridView7
+            // 
+            dataGridView7.AllowUserToAddRows = false;
+            dataGridView7.AllowUserToDeleteRows = false;
+            dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView7.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView7.Location = new Point(3, 3);
+            dataGridView7.Name = "dataGridView7";
+            dataGridView7.ReadOnly = true;
+            dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView7.Size = new Size(244, 319);
+            dataGridView7.TabIndex = 0;
+            dataGridView7.SelectionChanged += dataGridView7_SelectionChanged;
+            // 
+            // button7
+            // 
+            button7.ForeColor = Color.DarkGoldenrod;
+            button7.Location = new Point(307, 297);
+            button7.Name = "button7";
+            button7.Size = new Size(120, 28);
+            button7.TabIndex = 28;
+            button7.Text = "РЕДАКТИРОВАТЬ";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // button11
+            // 
+            button11.ForeColor = Color.ForestGreen;
+            button11.Location = new Point(6, 297);
+            button11.Name = "button11";
+            button11.Size = new Size(92, 28);
+            button11.TabIndex = 25;
+            button11.Text = "Добавить +";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // button15
+            // 
+            button15.ForeColor = Color.Firebrick;
+            button15.Location = new Point(104, 297);
+            button15.Name = "button15";
+            button15.Size = new Size(93, 28);
+            button15.TabIndex = 26;
+            button15.Text = "Удалить -";
+            button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
+            // 
+            // button25
+            // 
+            button25.ForeColor = Color.SlateBlue;
+            button25.Location = new Point(203, 297);
+            button25.Name = "button25";
+            button25.Size = new Size(98, 28);
+            button25.TabIndex = 27;
+            button25.Text = "Сохранить";
+            button25.UseVisualStyleBackColor = true;
+            button25.Click += button25_Click;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label15.Location = new Point(143, 109);
+            label15.Name = "label15";
+            label15.Size = new Size(267, 24);
+            label15.TabIndex = 1;
+            label15.Text = "Название типа корпуса";
+            // 
+            // textBox4
+            // 
+            textBox4.BorderStyle = BorderStyle.FixedSingle;
+            textBox4.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox4.Location = new Point(130, 136);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(297, 35);
+            textBox4.TabIndex = 0;
             // 
             // label9
             // 
@@ -1564,6 +1667,7 @@
             Controls.Add(label_username);
             Controls.Add(btn_auth);
             Controls.Add(tabs);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainFrame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Manage Spaces";
@@ -1624,6 +1728,13 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer4).EndInit();
             splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView6).EndInit();
+            tabPage6.ResumeLayout(false);
+            splitContainer7.Panel1.ResumeLayout(false);
+            splitContainer7.Panel2.ResumeLayout(false);
+            splitContainer7.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer7).EndInit();
+            splitContainer7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView7).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1743,6 +1854,13 @@
         private ComboBox comboBox10;
         private Label label27;
         private Button button3;
+        private SplitContainer splitContainer7;
+        private DataGridView dataGridView7;
         private Button button7;
+        private Button button11;
+        private Button button15;
+        private Button button25;
+        private Label label15;
+        private TextBox textBox4;
     }
 }

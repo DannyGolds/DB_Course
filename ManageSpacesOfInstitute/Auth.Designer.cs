@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Auth));
             btnAuth = new Button();
             txtLogin = new TextBox();
             label1 = new Label();
@@ -98,6 +99,7 @@
             Controls.Add(txtLogin);
             Controls.Add(btnAuth);
             Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(6, 5, 6, 5);
             Name = "Auth";
             StartPosition = FormStartPosition.CenterParent;

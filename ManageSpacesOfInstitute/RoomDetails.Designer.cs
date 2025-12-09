@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoomDetails));
             label1 = new Label();
             lbl_id_input = new Label();
             BuildingImage = new PictureBox();
             dataGridView1 = new DataGridView();
-            flp = new FlowLayoutPanel();
-            button1 = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Габариты = new DataGridViewTextBoxColumn();
@@ -44,6 +43,8 @@
             Column2 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column8 = new DataGridViewTextBoxColumn();
+            flp = new FlowLayoutPanel();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -93,28 +94,6 @@
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView1.Size = new Size(798, 70);
             dataGridView1.TabIndex = 0;
-            // 
-            // flp
-            // 
-            flp.AutoScroll = true;
-            flp.BackColor = SystemColors.Menu;
-            flp.Location = new Point(420, 30);
-            flp.Margin = new Padding(0);
-            flp.Name = "flp";
-            flp.Size = new Size(392, 227);
-            flp.TabIndex = 0;
-            flp.Paint += flp_Paint;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(14, 338);
-            button1.Name = "button1";
-            button1.Size = new Size(213, 40);
-            button1.TabIndex = 11;
-            button1.Text = "Показать структуру по аудитории";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Column1
             // 
@@ -186,6 +165,28 @@
             Column8.ReadOnly = true;
             Column8.Width = 120;
             // 
+            // flp
+            // 
+            flp.AutoScroll = true;
+            flp.BackColor = SystemColors.Menu;
+            flp.Location = new Point(420, 30);
+            flp.Margin = new Padding(0);
+            flp.Name = "flp";
+            flp.Size = new Size(392, 227);
+            flp.TabIndex = 0;
+            flp.Paint += flp_Paint;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button1.Location = new Point(14, 338);
+            button1.Name = "button1";
+            button1.Size = new Size(213, 40);
+            button1.TabIndex = 11;
+            button1.Text = "Показать структуру по аудитории";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // RoomDetails
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -197,6 +198,7 @@
             Controls.Add(lbl_id_input);
             Controls.Add(label1);
             Font = new Font("Yuruka Kerning (sherbackoffalex", 8.25F, FontStyle.Bold);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "RoomDetails";
             StartPosition = FormStartPosition.CenterParent;

@@ -36,10 +36,6 @@ namespace ManageSpacesOfInstitute
         "NAME",
         "IMAGE",
         "SERIAL_NUMBER",
-        "QUANTITY",
-        "STATUS",
-        "IMAGE",
-        "PURCHASE_DATE",
         "NOTES"
     }, new FbParameter("ROOMID", _roomId));
 

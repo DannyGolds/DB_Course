@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Structure));
             richTextBox1 = new RichTextBox();
             label1 = new Label();
             SuspendLayout();
@@ -63,6 +64,7 @@
             Controls.Add(label1);
             Controls.Add(richTextBox1);
             Font = new Font("Zero Cool", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(8, 6, 8, 6);
             Name = "Structure";
             StartPosition = FormStartPosition.CenterParent;

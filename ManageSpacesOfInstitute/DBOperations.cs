@@ -64,25 +64,6 @@ namespace ManageSpacesOfInstitute
 
         public async Task<DataTable> CallProcedureAsync(string procName, List<string> col_list, params FbParameter[]? parameters)
         {
-            var allowed = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        "GETROOMFULLINFO",
-        "GET_EQUIPMENT_INFO",
-        "INSERTUSER",
-        "GET_USER_BY_USERNAME",
-        "GET_PARTIAL_ROOM_INFO",
-        "GET_BUILDINGS",
-        "GET_RESPONSIBLES",
-        "GET_ROOM_CHAIN",
-        "GET_EQUIPMENT_LIST",
-        "GET_CHAIRS",
-        "GET_FACULTIES",
-        "GET_BUILDINGS",
-        "INSERT_TO_BUILDINGS"
-    };
-            if (!allowed.Contains(procName))
-                throw new InvalidOperationException($"Недопустимое имя процедуры: {procName}");
-
             string sql;
             if (parameters != null && parameters.Length > 0)
             {

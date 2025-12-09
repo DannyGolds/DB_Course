@@ -41,12 +41,13 @@ namespace ManageSpacesOfInstitute
                 "ROOMNUMBER",
                 "BUILDINGNAME",
                 "ROOMTYPE",
+                "ROOMTYPEID",
                 "BUILDINGTYPE",
                 "ROOMPURPOSE",
                 "EQUIPMENTLIST"
             };
             public static string proc = "GET_PARTIAL_ROOM_INFO";
-            public static List<string> to_hide = new List<string> { "ROOM_ID" };
+            public static List<string> to_hide = new List<string> { "ROOM_ID", "ROOMTYPEID" };
 
             public static List<string> naming = new List<string>
             {
@@ -54,6 +55,7 @@ namespace ManageSpacesOfInstitute
                 "Номер аудитории",
                 "Корпус",
                 "Тип аудитории",
+                "ROOMTYPEID",
                 "Тип корпуса",
                 "Назначение аудитории",
                 "Оборудование"
@@ -92,7 +94,7 @@ namespace ManageSpacesOfInstitute
                 "NOTES"
             };
             public static string proc = "GET_EQUIPMENT_LIST";
-            public static List<string> to_hide = new List<string> { "ROOMID","IMAGE" };
+            public static List<string> to_hide = new List<string> { "ROOMID","IMAGE", "EQUIPMENTID" };
             public static List<string> naming = new List<string>
             {
                 "EQUIPMENTID",
@@ -195,6 +197,14 @@ namespace ManageSpacesOfInstitute
                 "ID",
                 "Факультет",
             };
+        }
+
+        public static class BuildingTypes
+        {
+            public static List<string> info = new List<string> { "ID", "TYPE" };
+            public static string proc = "GET_BUILDING_TYPES";
+            public static List<string> to_hide = new List<string> { "ID" };
+            public static List<string> naming = new List<string> { "ID", "Тип корпуса" };
         }
     }
 }
