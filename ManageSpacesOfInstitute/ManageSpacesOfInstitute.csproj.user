@@ -4,9 +4,6 @@
     <Compile Update="Auth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DetailForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="EquipmentCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
