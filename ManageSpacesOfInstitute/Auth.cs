@@ -47,7 +47,7 @@ namespace ManageSpacesOfInstitute
 
                 if (dt.Rows.Count == 0)
                 {
-                    MessageBox.Show("Пользователь не найден.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Shared.ShowNotify("Действия с аккаунтом", "Пользователь не найден");
                     return;
                 }
 
@@ -63,12 +63,12 @@ namespace ManageSpacesOfInstitute
                 }
                 else
                 {
-                    MessageBox.Show("Неверный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Shared.ShowNotify("Действия с аккаунтом", "Неверный пароль!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Shared.ShowNotify("Действия с аккаунтом", "Неверный логин или пароль");
             }
         }
     }

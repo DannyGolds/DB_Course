@@ -1,6 +1,7 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,19 +14,12 @@ namespace ManageSpacesOfInstitute
     {
         private readonly string _connectionString;
         private bool _disposed;
+        string connStr = ConfigurationManager.ConnectionStrings["RedDbConnection"].ConnectionString;
 
         public DBOperations(string? connectionString = null)
         {
             // Если строка не передана, используем разумный дефолт — исправьте под свою среду.
-            _connectionString = connectionString ?? new FbConnectionStringBuilder
-            {
-                UserID = "SYSDBA",
-                Password = "masterkey",
-                Database = @"C:\Users\PC\3D Objects\DB\INSTITUTEDBNEW.FDB",
-                DataSource = "127.0.0.1",
-                Port = 3050,
-                Dialect = 3
-            }.ToString();
+            _connectionString = connectionString ?? connStr;
         }
 
         // Синхронное получение DataTable

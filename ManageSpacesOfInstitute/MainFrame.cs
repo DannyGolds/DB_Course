@@ -135,7 +135,7 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             await LoadDataToTableAsync(Shared.BuildingTypes.info, Shared.BuildingTypes.proc, Shared.BuildingTypes.to_hide, dataGridView7, Shared.BuildingTypes.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
-        }
+        }  
         private async Task LoadDataToComboBoxFromTableAsync(string idColumnName, string displayColumnName, string tableName, System.Windows.Forms.ComboBox comboBox, bool useMinusOneForNone = false)
         {
             try
@@ -300,7 +300,6 @@ namespace ManageSpacesOfInstitute
         {
             await using var db = new DBOperations();
             await db.ExecProcedureAsync(proc, param);
-            await LoadDataToEditPageAsync();
         }
         private static byte[] ImageToBlob(Image image)
         {
@@ -313,55 +312,44 @@ namespace ManageSpacesOfInstitute
             return ms.ToArray();
         }
 
-        private void ShowNotify(string text, string title)
-        {
-            NotifyIcon notifyIcon = new NotifyIcon();
-            notifyIcon.Icon = SystemIcons.Information; // можно поставить свою иконку
-            notifyIcon.Visible = true;
-
-            // Показать уведомление
-            notifyIcon.ShowBalloonTip(3000, title, text, ToolTipIcon.Info);
-
-        }
-
-
 
         //START ОБРАБОТЧИКИ СОБЫТИЙ (MAIN_PAGE)
         private void btn_auth_Click(object sender, EventArgs e)
         {
-            if (!isAuthorizedAdmin)
-            {
-                using var authForm = new Auth();
-                if (authForm.ShowDialog() == DialogResult.OK)
+                if (!isAuthorizedAdmin)
                 {
-                    label_username.Text = authForm.loggedUser;
-                    if (authForm.accessLevel == "ADMIN")
+                    using var authForm = new Auth();
+                    if (authForm.ShowDialog() == DialogResult.OK)
                     {
-                        isAuthorizedAdmin = true;
-                        UpdateTabsAsync();
-                        btn_auth.Text = "Выйти";
-                        ShowNotify("Уведомление", "Вы получили функционал редактирования базы.");
+                        label_username.Text = authForm.loggedUser;
+                        if (authForm.accessLevel == "ADMIN")
+                        {
+                            isAuthorizedAdmin = true;
+                            UpdateTabsAsync();
+                            btn_auth.Text = "Выйти";
+                            Shared.ShowNotify("Уведомление", "Вы получили функционал редактирования базы.");
+                        }
                     }
+                    return;
                 }
-                return;
-            }
-            else {
-                var result = MessageBox.Show(
-                    this,
-                    "Вы уверены, что хотите выйти?",
-                    "Подтверждение выхода.",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                else
+                {
+                    var result = MessageBox.Show(
+                        this,
+                        "Вы уверены, что хотите выйти?",
+                        "Подтверждение выхода.",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes) {
-                    isAuthorizedAdmin = false;
-                    UpdateTabsAsync();
-                    btn_auth.Text = "Авторизоваться";
-                    ShowNotify("Действия с аккаунтом", "Вы успешно вышли из аккаунта администратора!");
+                    if (result == DialogResult.Yes)
+                    {
+                        isAuthorizedAdmin = false;
+                        UpdateTabsAsync();
+                        btn_auth.Text = "Авторизоваться";
+                        Shared.ShowNotify("Действия с аккаунтом", "Вы успешно вышли из аккаунта администратора!");
+                    }
+                    return;
                 }
-                return;
-            }
-            
         }
         private int GetSafeInt(object value)
         {
@@ -490,7 +478,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox1.Text.Length == 0 || comboBox1.SelectedIndex == 0 || textBox2.Text.Length == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     //MessageBox.Show($"{comboBox1.SelectedValue} {comboBox1.Text}");
@@ -518,7 +506,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView1.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
 
@@ -546,7 +534,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if ((textBox1.Text == lastBuildingState.buildingName && Convert.ToInt32(comboBox1.SelectedValue) == lastBuildingState.buildingTypeID && textBox2.Text == lastBuildingState.buildingAdress && lastBuildingState.binaryImg == ImageToBlob(pictureBox1.Image)) || (comboBox1.SelectedIndex == 0))
                     {
-                        ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                        Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                         return;
                     }
                     try
@@ -576,7 +564,7 @@ namespace ManageSpacesOfInstitute
     }, "UPDATE_BUILDINGS");
 
                         clearBuildingsItems();
-                        ShowNotify("Изменение записи", "Информация о корпусах обновлена.");
+                        Shared.ShowNotify("Изменение записи", "Информация о корпусах обновлена.");
                     }
                     catch (Exception ex)
                     {
@@ -588,7 +576,7 @@ namespace ManageSpacesOfInstitute
             DisableBuildingsItems();
             Form1_Load(sender, e);
             prevAction = 0;
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
         private void button17_Click(object sender, EventArgs e)
         {
@@ -670,8 +658,8 @@ namespace ManageSpacesOfInstitute
             comboBox4.SelectedIndex = 0;
             comboBox5.SelectedIndex = 0;
             comboBox6.SelectedIndex = 0;
-            numericUpDown1.Value = 0;
-            numericUpDown2.Value = 0;
+            numericUpDown1.Value = numericUpDown1.Minimum;
+            numericUpDown2.Value = numericUpDown2.Minimum;
             textBox13.Text = "";
         }
         private async void btnRep_Click(object sender, EventArgs e)
@@ -690,7 +678,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox3.Text.Length == 0 || comboBox3.SelectedIndex == 0 || comboBox4.SelectedIndex == 0 || comboBox5.SelectedIndex == 0 || comboBox6.SelectedIndex == 0 || textBox13.Text.Length == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(new[]
@@ -721,7 +709,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView2.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
                     var idValue = row.Cells["ROOM_ID"].Value;
@@ -756,7 +744,7 @@ namespace ManageSpacesOfInstitute
                 if (nothingChanged || comboBox3.SelectedIndex <= 0 || comboBox4.SelectedIndex <= 0 ||
                     comboBox5.SelectedIndex <= 0 || comboBox6.SelectedIndex <= 0)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -774,13 +762,13 @@ namespace ManageSpacesOfInstitute
         new FbParameter("P_TYPE_ID", FbDbType.Integer)   { Value = Convert.ToInt32(comboBox4.SelectedValue) }   // Тип аудитории — ИСПРАВЛЕНО!
     }, "UPDATE_ROOMS");
 
-                ShowNotify("Изменение записи", "Информация об аудиториях обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация об аудиториях обновлена.");
                 DisableRoomsItems();
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             DisableRoomsItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -895,7 +883,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox7.Text.Length == 0 || comboBox10.SelectedIndex == 0 || textBox6.Text.Length == 0 || textBox7.Text.Length == 0 || richTextBox1.Text.Length == 0 || pictureBox2.Image is null)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
@@ -923,7 +911,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView3.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
                     var idValue = row.Cells["EQUIPMENTID"].Value;
@@ -954,7 +942,7 @@ namespace ManageSpacesOfInstitute
 
                 if (nothingChanged || comboBox10.SelectedIndex <= 0)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -969,14 +957,14 @@ namespace ManageSpacesOfInstitute
     new FbParameter("NOTES", FbDbType.VarChar) { Value = richTextBox1.Text}
 }, "UPDATE_EQUIPMENT");
 
-                ShowNotify("Изменение записи", "Информация об оборудовании обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация об оборудовании обновлена.");
                 DisableRoomsItems();
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             clearEqItems();
             DisableEqItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
 
 
@@ -1036,7 +1024,7 @@ namespace ManageSpacesOfInstitute
 
                 if (!IsValidPhone(input))
                 {
-                    ShowNotify("Добавление записи", "Введите номр по типу 8xxxxxxxxxx.");
+                    Shared.ShowNotify("Добавление записи", "Введите номр по типу 8xxxxxxxxxx.");
                     return;
                 }
 
@@ -1044,7 +1032,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox8.Text.Length == 0 || comboBox9.SelectedIndex == 0 || textBox10.Text.Length == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
@@ -1070,7 +1058,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView4.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
                     var idValue = row.Cells["PERSONID"].Value;
@@ -1102,12 +1090,12 @@ namespace ManageSpacesOfInstitute
                 {
 
 
-                    ShowNotify("Изменение записи", "Введите номер по типу 8xxxxxxxxxx");
+                    Shared.ShowNotify("Изменение записи", "Введите номер по типу 8xxxxxxxxxx");
                     return;
                 }
                 if (nothingChanged)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -1120,14 +1108,14 @@ namespace ManageSpacesOfInstitute
     new FbParameter("PHONE", FbDbType.VarChar) { Value = textBox10.Text }
 }, "UPDATE_ROOMRESPONSIBLE");
 
-                ShowNotify("Изменение записи", "Информация об ответственных обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация об ответственных обновлена.");
                 DisableRItems();
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             clearRItems();
             DisableRItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
         private void dataGridView4_SelectionChanged(object sender, EventArgs e)
         {
@@ -1186,7 +1174,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox11.Text.Length == 0 || comboBox9.SelectedIndex == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
@@ -1211,7 +1199,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView5.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
                     var idValue = row.Cells["ID"].Value;
@@ -1239,7 +1227,7 @@ namespace ManageSpacesOfInstitute
 
                 if (nothingChanged || comboBox9.SelectedIndex <= 0)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -1251,13 +1239,13 @@ namespace ManageSpacesOfInstitute
     new FbParameter("FACULTYID", FbDbType.Integer) { Value = Convert.ToInt32(comboBox9.SelectedValue) },
 }, "UPDATE_CHAIR");
 
-                ShowNotify("Изменение записи", "Информация о кафедрах обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация о кафедрах обновлена.");
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             clearChItems();
             DisableChItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
         private void dataGridView5_SelectionChanged(object sender, EventArgs e)
         {
@@ -1341,7 +1329,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox12.Text.Length == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
@@ -1387,7 +1375,7 @@ namespace ManageSpacesOfInstitute
 
                 if (nothingChanged)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -1398,13 +1386,13 @@ namespace ManageSpacesOfInstitute
                         new FbParameter("NAME", FbDbType.VarChar) {Value = textBox12.Text}
                     }, "UPDATE_FACULTY");
 
-                ShowNotify("Изменение записи", "Информация о факультетах обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация о факультетах обновлена.");
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             clearFacItems();
             DisableFacItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
         private void button22_Click(object sender, EventArgs e)
         {
@@ -1456,7 +1444,7 @@ namespace ManageSpacesOfInstitute
         private void button15_Click(object sender, EventArgs e)
         {
             prevAction = 2;
-            button26_Click(sender, e);
+            button25_Click(sender, e);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -1482,7 +1470,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (textBox4.Text.Length == 0)
                     {
-                        ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
@@ -1506,7 +1494,7 @@ namespace ManageSpacesOfInstitute
                 {
                     if (dataGridView7.CurrentRow == null)
                     {
-                        ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
                         return;
                     }
 
@@ -1534,7 +1522,7 @@ namespace ManageSpacesOfInstitute
                     textBox4.Text.Trim() == lastBTState.Trim();
                 if (nothingChanged)
                 {
-                    ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
+                    Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
                 }
 
@@ -1545,13 +1533,13 @@ namespace ManageSpacesOfInstitute
                         new FbParameter("TYPE", FbDbType.VarChar) {Value = textBox4.Text}
                     }, "UPDATE_BUILDING_TYPE");
 
-                ShowNotify("Изменение записи", "Информация о типе корпуса обновлена.");
+                Shared.ShowNotify("Изменение записи", "Информация о типе корпуса обновлена.");
                 await LoadDataToEditPageAsync(); // или Form1_Load
             }
             Form1_Load(sender, e);
             clearBTItems();
             DisableBTItems();
-            ShowNotify("Сохранение изменений", "Изменения сохранены!");
+            await LoadDataToEditPageAsync();
         }
 
         private void dataGridView7_SelectionChanged(object sender, EventArgs e)

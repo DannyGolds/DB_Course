@@ -63,3 +63,4 @@ C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\
 C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.genruntimeconfig.cache
 C:\Users\Golds\Documents\Database_Project\DB_Course\ManageSpacesOfInstitute\obj\Release\net9.0-windows10.0.26100.0\ref\ManageSpacesOfInstitute.dll
 C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\AppIcon.ico
+C:\Users\GOLDS\source\repos\ManageSpacesOfInstitute\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.dll.config

@@ -33,6 +33,16 @@ namespace ManageSpacesOfInstitute
                 pictureBox.Visible = false;
             }
         }
+        public static void ShowNotify(string text, string title)
+        {
+            NotifyIcon notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = SystemIcons.Information; // можно поставить свою иконку
+            notifyIcon.Visible = true;
+
+            // Показать уведомление
+            notifyIcon.ShowBalloonTip(3000, title, text, ToolTipIcon.Info);
+
+        }
         public static class Partial
         {
             public static List<string> info = new List<string>
