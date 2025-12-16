@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ManageSpacesOfInstitute")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90ed849b705b2e975255785389e6a0eb0f7d25ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3e845a0a09ab81742549404e3a06ba78a03ac2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ManageSpacesOfInstitute")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ManageSpacesOfInstitute")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

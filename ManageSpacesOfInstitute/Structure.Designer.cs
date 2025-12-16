@@ -35,9 +35,9 @@
             // 
             // richTextBox1
             // 
+            richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBox1.BackColor = SystemColors.ButtonFace;
             richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Enabled = false;
             richTextBox1.Font = new Font("Zero Cool", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             richTextBox1.Location = new Point(12, 43);
             richTextBox1.Name = "richTextBox1";

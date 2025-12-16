@@ -46,6 +46,7 @@
             Column6 = new DataGridViewTextBoxColumn();
             Column8 = new DataGridViewTextBoxColumn();
             Column10 = new DataGridViewTextBoxColumn();
+            Column12 = new DataGridViewTextBoxColumn();
             Column11 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -89,7 +90,7 @@
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Габариты, Column4, Column9, Column3, Column7, Column2, Column6, Column8, Column10, Column11 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Габариты, Column4, Column9, Column3, Column7, Column2, Column6, Column8, Column10, Column12, Column11 });
             dataGridView1.Location = new Point(14, 262);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -197,6 +198,13 @@
             Column10.ReadOnly = true;
             Column10.Width = 131;
             // 
+            // Column12
+            // 
+            Column12.HeaderText = "Должность ответственного";
+            Column12.Name = "Column12";
+            Column12.ReadOnly = true;
+            Column12.Width = 190;
+            // 
             // Column11
             // 
             Column11.HeaderText = "Связь с ответственным";
@@ -245,6 +253,7 @@
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column10;
+        private DataGridViewTextBoxColumn Column12;
         private DataGridViewTextBoxColumn Column11;
     }
 }

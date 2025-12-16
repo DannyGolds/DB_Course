@@ -30,13 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
             btn_auth = new Button();
-            label_username = new Label();
             tabPage2 = new TabPage();
+            label_username = new Label();
             groupBox1 = new GroupBox();
             gridview_foundroomsinfo = new DataGridView();
             gr_filtering = new GroupBox();
-            label23 = new Label();
-            fpl_chpurproom = new ComboBox();
+            button27 = new Button();
             lbl_chtyperoom = new Label();
             label2 = new Label();
             lbl_cheq = new Label();
@@ -53,17 +52,19 @@
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
             dataGridView1 = new DataGridView();
-            button17 = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button4 = new Button();
-            btnChFile = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
-            textBox2 = new TextBox();
-            label4 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
             label7 = new Label();
+            btnEdBuildFile = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            btnEdBldEd = new Button();
+            btnEdBldDel = new Button();
+            btnEdBldSv = new Button();
+            btnEdBldAdd = new Button();
+            txtEdBuildAddress = new TextBox();
+            label4 = new Label();
+            cmbEdBuildType = new ComboBox();
+            txtEdBuildName = new TextBox();
             lblBuildType = new Label();
             lblBuildName = new Label();
             tabPage3 = new TabPage();
@@ -72,84 +73,84 @@
             comboBox2 = new ComboBox();
             numericUpDown2 = new NumericUpDown();
             numericUpDown1 = new NumericUpDown();
-            textBox13 = new TextBox();
+            txtEdRoomPurpose = new TextBox();
             label14 = new Label();
-            comboBox6 = new ComboBox();
+            cmbEdRoomResp = new ComboBox();
             label13 = new Label();
-            comboBox5 = new ComboBox();
+            cmbEdRoomChair = new ComboBox();
             label12 = new Label();
-            button18 = new Button();
-            btnAdd = new Button();
-            btnDel = new Button();
-            btnRep = new Button();
+            btnEdRoomEd = new Button();
+            btnEdRoomAdd = new Button();
+            btnEdRoomDel = new Button();
+            btnEdRoomRep = new Button();
             label11 = new Label();
             label10 = new Label();
-            comboBox4 = new ComboBox();
+            cmbEdRoomType = new ComboBox();
             label8 = new Label();
-            textBox3 = new TextBox();
+            txtEdRoomNum = new TextBox();
             label6 = new Label();
-            comboBox3 = new ComboBox();
+            cmbEdRoomBuild = new ComboBox();
             label5 = new Label();
             tabPage4 = new TabPage();
             splitContainer3 = new SplitContainer();
             dataGridView3 = new DataGridView();
-            button3 = new Button();
-            comboBox10 = new ComboBox();
+            btnEdEqFile = new Button();
+            cmbEdEqRoom = new ComboBox();
             label27 = new Label();
-            button19 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button8 = new Button();
+            btnEdEqEd = new Button();
+            btnEdEqAdd = new Button();
+            btnEdEqDel = new Button();
+            btnEdEqSv = new Button();
             pictureBox2 = new PictureBox();
             label19 = new Label();
-            richTextBox1 = new RichTextBox();
+            r_txtEdEqDesc = new RichTextBox();
             label18 = new Label();
-            textBox7 = new TextBox();
+            txtEdEqNum = new TextBox();
             label17 = new Label();
-            textBox6 = new TextBox();
+            txtEdEqName = new TextBox();
             label16 = new Label();
             tabPage5 = new TabPage();
             splitContainer5 = new SplitContainer();
             dataGridView4 = new DataGridView();
-            button20 = new Button();
-            button9 = new Button();
-            textBox9 = new TextBox();
+            btnEdRespEd = new Button();
+            btnEdRespAdd = new Button();
+            txtEdRespPos = new TextBox();
             label21 = new Label();
-            button10 = new Button();
-            textBox8 = new TextBox();
+            btnEdRespDel = new Button();
+            txtEdRespFIO = new TextBox();
             label20 = new Label();
             label22 = new Label();
-            textBox10 = new TextBox();
-            button12 = new Button();
+            txtEdRespCont = new TextBox();
+            btnEdRespSv = new Button();
             tabChairs = new TabPage();
             splitContainer6 = new SplitContainer();
             dataGridView5 = new DataGridView();
-            comboBox9 = new ComboBox();
+            cmbEdChFac = new ComboBox();
             label25 = new Label();
-            button21 = new Button();
-            button13 = new Button();
-            button14 = new Button();
-            button16 = new Button();
-            textBox11 = new TextBox();
+            btnEdChEd = new Button();
+            btnEdChAdd = new Button();
+            btnEdChDel = new Button();
+            btnEdChSv = new Button();
+            txtEdChName = new TextBox();
             label24 = new Label();
             tabFacult = new TabPage();
             splitContainer4 = new SplitContainer();
             dataGridView6 = new DataGridView();
-            button22 = new Button();
-            button23 = new Button();
-            button24 = new Button();
-            button26 = new Button();
-            textBox12 = new TextBox();
+            btnEdFacEd = new Button();
+            btnEdFacAdd = new Button();
+            btnEdFacDel = new Button();
+            btnEdFacSv = new Button();
+            txtEdFacName = new TextBox();
             label26 = new Label();
             tabPage6 = new TabPage();
             splitContainer7 = new SplitContainer();
             dataGridView7 = new DataGridView();
-            button7 = new Button();
-            button11 = new Button();
-            button15 = new Button();
-            button25 = new Button();
+            btnEdBldtypeEd = new Button();
+            btnEdBldtypeAdd = new Button();
+            btnEdBldtypeDel = new Button();
+            btnEdBldtypeSv = new Button();
             label15 = new Label();
-            textBox4 = new TextBox();
+            txtEdBldtypeType = new TextBox();
             label9 = new Label();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -164,7 +165,9 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
@@ -208,6 +211,7 @@
             // 
             // btn_auth
             // 
+            btn_auth.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_auth.Font = new Font("Zero Cool", 9.75F);
             btn_auth.ForeColor = Color.DarkCyan;
             btn_auth.Location = new Point(681, 439);
@@ -218,33 +222,36 @@
             btn_auth.UseVisualStyleBackColor = true;
             btn_auth.Click += btn_auth_Click;
             // 
-            // label_username
-            // 
-            label_username.AutoSize = true;
-            label_username.Font = new Font("Zero Cool", 9.75F);
-            label_username.ForeColor = Color.DarkCyan;
-            label_username.Location = new Point(4, 453);
-            label_username.Name = "label_username";
-            label_username.Size = new Size(48, 15);
-            label_username.TabIndex = 4;
-            label_username.Text = "Гость";
-            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label_username);
             tabPage2.Controls.Add(groupBox1);
             tabPage2.Controls.Add(gr_filtering);
             tabPage2.Controls.Add(label1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(859, 406);
+            tabPage2.Size = new Size(869, 453);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Поиск информации о помещениях";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
             // 
+            // label_username
+            // 
+            label_username.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label_username.AutoSize = true;
+            label_username.Font = new Font("Zero Cool", 9.75F);
+            label_username.ForeColor = Color.DarkCyan;
+            label_username.Location = new Point(8, 435);
+            label_username.Name = "label_username";
+            label_username.Size = new Size(48, 15);
+            label_username.TabIndex = 4;
+            label_username.Text = "Гость";
+            // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(gridview_foundroomsinfo);
             groupBox1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             groupBox1.ForeColor = Color.Black;
@@ -260,24 +267,24 @@
             gridview_foundroomsinfo.AllowUserToAddRows = false;
             gridview_foundroomsinfo.AllowUserToDeleteRows = false;
             gridview_foundroomsinfo.AllowUserToResizeRows = false;
-            gridview_foundroomsinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            gridview_foundroomsinfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             gridview_foundroomsinfo.BackgroundColor = SystemColors.Menu;
             gridview_foundroomsinfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridview_foundroomsinfo.Dock = DockStyle.Fill;
             gridview_foundroomsinfo.GridColor = SystemColors.Menu;
-            gridview_foundroomsinfo.Location = new Point(6, 20);
+            gridview_foundroomsinfo.Location = new Point(3, 24);
             gridview_foundroomsinfo.MultiSelect = false;
             gridview_foundroomsinfo.Name = "gridview_foundroomsinfo";
             gridview_foundroomsinfo.RowHeadersVisible = false;
             gridview_foundroomsinfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridview_foundroomsinfo.Size = new Size(655, 335);
+            gridview_foundroomsinfo.Size = new Size(661, 334);
             gridview_foundroomsinfo.TabIndex = 20;
             gridview_foundroomsinfo.CellContentClick += dataGridView1_CellContentClick_1;
             gridview_foundroomsinfo.CellContentDoubleClick += dtg1_cdblclk;
             // 
             // gr_filtering
             // 
-            gr_filtering.Controls.Add(label23);
-            gr_filtering.Controls.Add(fpl_chpurproom);
+            gr_filtering.Controls.Add(button27);
             gr_filtering.Controls.Add(lbl_chtyperoom);
             gr_filtering.Controls.Add(label2);
             gr_filtering.Controls.Add(lbl_cheq);
@@ -297,33 +304,22 @@
             gr_filtering.Text = "Фильтрация";
             gr_filtering.UseCompatibleTextRendering = true;
             // 
-            // label23
+            // button27
             // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Zero Cool", 9.75F);
-            label23.ForeColor = Color.Black;
-            label23.Location = new Point(5, 305);
-            label23.Name = "label23";
-            label23.Size = new Size(159, 15);
-            label23.TabIndex = 28;
-            label23.Text = "Выберите назначение";
-            // 
-            // fpl_chpurproom
-            // 
-            fpl_chpurproom.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chpurproom.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            fpl_chpurproom.ForeColor = Color.Black;
-            fpl_chpurproom.Location = new Point(7, 327);
-            fpl_chpurproom.Name = "fpl_chpurproom";
-            fpl_chpurproom.Size = new Size(160, 28);
-            fpl_chpurproom.TabIndex = 27;
+            button27.Location = new Point(7, 313);
+            button27.Name = "button27";
+            button27.Size = new Size(160, 37);
+            button27.TabIndex = 27;
+            button27.Text = "Сброс";
+            button27.UseVisualStyleBackColor = true;
+            button27.Click += button27_Click;
             // 
             // lbl_chtyperoom
             // 
             lbl_chtyperoom.AutoSize = true;
             lbl_chtyperoom.Font = new Font("Zero Cool", 9.75F);
             lbl_chtyperoom.ForeColor = Color.Black;
-            lbl_chtyperoom.Location = new Point(5, 237);
+            lbl_chtyperoom.Location = new Point(6, 253);
             lbl_chtyperoom.Name = "lbl_chtyperoom";
             lbl_chtyperoom.Size = new Size(172, 15);
             lbl_chtyperoom.TabIndex = 26;
@@ -334,7 +330,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Zero Cool", 9.75F);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(5, 167);
+            label2.Location = new Point(6, 182);
             label2.Name = "label2";
             label2.Size = new Size(156, 15);
             label2.TabIndex = 25;
@@ -345,7 +341,7 @@
             lbl_cheq.AutoSize = true;
             lbl_cheq.Font = new Font("Zero Cool", 9.75F);
             lbl_cheq.ForeColor = Color.Black;
-            lbl_cheq.Location = new Point(7, 99);
+            lbl_cheq.Location = new Point(6, 111);
             lbl_cheq.Name = "lbl_cheq";
             lbl_cheq.Size = new Size(173, 15);
             lbl_cheq.TabIndex = 24;
@@ -356,7 +352,7 @@
             lbl_chbuild.AutoSize = true;
             lbl_chbuild.Font = new Font("Zero Cool", 9.75F);
             lbl_chbuild.ForeColor = Color.Black;
-            lbl_chbuild.Location = new Point(7, 29);
+            lbl_chbuild.Location = new Point(6, 40);
             lbl_chbuild.Name = "lbl_chbuild";
             lbl_chbuild.Size = new Size(121, 15);
             lbl_chbuild.TabIndex = 23;
@@ -367,7 +363,7 @@
             fpl_chbuild.DropDownStyle = ComboBoxStyle.DropDownList;
             fpl_chbuild.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
             fpl_chbuild.ForeColor = Color.Black;
-            fpl_chbuild.Location = new Point(9, 50);
+            fpl_chbuild.Location = new Point(9, 58);
             fpl_chbuild.Name = "fpl_chbuild";
             fpl_chbuild.Size = new Size(160, 28);
             fpl_chbuild.TabIndex = 9;
@@ -387,7 +383,7 @@
             fpl_chtyperoom.DropDownStyle = ComboBoxStyle.DropDownList;
             fpl_chtyperoom.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
             fpl_chtyperoom.ForeColor = Color.Black;
-            fpl_chtyperoom.Location = new Point(7, 259);
+            fpl_chtyperoom.Location = new Point(7, 271);
             fpl_chtyperoom.Name = "fpl_chtyperoom";
             fpl_chtyperoom.Size = new Size(160, 28);
             fpl_chtyperoom.TabIndex = 15;
@@ -397,7 +393,7 @@
             fpl_cheq.DropDownStyle = ComboBoxStyle.DropDownList;
             fpl_cheq.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
             fpl_cheq.ForeColor = Color.Black;
-            fpl_cheq.Location = new Point(9, 120);
+            fpl_cheq.Location = new Point(9, 129);
             fpl_cheq.Name = "fpl_cheq";
             fpl_cheq.Size = new Size(160, 28);
             fpl_cheq.TabIndex = 11;
@@ -408,7 +404,7 @@
             fpl_chtypebuild.DropDownStyle = ComboBoxStyle.DropDownList;
             fpl_chtypebuild.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
             fpl_chtypebuild.ForeColor = Color.Black;
-            fpl_chtypebuild.Location = new Point(7, 189);
+            fpl_chtypebuild.Location = new Point(7, 200);
             fpl_chtypebuild.Name = "fpl_chtypebuild";
             fpl_chtypebuild.Size = new Size(160, 28);
             fpl_chtypebuild.TabIndex = 13;
@@ -427,13 +423,14 @@
             // 
             // tabs
             // 
+            tabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabs.Controls.Add(tabPage2);
             tabs.Controls.Add(page_edit);
             tabs.Font = new Font("Zero Cool", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tabs.Location = new Point(4, 3);
+            tabs.Location = new Point(0, 0);
             tabs.Name = "tabs";
             tabs.SelectedIndex = 0;
-            tabs.Size = new Size(867, 434);
+            tabs.Size = new Size(877, 481);
             tabs.TabIndex = 2;
             // 
             // page_edit
@@ -443,13 +440,14 @@
             page_edit.Location = new Point(4, 24);
             page_edit.Name = "page_edit";
             page_edit.Padding = new Padding(3);
-            page_edit.Size = new Size(859, 406);
+            page_edit.Size = new Size(869, 453);
             page_edit.TabIndex = 3;
             page_edit.Text = "Редактирование базы";
             page_edit.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
+            tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
@@ -462,6 +460,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(859, 359);
             tabControl1.TabIndex = 9;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // tabPage1
             // 
@@ -486,17 +485,12 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(button17);
-            splitContainer1.Panel2.Controls.Add(button1);
-            splitContainer1.Panel2.Controls.Add(button2);
-            splitContainer1.Panel2.Controls.Add(button4);
-            splitContainer1.Panel2.Controls.Add(btnChFile);
-            splitContainer1.Panel2.Controls.Add(pictureBox1);
-            splitContainer1.Panel2.Controls.Add(textBox2);
+            splitContainer1.Panel2.Controls.Add(tableLayoutPanel2);
+            splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
+            splitContainer1.Panel2.Controls.Add(txtEdBuildAddress);
             splitContainer1.Panel2.Controls.Add(label4);
-            splitContainer1.Panel2.Controls.Add(comboBox1);
-            splitContainer1.Panel2.Controls.Add(textBox1);
-            splitContainer1.Panel2.Controls.Add(label7);
+            splitContainer1.Panel2.Controls.Add(cmbEdBuildType);
+            splitContainer1.Panel2.Controls.Add(txtEdBuildName);
             splitContainer1.Panel2.Controls.Add(lblBuildType);
             splitContainer1.Panel2.Controls.Add(lblBuildName);
             splitContainer1.Panel2.Paint += splitContainer1_Panel2_Paint_2;
@@ -520,82 +514,140 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.SelectionChanged += dtgv3_onselch;
             // 
-            // button17
+            // tableLayoutPanel2
             // 
-            button17.ForeColor = Color.DarkGoldenrod;
-            button17.Location = new Point(304, 294);
-            button17.Name = "button17";
-            button17.Size = new Size(125, 28);
-            button17.TabIndex = 15;
-            button17.Text = "РЕДактировать";
-            button17.UseVisualStyleBackColor = true;
-            button17.Click += button17_Click;
-            // 
-            // button1
-            // 
-            button1.ForeColor = Color.ForestGreen;
-            button1.Location = new Point(3, 294);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 28);
-            button1.TabIndex = 11;
-            button1.Text = "Добавить +";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.ForeColor = Color.Firebrick;
-            button2.Location = new Point(101, 294);
-            button2.Name = "button2";
-            button2.Size = new Size(93, 28);
-            button2.TabIndex = 12;
-            button2.Text = "Удалить -";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button4
-            // 
-            button4.ForeColor = Color.SlateBlue;
-            button4.Location = new Point(200, 294);
-            button4.Name = "button4";
-            button4.Size = new Size(98, 28);
-            button4.TabIndex = 14;
-            button4.Text = "Сохранить";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
-            // btnChFile
-            // 
-            btnChFile.Enabled = false;
-            btnChFile.Location = new Point(200, 211);
-            btnChFile.Name = "btnChFile";
-            btnChFile.Size = new Size(229, 23);
-            btnChFile.TabIndex = 10;
-            btnChFile.Text = "Выберите изображение...";
-            btnChFile.UseVisualStyleBackColor = true;
-            btnChFile.Click += btnChFile_Click;
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(pictureBox1, 0, 1);
+            tableLayoutPanel2.Controls.Add(label7, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnEdBuildFile, 0, 2);
+            tableLayoutPanel2.Location = new Point(170, 29);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 19F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel2.Size = new Size(308, 209);
+            tableLayoutPanel2.TabIndex = 17;
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = SystemColors.ButtonFace;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = Properties.Resources.LoadImage;
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(200, 47);
+            pictureBox1.Location = new Point(3, 22);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(280, 158);
+            pictureBox1.Size = new Size(302, 153);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
             // 
-            // textBox2
+            // label7
             // 
-            textBox2.Enabled = false;
-            textBox2.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(14, 216);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(132, 22);
-            textBox2.TabIndex = 8;
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(302, 19);
+            label7.TabIndex = 3;
+            label7.Text = "Изображение";
+            label7.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnEdBuildFile
+            // 
+            btnEdBuildFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEdBuildFile.Enabled = false;
+            btnEdBuildFile.Location = new Point(3, 183);
+            btnEdBuildFile.Name = "btnEdBuildFile";
+            btnEdBuildFile.Size = new Size(229, 23);
+            btnEdBuildFile.TabIndex = 10;
+            btnEdBuildFile.Text = "Выберите изображение...";
+            btnEdBuildFile.UseVisualStyleBackColor = true;
+            btnEdBuildFile.Click += btnChFile_Click;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.3905582F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.8197422F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.60515F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.18455F));
+            tableLayoutPanel1.Controls.Add(btnEdBldEd, 3, 0);
+            tableLayoutPanel1.Controls.Add(btnEdBldDel, 1, 0);
+            tableLayoutPanel1.Controls.Add(btnEdBldSv, 2, 0);
+            tableLayoutPanel1.Controls.Add(btnEdBldAdd, 0, 0);
+            tableLayoutPanel1.Location = new Point(2, 285);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(486, 37);
+            tableLayoutPanel1.TabIndex = 16;
+            // 
+            // btnEdBldEd
+            // 
+            btnEdBldEd.Anchor = AnchorStyles.Bottom;
+            btnEdBldEd.Enabled = false;
+            btnEdBldEd.ForeColor = Color.DarkGoldenrod;
+            btnEdBldEd.Location = new Point(351, 6);
+            btnEdBldEd.Name = "btnEdBldEd";
+            btnEdBldEd.Size = new Size(125, 28);
+            btnEdBldEd.TabIndex = 15;
+            btnEdBldEd.Text = "РЕДактировать";
+            btnEdBldEd.UseVisualStyleBackColor = true;
+            btnEdBldEd.Click += button17_Click;
+            // 
+            // btnEdBldDel
+            // 
+            btnEdBldDel.Anchor = AnchorStyles.Bottom;
+            btnEdBldDel.Enabled = false;
+            btnEdBldDel.ForeColor = Color.Firebrick;
+            btnEdBldDel.Location = new Point(124, 6);
+            btnEdBldDel.Name = "btnEdBldDel";
+            btnEdBldDel.Size = new Size(93, 28);
+            btnEdBldDel.TabIndex = 12;
+            btnEdBldDel.Text = "Удалить -";
+            btnEdBldDel.UseVisualStyleBackColor = true;
+            btnEdBldDel.Click += button2_Click;
+            // 
+            // btnEdBldSv
+            // 
+            btnEdBldSv.Anchor = AnchorStyles.Bottom;
+            btnEdBldSv.Enabled = false;
+            btnEdBldSv.ForeColor = Color.SlateBlue;
+            btnEdBldSv.Location = new Point(236, 6);
+            btnEdBldSv.Name = "btnEdBldSv";
+            btnEdBldSv.Size = new Size(98, 28);
+            btnEdBldSv.TabIndex = 14;
+            btnEdBldSv.Text = "Сохранить";
+            btnEdBldSv.UseVisualStyleBackColor = true;
+            btnEdBldSv.Click += button4_Click;
+            // 
+            // btnEdBldAdd
+            // 
+            btnEdBldAdd.Anchor = AnchorStyles.Bottom;
+            btnEdBldAdd.ForeColor = Color.ForestGreen;
+            btnEdBldAdd.Location = new Point(10, 6);
+            btnEdBldAdd.Name = "btnEdBldAdd";
+            btnEdBldAdd.Size = new Size(92, 28);
+            btnEdBldAdd.TabIndex = 11;
+            btnEdBldAdd.Text = "Добавить +";
+            btnEdBldAdd.UseVisualStyleBackColor = true;
+            btnEdBldAdd.Click += button1_Click;
+            // 
+            // txtEdBuildAddress
+            // 
+            txtEdBuildAddress.BorderStyle = BorderStyle.FixedSingle;
+            txtEdBuildAddress.Enabled = false;
+            txtEdBuildAddress.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdBuildAddress.Location = new Point(14, 216);
+            txtEdBuildAddress.Name = "txtEdBuildAddress";
+            txtEdBuildAddress.Size = new Size(132, 22);
+            txtEdBuildAddress.TabIndex = 8;
             // 
             // label4
             // 
@@ -606,40 +658,32 @@
             label4.TabIndex = 7;
             label4.Text = "Адрес корпуса";
             // 
-            // comboBox1
+            // cmbEdBuildType
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Enabled = false;
-            comboBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(14, 143);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(132, 22);
-            comboBox1.TabIndex = 6;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_2;
+            cmbEdBuildType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdBuildType.Enabled = false;
+            cmbEdBuildType.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdBuildType.FormattingEnabled = true;
+            cmbEdBuildType.Location = new Point(15, 130);
+            cmbEdBuildType.Name = "cmbEdBuildType";
+            cmbEdBuildType.Size = new Size(132, 22);
+            cmbEdBuildType.TabIndex = 6;
+            cmbEdBuildType.SelectedIndexChanged += comboBox1_SelectedIndexChanged_2;
             // 
-            // textBox1
+            // txtEdBuildName
             // 
-            textBox1.Enabled = false;
-            textBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(14, 67);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(132, 22);
-            textBox1.TabIndex = 5;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(288, 29);
-            label7.Name = "label7";
-            label7.Size = new Size(97, 15);
-            label7.TabIndex = 3;
-            label7.Text = "Изображение";
+            txtEdBuildName.BorderStyle = BorderStyle.FixedSingle;
+            txtEdBuildName.Enabled = false;
+            txtEdBuildName.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdBuildName.Location = new Point(14, 49);
+            txtEdBuildName.Name = "txtEdBuildName";
+            txtEdBuildName.Size = new Size(132, 22);
+            txtEdBuildName.TabIndex = 5;
             // 
             // lblBuildType
             // 
             lblBuildType.AutoSize = true;
-            lblBuildType.Location = new Point(14, 123);
+            lblBuildType.Location = new Point(15, 110);
             lblBuildType.Name = "lblBuildType";
             lblBuildType.Size = new Size(88, 15);
             lblBuildType.TabIndex = 1;
@@ -648,7 +692,7 @@
             // lblBuildName
             // 
             lblBuildName.AutoSize = true;
-            lblBuildName.Location = new Point(14, 47);
+            lblBuildName.Location = new Point(14, 29);
             lblBuildName.Name = "lblBuildName";
             lblBuildName.Size = new Size(132, 15);
             lblBuildName.TabIndex = 0;
@@ -667,7 +711,8 @@
             // 
             // splitContainer2
             // 
-            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer2.IsSplitterFixed = true;
             splitContainer2.Location = new Point(3, 3);
             splitContainer2.Name = "splitContainer2";
             // 
@@ -681,89 +726,99 @@
             // 
             splitContainer2.Panel2.Controls.Add(numericUpDown2);
             splitContainer2.Panel2.Controls.Add(numericUpDown1);
-            splitContainer2.Panel2.Controls.Add(textBox13);
+            splitContainer2.Panel2.Controls.Add(txtEdRoomPurpose);
             splitContainer2.Panel2.Controls.Add(label14);
-            splitContainer2.Panel2.Controls.Add(comboBox6);
+            splitContainer2.Panel2.Controls.Add(cmbEdRoomResp);
             splitContainer2.Panel2.Controls.Add(label13);
-            splitContainer2.Panel2.Controls.Add(comboBox5);
+            splitContainer2.Panel2.Controls.Add(cmbEdRoomChair);
             splitContainer2.Panel2.Controls.Add(label12);
-            splitContainer2.Panel2.Controls.Add(button18);
-            splitContainer2.Panel2.Controls.Add(btnAdd);
-            splitContainer2.Panel2.Controls.Add(btnDel);
-            splitContainer2.Panel2.Controls.Add(btnRep);
+            splitContainer2.Panel2.Controls.Add(btnEdRoomEd);
+            splitContainer2.Panel2.Controls.Add(btnEdRoomAdd);
+            splitContainer2.Panel2.Controls.Add(btnEdRoomDel);
+            splitContainer2.Panel2.Controls.Add(btnEdRoomRep);
             splitContainer2.Panel2.Controls.Add(label11);
             splitContainer2.Panel2.Controls.Add(label10);
-            splitContainer2.Panel2.Controls.Add(comboBox4);
+            splitContainer2.Panel2.Controls.Add(cmbEdRoomType);
             splitContainer2.Panel2.Controls.Add(label8);
-            splitContainer2.Panel2.Controls.Add(textBox3);
+            splitContainer2.Panel2.Controls.Add(txtEdRoomNum);
             splitContainer2.Panel2.Controls.Add(label6);
-            splitContainer2.Panel2.Controls.Add(comboBox3);
+            splitContainer2.Panel2.Controls.Add(cmbEdRoomBuild);
             splitContainer2.Panel2.Controls.Add(label5);
             splitContainer2.Panel2.Paint += splitContainer2_Panel2_Paint;
             splitContainer2.Size = new Size(845, 325);
             splitContainer2.SplitterDistance = 350;
+            splitContainer2.SplitterIncrement = 10;
             splitContainer2.TabIndex = 0;
             // 
             // dataGridView2
             // 
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(3, 34);
+            dataGridView2.Location = new Point(0, 29);
             dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
             dataGridView2.ReadOnly = true;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.Size = new Size(344, 288);
+            dataGridView2.Size = new Size(350, 296);
             dataGridView2.TabIndex = 1;
             dataGridView2.SelectionChanged += roomsEditGrid_OnSelect;
             // 
             // comboBox2
             // 
+            comboBox2.Dock = DockStyle.Top;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(3, 3);
+            comboBox2.Location = new Point(0, 0);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(344, 23);
+            comboBox2.Size = new Size(350, 23);
             comboBox2.TabIndex = 0;
             // 
             // numericUpDown2
             // 
+            numericUpDown2.Anchor = AnchorStyles.Right;
             numericUpDown2.DecimalPlaces = 2;
             numericUpDown2.Enabled = false;
             numericUpDown2.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             numericUpDown2.Location = new Point(262, 37);
+            numericUpDown2.MaximumSize = new Size(200, 0);
             numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(206, 22);
+            numericUpDown2.Size = new Size(200, 22);
             numericUpDown2.TabIndex = 35;
             numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericUpDown1
             // 
+            numericUpDown1.Anchor = AnchorStyles.Right;
             numericUpDown1.DecimalPlaces = 2;
             numericUpDown1.Enabled = false;
             numericUpDown1.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             numericUpDown1.Location = new Point(262, 109);
+            numericUpDown1.MaximumSize = new Size(200, 0);
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(206, 22);
+            numericUpDown1.Size = new Size(200, 22);
             numericUpDown1.TabIndex = 34;
             numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // textBox13
+            // txtEdRoomPurpose
             // 
-            textBox13.BorderStyle = BorderStyle.FixedSingle;
-            textBox13.Enabled = false;
-            textBox13.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox13.Location = new Point(262, 247);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(206, 25);
-            textBox13.TabIndex = 33;
+            txtEdRoomPurpose.Anchor = AnchorStyles.Right;
+            txtEdRoomPurpose.BorderStyle = BorderStyle.FixedSingle;
+            txtEdRoomPurpose.Enabled = false;
+            txtEdRoomPurpose.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdRoomPurpose.Location = new Point(262, 247);
+            txtEdRoomPurpose.MaximumSize = new Size(200, 25);
+            txtEdRoomPurpose.Name = "txtEdRoomPurpose";
+            txtEdRoomPurpose.Size = new Size(200, 25);
+            txtEdRoomPurpose.TabIndex = 33;
             // 
             // label14
             // 
+            label14.Anchor = AnchorStyles.Right;
             label14.AutoSize = true;
             label14.Location = new Point(262, 227);
             label14.Name = "label14";
@@ -771,19 +826,22 @@
             label14.TabIndex = 32;
             label14.Text = "Назначение аудитории";
             // 
-            // comboBox6
+            // cmbEdRoomResp
             // 
-            comboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox6.Enabled = false;
-            comboBox6.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(20, 247);
-            comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(206, 24);
-            comboBox6.TabIndex = 31;
+            cmbEdRoomResp.Anchor = AnchorStyles.Right;
+            cmbEdRoomResp.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdRoomResp.Enabled = false;
+            cmbEdRoomResp.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomResp.FormattingEnabled = true;
+            cmbEdRoomResp.Location = new Point(20, 247);
+            cmbEdRoomResp.MaximumSize = new Size(200, 0);
+            cmbEdRoomResp.Name = "cmbEdRoomResp";
+            cmbEdRoomResp.Size = new Size(200, 24);
+            cmbEdRoomResp.TabIndex = 31;
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Right;
             label13.AutoSize = true;
             label13.Location = new Point(20, 227);
             label13.Name = "label13";
@@ -791,18 +849,21 @@
             label13.TabIndex = 30;
             label13.Text = "Ответсвенный";
             // 
-            // comboBox5
+            // cmbEdRoomChair
             // 
-            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox5.Enabled = false;
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(262, 181);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(206, 23);
-            comboBox5.TabIndex = 29;
+            cmbEdRoomChair.Anchor = AnchorStyles.Right;
+            cmbEdRoomChair.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdRoomChair.Enabled = false;
+            cmbEdRoomChair.FormattingEnabled = true;
+            cmbEdRoomChair.Location = new Point(262, 181);
+            cmbEdRoomChair.MaximumSize = new Size(200, 0);
+            cmbEdRoomChair.Name = "cmbEdRoomChair";
+            cmbEdRoomChair.Size = new Size(200, 23);
+            cmbEdRoomChair.TabIndex = 29;
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Location = new Point(262, 161);
             label12.Name = "label12";
@@ -810,52 +871,60 @@
             label12.TabIndex = 28;
             label12.Text = "Кафедра";
             // 
-            // button18
+            // btnEdRoomEd
             // 
-            button18.ForeColor = Color.DarkGoldenrod;
-            button18.Location = new Point(304, 294);
-            button18.Name = "button18";
-            button18.Size = new Size(123, 28);
-            button18.TabIndex = 27;
-            button18.Text = "РЕДактировать";
-            button18.UseVisualStyleBackColor = true;
-            button18.Click += button18_Click;
+            btnEdRoomEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRoomEd.Enabled = false;
+            btnEdRoomEd.ForeColor = Color.DarkGoldenrod;
+            btnEdRoomEd.Location = new Point(345, 294);
+            btnEdRoomEd.Name = "btnEdRoomEd";
+            btnEdRoomEd.Size = new Size(123, 28);
+            btnEdRoomEd.TabIndex = 27;
+            btnEdRoomEd.Text = "РЕДактировать";
+            btnEdRoomEd.UseVisualStyleBackColor = true;
+            btnEdRoomEd.Click += button18_Click;
             // 
-            // btnAdd
+            // btnEdRoomAdd
             // 
-            btnAdd.ForeColor = Color.ForestGreen;
-            btnAdd.Location = new Point(3, 294);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(92, 28);
-            btnAdd.TabIndex = 23;
-            btnAdd.Text = "Добавить +";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnEdRoomAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRoomAdd.ForeColor = Color.ForestGreen;
+            btnEdRoomAdd.Location = new Point(20, 294);
+            btnEdRoomAdd.Name = "btnEdRoomAdd";
+            btnEdRoomAdd.Size = new Size(92, 28);
+            btnEdRoomAdd.TabIndex = 23;
+            btnEdRoomAdd.Text = "Добавить +";
+            btnEdRoomAdd.UseVisualStyleBackColor = true;
+            btnEdRoomAdd.Click += btnAdd_Click;
             // 
-            // btnDel
+            // btnEdRoomDel
             // 
-            btnDel.ForeColor = Color.Firebrick;
-            btnDel.Location = new Point(101, 294);
-            btnDel.Name = "btnDel";
-            btnDel.Size = new Size(93, 28);
-            btnDel.TabIndex = 24;
-            btnDel.Text = "Удалить -";
-            btnDel.UseVisualStyleBackColor = true;
-            btnDel.Click += btnDel_Click;
+            btnEdRoomDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRoomDel.Enabled = false;
+            btnEdRoomDel.ForeColor = Color.Firebrick;
+            btnEdRoomDel.Location = new Point(128, 294);
+            btnEdRoomDel.Name = "btnEdRoomDel";
+            btnEdRoomDel.Size = new Size(93, 28);
+            btnEdRoomDel.TabIndex = 24;
+            btnEdRoomDel.Text = "Удалить -";
+            btnEdRoomDel.UseVisualStyleBackColor = true;
+            btnEdRoomDel.Click += btnDel_Click;
             // 
-            // btnRep
+            // btnEdRoomRep
             // 
-            btnRep.ForeColor = Color.SlateBlue;
-            btnRep.Location = new Point(200, 294);
-            btnRep.Name = "btnRep";
-            btnRep.Size = new Size(98, 28);
-            btnRep.TabIndex = 26;
-            btnRep.Text = "Сохранить";
-            btnRep.UseVisualStyleBackColor = true;
-            btnRep.Click += btnRep_Click;
+            btnEdRoomRep.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRoomRep.Enabled = false;
+            btnEdRoomRep.ForeColor = Color.SlateBlue;
+            btnEdRoomRep.Location = new Point(235, 294);
+            btnEdRoomRep.Name = "btnEdRoomRep";
+            btnEdRoomRep.Size = new Size(98, 28);
+            btnEdRoomRep.TabIndex = 26;
+            btnEdRoomRep.Text = "Сохранить";
+            btnEdRoomRep.UseVisualStyleBackColor = true;
+            btnEdRoomRep.Click += btnRep_Click;
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Location = new Point(262, 89);
             label11.Name = "label11";
@@ -865,6 +934,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Location = new Point(262, 16);
             label10.Name = "label10";
@@ -872,19 +942,22 @@
             label10.TabIndex = 13;
             label10.Text = "Длина аудитории";
             // 
-            // comboBox4
+            // cmbEdRoomType
             // 
-            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox4.Enabled = false;
-            comboBox4.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(20, 181);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(206, 24);
-            comboBox4.TabIndex = 12;
+            cmbEdRoomType.Anchor = AnchorStyles.Right;
+            cmbEdRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdRoomType.Enabled = false;
+            cmbEdRoomType.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomType.FormattingEnabled = true;
+            cmbEdRoomType.Location = new Point(20, 181);
+            cmbEdRoomType.MaximumSize = new Size(200, 0);
+            cmbEdRoomType.Name = "cmbEdRoomType";
+            cmbEdRoomType.Size = new Size(200, 24);
+            cmbEdRoomType.TabIndex = 12;
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Location = new Point(20, 161);
             label8.Name = "label8";
@@ -892,18 +965,21 @@
             label8.TabIndex = 11;
             label8.Text = "Тип аудитории";
             // 
-            // textBox3
+            // txtEdRoomNum
             // 
-            textBox3.BorderStyle = BorderStyle.FixedSingle;
-            textBox3.Enabled = false;
-            textBox3.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(20, 109);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(206, 25);
-            textBox3.TabIndex = 10;
+            txtEdRoomNum.Anchor = AnchorStyles.Right;
+            txtEdRoomNum.BorderStyle = BorderStyle.FixedSingle;
+            txtEdRoomNum.Enabled = false;
+            txtEdRoomNum.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdRoomNum.Location = new Point(20, 109);
+            txtEdRoomNum.MaximumSize = new Size(200, 25);
+            txtEdRoomNum.Name = "txtEdRoomNum";
+            txtEdRoomNum.Size = new Size(200, 25);
+            txtEdRoomNum.TabIndex = 10;
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Location = new Point(20, 89);
             label6.Name = "label6";
@@ -911,19 +987,22 @@
             label6.TabIndex = 9;
             label6.Text = "Номер аудитории";
             // 
-            // comboBox3
+            // cmbEdRoomBuild
             // 
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.Enabled = false;
-            comboBox3.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(20, 36);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(206, 24);
-            comboBox3.TabIndex = 8;
+            cmbEdRoomBuild.Anchor = AnchorStyles.Right;
+            cmbEdRoomBuild.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdRoomBuild.Enabled = false;
+            cmbEdRoomBuild.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomBuild.FormattingEnabled = true;
+            cmbEdRoomBuild.Location = new Point(20, 36);
+            cmbEdRoomBuild.MaximumSize = new Size(200, 0);
+            cmbEdRoomBuild.Name = "cmbEdRoomBuild";
+            cmbEdRoomBuild.Size = new Size(200, 24);
+            cmbEdRoomBuild.TabIndex = 8;
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Location = new Point(20, 16);
             label5.Name = "label5";
@@ -944,7 +1023,7 @@
             // 
             // splitContainer3
             // 
-            splitContainer3.Dock = DockStyle.Fill;
+            splitContainer3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer3.Location = new Point(3, 3);
             splitContainer3.Name = "splitContainer3";
             // 
@@ -954,20 +1033,20 @@
             // 
             // splitContainer3.Panel2
             // 
-            splitContainer3.Panel2.Controls.Add(button3);
-            splitContainer3.Panel2.Controls.Add(comboBox10);
+            splitContainer3.Panel2.Controls.Add(btnEdEqFile);
+            splitContainer3.Panel2.Controls.Add(cmbEdEqRoom);
             splitContainer3.Panel2.Controls.Add(label27);
-            splitContainer3.Panel2.Controls.Add(button19);
-            splitContainer3.Panel2.Controls.Add(button5);
-            splitContainer3.Panel2.Controls.Add(button6);
-            splitContainer3.Panel2.Controls.Add(button8);
+            splitContainer3.Panel2.Controls.Add(btnEdEqEd);
+            splitContainer3.Panel2.Controls.Add(btnEdEqAdd);
+            splitContainer3.Panel2.Controls.Add(btnEdEqDel);
+            splitContainer3.Panel2.Controls.Add(btnEdEqSv);
             splitContainer3.Panel2.Controls.Add(pictureBox2);
             splitContainer3.Panel2.Controls.Add(label19);
-            splitContainer3.Panel2.Controls.Add(richTextBox1);
+            splitContainer3.Panel2.Controls.Add(r_txtEdEqDesc);
             splitContainer3.Panel2.Controls.Add(label18);
-            splitContainer3.Panel2.Controls.Add(textBox7);
+            splitContainer3.Panel2.Controls.Add(txtEdEqNum);
             splitContainer3.Panel2.Controls.Add(label17);
-            splitContainer3.Panel2.Controls.Add(textBox6);
+            splitContainer3.Panel2.Controls.Add(txtEdEqName);
             splitContainer3.Panel2.Controls.Add(label16);
             splitContainer3.Size = new Size(845, 325);
             splitContainer3.SplitterDistance = 350;
@@ -977,37 +1056,39 @@
             // 
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.AllowUserToDeleteRows = false;
-            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(3, 3);
+            dataGridView3.Dock = DockStyle.Fill;
+            dataGridView3.Location = new Point(0, 0);
             dataGridView3.MultiSelect = false;
             dataGridView3.Name = "dataGridView3";
             dataGridView3.ReadOnly = true;
             dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView3.Size = new Size(344, 319);
+            dataGridView3.Size = new Size(350, 325);
             dataGridView3.TabIndex = 0;
             dataGridView3.SelectionChanged += dataGridView3_Select;
             // 
-            // button3
+            // btnEdEqFile
             // 
-            button3.Location = new Point(312, 110);
-            button3.Name = "button3";
-            button3.Size = new Size(165, 23);
-            button3.TabIndex = 26;
-            button3.Text = "Выбрать файл...";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
+            btnEdEqFile.Enabled = false;
+            btnEdEqFile.Location = new Point(312, 110);
+            btnEdEqFile.Name = "btnEdEqFile";
+            btnEdEqFile.Size = new Size(165, 23);
+            btnEdEqFile.TabIndex = 26;
+            btnEdEqFile.Text = "Выбрать файл...";
+            btnEdEqFile.UseVisualStyleBackColor = true;
+            btnEdEqFile.Click += button3_Click_1;
             // 
-            // comboBox10
+            // cmbEdEqRoom
             // 
-            comboBox10.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox10.Enabled = false;
-            comboBox10.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox10.FormattingEnabled = true;
-            comboBox10.Location = new Point(17, 173);
-            comboBox10.Name = "comboBox10";
-            comboBox10.Size = new Size(162, 24);
-            comboBox10.TabIndex = 25;
+            cmbEdEqRoom.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdEqRoom.Enabled = false;
+            cmbEdEqRoom.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdEqRoom.FormattingEnabled = true;
+            cmbEdEqRoom.Location = new Point(17, 173);
+            cmbEdEqRoom.Name = "cmbEdEqRoom";
+            cmbEdEqRoom.Size = new Size(162, 24);
+            cmbEdEqRoom.TabIndex = 25;
             // 
             // label27
             // 
@@ -1018,52 +1099,60 @@
             label27.TabIndex = 24;
             label27.Text = "Аудитория";
             // 
-            // button19
+            // btnEdEqEd
             // 
-            button19.ForeColor = Color.DarkGoldenrod;
-            button19.Location = new Point(304, 294);
-            button19.Name = "button19";
-            button19.Size = new Size(125, 28);
-            button19.TabIndex = 23;
-            button19.Text = "Редактировать";
-            button19.UseVisualStyleBackColor = true;
-            button19.Click += button19_Click;
+            btnEdEqEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdEqEd.Enabled = false;
+            btnEdEqEd.ForeColor = Color.DarkGoldenrod;
+            btnEdEqEd.Location = new Point(351, 297);
+            btnEdEqEd.Name = "btnEdEqEd";
+            btnEdEqEd.Size = new Size(125, 28);
+            btnEdEqEd.TabIndex = 23;
+            btnEdEqEd.Text = "Редактировать";
+            btnEdEqEd.UseVisualStyleBackColor = true;
+            btnEdEqEd.Click += button19_Click;
             // 
-            // button5
+            // btnEdEqAdd
             // 
-            button5.ForeColor = Color.ForestGreen;
-            button5.Location = new Point(3, 294);
-            button5.Name = "button5";
-            button5.Size = new Size(92, 28);
-            button5.TabIndex = 19;
-            button5.Text = "Добавить +";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            btnEdEqAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdEqAdd.ForeColor = Color.ForestGreen;
+            btnEdEqAdd.Location = new Point(17, 297);
+            btnEdEqAdd.Name = "btnEdEqAdd";
+            btnEdEqAdd.Size = new Size(92, 28);
+            btnEdEqAdd.TabIndex = 19;
+            btnEdEqAdd.Text = "Добавить +";
+            btnEdEqAdd.UseVisualStyleBackColor = true;
+            btnEdEqAdd.Click += button5_Click;
             // 
-            // button6
+            // btnEdEqDel
             // 
-            button6.ForeColor = Color.Firebrick;
-            button6.Location = new Point(101, 294);
-            button6.Name = "button6";
-            button6.Size = new Size(93, 28);
-            button6.TabIndex = 20;
-            button6.Text = "Удалить -";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            btnEdEqDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdEqDel.Enabled = false;
+            btnEdEqDel.ForeColor = Color.Firebrick;
+            btnEdEqDel.Location = new Point(126, 297);
+            btnEdEqDel.Name = "btnEdEqDel";
+            btnEdEqDel.Size = new Size(93, 28);
+            btnEdEqDel.TabIndex = 20;
+            btnEdEqDel.Text = "Удалить -";
+            btnEdEqDel.UseVisualStyleBackColor = true;
+            btnEdEqDel.Click += button6_Click;
             // 
-            // button8
+            // btnEdEqSv
             // 
-            button8.ForeColor = Color.SlateBlue;
-            button8.Location = new Point(200, 294);
-            button8.Name = "button8";
-            button8.Size = new Size(98, 28);
-            button8.TabIndex = 22;
-            button8.Text = "Сохранить";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button8_Click;
+            btnEdEqSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdEqSv.Enabled = false;
+            btnEdEqSv.ForeColor = Color.SlateBlue;
+            btnEdEqSv.Location = new Point(236, 297);
+            btnEdEqSv.Name = "btnEdEqSv";
+            btnEdEqSv.Size = new Size(98, 28);
+            btnEdEqSv.TabIndex = 22;
+            btnEdEqSv.Text = "Сохранить";
+            btnEdEqSv.UseVisualStyleBackColor = true;
+            btnEdEqSv.Click += button8_Click;
             // 
             // pictureBox2
             // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox2.BackColor = SystemColors.ButtonFace;
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Enabled = false;
@@ -1083,16 +1172,17 @@
             label19.TabIndex = 17;
             label19.Text = "Изображение";
             // 
-            // richTextBox1
+            // r_txtEdEqDesc
             // 
-            richTextBox1.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox1.Enabled = false;
-            richTextBox1.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            richTextBox1.Location = new Point(200, 40);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(277, 66);
-            richTextBox1.TabIndex = 16;
-            richTextBox1.Text = "";
+            r_txtEdEqDesc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            r_txtEdEqDesc.BorderStyle = BorderStyle.FixedSingle;
+            r_txtEdEqDesc.Enabled = false;
+            r_txtEdEqDesc.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            r_txtEdEqDesc.Location = new Point(200, 40);
+            r_txtEdEqDesc.Name = "r_txtEdEqDesc";
+            r_txtEdEqDesc.Size = new Size(277, 66);
+            r_txtEdEqDesc.TabIndex = 16;
+            r_txtEdEqDesc.Text = "";
             // 
             // label18
             // 
@@ -1103,15 +1193,15 @@
             label18.TabIndex = 15;
             label18.Text = "Описание";
             // 
-            // textBox7
+            // txtEdEqNum
             // 
-            textBox7.BorderStyle = BorderStyle.FixedSingle;
-            textBox7.Enabled = false;
-            textBox7.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox7.Location = new Point(17, 114);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(162, 25);
-            textBox7.TabIndex = 14;
+            txtEdEqNum.BorderStyle = BorderStyle.FixedSingle;
+            txtEdEqNum.Enabled = false;
+            txtEdEqNum.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdEqNum.Location = new Point(17, 114);
+            txtEdEqNum.Name = "txtEdEqNum";
+            txtEdEqNum.Size = new Size(162, 25);
+            txtEdEqNum.TabIndex = 14;
             // 
             // label17
             // 
@@ -1122,15 +1212,15 @@
             label17.TabIndex = 13;
             label17.Text = "Инвентарный номер";
             // 
-            // textBox6
+            // txtEdEqName
             // 
-            textBox6.BorderStyle = BorderStyle.FixedSingle;
-            textBox6.Enabled = false;
-            textBox6.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox6.Location = new Point(15, 40);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(162, 25);
-            textBox6.TabIndex = 12;
+            txtEdEqName.BorderStyle = BorderStyle.FixedSingle;
+            txtEdEqName.Enabled = false;
+            txtEdEqName.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdEqName.Location = new Point(15, 40);
+            txtEdEqName.Name = "txtEdEqName";
+            txtEdEqName.Size = new Size(162, 25);
+            txtEdEqName.TabIndex = 12;
             // 
             // label16
             // 
@@ -1154,7 +1244,7 @@
             // 
             // splitContainer5
             // 
-            splitContainer5.Dock = DockStyle.Fill;
+            splitContainer5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer5.Location = new Point(3, 3);
             splitContainer5.Name = "splitContainer5";
             // 
@@ -1164,16 +1254,16 @@
             // 
             // splitContainer5.Panel2
             // 
-            splitContainer5.Panel2.Controls.Add(button20);
-            splitContainer5.Panel2.Controls.Add(button9);
-            splitContainer5.Panel2.Controls.Add(textBox9);
+            splitContainer5.Panel2.Controls.Add(btnEdRespEd);
+            splitContainer5.Panel2.Controls.Add(btnEdRespAdd);
+            splitContainer5.Panel2.Controls.Add(txtEdRespPos);
             splitContainer5.Panel2.Controls.Add(label21);
-            splitContainer5.Panel2.Controls.Add(button10);
-            splitContainer5.Panel2.Controls.Add(textBox8);
+            splitContainer5.Panel2.Controls.Add(btnEdRespDel);
+            splitContainer5.Panel2.Controls.Add(txtEdRespFIO);
             splitContainer5.Panel2.Controls.Add(label20);
             splitContainer5.Panel2.Controls.Add(label22);
-            splitContainer5.Panel2.Controls.Add(textBox10);
-            splitContainer5.Panel2.Controls.Add(button12);
+            splitContainer5.Panel2.Controls.Add(txtEdRespCont);
+            splitContainer5.Panel2.Controls.Add(btnEdRespSv);
             splitContainer5.Size = new Size(845, 325);
             splitContainer5.SplitterDistance = 350;
             splitContainer5.TabIndex = 0;
@@ -1182,50 +1272,56 @@
             // 
             dataGridView4.AllowUserToAddRows = false;
             dataGridView4.AllowUserToDeleteRows = false;
-            dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Location = new Point(3, 3);
+            dataGridView4.Dock = DockStyle.Fill;
+            dataGridView4.Location = new Point(0, 0);
             dataGridView4.MultiSelect = false;
             dataGridView4.Name = "dataGridView4";
             dataGridView4.ReadOnly = true;
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView4.Size = new Size(344, 319);
+            dataGridView4.Size = new Size(350, 325);
             dataGridView4.TabIndex = 0;
             dataGridView4.SelectionChanged += dataGridView4_SelectionChanged;
             // 
-            // button20
+            // btnEdRespEd
             // 
-            button20.ForeColor = Color.DarkGoldenrod;
-            button20.Location = new Point(304, 294);
-            button20.Name = "button20";
-            button20.Size = new Size(126, 28);
-            button20.TabIndex = 19;
-            button20.Text = "РЕДактировать";
-            button20.UseVisualStyleBackColor = true;
-            button20.Click += button20_Click;
+            btnEdRespEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRespEd.Enabled = false;
+            btnEdRespEd.ForeColor = Color.DarkGoldenrod;
+            btnEdRespEd.Location = new Point(337, 294);
+            btnEdRespEd.Name = "btnEdRespEd";
+            btnEdRespEd.Size = new Size(126, 28);
+            btnEdRespEd.TabIndex = 19;
+            btnEdRespEd.Text = "РЕДактировать";
+            btnEdRespEd.UseVisualStyleBackColor = true;
+            btnEdRespEd.Click += button20_Click;
             // 
-            // button9
+            // btnEdRespAdd
             // 
-            button9.ForeColor = Color.ForestGreen;
-            button9.Location = new Point(3, 294);
-            button9.Name = "button9";
-            button9.Size = new Size(92, 28);
-            button9.TabIndex = 15;
-            button9.Text = "Добавить +";
-            button9.UseVisualStyleBackColor = true;
-            button9.Click += button9_Click;
+            btnEdRespAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRespAdd.ForeColor = Color.ForestGreen;
+            btnEdRespAdd.Location = new Point(24, 294);
+            btnEdRespAdd.Name = "btnEdRespAdd";
+            btnEdRespAdd.Size = new Size(92, 28);
+            btnEdRespAdd.TabIndex = 15;
+            btnEdRespAdd.Text = "Добавить +";
+            btnEdRespAdd.UseVisualStyleBackColor = true;
+            btnEdRespAdd.Click += button9_Click;
             // 
-            // textBox9
+            // txtEdRespPos
             // 
-            textBox9.BorderStyle = BorderStyle.FixedSingle;
-            textBox9.Enabled = false;
-            textBox9.Location = new Point(141, 145);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(207, 22);
-            textBox9.TabIndex = 9;
+            txtEdRespPos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdRespPos.BorderStyle = BorderStyle.FixedSingle;
+            txtEdRespPos.Enabled = false;
+            txtEdRespPos.Location = new Point(141, 145);
+            txtEdRespPos.Name = "txtEdRespPos";
+            txtEdRespPos.Size = new Size(207, 22);
+            txtEdRespPos.TabIndex = 9;
             // 
             // label21
             // 
+            label21.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label21.AutoSize = true;
             label21.Location = new Point(141, 125);
             label21.Name = "label21";
@@ -1233,28 +1329,32 @@
             label21.TabIndex = 8;
             label21.Text = "Должность ответственного";
             // 
-            // button10
+            // btnEdRespDel
             // 
-            button10.ForeColor = Color.Firebrick;
-            button10.Location = new Point(101, 294);
-            button10.Name = "button10";
-            button10.Size = new Size(93, 28);
-            button10.TabIndex = 16;
-            button10.Text = "Удалить -";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click;
+            btnEdRespDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRespDel.Enabled = false;
+            btnEdRespDel.ForeColor = Color.Firebrick;
+            btnEdRespDel.Location = new Point(126, 294);
+            btnEdRespDel.Name = "btnEdRespDel";
+            btnEdRespDel.Size = new Size(93, 28);
+            btnEdRespDel.TabIndex = 16;
+            btnEdRespDel.Text = "Удалить -";
+            btnEdRespDel.UseVisualStyleBackColor = true;
+            btnEdRespDel.Click += button10_Click;
             // 
-            // textBox8
+            // txtEdRespFIO
             // 
-            textBox8.BorderStyle = BorderStyle.FixedSingle;
-            textBox8.Enabled = false;
-            textBox8.Location = new Point(141, 80);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(207, 22);
-            textBox8.TabIndex = 7;
+            txtEdRespFIO.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdRespFIO.BorderStyle = BorderStyle.FixedSingle;
+            txtEdRespFIO.Enabled = false;
+            txtEdRespFIO.Location = new Point(141, 80);
+            txtEdRespFIO.Name = "txtEdRespFIO";
+            txtEdRespFIO.Size = new Size(207, 22);
+            txtEdRespFIO.TabIndex = 7;
             // 
             // label20
             // 
+            label20.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label20.AutoSize = true;
             label20.Location = new Point(143, 62);
             label20.Name = "label20";
@@ -1265,6 +1365,7 @@
             // 
             // label22
             // 
+            label22.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label22.AutoSize = true;
             label22.Location = new Point(143, 200);
             label22.Name = "label22";
@@ -1272,25 +1373,28 @@
             label22.TabIndex = 10;
             label22.Text = "Номер телефона(рабочий)";
             // 
-            // textBox10
+            // txtEdRespCont
             // 
-            textBox10.BorderStyle = BorderStyle.FixedSingle;
-            textBox10.Enabled = false;
-            textBox10.Location = new Point(141, 220);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(207, 22);
-            textBox10.TabIndex = 11;
+            txtEdRespCont.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdRespCont.BorderStyle = BorderStyle.FixedSingle;
+            txtEdRespCont.Enabled = false;
+            txtEdRespCont.Location = new Point(141, 220);
+            txtEdRespCont.Name = "txtEdRespCont";
+            txtEdRespCont.Size = new Size(207, 22);
+            txtEdRespCont.TabIndex = 11;
             // 
-            // button12
+            // btnEdRespSv
             // 
-            button12.ForeColor = Color.SlateBlue;
-            button12.Location = new Point(200, 294);
-            button12.Name = "button12";
-            button12.Size = new Size(98, 28);
-            button12.TabIndex = 18;
-            button12.Text = "Сохранить";
-            button12.UseVisualStyleBackColor = true;
-            button12.Click += button12_Click;
+            btnEdRespSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdRespSv.Enabled = false;
+            btnEdRespSv.ForeColor = Color.SlateBlue;
+            btnEdRespSv.Location = new Point(229, 294);
+            btnEdRespSv.Name = "btnEdRespSv";
+            btnEdRespSv.Size = new Size(98, 28);
+            btnEdRespSv.TabIndex = 18;
+            btnEdRespSv.Text = "Сохранить";
+            btnEdRespSv.UseVisualStyleBackColor = true;
+            btnEdRespSv.Click += button12_Click;
             // 
             // tabChairs
             // 
@@ -1305,7 +1409,7 @@
             // 
             // splitContainer6
             // 
-            splitContainer6.Dock = DockStyle.Fill;
+            splitContainer6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer6.Location = new Point(3, 3);
             splitContainer6.Name = "splitContainer6";
             // 
@@ -1315,112 +1419,125 @@
             // 
             // splitContainer6.Panel2
             // 
-            splitContainer6.Panel2.Controls.Add(comboBox9);
+            splitContainer6.Panel2.Controls.Add(cmbEdChFac);
             splitContainer6.Panel2.Controls.Add(label25);
-            splitContainer6.Panel2.Controls.Add(button21);
-            splitContainer6.Panel2.Controls.Add(button13);
-            splitContainer6.Panel2.Controls.Add(button14);
-            splitContainer6.Panel2.Controls.Add(button16);
-            splitContainer6.Panel2.Controls.Add(textBox11);
+            splitContainer6.Panel2.Controls.Add(btnEdChEd);
+            splitContainer6.Panel2.Controls.Add(btnEdChAdd);
+            splitContainer6.Panel2.Controls.Add(btnEdChDel);
+            splitContainer6.Panel2.Controls.Add(btnEdChSv);
+            splitContainer6.Panel2.Controls.Add(txtEdChName);
             splitContainer6.Panel2.Controls.Add(label24);
             splitContainer6.Size = new Size(845, 325);
-            splitContainer6.SplitterDistance = 350;
+            splitContainer6.SplitterDistance = 410;
             splitContainer6.TabIndex = 0;
             // 
             // dataGridView5
             // 
             dataGridView5.AllowUserToAddRows = false;
             dataGridView5.AllowUserToDeleteRows = false;
-            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView5.Location = new Point(3, 3);
+            dataGridView5.Dock = DockStyle.Fill;
+            dataGridView5.Location = new Point(0, 0);
             dataGridView5.MultiSelect = false;
             dataGridView5.Name = "dataGridView5";
             dataGridView5.ReadOnly = true;
             dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView5.Size = new Size(344, 319);
+            dataGridView5.Size = new Size(410, 325);
             dataGridView5.TabIndex = 0;
             dataGridView5.SelectionChanged += dataGridView5_SelectionChanged;
             // 
-            // comboBox9
+            // cmbEdChFac
             // 
-            comboBox9.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox9.Enabled = false;
-            comboBox9.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            comboBox9.FormattingEnabled = true;
-            comboBox9.Location = new Point(59, 170);
-            comboBox9.Name = "comboBox9";
-            comboBox9.Size = new Size(313, 30);
-            comboBox9.TabIndex = 25;
+            cmbEdChFac.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbEdChFac.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEdChFac.Enabled = false;
+            cmbEdChFac.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cmbEdChFac.FormattingEnabled = true;
+            cmbEdChFac.Location = new Point(60, 209);
+            cmbEdChFac.Name = "cmbEdChFac";
+            cmbEdChFac.Size = new Size(313, 30);
+            cmbEdChFac.TabIndex = 25;
             // 
             // label25
             // 
+            label25.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label25.AutoSize = true;
             label25.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label25.Location = new Point(64, 129);
+            label25.Location = new Point(99, 171);
             label25.Name = "label25";
             label25.Size = new Size(234, 24);
             label25.TabIndex = 24;
             label25.Text = "Выберите факультет";
             // 
-            // button21
+            // btnEdChEd
             // 
-            button21.ForeColor = Color.DarkGoldenrod;
-            button21.Location = new Point(304, 294);
-            button21.Name = "button21";
-            button21.Size = new Size(123, 28);
-            button21.TabIndex = 23;
-            button21.Text = "РЕДактировать";
-            button21.UseVisualStyleBackColor = true;
-            button21.Click += button21_Click;
+            btnEdChEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdChEd.Enabled = false;
+            btnEdChEd.ForeColor = Color.DarkGoldenrod;
+            btnEdChEd.Location = new Point(305, 296);
+            btnEdChEd.Name = "btnEdChEd";
+            btnEdChEd.Size = new Size(123, 28);
+            btnEdChEd.TabIndex = 23;
+            btnEdChEd.Text = "РЕДактировать";
+            btnEdChEd.UseVisualStyleBackColor = true;
+            btnEdChEd.Click += button21_Click;
             // 
-            // button13
+            // btnEdChAdd
             // 
-            button13.ForeColor = Color.ForestGreen;
-            button13.Location = new Point(3, 294);
-            button13.Name = "button13";
-            button13.Size = new Size(92, 28);
-            button13.TabIndex = 19;
-            button13.Text = "Добавить +";
-            button13.UseVisualStyleBackColor = true;
-            button13.Click += button13_Click;
+            btnEdChAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdChAdd.ForeColor = Color.ForestGreen;
+            btnEdChAdd.Location = new Point(4, 296);
+            btnEdChAdd.Name = "btnEdChAdd";
+            btnEdChAdd.Size = new Size(92, 28);
+            btnEdChAdd.TabIndex = 19;
+            btnEdChAdd.Text = "Добавить +";
+            btnEdChAdd.UseVisualStyleBackColor = true;
+            btnEdChAdd.Click += button13_Click;
             // 
-            // button14
+            // btnEdChDel
             // 
-            button14.ForeColor = Color.Firebrick;
-            button14.Location = new Point(101, 294);
-            button14.Name = "button14";
-            button14.Size = new Size(93, 28);
-            button14.TabIndex = 20;
-            button14.Text = "Удалить -";
-            button14.UseVisualStyleBackColor = true;
-            button14.Click += button14_Click;
+            btnEdChDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdChDel.Enabled = false;
+            btnEdChDel.ForeColor = Color.Firebrick;
+            btnEdChDel.Location = new Point(102, 296);
+            btnEdChDel.Name = "btnEdChDel";
+            btnEdChDel.Size = new Size(93, 28);
+            btnEdChDel.TabIndex = 20;
+            btnEdChDel.Text = "Удалить -";
+            btnEdChDel.UseVisualStyleBackColor = true;
+            btnEdChDel.Click += button14_Click;
             // 
-            // button16
+            // btnEdChSv
             // 
-            button16.ForeColor = Color.SlateBlue;
-            button16.Location = new Point(200, 294);
-            button16.Name = "button16";
-            button16.Size = new Size(98, 28);
-            button16.TabIndex = 22;
-            button16.Text = "Сохранить";
-            button16.UseVisualStyleBackColor = true;
-            button16.Click += button16_Click;
+            btnEdChSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdChSv.Enabled = false;
+            btnEdChSv.ForeColor = Color.SlateBlue;
+            btnEdChSv.Location = new Point(201, 296);
+            btnEdChSv.Name = "btnEdChSv";
+            btnEdChSv.Size = new Size(98, 28);
+            btnEdChSv.TabIndex = 22;
+            btnEdChSv.Text = "Сохранить";
+            btnEdChSv.UseVisualStyleBackColor = true;
+            btnEdChSv.Click += button16_Click;
             // 
-            // textBox11
+            // txtEdChName
             // 
-            textBox11.Enabled = false;
-            textBox11.Font = new Font("Yuruka Kerning (sherbackoffalex", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox11.Location = new Point(59, 78);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(313, 29);
-            textBox11.TabIndex = 1;
+            txtEdChName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdChName.BorderStyle = BorderStyle.FixedSingle;
+            txtEdChName.Enabled = false;
+            txtEdChName.Font = new Font("Yuruka Kerning (sherbackoffalex", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdChName.Location = new Point(60, 117);
+            txtEdChName.Name = "txtEdChName";
+            txtEdChName.Size = new Size(313, 29);
+            txtEdChName.TabIndex = 1;
             // 
             // label24
             // 
+            label24.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label24.AutoSize = true;
             label24.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label24.Location = new Point(59, 41);
+            label24.Location = new Point(76, 80);
             label24.Name = "label24";
             label24.Size = new Size(281, 24);
             label24.TabIndex = 0;
@@ -1439,7 +1556,7 @@
             // 
             // splitContainer4
             // 
-            splitContainer4.Dock = DockStyle.Fill;
+            splitContainer4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer4.Location = new Point(3, 3);
             splitContainer4.Name = "splitContainer4";
             // 
@@ -1449,11 +1566,11 @@
             // 
             // splitContainer4.Panel2
             // 
-            splitContainer4.Panel2.Controls.Add(button22);
-            splitContainer4.Panel2.Controls.Add(button23);
-            splitContainer4.Panel2.Controls.Add(button24);
-            splitContainer4.Panel2.Controls.Add(button26);
-            splitContainer4.Panel2.Controls.Add(textBox12);
+            splitContainer4.Panel2.Controls.Add(btnEdFacEd);
+            splitContainer4.Panel2.Controls.Add(btnEdFacAdd);
+            splitContainer4.Panel2.Controls.Add(btnEdFacDel);
+            splitContainer4.Panel2.Controls.Add(btnEdFacSv);
+            splitContainer4.Panel2.Controls.Add(txtEdFacName);
             splitContainer4.Panel2.Controls.Add(label26);
             splitContainer4.Size = new Size(845, 325);
             splitContainer4.SplitterDistance = 350;
@@ -1463,73 +1580,83 @@
             // 
             dataGridView6.AllowUserToAddRows = false;
             dataGridView6.AllowUserToDeleteRows = false;
-            dataGridView6.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView6.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView6.Location = new Point(3, 3);
+            dataGridView6.Dock = DockStyle.Fill;
+            dataGridView6.Location = new Point(0, 0);
             dataGridView6.MultiSelect = false;
             dataGridView6.Name = "dataGridView6";
             dataGridView6.ReadOnly = true;
             dataGridView6.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView6.Size = new Size(344, 319);
+            dataGridView6.Size = new Size(350, 325);
             dataGridView6.TabIndex = 0;
             dataGridView6.SelectionChanged += dataGridView6_SelectionChanged;
             // 
-            // button22
+            // btnEdFacEd
             // 
-            button22.ForeColor = Color.DarkGoldenrod;
-            button22.Location = new Point(304, 294);
-            button22.Name = "button22";
-            button22.Size = new Size(120, 28);
-            button22.TabIndex = 24;
-            button22.Text = "РЕДАКТИРОВАТЬ";
-            button22.UseVisualStyleBackColor = true;
-            button22.Click += button22_Click;
+            btnEdFacEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdFacEd.Enabled = false;
+            btnEdFacEd.ForeColor = Color.DarkGoldenrod;
+            btnEdFacEd.Location = new Point(351, 297);
+            btnEdFacEd.Name = "btnEdFacEd";
+            btnEdFacEd.Size = new Size(120, 28);
+            btnEdFacEd.TabIndex = 24;
+            btnEdFacEd.Text = "РЕДАКТИРОВАТЬ";
+            btnEdFacEd.UseVisualStyleBackColor = true;
+            btnEdFacEd.Click += button22_Click;
             // 
-            // button23
+            // btnEdFacAdd
             // 
-            button23.ForeColor = Color.ForestGreen;
-            button23.Location = new Point(3, 294);
-            button23.Name = "button23";
-            button23.Size = new Size(92, 28);
-            button23.TabIndex = 20;
-            button23.Text = "Добавить +";
-            button23.UseVisualStyleBackColor = true;
-            button23.Click += button23_Click;
+            btnEdFacAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdFacAdd.ForeColor = Color.ForestGreen;
+            btnEdFacAdd.Location = new Point(23, 297);
+            btnEdFacAdd.Name = "btnEdFacAdd";
+            btnEdFacAdd.Size = new Size(92, 28);
+            btnEdFacAdd.TabIndex = 20;
+            btnEdFacAdd.Text = "Добавить +";
+            btnEdFacAdd.UseVisualStyleBackColor = true;
+            btnEdFacAdd.Click += button23_Click;
             // 
-            // button24
+            // btnEdFacDel
             // 
-            button24.ForeColor = Color.Firebrick;
-            button24.Location = new Point(101, 294);
-            button24.Name = "button24";
-            button24.Size = new Size(93, 28);
-            button24.TabIndex = 21;
-            button24.Text = "Удалить -";
-            button24.UseVisualStyleBackColor = true;
-            button24.Click += button24_Click;
+            btnEdFacDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdFacDel.Enabled = false;
+            btnEdFacDel.ForeColor = Color.Firebrick;
+            btnEdFacDel.Location = new Point(130, 297);
+            btnEdFacDel.Name = "btnEdFacDel";
+            btnEdFacDel.Size = new Size(93, 28);
+            btnEdFacDel.TabIndex = 21;
+            btnEdFacDel.Text = "Удалить -";
+            btnEdFacDel.UseVisualStyleBackColor = true;
+            btnEdFacDel.Click += button24_Click;
             // 
-            // button26
+            // btnEdFacSv
             // 
-            button26.ForeColor = Color.SlateBlue;
-            button26.Location = new Point(200, 294);
-            button26.Name = "button26";
-            button26.Size = new Size(98, 28);
-            button26.TabIndex = 23;
-            button26.Text = "Сохранить";
-            button26.UseVisualStyleBackColor = true;
-            button26.Click += button26_Click;
+            btnEdFacSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdFacSv.Enabled = false;
+            btnEdFacSv.ForeColor = Color.SlateBlue;
+            btnEdFacSv.Location = new Point(238, 297);
+            btnEdFacSv.Name = "btnEdFacSv";
+            btnEdFacSv.Size = new Size(98, 28);
+            btnEdFacSv.TabIndex = 23;
+            btnEdFacSv.Text = "Сохранить";
+            btnEdFacSv.UseVisualStyleBackColor = true;
+            btnEdFacSv.Click += button26_Click;
             // 
-            // textBox12
+            // txtEdFacName
             // 
-            textBox12.BorderStyle = BorderStyle.None;
-            textBox12.Enabled = false;
-            textBox12.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox12.Location = new Point(64, 166);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(313, 28);
-            textBox12.TabIndex = 3;
+            txtEdFacName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdFacName.BorderStyle = BorderStyle.FixedSingle;
+            txtEdFacName.Enabled = false;
+            txtEdFacName.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdFacName.Location = new Point(64, 166);
+            txtEdFacName.Name = "txtEdFacName";
+            txtEdFacName.Size = new Size(313, 35);
+            txtEdFacName.TabIndex = 3;
             // 
             // label26
             // 
+            label26.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label26.AutoSize = true;
             label26.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label26.Location = new Point(64, 129);
@@ -1551,7 +1678,7 @@
             // 
             // splitContainer7
             // 
-            splitContainer7.Dock = DockStyle.Fill;
+            splitContainer7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer7.Location = new Point(3, 3);
             splitContainer7.Name = "splitContainer7";
             // 
@@ -1561,92 +1688,103 @@
             // 
             // splitContainer7.Panel2
             // 
-            splitContainer7.Panel2.Controls.Add(button7);
-            splitContainer7.Panel2.Controls.Add(button11);
-            splitContainer7.Panel2.Controls.Add(button15);
-            splitContainer7.Panel2.Controls.Add(button25);
+            splitContainer7.Panel2.Controls.Add(btnEdBldtypeEd);
+            splitContainer7.Panel2.Controls.Add(btnEdBldtypeAdd);
+            splitContainer7.Panel2.Controls.Add(btnEdBldtypeDel);
+            splitContainer7.Panel2.Controls.Add(btnEdBldtypeSv);
             splitContainer7.Panel2.Controls.Add(label15);
-            splitContainer7.Panel2.Controls.Add(textBox4);
+            splitContainer7.Panel2.Controls.Add(txtEdBldtypeType);
             splitContainer7.Size = new Size(845, 325);
-            splitContainer7.SplitterDistance = 250;
+            splitContainer7.SplitterDistance = 300;
             splitContainer7.TabIndex = 0;
             // 
             // dataGridView7
             // 
             dataGridView7.AllowUserToAddRows = false;
             dataGridView7.AllowUserToDeleteRows = false;
-            dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView7.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView7.Location = new Point(3, 3);
+            dataGridView7.Dock = DockStyle.Fill;
+            dataGridView7.Location = new Point(0, 0);
             dataGridView7.Name = "dataGridView7";
             dataGridView7.ReadOnly = true;
             dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView7.Size = new Size(244, 319);
+            dataGridView7.Size = new Size(300, 325);
             dataGridView7.TabIndex = 0;
             dataGridView7.SelectionChanged += dataGridView7_SelectionChanged;
             // 
-            // button7
+            // btnEdBldtypeEd
             // 
-            button7.ForeColor = Color.DarkGoldenrod;
-            button7.Location = new Point(307, 297);
-            button7.Name = "button7";
-            button7.Size = new Size(120, 28);
-            button7.TabIndex = 28;
-            button7.Text = "РЕДАКТИРОВАТЬ";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            btnEdBldtypeEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdBldtypeEd.Enabled = false;
+            btnEdBldtypeEd.ForeColor = Color.DarkGoldenrod;
+            btnEdBldtypeEd.Location = new Point(385, 294);
+            btnEdBldtypeEd.Name = "btnEdBldtypeEd";
+            btnEdBldtypeEd.Size = new Size(120, 28);
+            btnEdBldtypeEd.TabIndex = 28;
+            btnEdBldtypeEd.Text = "РЕДАКТИРОВАТЬ";
+            btnEdBldtypeEd.UseVisualStyleBackColor = true;
+            btnEdBldtypeEd.Click += button7_Click;
             // 
-            // button11
+            // btnEdBldtypeAdd
             // 
-            button11.ForeColor = Color.ForestGreen;
-            button11.Location = new Point(6, 297);
-            button11.Name = "button11";
-            button11.Size = new Size(92, 28);
-            button11.TabIndex = 25;
-            button11.Text = "Добавить +";
-            button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
+            btnEdBldtypeAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdBldtypeAdd.ForeColor = Color.ForestGreen;
+            btnEdBldtypeAdd.Location = new Point(39, 294);
+            btnEdBldtypeAdd.Name = "btnEdBldtypeAdd";
+            btnEdBldtypeAdd.Size = new Size(92, 28);
+            btnEdBldtypeAdd.TabIndex = 25;
+            btnEdBldtypeAdd.Text = "Добавить +";
+            btnEdBldtypeAdd.UseVisualStyleBackColor = true;
+            btnEdBldtypeAdd.Click += button11_Click;
             // 
-            // button15
+            // btnEdBldtypeDel
             // 
-            button15.ForeColor = Color.Firebrick;
-            button15.Location = new Point(104, 297);
-            button15.Name = "button15";
-            button15.Size = new Size(93, 28);
-            button15.TabIndex = 26;
-            button15.Text = "Удалить -";
-            button15.UseVisualStyleBackColor = true;
-            button15.Click += button15_Click;
+            btnEdBldtypeDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdBldtypeDel.Enabled = false;
+            btnEdBldtypeDel.ForeColor = Color.Firebrick;
+            btnEdBldtypeDel.Location = new Point(152, 294);
+            btnEdBldtypeDel.Name = "btnEdBldtypeDel";
+            btnEdBldtypeDel.Size = new Size(93, 28);
+            btnEdBldtypeDel.TabIndex = 26;
+            btnEdBldtypeDel.Text = "Удалить -";
+            btnEdBldtypeDel.UseVisualStyleBackColor = true;
+            btnEdBldtypeDel.Click += button15_Click;
             // 
-            // button25
+            // btnEdBldtypeSv
             // 
-            button25.ForeColor = Color.SlateBlue;
-            button25.Location = new Point(203, 297);
-            button25.Name = "button25";
-            button25.Size = new Size(98, 28);
-            button25.TabIndex = 27;
-            button25.Text = "Сохранить";
-            button25.UseVisualStyleBackColor = true;
-            button25.Click += button25_Click;
+            btnEdBldtypeSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdBldtypeSv.Enabled = false;
+            btnEdBldtypeSv.ForeColor = Color.SlateBlue;
+            btnEdBldtypeSv.Location = new Point(266, 294);
+            btnEdBldtypeSv.Name = "btnEdBldtypeSv";
+            btnEdBldtypeSv.Size = new Size(98, 28);
+            btnEdBldtypeSv.TabIndex = 27;
+            btnEdBldtypeSv.Text = "Сохранить";
+            btnEdBldtypeSv.UseVisualStyleBackColor = true;
+            btnEdBldtypeSv.Click += button25_Click;
             // 
             // label15
             // 
+            label15.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label15.AutoSize = true;
             label15.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label15.Location = new Point(143, 109);
+            label15.Location = new Point(145, 109);
             label15.Name = "label15";
             label15.Size = new Size(267, 24);
             label15.TabIndex = 1;
             label15.Text = "Название типа корпуса";
+            label15.Click += label15_Click;
             // 
-            // textBox4
+            // txtEdBldtypeType
             // 
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-            textBox4.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(130, 136);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(297, 35);
-            textBox4.TabIndex = 0;
+            txtEdBldtypeType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEdBldtypeType.BorderStyle = BorderStyle.FixedSingle;
+            txtEdBldtypeType.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdBldtypeType.Location = new Point(130, 136);
+            txtEdBldtypeType.Name = "txtEdBldtypeType";
+            txtEdBldtypeType.Size = new Size(297, 35);
+            txtEdBldtypeType.TabIndex = 0;
             // 
             // label9
             // 
@@ -1664,7 +1802,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(877, 481);
-            Controls.Add(label_username);
             Controls.Add(btn_auth);
             Controls.Add(tabs);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -1689,7 +1826,10 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
@@ -1736,12 +1876,10 @@
             splitContainer7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView7).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private Button btn_auth;
-        private Label label_username;
         private TabPage tabPage2;
         private GroupBox groupBox1;
         private DataGridView gridview_foundroomsinfo;
@@ -1763,57 +1901,55 @@
         private TabPage tabPage3;
         private TabPage tabPage4;
         private TabPage tabPage5;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private ComboBox cmbEdBuildType;
+        private TextBox txtEdBuildName;
         private Label label7;
         private Label lblBuildType;
         private Label lblBuildName;
-        private TextBox textBox2;
+        private TextBox txtEdBuildAddress;
         private Label label4;
         private PictureBox pictureBox1;
-        private Button btnChFile;
+        private Button btnEdBuildFile;
         private SplitContainer splitContainer2;
         private ComboBox comboBox2;
         private DataGridView dataGridView2;
         private Label label11;
         private Label label10;
-        private ComboBox comboBox4;
+        private ComboBox cmbEdRoomType;
         private Label label8;
-        private TextBox textBox3;
+        private TextBox txtEdRoomNum;
         private Label label6;
-        private ComboBox comboBox3;
+        private ComboBox cmbEdRoomBuild;
         private Label label5;
         private SplitContainer splitContainer3;
         private DataGridView dataGridView3;
-        private RichTextBox richTextBox1;
+        private RichTextBox r_txtEdEqDesc;
         private Label label18;
-        private TextBox textBox7;
+        private TextBox txtEdEqNum;
         private Label label17;
-        private TextBox textBox6;
+        private TextBox txtEdEqName;
         private Label label16;
         private PictureBox pictureBox2;
         private Label label19;
         private DataGridView dataGridView4;
-        private TextBox textBox10;
+        private TextBox txtEdRespCont;
         private Label label22;
-        private TextBox textBox9;
+        private TextBox txtEdRespPos;
         private Label label21;
-        private TextBox textBox8;
+        private TextBox txtEdRespFIO;
         private Label label20;
-        private Label label23;
-        private ComboBox fpl_chpurproom;
-        private Button button1;
-        private Button button2;
-        private Button button4;
-        private Button btnAdd;
-        private Button btnDel;
-        private Button btnRep;
-        private Button button5;
-        private Button button6;
-        private Button button8;
-        private Button button9;
-        private Button button10;
-        private Button button12;
+        private Button btnEdBldAdd;
+        private Button btnEdBldDel;
+        private Button btnEdBldSv;
+        private Button btnEdRoomAdd;
+        private Button btnEdRoomDel;
+        private Button btnEdRoomRep;
+        private Button btnEdEqAdd;
+        private Button btnEdEqDel;
+        private Button btnEdEqSv;
+        private Button btnEdRespAdd;
+        private Button btnEdRespDel;
+        private Button btnEdRespSv;
         private TabPage tabPage1;
         private SplitContainer splitContainer1;
         private DataGridView dataGridView1;
@@ -1824,43 +1960,47 @@
         private DataGridView dataGridView5;
         private SplitContainer splitContainer4;
         private DataGridView dataGridView6;
-        private Button button17;
-        private Button button18;
-        private Button button19;
-        private Button button20;
+        private Button btnEdBldEd;
+        private Button btnEdRoomEd;
+        private Button btnEdEqEd;
+        private Button btnEdRespEd;
         private Label label25;
-        private Button button21;
-        private Button button13;
-        private Button button14;
-        private Button button16;
-        private TextBox textBox11;
+        private Button btnEdChEd;
+        private Button btnEdChAdd;
+        private Button btnEdChDel;
+        private Button btnEdChSv;
+        private TextBox txtEdChName;
         private Label label24;
-        private ComboBox comboBox9;
-        private Button button22;
-        private Button button23;
-        private Button button24;
-        private Button button26;
-        private TextBox textBox12;
+        private ComboBox cmbEdChFac;
+        private Button btnEdFacEd;
+        private Button btnEdFacAdd;
+        private Button btnEdFacDel;
+        private Button btnEdFacSv;
+        private TextBox txtEdFacName;
         private Label label26;
         private TabPage tabPage6;
-        private ComboBox comboBox5;
+        private ComboBox cmbEdRoomChair;
         private Label label12;
-        private ComboBox comboBox6;
+        private ComboBox cmbEdRoomResp;
         private Label label13;
-        private TextBox textBox13;
+        private TextBox txtEdRoomPurpose;
         private Label label14;
         private NumericUpDown numericUpDown2;
         private NumericUpDown numericUpDown1;
-        private ComboBox comboBox10;
+        private ComboBox cmbEdEqRoom;
         private Label label27;
-        private Button button3;
+        private Button btnEdEqFile;
         private SplitContainer splitContainer7;
         private DataGridView dataGridView7;
-        private Button button7;
-        private Button button11;
-        private Button button15;
-        private Button button25;
+        private Button btnEdBldtypeEd;
+        private Button btnEdBldtypeAdd;
+        private Button btnEdBldtypeDel;
+        private Button btnEdBldtypeSv;
         private Label label15;
-        private TextBox textBox4;
+        private TextBox txtEdBldtypeType;
+        private Button button27;
+        private Label label_username;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }

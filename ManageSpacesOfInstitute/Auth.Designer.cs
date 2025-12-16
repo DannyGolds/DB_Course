@@ -85,6 +85,7 @@
             txtPass.Location = new Point(15, 122);
             txtPass.Margin = new Padding(6, 5, 6, 5);
             txtPass.Name = "txtPass";
+            txtPass.PasswordChar = '●';
             txtPass.Size = new Size(234, 31);
             txtPass.TabIndex = 4;
             // 

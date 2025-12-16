@@ -19,7 +19,7 @@ namespace ManageSpacesOfInstitute
     public partial class MainFrame : Form
     {
         private DataTable _originalDataTable;
-        private bool isAuthorizedAdmin = false;
+        private bool isAuthorizedAdmin = true;
         private DataGridViewRow row;
         private int prevAction;
         private struct LastEditBuildingState
@@ -27,7 +27,7 @@ namespace ManageSpacesOfInstitute
             public string buildingName;
             public int buildingTypeID;
             public string buildingAdress;
-            public byte[] binaryImg;  // Храним байты, а не Image!
+            public byte[] binaryImg;
         }
         private struct lastEditChState
         {
@@ -76,8 +76,7 @@ namespace ManageSpacesOfInstitute
         public MainFrame()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.MinimumSize = new Size(893, 520);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             gridview_foundroomsinfo.ReadOnly = true;
@@ -88,9 +87,8 @@ namespace ManageSpacesOfInstitute
             // Загружаем списки из таблиц
             await LoadDataToComboBoxFromTableAsync("BUILDINGID", "NAME", "GET_BUILDINGS", fpl_chbuild);
             await LoadDataToComboBoxFromTableAsync("EQUIPMENTID", "NAME", "GET_EQUIPMENT_LIST", fpl_cheq);
-            await LoadDataToComboBoxFromTableAsync("BUILDINGID", "TYPE", "GET_BUILDINGS", fpl_chtypebuild);
+            await LoadDataToComboBoxFromTableAsync("ID", "TYPE", "GET_BUILDING_TYPES", fpl_chtypebuild);
             await LoadDataToComboBoxFromTableAsync("TYPEID", "TYPE", "ROOM_TYPES", fpl_chtyperoom);
-            await LoadDataToComboBoxFromTableAsync("ROOMID", "PURPOSE", "ROOMS", fpl_chpurproom);
 
             // Загружаем основные данные из процедуры
             await LoadDataToTableAsync(Shared.Partial.info, Shared.Partial.proc, Shared.Partial.to_hide, gridview_foundroomsinfo, Shared.Partial.naming);
@@ -100,7 +98,6 @@ namespace ManageSpacesOfInstitute
             fpl_cheq.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtyperoom.SelectedIndexChanged += (s, _) => filterData();
-            fpl_chpurproom.SelectedIndexChanged += (s, _) => filterData();
         }
         private async Task UpdateTabsAsync()
         {
@@ -119,14 +116,14 @@ namespace ManageSpacesOfInstitute
         }
         async Task LoadDataToEditPageAsync()
         {
-            await LoadDataToComboBoxFromTableAsync("ID", "TYPE", "GET_BUILDING_TYPES", comboBox1);
+            await LoadDataToComboBoxFromTableAsync("ID", "TYPE", "GET_BUILDING_TYPES", cmbEdBuildType);
             await LoadDataToComboBoxFromTableAsync("BUILDINGID", "NAME", "GET_BUILDINGS", comboBox2);
-            await LoadDataToComboBoxFromTableAsync("BUILDINGID", "NAME", "GET_BUILDINGS", comboBox3);
-            await LoadDataToComboBoxFromTableAsync("ROOMID", "DISPLAYSTRING", "GET_ROOM_DISPLAY_INFO", comboBox10);
-            await LoadDataToComboBoxFromTableAsync("TYPEID", "TYPE", "ROOM_TYPES", comboBox4);
-            await LoadDataToComboBoxFromTableAsync("PERSONID", "NAME", "GET_RESPONSIBLES", comboBox6);
-            await LoadDataToComboBoxFromTableAsync("ID", "NAME", "GET_CHAIRS", comboBox5);
-            await LoadDataToComboBoxFromTableAsync("ID", "NAME", "GET_FACULTIES", comboBox9);
+            await LoadDataToComboBoxFromTableAsync("BUILDINGID", "NAME", "GET_BUILDINGS", cmbEdRoomBuild);
+            await LoadDataToComboBoxFromTableAsync("ROOMID", "DISPLAYSTRING", "GET_ROOM_DISPLAY_INFO", cmbEdEqRoom);
+            await LoadDataToComboBoxFromTableAsync("TYPEID", "TYPE", "ROOM_TYPES", cmbEdRoomType);
+            await LoadDataToComboBoxFromTableAsync("PERSONID", "NAME", "GET_RESPONSIBLES", cmbEdRoomResp);
+            await LoadDataToComboBoxFromTableAsync("ID", "NAME", "GET_CHAIRS", cmbEdRoomChair);
+            await LoadDataToComboBoxFromTableAsync("ID", "NAME", "GET_FACULTIES", cmbEdChFac);
             await LoadDataToTableAsync(Shared.Responsible.info, Shared.Responsible.proc, Shared.Responsible.to_hide, dataGridView4, Shared.Responsible.naming);
             await LoadDataToTableAsync(Shared.Equipment.info, Shared.Equipment.proc, Shared.Equipment.to_hide, dataGridView3, Shared.Equipment.naming);
             await LoadDataToTableAsync(Shared.RoomFull.info, Shared.RoomFull.proc, Shared.RoomFull.to_hide, dataGridView2, Shared.RoomFull.naming);
@@ -135,7 +132,7 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             await LoadDataToTableAsync(Shared.BuildingTypes.info, Shared.BuildingTypes.proc, Shared.BuildingTypes.to_hide, dataGridView7, Shared.BuildingTypes.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
-        }  
+        }
         private async Task LoadDataToComboBoxFromTableAsync(string idColumnName, string displayColumnName, string tableName, System.Windows.Forms.ComboBox comboBox, bool useMinusOneForNone = false)
         {
             try
@@ -231,8 +228,7 @@ namespace ManageSpacesOfInstitute
                 fpl_chbuild.SelectedIndex > 0 ||
                 fpl_cheq.SelectedIndex > 0 ||
                 fpl_chtypebuild.SelectedIndex > 0 ||
-                fpl_chtyperoom.SelectedIndex > 0 ||
-                fpl_chpurproom.SelectedIndex > 0;
+                fpl_chtyperoom.SelectedIndex > 0;
 
             var dv = gridview_foundroomsinfo.DataSource as DataView;
             if (dv == null) return;
@@ -256,9 +252,6 @@ namespace ManageSpacesOfInstitute
 
             if (fpl_chtyperoom.SelectedIndex > 0)
                 filters.Append($"[Тип аудитории] = '{fpl_chtyperoom.Text.Replace("'", "''")}' AND ");
-
-            if (fpl_chpurproom.SelectedIndex > 0)
-                filters.Append($"[Назначение аудитории] = '{fpl_chpurproom.Text.Replace("'", "''")}' AND ");
 
             string filter = filters.ToString();
             if (filter.EndsWith(" AND "))
@@ -316,40 +309,40 @@ namespace ManageSpacesOfInstitute
         //START ОБРАБОТЧИКИ СОБЫТИЙ (MAIN_PAGE)
         private void btn_auth_Click(object sender, EventArgs e)
         {
-                if (!isAuthorizedAdmin)
+            if (!isAuthorizedAdmin)
+            {
+                using var authForm = new Auth();
+                if (authForm.ShowDialog() == DialogResult.OK)
                 {
-                    using var authForm = new Auth();
-                    if (authForm.ShowDialog() == DialogResult.OK)
+                    label_username.Text = authForm.loggedUser;
+                    if (authForm.accessLevel == "ADMIN")
                     {
-                        label_username.Text = authForm.loggedUser;
-                        if (authForm.accessLevel == "ADMIN")
-                        {
-                            isAuthorizedAdmin = true;
-                            UpdateTabsAsync();
-                            btn_auth.Text = "Выйти";
-                            Shared.ShowNotify("Уведомление", "Вы получили функционал редактирования базы.");
-                        }
-                    }
-                    return;
-                }
-                else
-                {
-                    var result = MessageBox.Show(
-                        this,
-                        "Вы уверены, что хотите выйти?",
-                        "Подтверждение выхода.",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        isAuthorizedAdmin = false;
+                        isAuthorizedAdmin = true;
                         UpdateTabsAsync();
-                        btn_auth.Text = "Авторизоваться";
-                        Shared.ShowNotify("Действия с аккаунтом", "Вы успешно вышли из аккаунта администратора!");
+                        btn_auth.Text = "Выйти";
+                        Shared.ShowNotify("Уведомление", "Вы получили функционал редактирования базы.");
                     }
-                    return;
                 }
+                return;
+            }
+            else
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Вы уверены, что хотите выйти?",
+                    "Подтверждение выхода.",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    isAuthorizedAdmin = false;
+                    UpdateTabsAsync();
+                    btn_auth.Text = "Авторизоваться";
+                    Shared.ShowNotify("Действия с аккаунтом", "Вы успешно вышли из аккаунта администратора!");
+                }
+                return;
+            }
         }
         private int GetSafeInt(object value)
         {
@@ -373,8 +366,13 @@ namespace ManageSpacesOfInstitute
             using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
             detailsForm.ShowDialog(this);
         }
-
-
+        private void button27_Click(object sender, EventArgs e)
+        {
+            fpl_chbuild.SelectedIndex = 0;
+            fpl_cheq.SelectedIndex = 0;
+            fpl_chtypebuild.SelectedIndex = 0;
+            fpl_chtyperoom.SelectedIndex = 0;
+        }
 
 
 
@@ -385,18 +383,20 @@ namespace ManageSpacesOfInstitute
         private void dtgv3_onselch(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
-
-            button17.Enabled = true;
+            prevAction = 0;
+            btnEdBldEd.Enabled = true;
+            btnEdBldDel.Enabled = true;
+            btnEdBldSv.Enabled = false;
             var row = dataGridView1.CurrentRow;
 
-            textBox1.Text = row.Cells["Корпус"].Value?.ToString() ?? "";
-            textBox2.Text = row.Cells["Адрес"].Value?.ToString() ?? "";
+            txtEdBuildName.Text = row.Cells["Корпус"].Value?.ToString() ?? "";
+            txtEdBuildAddress.Text = row.Cells["Адрес"].Value?.ToString() ?? "";
 
             // Тип корпуса
             if (row.Cells["TYPEID"].Value != null && row.Cells["TYPEID"].Value != DBNull.Value)
-                comboBox1.SelectedValue = row.Cells["TYPEID"].Value;
+                cmbEdBuildType.SelectedValue = row.Cells["TYPEID"].Value;
             else
-                comboBox1.SelectedIndex = 0;
+                cmbEdBuildType.SelectedIndex = 0;
 
             // Загрузка изображения
             var imageData = row.Cells["IMAGE"].Value;
@@ -406,33 +406,33 @@ namespace ManageSpacesOfInstitute
                 pictureBox1.Image = null;
             DisableBuildingsItems();
             // СОХРАНЯЕМ БАЙТЫ, А НЕ ССЫЛКУ!
-            lastBuildingState.buildingName = textBox1.Text;
-            lastBuildingState.buildingAdress = textBox2.Text;
-            lastBuildingState.buildingTypeID = comboBox1.SelectedIndex > 0
-                ? Convert.ToInt32(comboBox1.SelectedValue)
+            lastBuildingState.buildingName = txtEdBuildName.Text;
+            lastBuildingState.buildingAdress = txtEdBuildAddress.Text;
+            lastBuildingState.buildingTypeID = cmbEdBuildType.SelectedIndex > 0
+                ? Convert.ToInt32(cmbEdBuildType.SelectedValue)
                 : -1;
             lastBuildingState.binaryImg = ImageToBlob(pictureBox1.Image);  // Сохраняем копию в байтах
         }
         private void EnableBuildingsItems()
         {
-            textBox1.Enabled = true;
-            comboBox1.Enabled = true;
-            textBox2.Enabled = true;
-            btnChFile.Enabled = true;
+            txtEdBuildName.Enabled = true;
+            cmbEdBuildType.Enabled = true;
+            txtEdBuildAddress.Enabled = true;
+            btnEdBuildFile.Enabled = true;
         }
         private void DisableBuildingsItems()
         {
-            textBox1.Enabled = false;
-            comboBox1.Enabled = false;
-            textBox2.Enabled = false;
-            btnChFile.Enabled = false;
+            txtEdBuildName.Enabled = false;
+            cmbEdBuildType.Enabled = false;
+            txtEdBuildAddress.Enabled = false;
+            btnEdBuildFile.Enabled = false;
         }
         private void clearBuildingsItems()
         {
-            textBox1.Text = "";
-            comboBox1.SelectedIndex = 0;
-            textBox2.Text = "";
-            pictureBox1.Image = null;
+            txtEdBuildName.Text = "";
+            cmbEdBuildType.SelectedIndex = 0;
+            txtEdBuildAddress.Text = "";
+            pictureBox1.Image = Properties.Resources.LoadImage;
         }
         private void btnChFile_Click(object sender, EventArgs e)
         {
@@ -455,6 +455,9 @@ namespace ManageSpacesOfInstitute
             prevAction = 1;
             EnableBuildingsItems();
             clearBuildingsItems();
+            btnEdBldSv.Enabled = true;
+            btnEdBldDel.Enabled = false;
+            btnEdBldEd.Enabled = false;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -476,7 +479,7 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox1.Text.Length == 0 || comboBox1.SelectedIndex == 0 || textBox2.Text.Length == 0)
+                    if (txtEdBuildName.Text.Length == 0 || cmbEdBuildType.SelectedIndex == 0 || txtEdBuildAddress.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
@@ -484,9 +487,9 @@ namespace ManageSpacesOfInstitute
                     //MessageBox.Show($"{comboBox1.SelectedValue} {comboBox1.Text}");
                     await ExecuteEditAsync(new[]
 {
-    new FbParameter("NAME", textBox1.Text.Trim()),
-    new FbParameter("TYPEID", Convert.ToInt32(comboBox1.SelectedValue)),
-    new FbParameter("ADRESS", textBox2.Text.Trim()),
+    new FbParameter("NAME", txtEdBuildName.Text.Trim()),
+    new FbParameter("TYPEID", Convert.ToInt32(cmbEdBuildType.SelectedValue)),
+    new FbParameter("ADRESS", txtEdBuildAddress.Text.Trim()),
     new FbParameter("IMG",  ImageToBlob(pictureBox1.Image))
 }, "INSERT_TO_BUILDINGS");
                     clearBuildingsItems();
@@ -532,7 +535,7 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if ((textBox1.Text == lastBuildingState.buildingName && Convert.ToInt32(comboBox1.SelectedValue) == lastBuildingState.buildingTypeID && textBox2.Text == lastBuildingState.buildingAdress && lastBuildingState.binaryImg == ImageToBlob(pictureBox1.Image)) || (comboBox1.SelectedIndex == 0))
+                    if ((txtEdBuildName.Text == lastBuildingState.buildingName && Convert.ToInt32(cmbEdBuildType.SelectedValue) == lastBuildingState.buildingTypeID && txtEdBuildAddress.Text == lastBuildingState.buildingAdress && lastBuildingState.binaryImg == ImageToBlob(pictureBox1.Image)) || (cmbEdBuildType.SelectedIndex == 0))
                     {
                         Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                         return;
@@ -547,15 +550,15 @@ namespace ManageSpacesOfInstitute
         },
         new FbParameter("NAME", FbDbType.VarChar)
         {
-            Value = textBox1.Text
+            Value = txtEdBuildName.Text
         },
         new FbParameter("ADRESS", FbDbType.VarChar)
         {
-            Value = textBox2.Text.Trim()
+            Value = txtEdBuildAddress.Text.Trim()
         },
                 new FbParameter("TYPEID", FbDbType.Integer)
         {
-            Value = comboBox1.SelectedValue
+            Value = cmbEdBuildType.SelectedValue
         },
                 new FbParameter("IMG", FbDbType.Binary)
                 {
@@ -577,11 +580,16 @@ namespace ManageSpacesOfInstitute
             Form1_Load(sender, e);
             prevAction = 0;
             await LoadDataToEditPageAsync();
+            btnEdBldDel.Enabled = false;
+            btnEdBldEd.Enabled = false;
+            btnEdBldSv.Enabled = false;
         }
         private void button17_Click(object sender, EventArgs e)
         {
             prevAction = 5;
             EnableBuildingsItems();
+            btnEdBldDel.Enabled = false;
+            btnEdBldSv.Enabled = true;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -601,66 +609,70 @@ namespace ManageSpacesOfInstitute
         private void roomsEditGrid_OnSelect(object sender, EventArgs e)
         {
             if (dataGridView2.CurrentRow == null) return;
-
-            button18.Enabled = true;
+            prevAction = 0;
+            btnEdRoomEd.Enabled = true;
+            btnEdRoomDel.Enabled = true;
+            btnEdRoomRep.Enabled = false;
             var row = dataGridView2.CurrentRow;
-            textBox3.Text = row.Cells["Номер аудитории"].Value?.ToString() ?? "";
+            txtEdRoomNum.Text = row.Cells["Номер аудитории"].Value?.ToString() ?? "";
             numericUpDown2.Value = Convert.ToDecimal(row.Cells["Длина"].Value.ToString());
             numericUpDown1.Value = Convert.ToDecimal(row.Cells["Ширина"].Value.ToString());
-            comboBox3.Text = row.Cells["Корпус"].Value?.ToString();
-            textBox13.Text = row.Cells["Назначение аудитории"].Value?.ToString();
-            comboBox4.Text = row.Cells["Тип аудитории"].Value?.ToString();
-            comboBox6.Text = row.Cells["Ответственный"].Value?.ToString();
-            comboBox5.Text = row.Cells["Кафедра"].Value?.ToString();
-            lastRoomState.room = textBox3.Text;
-            lastRoomState.buildingid = Convert.ToInt32(comboBox3.SelectedValue);
+            cmbEdRoomBuild.Text = row.Cells["Корпус"].Value?.ToString();
+            txtEdRoomPurpose.Text = row.Cells["Назначение аудитории"].Value?.ToString();
+            cmbEdRoomType.Text = row.Cells["Тип аудитории"].Value?.ToString();
+            cmbEdRoomResp.Text = row.Cells["Ответственный"].Value?.ToString();
+            cmbEdRoomChair.Text = row.Cells["Кафедра"].Value?.ToString();
+            lastRoomState.room = txtEdRoomNum.Text;
+            lastRoomState.buildingid = Convert.ToInt32(cmbEdRoomBuild.SelectedValue);
             lastRoomState.width = numericUpDown1.Value;
             lastRoomState.length = numericUpDown2.Value;
-            lastRoomState.purpose = textBox13.Text;
-            lastRoomState.respid = Convert.ToInt32(comboBox6.SelectedValue);
-            lastRoomState.chairid = Convert.ToInt32(comboBox5.SelectedValue);
-            lastRoomState.roomTypeid = Convert.ToInt32(comboBox4.SelectedValue);
+            lastRoomState.purpose = txtEdRoomPurpose.Text;
+            lastRoomState.respid = Convert.ToInt32(cmbEdRoomResp.SelectedValue);
+            lastRoomState.chairid = Convert.ToInt32(cmbEdRoomChair.SelectedValue);
+            lastRoomState.roomTypeid = Convert.ToInt32(cmbEdRoomType.SelectedValue);
             DisableRoomsItems();
         }
         private void button18_Click(object sender, EventArgs e)
         {
             prevAction = 5;
             EnableRoomsItems();
+            btnEdRoomDel.Enabled = false;
+            btnEdRoomRep.Enabled = true;
         }
         private void EnableRoomsItems()
         {
-            textBox3.Enabled = true;
-            comboBox3.Enabled = true;
-            comboBox4.Enabled = true;
-            comboBox5.Enabled = true;
-            comboBox6.Enabled = true;
+            txtEdRoomNum.Enabled = true;
+            cmbEdRoomBuild.Enabled = true;
+            cmbEdRoomType.Enabled = true;
+            cmbEdRoomChair.Enabled = true;
+            cmbEdRoomResp.Enabled = true;
             numericUpDown1.Enabled = true;
             numericUpDown2.Enabled = true;
-            textBox13.Enabled = true;
-            btnRep.Enabled = true;
+            txtEdRoomPurpose.Enabled = true;
+            btnEdRoomRep.Enabled = true;
         }
         private void DisableRoomsItems()
         {
-            textBox3.Enabled = false;
-            comboBox3.Enabled = false;
-            comboBox4.Enabled = false;
-            comboBox5.Enabled = false;
-            comboBox6.Enabled = false;
+            txtEdRoomNum.Enabled = false;
+            cmbEdRoomBuild.Enabled = false;
+            cmbEdRoomType.Enabled = false;
+            cmbEdRoomChair.Enabled = false;
+            cmbEdRoomResp.Enabled = false;
             numericUpDown1.Enabled = false;
             numericUpDown2.Enabled = false;
-            textBox13.Enabled = false;
-            btnRep.Enabled = false;
+            txtEdRoomPurpose.Enabled = false;
+            btnEdRoomRep.Enabled = false;
         }
         private void clearRoomsItems()
         {
-            textBox3.Text = "";
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
-            comboBox5.SelectedIndex = 0;
-            comboBox6.SelectedIndex = 0;
+            txtEdRoomNum.Text = "";
+            cmbEdRoomBuild.SelectedIndex = 0;
+            cmbEdRoomType.SelectedIndex = 0;
+            cmbEdRoomChair.SelectedIndex = 0;
+            cmbEdRoomResp.SelectedIndex = 0;
             numericUpDown1.Value = numericUpDown1.Minimum;
             numericUpDown2.Value = numericUpDown2.Minimum;
-            textBox13.Text = "";
+            txtEdRoomPurpose.Text = "";
         }
         private async void btnRep_Click(object sender, EventArgs e)
         {
@@ -676,21 +688,21 @@ namespace ManageSpacesOfInstitute
                 );
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox3.Text.Length == 0 || comboBox3.SelectedIndex == 0 || comboBox4.SelectedIndex == 0 || comboBox5.SelectedIndex == 0 || comboBox6.SelectedIndex == 0 || textBox13.Text.Length == 0)
+                    if (txtEdRoomNum.Text.Length == 0 || cmbEdRoomBuild.SelectedIndex == 0 || cmbEdRoomType.SelectedIndex == 0 || cmbEdRoomChair.SelectedIndex == 0 || cmbEdRoomResp.SelectedIndex == 0 || txtEdRoomPurpose.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(new[]
             {
-    new FbParameter("BID",   Convert.ToInt32(comboBox3.SelectedValue)) ,
-    new FbParameter("NUM",   textBox3.Text.ToString()),
+    new FbParameter("BID",   Convert.ToInt32(cmbEdRoomBuild.SelectedValue)) ,
+    new FbParameter("NUM",   txtEdRoomNum.Text.ToString()),
     new FbParameter("WD", numericUpDown1.Value),
     new FbParameter("LEN", numericUpDown2.Value),
-    new FbParameter("PURP", textBox13.Text),
-    new FbParameter("RESPID", Convert.ToInt32(comboBox6.SelectedValue)),
-    new FbParameter("CHID", Convert.ToInt32(comboBox5.SelectedValue)),    
-    new FbParameter("TYPE_ID", Convert.ToInt32(comboBox4.SelectedValue)),
+    new FbParameter("PURP", txtEdRoomPurpose.Text),
+    new FbParameter("RESPID", Convert.ToInt32(cmbEdRoomResp.SelectedValue)),
+    new FbParameter("CHID", Convert.ToInt32(cmbEdRoomChair.SelectedValue)),
+    new FbParameter("TYPE_ID", Convert.ToInt32(cmbEdRoomType.SelectedValue)),
     }, "INSERT_TO_ROOMS");
 
                 }
@@ -732,17 +744,17 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox3.Text.Trim() == lastRoomState.room.Trim() &&
-                    GetSafeInt(comboBox3.SelectedValue) == lastRoomState.buildingid &&
-                    GetSafeInt(comboBox4.SelectedValue) == lastRoomState.roomTypeid &&
-                    GetSafeInt(comboBox5.SelectedValue) == lastRoomState.chairid &&
-                    GetSafeInt(comboBox6.SelectedValue) == lastRoomState.respid &&
-                    textBox13.Text.Trim() == lastRoomState.purpose.Trim() &&
+                    txtEdRoomNum.Text.Trim() == lastRoomState.room.Trim() &&
+                    GetSafeInt(cmbEdRoomBuild.SelectedValue) == lastRoomState.buildingid &&
+                    GetSafeInt(cmbEdRoomType.SelectedValue) == lastRoomState.roomTypeid &&
+                    GetSafeInt(cmbEdRoomChair.SelectedValue) == lastRoomState.chairid &&
+                    GetSafeInt(cmbEdRoomResp.SelectedValue) == lastRoomState.respid &&
+                    txtEdRoomPurpose.Text.Trim() == lastRoomState.purpose.Trim() &&
                     numericUpDown1.Value == lastRoomState.width &&
                     numericUpDown2.Value == lastRoomState.length;
 
-                if (nothingChanged || comboBox3.SelectedIndex <= 0 || comboBox4.SelectedIndex <= 0 ||
-                    comboBox5.SelectedIndex <= 0 || comboBox6.SelectedIndex <= 0)
+                if (nothingChanged || cmbEdRoomBuild.SelectedIndex <= 0 || cmbEdRoomType.SelectedIndex <= 0 ||
+                    cmbEdRoomChair.SelectedIndex <= 0 || cmbEdRoomResp.SelectedIndex <= 0)
                 {
                     Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
@@ -752,14 +764,14 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(new[]
                 {
         new FbParameter("P_ROOOMID", FbDbType.Integer)   { Value = Convert.ToInt32(dataGridView2.CurrentRow.Cells["ROOM_ID"].Value) },
-        new FbParameter("P_BID",     FbDbType.Integer)   { Value = Convert.ToInt32(comboBox3.SelectedValue) },  // Корпус
-        new FbParameter("P_NUM",     FbDbType.VarChar)   { Value = textBox3.Text.Trim() },
+        new FbParameter("P_BID",     FbDbType.Integer)   { Value = Convert.ToInt32(cmbEdRoomBuild.SelectedValue) },  // Корпус
+        new FbParameter("P_NUM",     FbDbType.VarChar)   { Value = txtEdRoomNum.Text.Trim() },
         new FbParameter("P_WD",      FbDbType.Decimal)   { Value = numericUpDown1.Value },
         new FbParameter("P_LNGTH",   FbDbType.Decimal)   { Value = numericUpDown2.Value },
-        new FbParameter("P_PURP",    FbDbType.VarChar)   { Value = textBox13.Text.Trim() },
-        new FbParameter("P_RESPID",  FbDbType.Integer)   { Value = Convert.ToInt32(comboBox6.SelectedValue) },  // Ответственный
-        new FbParameter("P_CHID",    FbDbType.Integer)   { Value = Convert.ToInt32(comboBox5.SelectedValue) },  // Кафедра — ИСПРАВЛЕНО!
-        new FbParameter("P_TYPE_ID", FbDbType.Integer)   { Value = Convert.ToInt32(comboBox4.SelectedValue) }   // Тип аудитории — ИСПРАВЛЕНО!
+        new FbParameter("P_PURP",    FbDbType.VarChar)   { Value = txtEdRoomPurpose.Text.Trim() },
+        new FbParameter("P_RESPID",  FbDbType.Integer)   { Value = Convert.ToInt32(cmbEdRoomResp.SelectedValue) },  // Ответственный
+        new FbParameter("P_CHID",    FbDbType.Integer)   { Value = Convert.ToInt32(cmbEdRoomChair.SelectedValue) },  // Кафедра — ИСПРАВЛЕНО!
+        new FbParameter("P_TYPE_ID", FbDbType.Integer)   { Value = Convert.ToInt32(cmbEdRoomType.SelectedValue) }   // Тип аудитории — ИСПРАВЛЕНО!
     }, "UPDATE_ROOMS");
 
                 Shared.ShowNotify("Изменение записи", "Информация об аудиториях обновлена.");
@@ -769,10 +781,15 @@ namespace ManageSpacesOfInstitute
             Form1_Load(sender, e);
             DisableRoomsItems();
             await LoadDataToEditPageAsync();
+            btnEdRoomDel.Enabled = false;
+            btnEdRoomEd.Enabled = false;
+            btnEdRoomRep.Enabled = false;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdRoomRep.Enabled = false;
+            btnEdRoomDel.Enabled = false;
             EnableRoomsItems();
             clearRoomsItems();
         }
@@ -788,55 +805,75 @@ namespace ManageSpacesOfInstitute
         }
 
 
+
+
+
+
+
+        //START ОБРАБОТЧИКИ (EDIT -> EQUIPMENT)
         private void EnableEqItems()
         {
-            textBox1.Enabled = true;
-            textBox6.Enabled = true;
-            textBox7.Enabled = true;
-            comboBox10.Enabled = true;
-            richTextBox1.Enabled = true;
+            txtEdBuildName.Enabled = true;
+            txtEdEqName.Enabled = true;
+            txtEdEqNum.Enabled = true;
+            cmbEdEqRoom.Enabled = true;
+            r_txtEdEqDesc.Enabled = true;
 
         }
         private void DisableEqItems()
         {
-            textBox1.Enabled = false;
-            textBox6.Enabled = false;
-            textBox7.Enabled = false;
-            comboBox10.Enabled = false;
-            richTextBox1.Enabled = false;
+            txtEdBuildName.Enabled = false;
+            txtEdEqName.Enabled = false;
+            txtEdEqNum.Enabled = false;
+            cmbEdEqRoom.Enabled = false;
+            r_txtEdEqDesc.Enabled = false;
         }
         private void clearEqItems()
         {
-            textBox1.Text = "";
-            textBox6.Text = "";
-            textBox7.Text = "";
-            comboBox10.SelectedIndex = 0;
-            richTextBox1.Text = "";
-            pictureBox2.Image = null;
+            txtEdBuildName.Text = "";
+            txtEdEqName.Text = "";
+            txtEdEqNum.Text = "";
+            cmbEdEqRoom.SelectedIndex = 0;
+            r_txtEdEqDesc.Text = "";
+            pictureBox2.Image = Properties.Resources.LoadImage;
         }
         private void dataGridView3_Select(object sender, EventArgs e)
         {
             if (dataGridView3.CurrentRow == null) return;
+            prevAction = 0;
+            btnEdEqEd.Enabled = true;
+            btnEdEqDel.Enabled = true;
+            btnEdEqSv.Enabled = false;
 
-            button19.Enabled = true;
             var row = dataGridView3.CurrentRow;
 
-            textBox6.Text = row.Cells["Название оборудования"].Value?.ToString() ?? "";
-            textBox7.Text = row.Cells["Серийный номер"].Value?.ToString() ?? "";
-            richTextBox1.Text = row.Cells["Описание оборудования"].Value?.ToString() ?? "";
-            comboBox10.SelectedValue = row.Cells["ROOMID"].Value.ToString();
+            txtEdEqName.Text = row.Cells["Название оборудования"].Value?.ToString() ?? "";
+            txtEdEqNum.Text = row.Cells["Серийный номер"].Value?.ToString() ?? "";
+            r_txtEdEqDesc.Text = row.Cells["Описание оборудования"].Value?.ToString() ?? "";
+            if (row.Cells["ROOMID"].Value != null &&
+    int.TryParse(row.Cells["ROOMID"].Value.ToString(), out int roomId))
+            {
+                cmbEdEqRoom.SelectedValue = roomId;
+            }
+            else
+            {
+                cmbEdEqRoom.SelectedIndex = -1; // или оставить пустым
+            }
+
             Shared.LoadImageFromBlob(pictureBox2, row.Cells["IMAGE"].Value);
 
-            lastEquipmentState.roomId = Convert.ToInt32(comboBox10.SelectedValue);
-            lastEquipmentState.naming = textBox6.Text.Trim();
-            lastEquipmentState.serial = textBox7.Text.Trim();
-            lastEquipmentState.description = richTextBox1.Text;
+            lastEquipmentState.roomId = Convert.ToInt32(cmbEdEqRoom.SelectedValue);
+            lastEquipmentState.naming = txtEdEqName.Text.Trim();
+            lastEquipmentState.serial = txtEdEqNum.Text.Trim();
+            lastEquipmentState.description = r_txtEdEqDesc.Text;
             lastEquipmentState.imageBinary = ImageToBlob(pictureBox2.Image);
             DisableEqItems();
         }
         private void button19_Click(object sender, EventArgs e)
         {
             prevAction = 5;
+            btnEdEqDel.Enabled = false;
+            btnEdEqSv.Enabled = true;
             EnableEqItems();
         }
         private void button3_Click_1(object sender, EventArgs e)
@@ -857,6 +894,9 @@ namespace ManageSpacesOfInstitute
         private void button5_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdEqDel.Enabled = false;
+            btnEdEqSv.Enabled = true;
+            btnEdEqEd.Enabled = false;
             EnableEqItems();
             clearEqItems();
         }
@@ -881,18 +921,18 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox7.Text.Length == 0 || comboBox10.SelectedIndex == 0 || textBox6.Text.Length == 0 || textBox7.Text.Length == 0 || richTextBox1.Text.Length == 0 || pictureBox2.Image is null)
+                    if (txtEdEqNum.Text.Length == 0 || cmbEdEqRoom.SelectedIndex == 0 || txtEdEqName.Text.Length == 0 || txtEdEqNum.Text.Length == 0 || r_txtEdEqDesc.Text.Length == 0 || pictureBox2.Image is null)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
                         new FbParameter[]
-{   new FbParameter("ROOM_ID", FbDbType.Integer) { Value = Convert.ToInt32(comboBox10.SelectedValue)},
-    new FbParameter("NAME", FbDbType.VarChar) { Value = textBox6.Text },
-    new FbParameter("SERIAL", FbDbType.VarChar) { Value = textBox7.Text },
+{   new FbParameter("ROOM_ID", FbDbType.Integer) { Value = Convert.ToInt32(cmbEdEqRoom.SelectedValue)},
+    new FbParameter("NAME", FbDbType.VarChar) { Value = txtEdEqName.Text },
+    new FbParameter("SERIAL", FbDbType.VarChar) { Value = txtEdEqNum.Text },
     new FbParameter("IMG", FbDbType.Binary) { Value = ImageToBlob(pictureBox2.Image) },
-    new FbParameter("NOTES", FbDbType.VarChar) { Value = richTextBox1.Text}
+    new FbParameter("NOTES", FbDbType.VarChar) { Value = r_txtEdEqDesc.Text}
 }, "INSERT_TO_EQUIPMENT");
 
                 }
@@ -934,13 +974,13 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox6.Text.Trim() == lastEquipmentState.naming.Trim() &&
-                    GetSafeInt(comboBox10.SelectedValue) == lastEquipmentState.roomId &&
-                    textBox7.Text.Trim() == lastEquipmentState.serial.Trim() &&
-                    richTextBox1.Text == lastEquipmentState.description;
+                    txtEdEqName.Text.Trim() == lastEquipmentState.naming.Trim() &&
+                    GetSafeInt(cmbEdEqRoom.SelectedValue) == lastEquipmentState.roomId &&
+                    txtEdEqNum.Text.Trim() == lastEquipmentState.serial.Trim() &&
+                    r_txtEdEqDesc.Text == lastEquipmentState.description;
                 Shared.LoadImageFromBlob(pictureBox2, lastEquipmentState.imageBinary);
 
-                if (nothingChanged || comboBox10.SelectedIndex <= 0)
+                if (nothingChanged || cmbEdEqRoom.SelectedIndex <= 0)
                 {
                     Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
@@ -950,11 +990,11 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(
                         new FbParameter[]
 {   new FbParameter("EID", FbDbType.Integer) {Value = Convert.ToInt32(row.Cells["EQUIPMENTID"].Value)},
-    new FbParameter("ROOM_ID", FbDbType.Integer) { Value = Convert.ToInt32(comboBox10.SelectedValue)},
-    new FbParameter("NAME", FbDbType.VarChar) { Value = textBox6.Text },
-    new FbParameter("SERIAL", FbDbType.VarChar) { Value = textBox7.Text },
+    new FbParameter("ROOM_ID", FbDbType.Integer) { Value = Convert.ToInt32(cmbEdEqRoom.SelectedValue)},
+    new FbParameter("NAME", FbDbType.VarChar) { Value = txtEdEqName.Text },
+    new FbParameter("SERIAL", FbDbType.VarChar) { Value = txtEdEqNum.Text },
     new FbParameter("IMG", FbDbType.Binary) { Value = ImageToBlob(pictureBox2.Image) },
-    new FbParameter("NOTES", FbDbType.VarChar) { Value = richTextBox1.Text}
+    new FbParameter("NOTES", FbDbType.VarChar) { Value = r_txtEdEqDesc.Text}
 }, "UPDATE_EQUIPMENT");
 
                 Shared.ShowNotify("Изменение записи", "Информация об оборудовании обновлена.");
@@ -965,35 +1005,59 @@ namespace ManageSpacesOfInstitute
             clearEqItems();
             DisableEqItems();
             await LoadDataToEditPageAsync();
+            btnEdEqDel.Enabled = false;
+            btnEdEqEd.Enabled = false;
+            btnEdEqSv.Enabled = false;
         }
 
 
 
 
 
+        //START ОБРАБОТЧИКИ (EDIT -> RESPONSIBLES)
+        private void dataGridView4_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView4.CurrentRow == null) return;
+            prevAction = 0;
+            btnEdRespDel.Enabled = true;
+            btnEdRespSv.Enabled = false;
+            btnEdRespEd.Enabled = true;
+            var row = dataGridView4.CurrentRow;
 
+            txtEdRespFIO.Text = row.Cells["Полное имя"].Value?.ToString() ?? "";
+            txtEdRespPos.Text = row.Cells["Должность"].Value?.ToString() ?? "";
+            txtEdRespCont.Text = row.Cells["Номер телефона"].Value?.ToString() ?? "";
+
+            lastRState.name = txtEdRespFIO.Text.Trim();
+            lastRState.position = txtEdRespPos.Text.Trim();
+            lastRState.phone = txtEdRespCont.Text.Trim();
+            DisableRItems();
+        }
         private void EnableRItems()
         {
-            textBox8.Enabled = true;
-            textBox9.Enabled = true;
-            textBox10.Enabled = true;
+            txtEdRespFIO.Enabled = true;
+            txtEdRespPos.Enabled = true;
+            txtEdRespCont.Enabled = true;
 
         }
         private void DisableRItems()
         {
-            textBox8.Enabled = false;
-            textBox9.Enabled = false;
-            textBox10.Enabled = false;
+            txtEdRespFIO.Enabled = false;
+            txtEdRespPos.Enabled = false;
+            txtEdRespCont.Enabled = false;
         }
         private void clearRItems()
         {
-            textBox8.Text = "";
-            textBox9.Text = "";
-            textBox10.Text = "";
+            txtEdRespFIO.Text = "";
+            txtEdRespPos.Text = "";
+            txtEdRespCont.Text = "";
         }
         private void button9_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdRespDel.Enabled = false;
+            btnEdRespEd.Enabled = false;
+            btnEdRespSv.Enabled = true;
             EnableRItems();
             clearRItems();
         }
@@ -1005,6 +1069,8 @@ namespace ManageSpacesOfInstitute
         private void button20_Click(object sender, EventArgs e)
         {
             prevAction = 5;
+            btnEdRespDel.Enabled = false;
+            btnEdRespSv.Enabled = true;
             EnableRItems();
         }
         private async void button12_Click(object sender, EventArgs e)
@@ -1020,7 +1086,7 @@ namespace ManageSpacesOfInstitute
                     MessageBoxIcon.Question
                 );
 
-                string input = textBox10.Text.Trim();
+                string input = txtEdRespCont.Text.Trim();
 
                 if (!IsValidPhone(input))
                 {
@@ -1030,7 +1096,7 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox8.Text.Length == 0 || comboBox9.SelectedIndex == 0 || textBox10.Text.Length == 0)
+                    if (txtEdRespFIO.Text.Length == 0 || cmbEdChFac.SelectedIndex == 0 || txtEdRespCont.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
@@ -1038,9 +1104,9 @@ namespace ManageSpacesOfInstitute
                     await ExecuteEditAsync(
                         new[] {
 
-  new FbParameter("NAME", FbDbType.VarChar) {Value = textBox8.Text},
-    new FbParameter("JOBPOSITION", FbDbType.VarChar) { Value = textBox9.Text},
-    new FbParameter("PHONE", FbDbType.VarChar) { Value = textBox10.Text }
+  new FbParameter("NAME", FbDbType.VarChar) {Value = txtEdRespFIO.Text},
+    new FbParameter("JOBPOSITION", FbDbType.VarChar) { Value = txtEdRespPos.Text},
+    new FbParameter("PHONE", FbDbType.VarChar) { Value = txtEdRespCont.Text }
 }, "ADD_ROOMRESPONSIBLE");
                 }
             }
@@ -1081,10 +1147,10 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox8.Text.Trim() == lastRState.name.Trim() &&
-                    textBox9.Text.Trim() == lastRState.position.Trim() &&
-                    textBox10.Text.Trim() == lastRState.phone.Trim();
-                string input = textBox10.Text.Trim();
+                    txtEdRespFIO.Text.Trim() == lastRState.name.Trim() &&
+                    txtEdRespPos.Text.Trim() == lastRState.position.Trim() &&
+                    txtEdRespCont.Text.Trim() == lastRState.phone.Trim();
+                string input = txtEdRespCont.Text.Trim();
 
                 if (!IsValidPhone(input))
                 {
@@ -1103,9 +1169,9 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(
                        new FbParameter[]
 {   new FbParameter("ROOMRESPONSIBLEID", FbDbType.Integer) {Value = Convert.ToInt32(row.Cells["PERSONID"].Value)},
-    new FbParameter("NAME", FbDbType.VarChar) {Value = textBox8.Text},
-    new FbParameter("JOBPOSITION", FbDbType.VarChar) { Value = textBox9.Text},
-    new FbParameter("PHONE", FbDbType.VarChar) { Value = textBox10.Text }
+    new FbParameter("NAME", FbDbType.VarChar) {Value = txtEdRespFIO.Text},
+    new FbParameter("JOBPOSITION", FbDbType.VarChar) { Value = txtEdRespPos.Text},
+    new FbParameter("PHONE", FbDbType.VarChar) { Value = txtEdRespCont.Text }
 }, "UPDATE_ROOMRESPONSIBLE");
 
                 Shared.ShowNotify("Изменение записи", "Информация об ответственных обновлена.");
@@ -1116,46 +1182,33 @@ namespace ManageSpacesOfInstitute
             clearRItems();
             DisableRItems();
             await LoadDataToEditPageAsync();
-        }
-        private void dataGridView4_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView4.CurrentRow == null) return;
-
-            button19.Enabled = true;
-            var row = dataGridView4.CurrentRow;
-
-            textBox8.Text = row.Cells["Полное имя"].Value?.ToString() ?? "";
-            textBox9.Text = row.Cells["Должность"].Value?.ToString() ?? "";
-            textBox10.Text = row.Cells["Номер телефона"].Value?.ToString() ?? "";
-
-            lastRState.name = textBox8.Text.Trim();
-            lastRState.position = textBox9.Text.Trim();
-            lastRState.phone = textBox10.Text.Trim();
-            DisableRItems();
+            btnEdRespEd.Enabled = false;
+            btnEdRespDel.Enabled = false;
+            btnEdRespSv.Enabled = false;
         }
 
 
 
 
 
-
+        //START ОБРАБОТЧИКИ (EDIT -> CHAIRS)
         private void EnableChItems()
         {
-            textBox11.Enabled = true;
-            comboBox9.Enabled = true;
+            txtEdChName.Enabled = true;
+            cmbEdChFac.Enabled = true;
 
 
         }
         private void DisableChItems()
         {
-            textBox11.Enabled = false;
-            comboBox9.Enabled = false;
+            txtEdChName.Enabled = false;
+            cmbEdChFac.Enabled = false;
 
         }
         private void clearChItems()
         {
-            textBox11.Text = "";
-            comboBox9.Text = "";
+            txtEdChName.Text = "";
+            cmbEdChFac.Text = "";
         }
         private async void button16_Click(object sender, EventArgs e)
         {
@@ -1172,15 +1225,15 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox11.Text.Length == 0 || comboBox9.SelectedIndex == 0)
+                    if (txtEdChName.Text.Length == 0 || cmbEdChFac.SelectedIndex == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
                         new FbParameter[]
-{   new FbParameter("NAME", FbDbType.VarChar) {Value = textBox11.Text},
-    new FbParameter("FACULTYID", FbDbType.Integer) { Value = Convert.ToInt32(comboBox9.SelectedValue)},
+{   new FbParameter("NAME", FbDbType.VarChar) {Value = txtEdChName.Text},
+    new FbParameter("FACULTYID", FbDbType.Integer) { Value = Convert.ToInt32(cmbEdChFac.SelectedValue)},
 }, "ADD_CHAIR");
 
                 }
@@ -1222,10 +1275,10 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox11.Text.Trim() == lastChState.chairname.Trim() &&
-                    GetSafeInt(comboBox9.SelectedValue) == lastChState.faculty;
+                    txtEdChName.Text.Trim() == lastChState.chairname.Trim() &&
+                    GetSafeInt(cmbEdChFac.SelectedValue) == lastChState.faculty;
 
-                if (nothingChanged || comboBox9.SelectedIndex <= 0)
+                if (nothingChanged || cmbEdChFac.SelectedIndex <= 0)
                 {
                     Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
                     return;
@@ -1235,8 +1288,8 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(
                         new FbParameter[]
 {   new FbParameter("CHAIRID", FbDbType.Integer) {Value = Convert.ToInt32(row.Cells["ID"].Value)},
-    new FbParameter("NAME", FbDbType.VarChar) { Value = textBox11.Text},
-    new FbParameter("FACULTYID", FbDbType.Integer) { Value = Convert.ToInt32(comboBox9.SelectedValue) },
+    new FbParameter("NAME", FbDbType.VarChar) { Value = txtEdChName.Text},
+    new FbParameter("FACULTYID", FbDbType.Integer) { Value = Convert.ToInt32(cmbEdChFac.SelectedValue) },
 }, "UPDATE_CHAIR");
 
                 Shared.ShowNotify("Изменение записи", "Информация о кафедрах обновлена.");
@@ -1246,24 +1299,34 @@ namespace ManageSpacesOfInstitute
             clearChItems();
             DisableChItems();
             await LoadDataToEditPageAsync();
+            btnEdChEd.Enabled = false;
+            btnEdChDel.Enabled = false;
+            btnEdChSv.Enabled = false;
         }
         private void dataGridView5_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView5.CurrentRow == null) return;
+            prevAction = 0;
+            btnEdChDel.Enabled = true;
+            btnEdChSv.Enabled = false;
+            btnEdChEd.Enabled = true;
 
-            button20.Enabled = true;
             var row = dataGridView5.CurrentRow;
 
-            textBox11.Text = row.Cells["Кафедра"].Value?.ToString() ?? "";
-            comboBox9.Text = row.Cells["Факультет"].Value?.ToString() ?? "";
+            txtEdChName.Text = row.Cells["Кафедра"].Value?.ToString() ?? "";
+            cmbEdChFac.Text = row.Cells["Факультет"].Value?.ToString() ?? "";
 
-            lastChState.chairname = textBox11.Text.Trim();
-            lastChState.faculty = Convert.ToInt32(comboBox9.SelectedValue);
+            lastChState.chairname = txtEdChName.Text.Trim();
+            lastChState.faculty = cmbEdChFac.SelectedValue != null && cmbEdChFac.SelectedValue != DBNull.Value ? Convert.ToInt32(cmbEdChFac.SelectedValue) : 0;
+
             DisableChItems();
         }
         private void button13_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdChDel.Enabled = false;
+            btnEdChEd.Enabled = false;
+            btnEdChSv.Enabled = true;
             EnableChItems();
             clearChItems();
         }
@@ -1275,6 +1338,8 @@ namespace ManageSpacesOfInstitute
         private void button21_Click(object sender, EventArgs e)
         {
             prevAction = 5;
+            btnEdChDel.Enabled = false;
+            btnEdChSv.Enabled = true;
             EnableChItems();
         }
         private void bldCanc(object sender, EventArgs e)
@@ -1285,25 +1350,28 @@ namespace ManageSpacesOfInstitute
 
 
 
-
+        //START ОБРАБОТЧИКИ (EDIT -> FACULTIES)
         private void EnableFacItems()
         {
-            textBox12.Enabled = true;
+            txtEdFacName.Enabled = true;
 
 
         }
         private void DisableFacItems()
         {
-            textBox12.Enabled = false;
+            txtEdFacName.Enabled = false;
 
         }
         private void clearFacItems()
         {
-            textBox12.Text = "";
+            txtEdFacName.Text = "";
         }
         private void button23_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdFacDel.Enabled = false;
+            btnEdFacEd.Enabled = false;
+            btnEdFacSv.Enabled = true;
             EnableFacItems();
             clearFacItems();
         }
@@ -1327,14 +1395,14 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox12.Text.Length == 0)
+                    if (txtEdFacName.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
                         new FbParameter[]
-{   new FbParameter("NAME", FbDbType.VarChar) {Value = textBox12.Text}
+{   new FbParameter("NAME", FbDbType.VarChar) {Value = txtEdFacName.Text}
 }, "ADD_FACULTY");
 
                 }
@@ -1371,7 +1439,7 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox12.Text.Trim() == lastFacState.Trim();
+                    txtEdFacName.Text.Trim() == lastFacState.Trim();
 
                 if (nothingChanged)
                 {
@@ -1383,7 +1451,7 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(new[]
                    {
                         new FbParameter("FACULTY_ID", FbDbType.Integer) { Value = Convert.ToInt32(idValue) },
-                        new FbParameter("NAME", FbDbType.VarChar) {Value = textBox12.Text}
+                        new FbParameter("NAME", FbDbType.VarChar) {Value = txtEdFacName.Text}
                     }, "UPDATE_FACULTY");
 
                 Shared.ShowNotify("Изменение записи", "Информация о факультетах обновлена.");
@@ -1393,22 +1461,29 @@ namespace ManageSpacesOfInstitute
             clearFacItems();
             DisableFacItems();
             await LoadDataToEditPageAsync();
+            btnEdFacEd.Enabled = false;
+            btnEdFacDel.Enabled = false;
+            btnEdFacSv.Enabled = false;
         }
         private void button22_Click(object sender, EventArgs e)
         {
             prevAction = 5;
+            btnEdFacDel.Enabled = false;
+            btnEdFacSv.Enabled = true;
             EnableFacItems();
         }
         private void dataGridView6_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView6.CurrentRow == null) return;
-
-            button22.Enabled = true;
+            prevAction = 0;
+            btnEdFacDel.Enabled = true;
+            btnEdFacSv.Enabled = false;
+            btnEdFacEd.Enabled = true;
             var row = dataGridView6.CurrentRow;
 
-            textBox12.Text = row.Cells["Факультет"].Value?.ToString() ?? "";
+            txtEdFacName.Text = row.Cells["Факультет"].Value?.ToString() ?? "";
 
-            lastFacState = textBox12.Text.Trim();
+            lastFacState = txtEdFacName.Text.Trim();
             DisableFacItems();
         }
 
@@ -1418,41 +1493,43 @@ namespace ManageSpacesOfInstitute
 
 
 
-
+        //START ОБРАБОТЧИКИ (EDIT -> BUILDING_TYPES)
         private void EnableBTItems()
         {
-            textBox4.Enabled = true;
+            txtEdBldtypeType.Enabled = true;
 
 
         }
         private void DisableBTItems()
         {
-            textBox4.Enabled = false;
+            txtEdBldtypeType.Enabled = false;
 
         }
         private void clearBTItems()
         {
-            textBox4.Text = "";
+            txtEdBldtypeType.Text = "";
         }
         private void button11_Click(object sender, EventArgs e)
         {
             prevAction = 1;
+            btnEdBldtypeDel.Enabled = false;
+            btnEdBldtypeEd.Enabled = false;
+            btnEdBldtypeSv.Enabled = true;
             EnableBTItems();
             clearBTItems();
         }
-
         private void button15_Click(object sender, EventArgs e)
         {
             prevAction = 2;
             button25_Click(sender, e);
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             prevAction = 5;
+            btnEdBldtypeDel.Enabled = false;
+            btnEdBldtypeSv.Enabled = true;
             EnableBTItems();
         }
-
         private async void button25_Click(object sender, EventArgs e)
         {
             var row = dataGridView7.CurrentRow;
@@ -1468,14 +1545,14 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox4.Text.Length == 0)
+                    if (txtEdBldtypeType.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
                     }
                     await ExecuteEditAsync(
                         new FbParameter[]
-{   new FbParameter("TYPE", FbDbType.VarChar) {Value = textBox4.Text}
+{   new FbParameter("TYPE", FbDbType.VarChar) {Value = txtEdBldtypeType.Text}
 }, "ADD_BUILDING_TYPE");
 
                 }
@@ -1519,7 +1596,7 @@ namespace ManageSpacesOfInstitute
 
                 // Проверка, что ничего не изменилось или не выбраны обязательные поля
                 bool nothingChanged =
-                    textBox4.Text.Trim() == lastBTState.Trim();
+                    txtEdBldtypeType.Text.Trim() == lastBTState.Trim();
                 if (nothingChanged)
                 {
                     Shared.ShowNotify("Изменение записи", "Измените хотя бы одно поле!");
@@ -1530,7 +1607,7 @@ namespace ManageSpacesOfInstitute
                 await ExecuteEditAsync(new[]
                    {
                         new FbParameter("ID", FbDbType.Integer) { Value = Convert.ToInt32(idValue) },
-                        new FbParameter("TYPE", FbDbType.VarChar) {Value = textBox4.Text}
+                        new FbParameter("TYPE", FbDbType.VarChar) {Value = txtEdBldtypeType.Text}
                     }, "UPDATE_BUILDING_TYPE");
 
                 Shared.ShowNotify("Изменение записи", "Информация о типе корпуса обновлена.");
@@ -1540,18 +1617,22 @@ namespace ManageSpacesOfInstitute
             clearBTItems();
             DisableBTItems();
             await LoadDataToEditPageAsync();
+            btnEdBldtypeEd.Enabled = false;
+            btnEdBldtypeDel.Enabled = false;
+            btnEdBldtypeSv.Enabled = false;
         }
-
         private void dataGridView7_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView7.CurrentRow == null) return;
-
-            button25.Enabled = true;
+            prevAction = 0;
+            btnEdBldtypeDel.Enabled = true;
+            btnEdBldtypeSv.Enabled = false;
+            btnEdBldtypeEd.Enabled = true;
             var row = dataGridView7.CurrentRow;
 
-            textBox4.Text = row.Cells["Тип корпуса"].Value?.ToString() ?? "";
+            txtEdBldtypeType.Text = row.Cells["Тип корпуса"].Value?.ToString() ?? "";
 
-            lastBTState = textBox4.Text.Trim();
+            lastBTState = txtEdBldtypeType.Text.Trim();
             DisableBTItems();
         }
 
@@ -1562,6 +1643,98 @@ namespace ManageSpacesOfInstitute
 
 
 
+        
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            prevAction = 0;
+            clearBTItems();
+            clearBuildingsItems();
+            clearChItems();
+            clearEqItems();
+            clearFacItems();
+            clearRItems();
+            clearRoomsItems();
+            btnEdBldDel.Enabled = false;
+            btnEdBldSv.Enabled = false;
+            btnEdBldEd.Enabled = false;
+
+            btnEdRoomEd.Enabled = false;
+            btnEdRoomDel.Enabled = false;
+            btnEdRoomRep.Enabled = false;
+
+            btnEdEqDel.Enabled = false;
+            btnEdEqSv.Enabled = false;
+            btnEdEqEd.Enabled = false;
+
+            btnEdRespDel.Enabled = false;
+            btnEdRespSv.Enabled = false;
+            btnEdRespEd.Enabled = false;
+
+            btnEdChDel.Enabled = false;
+            btnEdChSv.Enabled = false;
+            btnEdChEd.Enabled = false;
+
+            btnEdFacDel.Enabled = false;
+            btnEdFacSv.Enabled = false;
+            btnEdFacEd.Enabled = false;
+
+            btnEdBldtypeDel.Enabled = false;
+            btnEdBldtypeEd.Enabled = false;
+            btnEdBldtypeSv.Enabled = false;
+        }
+
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //START Обработчики событий. (НЕИСПОЛЬЗУЕМЫЕ)
         private void tabPage1_Click(object sender, EventArgs e) { }
         private void textBox2_TextChanged(object sender, EventArgs e) { }
@@ -1606,7 +1779,6 @@ namespace ManageSpacesOfInstitute
         {
 
         }
-
 
     }
 }

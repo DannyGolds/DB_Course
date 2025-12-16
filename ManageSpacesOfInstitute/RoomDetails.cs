@@ -88,7 +88,8 @@ namespace ManageSpacesOfInstitute
                 "FACULTY",
                 "ROOMPURPOSE",
                 "RESP",
-                "RESPNUM"
+                "RESPNUM",
+                "RESPPOS"
                     },
                     new FbParameter("ROOM_ID", _roomId)
                 );
@@ -115,7 +116,8 @@ namespace ManageSpacesOfInstitute
                 dataGridView1.Rows[0].Cells[8].Value = $"{row["BUILDINGTYPE"]}";
                 dataGridView1.Rows[0].Cells[9].Value = $"{row["BUILDINGADRESS"]}";
                 dataGridView1.Rows[0].Cells[10].Value = $"{row["RESP"]}";
-                dataGridView1.Rows[0].Cells[11].Value = $"{row["RESPNUM"]}";
+                dataGridView1.Rows[0].Cells[12].Value = $"{row["RESPNUM"]}";
+                dataGridView1.Rows[0].Cells[11].Value = $"{row["RESPPOS"]}";
 
 
                 Text = $"Информация о кабинете {row["ROOMNUMBER"]} ({row["BUILDINGNAME"]})";
