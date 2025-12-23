@@ -19,8 +19,6 @@ namespace ManageSpacesOfInstitute
             // Запуск async без ConfigureAwait(false) — иначе UI не обновится!
             _ = LoadRoomDetailsAsync(); // Используем "fire-and-forget" с подавлением предупреждения
             _ = GetRoomChainAsync();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             flp.Visible = true;
         }
 

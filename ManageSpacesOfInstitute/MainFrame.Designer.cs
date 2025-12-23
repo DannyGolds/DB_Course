@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
             btn_auth = new Button();
             tabPage2 = new TabPage();
-            label_username = new Label();
             groupBox1 = new GroupBox();
             gridview_foundroomsinfo = new DataGridView();
             gr_filtering = new GroupBox();
@@ -46,6 +45,7 @@
             fpl_cheq = new ComboBox();
             fpl_chtypebuild = new ComboBox();
             label1 = new Label();
+            label_username = new Label();
             tabs = new TabControl();
             page_edit = new TabPage();
             tabControl1 = new TabControl();
@@ -151,6 +151,20 @@
             btnEdBldtypeSv = new Button();
             label15 = new Label();
             txtEdBldtypeType = new TextBox();
+            tabPage7 = new TabPage();
+            splitContainer8 = new SplitContainer();
+            dataGridView8 = new DataGridView();
+            btnEdUsrEd = new Button();
+            btnEdUsrAdd = new Button();
+            btnEdUsrDel = new Button();
+            btnEdUsrSv = new Button();
+            label29 = new Label();
+            label28 = new Label();
+            label23 = new Label();
+            chkEdUsrAct = new CheckBox();
+            txtEdUsrType = new TextBox();
+            txtEdUsrPswd = new TextBox();
+            txtEdUsrLg = new TextBox();
             label9 = new Label();
             tabPage2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -207,12 +221,18 @@
             splitContainer7.Panel2.SuspendLayout();
             splitContainer7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView7).BeginInit();
+            tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer8).BeginInit();
+            splitContainer8.Panel1.SuspendLayout();
+            splitContainer8.Panel2.SuspendLayout();
+            splitContainer8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView8).BeginInit();
             SuspendLayout();
             // 
             // btn_auth
             // 
             btn_auth.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btn_auth.Font = new Font("Zero Cool", 9.75F);
+            btn_auth.Font = new Font("Zero Cool", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btn_auth.ForeColor = Color.DarkCyan;
             btn_auth.Location = new Point(681, 439);
             btn_auth.Name = "btn_auth";
@@ -224,7 +244,6 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(label_username);
             tabPage2.Controls.Add(groupBox1);
             tabPage2.Controls.Add(gr_filtering);
             tabPage2.Controls.Add(label1);
@@ -237,23 +256,11 @@
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
             // 
-            // label_username
-            // 
-            label_username.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label_username.AutoSize = true;
-            label_username.Font = new Font("Zero Cool", 9.75F);
-            label_username.ForeColor = Color.DarkCyan;
-            label_username.Location = new Point(8, 435);
-            label_username.Name = "label_username";
-            label_username.Size = new Size(48, 15);
-            label_username.TabIndex = 4;
-            label_username.Text = "Гость";
-            // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(gridview_foundroomsinfo);
-            groupBox1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            groupBox1.Font = new Font("Zero Cool", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             groupBox1.ForeColor = Color.Black;
             groupBox1.Location = new Point(195, 39);
             groupBox1.Name = "groupBox1";
@@ -272,15 +279,14 @@
             gridview_foundroomsinfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridview_foundroomsinfo.Dock = DockStyle.Fill;
             gridview_foundroomsinfo.GridColor = SystemColors.Menu;
-            gridview_foundroomsinfo.Location = new Point(3, 24);
+            gridview_foundroomsinfo.Location = new Point(3, 21);
             gridview_foundroomsinfo.MultiSelect = false;
             gridview_foundroomsinfo.Name = "gridview_foundroomsinfo";
             gridview_foundroomsinfo.RowHeadersVisible = false;
             gridview_foundroomsinfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridview_foundroomsinfo.Size = new Size(661, 334);
+            gridview_foundroomsinfo.Size = new Size(661, 337);
             gridview_foundroomsinfo.TabIndex = 20;
-            gridview_foundroomsinfo.CellContentClick += dataGridView1_CellContentClick_1;
-            gridview_foundroomsinfo.CellContentDoubleClick += dtg1_cdblclk;
+            gridview_foundroomsinfo.CellDoubleClick += dtg1_cdblclk;
             // 
             // gr_filtering
             // 
@@ -294,7 +300,7 @@
             gr_filtering.Controls.Add(fpl_chtyperoom);
             gr_filtering.Controls.Add(fpl_cheq);
             gr_filtering.Controls.Add(fpl_chtypebuild);
-            gr_filtering.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gr_filtering.Font = new Font("Zero Cool", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             gr_filtering.ForeColor = Color.Black;
             gr_filtering.Location = new Point(8, 39);
             gr_filtering.Name = "gr_filtering";
@@ -361,7 +367,7 @@
             // fpl_chbuild
             // 
             fpl_chbuild.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chbuild.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            fpl_chbuild.Font = new Font("Doloto", 15.7499981F);
             fpl_chbuild.ForeColor = Color.Black;
             fpl_chbuild.Location = new Point(9, 58);
             fpl_chbuild.Name = "fpl_chbuild";
@@ -374,14 +380,14 @@
             label3.AutoSize = true;
             label3.Location = new Point(10, 70);
             label3.Name = "label3";
-            label3.Size = new Size(0, 23);
+            label3.Size = new Size(0, 18);
             label3.TabIndex = 10;
             label3.Click += label3_Click;
             // 
             // fpl_chtyperoom
             // 
             fpl_chtyperoom.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chtyperoom.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            fpl_chtyperoom.Font = new Font("Doloto", 15.7499981F);
             fpl_chtyperoom.ForeColor = Color.Black;
             fpl_chtyperoom.Location = new Point(7, 271);
             fpl_chtyperoom.Name = "fpl_chtyperoom";
@@ -391,7 +397,7 @@
             // fpl_cheq
             // 
             fpl_cheq.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_cheq.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            fpl_cheq.Font = new Font("Doloto", 15.7499981F);
             fpl_cheq.ForeColor = Color.Black;
             fpl_cheq.Location = new Point(9, 129);
             fpl_cheq.Name = "fpl_cheq";
@@ -402,7 +408,7 @@
             // fpl_chtypebuild
             // 
             fpl_chtypebuild.DropDownStyle = ComboBoxStyle.DropDownList;
-            fpl_chtypebuild.Font = new Font("Doloto", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            fpl_chtypebuild.Font = new Font("Doloto", 15.7499981F);
             fpl_chtypebuild.ForeColor = Color.Black;
             fpl_chtypebuild.Location = new Point(7, 200);
             fpl_chtypebuild.Name = "fpl_chtypebuild";
@@ -413,20 +419,32 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Zero Cool", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.Font = new Font("Zero Cool", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label1.ForeColor = Color.DarkCyan;
             label1.Location = new Point(3, 3);
             label1.Name = "label1";
-            label1.Size = new Size(239, 18);
+            label1.Size = new Size(307, 22);
             label1.TabIndex = 7;
             label1.Text = "Информация о помещениях";
             // 
+            // label_username
+            // 
+            label_username.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label_username.AutoSize = true;
+            label_username.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label_username.ForeColor = Color.DarkCyan;
+            label_username.Location = new Point(12, 452);
+            label_username.Name = "label_username";
+            label_username.Size = new Size(69, 22);
+            label_username.TabIndex = 4;
+            label_username.Text = "Гость";
+            // 
             // tabs
             // 
-            tabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabs.Controls.Add(tabPage2);
             tabs.Controls.Add(page_edit);
-            tabs.Font = new Font("Zero Cool", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tabs.Dock = DockStyle.Fill;
+            tabs.Font = new Font("Zero Cool", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             tabs.Location = new Point(0, 0);
             tabs.Name = "tabs";
             tabs.SelectedIndex = 0;
@@ -455,12 +473,14 @@
             tabControl1.Controls.Add(tabChairs);
             tabControl1.Controls.Add(tabFacult);
             tabControl1.Controls.Add(tabPage6);
-            tabControl1.Location = new Point(0, 51);
+            tabControl1.Controls.Add(tabPage7);
+            tabControl1.Location = new Point(6, 51);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(859, 359);
+            tabControl1.Size = new Size(860, 359);
             tabControl1.TabIndex = 9;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            tabControl1.Selected += tabControl1_Selected;
             // 
             // tabPage1
             // 
@@ -468,7 +488,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(851, 331);
+            tabPage1.Size = new Size(852, 331);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Здания";
             tabPage1.UseVisualStyleBackColor = true;
@@ -494,7 +514,7 @@
             splitContainer1.Panel2.Controls.Add(lblBuildType);
             splitContainer1.Panel2.Controls.Add(lblBuildName);
             splitContainer1.Panel2.Paint += splitContainer1_Panel2_Paint_2;
-            splitContainer1.Size = new Size(845, 325);
+            splitContainer1.Size = new Size(846, 325);
             splitContainer1.SplitterDistance = 350;
             splitContainer1.TabIndex = 0;
             // 
@@ -528,7 +548,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 19F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
-            tableLayoutPanel2.Size = new Size(308, 209);
+            tableLayoutPanel2.Size = new Size(309, 209);
             tableLayoutPanel2.TabIndex = 17;
             // 
             // pictureBox1
@@ -540,7 +560,7 @@
             pictureBox1.InitialImage = null;
             pictureBox1.Location = new Point(3, 22);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(302, 153);
+            pictureBox1.Size = new Size(303, 153);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
@@ -549,9 +569,10 @@
             // 
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
+            label7.Font = new Font("Zero Cool", 12F);
             label7.Location = new Point(3, 0);
             label7.Name = "label7";
-            label7.Size = new Size(302, 19);
+            label7.Size = new Size(303, 19);
             label7.TabIndex = 3;
             label7.Text = "Изображение";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -560,6 +581,7 @@
             // 
             btnEdBuildFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdBuildFile.Enabled = false;
+            btnEdBuildFile.Font = new Font("Zero Cool", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEdBuildFile.Location = new Point(3, 183);
             btnEdBuildFile.Name = "btnEdBuildFile";
             btnEdBuildFile.Size = new Size(229, 23);
@@ -580,7 +602,7 @@
             tableLayoutPanel1.Controls.Add(btnEdBldDel, 1, 0);
             tableLayoutPanel1.Controls.Add(btnEdBldSv, 2, 0);
             tableLayoutPanel1.Controls.Add(btnEdBldAdd, 0, 0);
-            tableLayoutPanel1.Location = new Point(2, 285);
+            tableLayoutPanel1.Location = new Point(3, 291);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -597,7 +619,7 @@
             btnEdBldEd.Name = "btnEdBldEd";
             btnEdBldEd.Size = new Size(125, 28);
             btnEdBldEd.TabIndex = 15;
-            btnEdBldEd.Text = "РЕДактировать";
+            btnEdBldEd.Text = "Редактировать";
             btnEdBldEd.UseVisualStyleBackColor = true;
             btnEdBldEd.Click += button17_Click;
             // 
@@ -610,7 +632,7 @@
             btnEdBldDel.Name = "btnEdBldDel";
             btnEdBldDel.Size = new Size(93, 28);
             btnEdBldDel.TabIndex = 12;
-            btnEdBldDel.Text = "Удалить -";
+            btnEdBldDel.Text = "Удалить";
             btnEdBldDel.UseVisualStyleBackColor = true;
             btnEdBldDel.Click += button2_Click;
             // 
@@ -635,7 +657,7 @@
             btnEdBldAdd.Name = "btnEdBldAdd";
             btnEdBldAdd.Size = new Size(92, 28);
             btnEdBldAdd.TabIndex = 11;
-            btnEdBldAdd.Text = "Добавить +";
+            btnEdBldAdd.Text = "Добавить";
             btnEdBldAdd.UseVisualStyleBackColor = true;
             btnEdBldAdd.Click += button1_Click;
             // 
@@ -643,18 +665,19 @@
             // 
             txtEdBuildAddress.BorderStyle = BorderStyle.FixedSingle;
             txtEdBuildAddress.Enabled = false;
-            txtEdBuildAddress.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdBuildAddress.Font = new Font("Doloto", 14.2499981F);
             txtEdBuildAddress.Location = new Point(14, 216);
             txtEdBuildAddress.Name = "txtEdBuildAddress";
-            txtEdBuildAddress.Size = new Size(132, 22);
+            txtEdBuildAddress.Size = new Size(132, 24);
             txtEdBuildAddress.TabIndex = 8;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Zero Cool", 12F);
             label4.Location = new Point(14, 196);
             label4.Name = "label4";
-            label4.Size = new Size(105, 15);
+            label4.Size = new Size(128, 18);
             label4.TabIndex = 7;
             label4.Text = "Адрес корпуса";
             // 
@@ -662,11 +685,11 @@
             // 
             cmbEdBuildType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdBuildType.Enabled = false;
-            cmbEdBuildType.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdBuildType.Font = new Font("Doloto", 14.2499981F);
             cmbEdBuildType.FormattingEnabled = true;
             cmbEdBuildType.Location = new Point(15, 130);
             cmbEdBuildType.Name = "cmbEdBuildType";
-            cmbEdBuildType.Size = new Size(132, 22);
+            cmbEdBuildType.Size = new Size(132, 26);
             cmbEdBuildType.TabIndex = 6;
             cmbEdBuildType.SelectedIndexChanged += comboBox1_SelectedIndexChanged_2;
             // 
@@ -674,27 +697,29 @@
             // 
             txtEdBuildName.BorderStyle = BorderStyle.FixedSingle;
             txtEdBuildName.Enabled = false;
-            txtEdBuildName.Font = new Font("Yuruka Kerning (sherbackoffalex", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdBuildName.Font = new Font("Doloto", 14.2499981F);
             txtEdBuildName.Location = new Point(14, 49);
             txtEdBuildName.Name = "txtEdBuildName";
-            txtEdBuildName.Size = new Size(132, 22);
+            txtEdBuildName.Size = new Size(132, 24);
             txtEdBuildName.TabIndex = 5;
             // 
             // lblBuildType
             // 
             lblBuildType.AutoSize = true;
+            lblBuildType.Font = new Font("Zero Cool", 12F);
             lblBuildType.Location = new Point(15, 110);
             lblBuildType.Name = "lblBuildType";
-            lblBuildType.Size = new Size(88, 15);
+            lblBuildType.Size = new Size(109, 18);
             lblBuildType.TabIndex = 1;
             lblBuildType.Text = "Тип корпуса";
             // 
             // lblBuildName
             // 
             lblBuildName.AutoSize = true;
-            lblBuildName.Location = new Point(14, 29);
+            lblBuildName.Font = new Font("Zero Cool", 12F);
+            lblBuildName.Location = new Point(11, 29);
             lblBuildName.Name = "lblBuildName";
-            lblBuildName.Size = new Size(132, 15);
+            lblBuildName.Size = new Size(160, 18);
             lblBuildName.TabIndex = 0;
             lblBuildName.Text = "Название корпуса";
             // 
@@ -704,7 +729,7 @@
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(851, 331);
+            tabPage3.Size = new Size(852, 331);
             tabPage3.TabIndex = 1;
             tabPage3.Text = "Аудитории";
             tabPage3.UseVisualStyleBackColor = true;
@@ -745,7 +770,7 @@
             splitContainer2.Panel2.Controls.Add(cmbEdRoomBuild);
             splitContainer2.Panel2.Controls.Add(label5);
             splitContainer2.Panel2.Paint += splitContainer2_Panel2_Paint;
-            splitContainer2.Size = new Size(845, 325);
+            splitContainer2.Size = new Size(846, 325);
             splitContainer2.SplitterDistance = 350;
             splitContainer2.SplitterIncrement = 10;
             splitContainer2.TabIndex = 0;
@@ -770,10 +795,11 @@
             // 
             comboBox2.Dock = DockStyle.Top;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.Font = new Font("Zero Cool", 11.25F);
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(0, 0);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(350, 23);
+            comboBox2.Size = new Size(350, 25);
             comboBox2.TabIndex = 0;
             // 
             // numericUpDown2
@@ -781,12 +807,13 @@
             numericUpDown2.Anchor = AnchorStyles.Right;
             numericUpDown2.DecimalPlaces = 2;
             numericUpDown2.Enabled = false;
+            numericUpDown2.Font = new Font("Zero Cool", 11.25F);
             numericUpDown2.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
-            numericUpDown2.Location = new Point(262, 37);
+            numericUpDown2.Location = new Point(263, 37);
             numericUpDown2.MaximumSize = new Size(200, 0);
             numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(200, 22);
+            numericUpDown2.Size = new Size(200, 25);
             numericUpDown2.TabIndex = 35;
             numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -795,12 +822,13 @@
             numericUpDown1.Anchor = AnchorStyles.Right;
             numericUpDown1.DecimalPlaces = 2;
             numericUpDown1.Enabled = false;
+            numericUpDown1.Font = new Font("Zero Cool", 11.25F);
             numericUpDown1.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
-            numericUpDown1.Location = new Point(262, 109);
+            numericUpDown1.Location = new Point(263, 109);
             numericUpDown1.MaximumSize = new Size(200, 0);
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(200, 22);
+            numericUpDown1.Size = new Size(200, 25);
             numericUpDown1.TabIndex = 34;
             numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -809,20 +837,21 @@
             txtEdRoomPurpose.Anchor = AnchorStyles.Right;
             txtEdRoomPurpose.BorderStyle = BorderStyle.FixedSingle;
             txtEdRoomPurpose.Enabled = false;
-            txtEdRoomPurpose.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtEdRoomPurpose.Location = new Point(262, 247);
+            txtEdRoomPurpose.Font = new Font("Doloto", 14.2499981F);
+            txtEdRoomPurpose.Location = new Point(263, 247);
             txtEdRoomPurpose.MaximumSize = new Size(200, 25);
             txtEdRoomPurpose.Name = "txtEdRoomPurpose";
-            txtEdRoomPurpose.Size = new Size(200, 25);
+            txtEdRoomPurpose.Size = new Size(200, 24);
             txtEdRoomPurpose.TabIndex = 33;
             // 
             // label14
             // 
             label14.Anchor = AnchorStyles.Right;
             label14.AutoSize = true;
-            label14.Location = new Point(262, 227);
+            label14.Font = new Font("Zero Cool", 11.25F);
+            label14.Location = new Point(263, 227);
             label14.Name = "label14";
-            label14.Size = new Size(165, 15);
+            label14.Size = new Size(186, 17);
             label14.TabIndex = 32;
             label14.Text = "Назначение аудитории";
             // 
@@ -831,21 +860,22 @@
             cmbEdRoomResp.Anchor = AnchorStyles.Right;
             cmbEdRoomResp.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdRoomResp.Enabled = false;
-            cmbEdRoomResp.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomResp.Font = new Font("Doloto", 14.2499981F);
             cmbEdRoomResp.FormattingEnabled = true;
-            cmbEdRoomResp.Location = new Point(20, 247);
+            cmbEdRoomResp.Location = new Point(21, 247);
             cmbEdRoomResp.MaximumSize = new Size(200, 0);
             cmbEdRoomResp.Name = "cmbEdRoomResp";
-            cmbEdRoomResp.Size = new Size(200, 24);
+            cmbEdRoomResp.Size = new Size(200, 26);
             cmbEdRoomResp.TabIndex = 31;
             // 
             // label13
             // 
             label13.Anchor = AnchorStyles.Right;
             label13.AutoSize = true;
-            label13.Location = new Point(20, 227);
+            label13.Font = new Font("Zero Cool", 11.25F);
+            label13.Location = new Point(21, 227);
             label13.Name = "label13";
-            label13.Size = new Size(111, 15);
+            label13.Size = new Size(124, 17);
             label13.TabIndex = 30;
             label13.Text = "Ответсвенный";
             // 
@@ -854,20 +884,22 @@
             cmbEdRoomChair.Anchor = AnchorStyles.Right;
             cmbEdRoomChair.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdRoomChair.Enabled = false;
+            cmbEdRoomChair.Font = new Font("Doloto", 14.2499981F);
             cmbEdRoomChair.FormattingEnabled = true;
-            cmbEdRoomChair.Location = new Point(262, 181);
+            cmbEdRoomChair.Location = new Point(263, 181);
             cmbEdRoomChair.MaximumSize = new Size(200, 0);
             cmbEdRoomChair.Name = "cmbEdRoomChair";
-            cmbEdRoomChair.Size = new Size(200, 23);
+            cmbEdRoomChair.Size = new Size(200, 26);
             cmbEdRoomChair.TabIndex = 29;
             // 
             // label12
             // 
             label12.Anchor = AnchorStyles.Right;
             label12.AutoSize = true;
-            label12.Location = new Point(262, 161);
+            label12.Font = new Font("Zero Cool", 11.25F);
+            label12.Location = new Point(263, 161);
             label12.Name = "label12";
-            label12.Size = new Size(65, 15);
+            label12.Size = new Size(75, 17);
             label12.TabIndex = 28;
             label12.Text = "Кафедра";
             // 
@@ -876,11 +908,11 @@
             btnEdRoomEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRoomEd.Enabled = false;
             btnEdRoomEd.ForeColor = Color.DarkGoldenrod;
-            btnEdRoomEd.Location = new Point(345, 294);
+            btnEdRoomEd.Location = new Point(346, 297);
             btnEdRoomEd.Name = "btnEdRoomEd";
             btnEdRoomEd.Size = new Size(123, 28);
             btnEdRoomEd.TabIndex = 27;
-            btnEdRoomEd.Text = "РЕДактировать";
+            btnEdRoomEd.Text = "Редактировать";
             btnEdRoomEd.UseVisualStyleBackColor = true;
             btnEdRoomEd.Click += button18_Click;
             // 
@@ -888,11 +920,11 @@
             // 
             btnEdRoomAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRoomAdd.ForeColor = Color.ForestGreen;
-            btnEdRoomAdd.Location = new Point(20, 294);
+            btnEdRoomAdd.Location = new Point(21, 297);
             btnEdRoomAdd.Name = "btnEdRoomAdd";
             btnEdRoomAdd.Size = new Size(92, 28);
             btnEdRoomAdd.TabIndex = 23;
-            btnEdRoomAdd.Text = "Добавить +";
+            btnEdRoomAdd.Text = "Добавить";
             btnEdRoomAdd.UseVisualStyleBackColor = true;
             btnEdRoomAdd.Click += btnAdd_Click;
             // 
@@ -901,11 +933,11 @@
             btnEdRoomDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRoomDel.Enabled = false;
             btnEdRoomDel.ForeColor = Color.Firebrick;
-            btnEdRoomDel.Location = new Point(128, 294);
+            btnEdRoomDel.Location = new Point(129, 297);
             btnEdRoomDel.Name = "btnEdRoomDel";
             btnEdRoomDel.Size = new Size(93, 28);
             btnEdRoomDel.TabIndex = 24;
-            btnEdRoomDel.Text = "Удалить -";
+            btnEdRoomDel.Text = "Удалить";
             btnEdRoomDel.UseVisualStyleBackColor = true;
             btnEdRoomDel.Click += btnDel_Click;
             // 
@@ -914,7 +946,7 @@
             btnEdRoomRep.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRoomRep.Enabled = false;
             btnEdRoomRep.ForeColor = Color.SlateBlue;
-            btnEdRoomRep.Location = new Point(235, 294);
+            btnEdRoomRep.Location = new Point(236, 297);
             btnEdRoomRep.Name = "btnEdRoomRep";
             btnEdRoomRep.Size = new Size(98, 28);
             btnEdRoomRep.TabIndex = 26;
@@ -926,9 +958,10 @@
             // 
             label11.Anchor = AnchorStyles.Right;
             label11.AutoSize = true;
-            label11.Location = new Point(262, 89);
+            label11.Font = new Font("Zero Cool", 11.25F);
+            label11.Location = new Point(263, 89);
             label11.Name = "label11";
-            label11.Size = new Size(135, 15);
+            label11.Size = new Size(152, 17);
             label11.TabIndex = 15;
             label11.Text = "Ширина аудитории";
             // 
@@ -936,9 +969,10 @@
             // 
             label10.Anchor = AnchorStyles.Right;
             label10.AutoSize = true;
-            label10.Location = new Point(262, 16);
+            label10.Font = new Font("Zero Cool", 11.25F);
+            label10.Location = new Point(263, 16);
             label10.Name = "label10";
-            label10.Size = new Size(124, 15);
+            label10.Size = new Size(140, 17);
             label10.TabIndex = 13;
             label10.Text = "Длина аудитории";
             // 
@@ -947,21 +981,22 @@
             cmbEdRoomType.Anchor = AnchorStyles.Right;
             cmbEdRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdRoomType.Enabled = false;
-            cmbEdRoomType.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomType.Font = new Font("Doloto", 14.2499981F);
             cmbEdRoomType.FormattingEnabled = true;
-            cmbEdRoomType.Location = new Point(20, 181);
+            cmbEdRoomType.Location = new Point(21, 181);
             cmbEdRoomType.MaximumSize = new Size(200, 0);
             cmbEdRoomType.Name = "cmbEdRoomType";
-            cmbEdRoomType.Size = new Size(200, 24);
+            cmbEdRoomType.Size = new Size(200, 26);
             cmbEdRoomType.TabIndex = 12;
             // 
             // label8
             // 
             label8.Anchor = AnchorStyles.Right;
             label8.AutoSize = true;
-            label8.Location = new Point(20, 161);
+            label8.Font = new Font("Zero Cool", 11.25F);
+            label8.Location = new Point(21, 161);
             label8.Name = "label8";
-            label8.Size = new Size(104, 15);
+            label8.Size = new Size(118, 17);
             label8.TabIndex = 11;
             label8.Text = "Тип аудитории";
             // 
@@ -970,20 +1005,21 @@
             txtEdRoomNum.Anchor = AnchorStyles.Right;
             txtEdRoomNum.BorderStyle = BorderStyle.FixedSingle;
             txtEdRoomNum.Enabled = false;
-            txtEdRoomNum.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtEdRoomNum.Location = new Point(20, 109);
+            txtEdRoomNum.Font = new Font("Doloto", 14.2499981F);
+            txtEdRoomNum.Location = new Point(21, 109);
             txtEdRoomNum.MaximumSize = new Size(200, 25);
             txtEdRoomNum.Name = "txtEdRoomNum";
-            txtEdRoomNum.Size = new Size(200, 25);
+            txtEdRoomNum.Size = new Size(200, 24);
             txtEdRoomNum.TabIndex = 10;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new Point(20, 89);
+            label6.Font = new Font("Zero Cool", 11.25F);
+            label6.Location = new Point(21, 89);
             label6.Name = "label6";
-            label6.Size = new Size(125, 15);
+            label6.Size = new Size(141, 17);
             label6.TabIndex = 9;
             label6.Text = "Номер аудитории";
             // 
@@ -992,21 +1028,22 @@
             cmbEdRoomBuild.Anchor = AnchorStyles.Right;
             cmbEdRoomBuild.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdRoomBuild.Enabled = false;
-            cmbEdRoomBuild.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdRoomBuild.Font = new Font("Doloto", 14.2499981F);
             cmbEdRoomBuild.FormattingEnabled = true;
-            cmbEdRoomBuild.Location = new Point(20, 36);
+            cmbEdRoomBuild.Location = new Point(21, 36);
             cmbEdRoomBuild.MaximumSize = new Size(200, 0);
             cmbEdRoomBuild.Name = "cmbEdRoomBuild";
-            cmbEdRoomBuild.Size = new Size(200, 24);
+            cmbEdRoomBuild.Size = new Size(200, 26);
             cmbEdRoomBuild.TabIndex = 8;
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(20, 16);
+            label5.Font = new Font("Zero Cool", 11.25F);
+            label5.Location = new Point(21, 16);
             label5.Name = "label5";
-            label5.Size = new Size(121, 15);
+            label5.Size = new Size(138, 17);
             label5.TabIndex = 7;
             label5.Text = "Выберите корпус";
             // 
@@ -1016,7 +1053,7 @@
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(851, 331);
+            tabPage4.Size = new Size(852, 331);
             tabPage4.TabIndex = 2;
             tabPage4.Text = "Оборудование";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1048,7 +1085,7 @@
             splitContainer3.Panel2.Controls.Add(label17);
             splitContainer3.Panel2.Controls.Add(txtEdEqName);
             splitContainer3.Panel2.Controls.Add(label16);
-            splitContainer3.Size = new Size(845, 325);
+            splitContainer3.Size = new Size(846, 325);
             splitContainer3.SplitterDistance = 350;
             splitContainer3.TabIndex = 0;
             // 
@@ -1071,9 +1108,10 @@
             // btnEdEqFile
             // 
             btnEdEqFile.Enabled = false;
-            btnEdEqFile.Location = new Point(312, 110);
+            btnEdEqFile.Font = new Font("Zero Cool", 11.25F);
+            btnEdEqFile.Location = new Point(322, 110);
             btnEdEqFile.Name = "btnEdEqFile";
-            btnEdEqFile.Size = new Size(165, 23);
+            btnEdEqFile.Size = new Size(155, 23);
             btnEdEqFile.TabIndex = 26;
             btnEdEqFile.Text = "Выбрать файл...";
             btnEdEqFile.UseVisualStyleBackColor = true;
@@ -1083,19 +1121,20 @@
             // 
             cmbEdEqRoom.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdEqRoom.Enabled = false;
-            cmbEdEqRoom.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbEdEqRoom.Font = new Font("Doloto", 14.2499981F);
             cmbEdEqRoom.FormattingEnabled = true;
             cmbEdEqRoom.Location = new Point(17, 173);
             cmbEdEqRoom.Name = "cmbEdEqRoom";
-            cmbEdEqRoom.Size = new Size(162, 24);
+            cmbEdEqRoom.Size = new Size(162, 26);
             cmbEdEqRoom.TabIndex = 25;
             // 
             // label27
             // 
             label27.AutoSize = true;
+            label27.Font = new Font("Zero Cool", 11.25F);
             label27.Location = new Point(17, 153);
             label27.Name = "label27";
-            label27.Size = new Size(78, 15);
+            label27.Size = new Size(88, 17);
             label27.TabIndex = 24;
             label27.Text = "Аудитория";
             // 
@@ -1104,7 +1143,7 @@
             btnEdEqEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdEqEd.Enabled = false;
             btnEdEqEd.ForeColor = Color.DarkGoldenrod;
-            btnEdEqEd.Location = new Point(351, 297);
+            btnEdEqEd.Location = new Point(352, 297);
             btnEdEqEd.Name = "btnEdEqEd";
             btnEdEqEd.Size = new Size(125, 28);
             btnEdEqEd.TabIndex = 23;
@@ -1116,11 +1155,11 @@
             // 
             btnEdEqAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdEqAdd.ForeColor = Color.ForestGreen;
-            btnEdEqAdd.Location = new Point(17, 297);
+            btnEdEqAdd.Location = new Point(18, 297);
             btnEdEqAdd.Name = "btnEdEqAdd";
             btnEdEqAdd.Size = new Size(92, 28);
             btnEdEqAdd.TabIndex = 19;
-            btnEdEqAdd.Text = "Добавить +";
+            btnEdEqAdd.Text = "Добавить";
             btnEdEqAdd.UseVisualStyleBackColor = true;
             btnEdEqAdd.Click += button5_Click;
             // 
@@ -1129,11 +1168,11 @@
             btnEdEqDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdEqDel.Enabled = false;
             btnEdEqDel.ForeColor = Color.Firebrick;
-            btnEdEqDel.Location = new Point(126, 297);
+            btnEdEqDel.Location = new Point(127, 297);
             btnEdEqDel.Name = "btnEdEqDel";
             btnEdEqDel.Size = new Size(93, 28);
             btnEdEqDel.TabIndex = 20;
-            btnEdEqDel.Text = "Удалить -";
+            btnEdEqDel.Text = "Удалить";
             btnEdEqDel.UseVisualStyleBackColor = true;
             btnEdEqDel.Click += button6_Click;
             // 
@@ -1142,7 +1181,7 @@
             btnEdEqSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdEqSv.Enabled = false;
             btnEdEqSv.ForeColor = Color.SlateBlue;
-            btnEdEqSv.Location = new Point(236, 297);
+            btnEdEqSv.Location = new Point(237, 297);
             btnEdEqSv.Name = "btnEdEqSv";
             btnEdEqSv.Size = new Size(98, 28);
             btnEdEqSv.TabIndex = 22;
@@ -1159,16 +1198,17 @@
             pictureBox2.Image = Properties.Resources.LoadImage;
             pictureBox2.Location = new Point(200, 134);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(277, 154);
+            pictureBox2.Size = new Size(278, 154);
             pictureBox2.TabIndex = 18;
             pictureBox2.TabStop = false;
             // 
             // label19
             // 
             label19.AutoSize = true;
+            label19.Font = new Font("Zero Cool", 11.25F);
             label19.Location = new Point(200, 114);
             label19.Name = "label19";
-            label19.Size = new Size(97, 15);
+            label19.Size = new Size(110, 17);
             label19.TabIndex = 17;
             label19.Text = "Изображение";
             // 
@@ -1177,19 +1217,20 @@
             r_txtEdEqDesc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             r_txtEdEqDesc.BorderStyle = BorderStyle.FixedSingle;
             r_txtEdEqDesc.Enabled = false;
-            r_txtEdEqDesc.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            r_txtEdEqDesc.Font = new Font("Doloto", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             r_txtEdEqDesc.Location = new Point(200, 40);
             r_txtEdEqDesc.Name = "r_txtEdEqDesc";
-            r_txtEdEqDesc.Size = new Size(277, 66);
+            r_txtEdEqDesc.Size = new Size(278, 66);
             r_txtEdEqDesc.TabIndex = 16;
             r_txtEdEqDesc.Text = "";
             // 
             // label18
             // 
             label18.AutoSize = true;
+            label18.Font = new Font("Zero Cool", 11.25F);
             label18.Location = new Point(200, 20);
             label18.Name = "label18";
-            label18.Size = new Size(74, 15);
+            label18.Size = new Size(83, 17);
             label18.TabIndex = 15;
             label18.Text = "Описание";
             // 
@@ -1197,18 +1238,19 @@
             // 
             txtEdEqNum.BorderStyle = BorderStyle.FixedSingle;
             txtEdEqNum.Enabled = false;
-            txtEdEqNum.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdEqNum.Font = new Font("Doloto", 14.2499981F);
             txtEdEqNum.Location = new Point(17, 114);
             txtEdEqNum.Name = "txtEdEqNum";
-            txtEdEqNum.Size = new Size(162, 25);
+            txtEdEqNum.Size = new Size(162, 24);
             txtEdEqNum.TabIndex = 14;
             // 
             // label17
             // 
             label17.AutoSize = true;
+            label17.Font = new Font("Zero Cool", 11.25F);
             label17.Location = new Point(15, 95);
             label17.Name = "label17";
-            label17.Size = new Size(151, 15);
+            label17.Size = new Size(169, 17);
             label17.TabIndex = 13;
             label17.Text = "Инвентарный номер";
             // 
@@ -1216,18 +1258,19 @@
             // 
             txtEdEqName.BorderStyle = BorderStyle.FixedSingle;
             txtEdEqName.Enabled = false;
-            txtEdEqName.Font = new Font("Yuruka Kerning (sherbackoffalex", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdEqName.Font = new Font("Doloto", 14.2499981F);
             txtEdEqName.Location = new Point(15, 40);
             txtEdEqName.Name = "txtEdEqName";
-            txtEdEqName.Size = new Size(162, 25);
+            txtEdEqName.Size = new Size(162, 24);
             txtEdEqName.TabIndex = 12;
             // 
             // label16
             // 
             label16.AutoSize = true;
+            label16.Font = new Font("Zero Cool", 11.25F);
             label16.Location = new Point(15, 20);
             label16.Name = "label16";
-            label16.Size = new Size(74, 15);
+            label16.Size = new Size(83, 17);
             label16.TabIndex = 11;
             label16.Text = "Название";
             // 
@@ -1237,7 +1280,7 @@
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(851, 331);
+            tabPage5.Size = new Size(852, 331);
             tabPage5.TabIndex = 3;
             tabPage5.Text = "Ответственные";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1264,7 +1307,7 @@
             splitContainer5.Panel2.Controls.Add(label22);
             splitContainer5.Panel2.Controls.Add(txtEdRespCont);
             splitContainer5.Panel2.Controls.Add(btnEdRespSv);
-            splitContainer5.Size = new Size(845, 325);
+            splitContainer5.Size = new Size(846, 325);
             splitContainer5.SplitterDistance = 350;
             splitContainer5.TabIndex = 0;
             // 
@@ -1289,11 +1332,11 @@
             btnEdRespEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRespEd.Enabled = false;
             btnEdRespEd.ForeColor = Color.DarkGoldenrod;
-            btnEdRespEd.Location = new Point(337, 294);
+            btnEdRespEd.Location = new Point(338, 297);
             btnEdRespEd.Name = "btnEdRespEd";
             btnEdRespEd.Size = new Size(126, 28);
             btnEdRespEd.TabIndex = 19;
-            btnEdRespEd.Text = "РЕДактировать";
+            btnEdRespEd.Text = "Редактировать";
             btnEdRespEd.UseVisualStyleBackColor = true;
             btnEdRespEd.Click += button20_Click;
             // 
@@ -1301,11 +1344,11 @@
             // 
             btnEdRespAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRespAdd.ForeColor = Color.ForestGreen;
-            btnEdRespAdd.Location = new Point(24, 294);
+            btnEdRespAdd.Location = new Point(25, 297);
             btnEdRespAdd.Name = "btnEdRespAdd";
             btnEdRespAdd.Size = new Size(92, 28);
             btnEdRespAdd.TabIndex = 15;
-            btnEdRespAdd.Text = "Добавить +";
+            btnEdRespAdd.Text = "Добавить";
             btnEdRespAdd.UseVisualStyleBackColor = true;
             btnEdRespAdd.Click += button9_Click;
             // 
@@ -1314,18 +1357,20 @@
             txtEdRespPos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdRespPos.BorderStyle = BorderStyle.FixedSingle;
             txtEdRespPos.Enabled = false;
-            txtEdRespPos.Location = new Point(141, 145);
+            txtEdRespPos.Font = new Font("Doloto", 15.7499981F);
+            txtEdRespPos.Location = new Point(141, 152);
             txtEdRespPos.Name = "txtEdRespPos";
-            txtEdRespPos.Size = new Size(207, 22);
+            txtEdRespPos.Size = new Size(208, 26);
             txtEdRespPos.TabIndex = 9;
             // 
             // label21
             // 
             label21.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label21.AutoSize = true;
-            label21.Location = new Point(141, 125);
+            label21.Font = new Font("Zero Cool", 12F);
+            label21.Location = new Point(117, 130);
             label21.Name = "label21";
-            label21.Size = new Size(207, 15);
+            label21.Size = new Size(253, 18);
             label21.TabIndex = 8;
             label21.Text = "Должность ответственного";
             // 
@@ -1334,11 +1379,11 @@
             btnEdRespDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRespDel.Enabled = false;
             btnEdRespDel.ForeColor = Color.Firebrick;
-            btnEdRespDel.Location = new Point(126, 294);
+            btnEdRespDel.Location = new Point(127, 297);
             btnEdRespDel.Name = "btnEdRespDel";
             btnEdRespDel.Size = new Size(93, 28);
             btnEdRespDel.TabIndex = 16;
-            btnEdRespDel.Text = "Удалить -";
+            btnEdRespDel.Text = "Удалить";
             btnEdRespDel.UseVisualStyleBackColor = true;
             btnEdRespDel.Click += button10_Click;
             // 
@@ -1347,18 +1392,20 @@
             txtEdRespFIO.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdRespFIO.BorderStyle = BorderStyle.FixedSingle;
             txtEdRespFIO.Enabled = false;
-            txtEdRespFIO.Location = new Point(141, 80);
+            txtEdRespFIO.Font = new Font("Doloto", 15.7499981F);
+            txtEdRespFIO.Location = new Point(141, 82);
             txtEdRespFIO.Name = "txtEdRespFIO";
-            txtEdRespFIO.Size = new Size(207, 22);
+            txtEdRespFIO.Size = new Size(208, 26);
             txtEdRespFIO.TabIndex = 7;
             // 
             // label20
             // 
             label20.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label20.AutoSize = true;
-            label20.Location = new Point(143, 62);
+            label20.Font = new Font("Zero Cool", 12F);
+            label20.Location = new Point(149, 62);
             label20.Name = "label20";
-            label20.Size = new Size(154, 15);
+            label20.Size = new Size(189, 18);
             label20.TabIndex = 6;
             label20.Text = "ФИО ответственного";
             label20.Click += label20_Click;
@@ -1367,9 +1414,10 @@
             // 
             label22.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label22.AutoSize = true;
-            label22.Location = new Point(143, 200);
+            label22.Font = new Font("Zero Cool", 12F);
+            label22.Location = new Point(129, 200);
             label22.Name = "label22";
-            label22.Size = new Size(189, 15);
+            label22.Size = new Size(228, 18);
             label22.TabIndex = 10;
             label22.Text = "Номер телефона(рабочий)";
             // 
@@ -1378,9 +1426,10 @@
             txtEdRespCont.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdRespCont.BorderStyle = BorderStyle.FixedSingle;
             txtEdRespCont.Enabled = false;
-            txtEdRespCont.Location = new Point(141, 220);
+            txtEdRespCont.Font = new Font("Doloto", 15.7499981F);
+            txtEdRespCont.Location = new Point(141, 222);
             txtEdRespCont.Name = "txtEdRespCont";
-            txtEdRespCont.Size = new Size(207, 22);
+            txtEdRespCont.Size = new Size(208, 26);
             txtEdRespCont.TabIndex = 11;
             // 
             // btnEdRespSv
@@ -1388,7 +1437,7 @@
             btnEdRespSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdRespSv.Enabled = false;
             btnEdRespSv.ForeColor = Color.SlateBlue;
-            btnEdRespSv.Location = new Point(229, 294);
+            btnEdRespSv.Location = new Point(230, 297);
             btnEdRespSv.Name = "btnEdRespSv";
             btnEdRespSv.Size = new Size(98, 28);
             btnEdRespSv.TabIndex = 18;
@@ -1402,7 +1451,7 @@
             tabChairs.Location = new Point(4, 24);
             tabChairs.Name = "tabChairs";
             tabChairs.Padding = new Padding(3);
-            tabChairs.Size = new Size(851, 331);
+            tabChairs.Size = new Size(852, 331);
             tabChairs.TabIndex = 4;
             tabChairs.Text = "Кафедры";
             tabChairs.UseVisualStyleBackColor = true;
@@ -1427,7 +1476,7 @@
             splitContainer6.Panel2.Controls.Add(btnEdChSv);
             splitContainer6.Panel2.Controls.Add(txtEdChName);
             splitContainer6.Panel2.Controls.Add(label24);
-            splitContainer6.Size = new Size(845, 325);
+            splitContainer6.Size = new Size(846, 325);
             splitContainer6.SplitterDistance = 410;
             splitContainer6.TabIndex = 0;
             // 
@@ -1452,18 +1501,18 @@
             cmbEdChFac.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbEdChFac.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEdChFac.Enabled = false;
-            cmbEdChFac.Font = new Font("Zero Cool", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cmbEdChFac.Font = new Font("Doloto", 18F);
             cmbEdChFac.FormattingEnabled = true;
             cmbEdChFac.Location = new Point(60, 209);
             cmbEdChFac.Name = "cmbEdChFac";
-            cmbEdChFac.Size = new Size(313, 30);
+            cmbEdChFac.Size = new Size(314, 31);
             cmbEdChFac.TabIndex = 25;
             // 
             // label25
             // 
             label25.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label25.AutoSize = true;
-            label25.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label25.Font = new Font("Zero Cool", 15.75F);
             label25.Location = new Point(99, 171);
             label25.Name = "label25";
             label25.Size = new Size(234, 24);
@@ -1475,11 +1524,11 @@
             btnEdChEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdChEd.Enabled = false;
             btnEdChEd.ForeColor = Color.DarkGoldenrod;
-            btnEdChEd.Location = new Point(305, 296);
+            btnEdChEd.Location = new Point(306, 296);
             btnEdChEd.Name = "btnEdChEd";
             btnEdChEd.Size = new Size(123, 28);
             btnEdChEd.TabIndex = 23;
-            btnEdChEd.Text = "РЕДактировать";
+            btnEdChEd.Text = "Редактировать";
             btnEdChEd.UseVisualStyleBackColor = true;
             btnEdChEd.Click += button21_Click;
             // 
@@ -1487,11 +1536,11 @@
             // 
             btnEdChAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdChAdd.ForeColor = Color.ForestGreen;
-            btnEdChAdd.Location = new Point(4, 296);
+            btnEdChAdd.Location = new Point(5, 296);
             btnEdChAdd.Name = "btnEdChAdd";
             btnEdChAdd.Size = new Size(92, 28);
             btnEdChAdd.TabIndex = 19;
-            btnEdChAdd.Text = "Добавить +";
+            btnEdChAdd.Text = "Добавить";
             btnEdChAdd.UseVisualStyleBackColor = true;
             btnEdChAdd.Click += button13_Click;
             // 
@@ -1500,11 +1549,11 @@
             btnEdChDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdChDel.Enabled = false;
             btnEdChDel.ForeColor = Color.Firebrick;
-            btnEdChDel.Location = new Point(102, 296);
+            btnEdChDel.Location = new Point(103, 296);
             btnEdChDel.Name = "btnEdChDel";
             btnEdChDel.Size = new Size(93, 28);
             btnEdChDel.TabIndex = 20;
-            btnEdChDel.Text = "Удалить -";
+            btnEdChDel.Text = "Удалить";
             btnEdChDel.UseVisualStyleBackColor = true;
             btnEdChDel.Click += button14_Click;
             // 
@@ -1513,7 +1562,7 @@
             btnEdChSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdChSv.Enabled = false;
             btnEdChSv.ForeColor = Color.SlateBlue;
-            btnEdChSv.Location = new Point(201, 296);
+            btnEdChSv.Location = new Point(202, 296);
             btnEdChSv.Name = "btnEdChSv";
             btnEdChSv.Size = new Size(98, 28);
             btnEdChSv.TabIndex = 22;
@@ -1526,17 +1575,17 @@
             txtEdChName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdChName.BorderStyle = BorderStyle.FixedSingle;
             txtEdChName.Enabled = false;
-            txtEdChName.Font = new Font("Yuruka Kerning (sherbackoffalex", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEdChName.Font = new Font("Doloto", 18F);
             txtEdChName.Location = new Point(60, 117);
             txtEdChName.Name = "txtEdChName";
-            txtEdChName.Size = new Size(313, 29);
+            txtEdChName.Size = new Size(314, 28);
             txtEdChName.TabIndex = 1;
             // 
             // label24
             // 
             label24.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label24.AutoSize = true;
-            label24.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label24.Font = new Font("Zero Cool", 15.75F);
             label24.Location = new Point(76, 80);
             label24.Name = "label24";
             label24.Size = new Size(281, 24);
@@ -1549,7 +1598,7 @@
             tabFacult.Location = new Point(4, 24);
             tabFacult.Name = "tabFacult";
             tabFacult.Padding = new Padding(3);
-            tabFacult.Size = new Size(851, 331);
+            tabFacult.Size = new Size(852, 331);
             tabFacult.TabIndex = 5;
             tabFacult.Text = "Факультеты";
             tabFacult.UseVisualStyleBackColor = true;
@@ -1572,7 +1621,7 @@
             splitContainer4.Panel2.Controls.Add(btnEdFacSv);
             splitContainer4.Panel2.Controls.Add(txtEdFacName);
             splitContainer4.Panel2.Controls.Add(label26);
-            splitContainer4.Size = new Size(845, 325);
+            splitContainer4.Size = new Size(846, 325);
             splitContainer4.SplitterDistance = 350;
             splitContainer4.TabIndex = 0;
             // 
@@ -1597,11 +1646,11 @@
             btnEdFacEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdFacEd.Enabled = false;
             btnEdFacEd.ForeColor = Color.DarkGoldenrod;
-            btnEdFacEd.Location = new Point(351, 297);
+            btnEdFacEd.Location = new Point(352, 297);
             btnEdFacEd.Name = "btnEdFacEd";
             btnEdFacEd.Size = new Size(120, 28);
             btnEdFacEd.TabIndex = 24;
-            btnEdFacEd.Text = "РЕДАКТИРОВАТЬ";
+            btnEdFacEd.Text = "Редактировать";
             btnEdFacEd.UseVisualStyleBackColor = true;
             btnEdFacEd.Click += button22_Click;
             // 
@@ -1609,11 +1658,11 @@
             // 
             btnEdFacAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdFacAdd.ForeColor = Color.ForestGreen;
-            btnEdFacAdd.Location = new Point(23, 297);
+            btnEdFacAdd.Location = new Point(24, 297);
             btnEdFacAdd.Name = "btnEdFacAdd";
             btnEdFacAdd.Size = new Size(92, 28);
             btnEdFacAdd.TabIndex = 20;
-            btnEdFacAdd.Text = "Добавить +";
+            btnEdFacAdd.Text = "Добавить";
             btnEdFacAdd.UseVisualStyleBackColor = true;
             btnEdFacAdd.Click += button23_Click;
             // 
@@ -1622,11 +1671,11 @@
             btnEdFacDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdFacDel.Enabled = false;
             btnEdFacDel.ForeColor = Color.Firebrick;
-            btnEdFacDel.Location = new Point(130, 297);
+            btnEdFacDel.Location = new Point(131, 297);
             btnEdFacDel.Name = "btnEdFacDel";
             btnEdFacDel.Size = new Size(93, 28);
             btnEdFacDel.TabIndex = 21;
-            btnEdFacDel.Text = "Удалить -";
+            btnEdFacDel.Text = "Удалить";
             btnEdFacDel.UseVisualStyleBackColor = true;
             btnEdFacDel.Click += button24_Click;
             // 
@@ -1635,7 +1684,7 @@
             btnEdFacSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdFacSv.Enabled = false;
             btnEdFacSv.ForeColor = Color.SlateBlue;
-            btnEdFacSv.Location = new Point(238, 297);
+            btnEdFacSv.Location = new Point(239, 297);
             btnEdFacSv.Name = "btnEdFacSv";
             btnEdFacSv.Size = new Size(98, 28);
             btnEdFacSv.TabIndex = 23;
@@ -1648,20 +1697,20 @@
             txtEdFacName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdFacName.BorderStyle = BorderStyle.FixedSingle;
             txtEdFacName.Enabled = false;
-            txtEdFacName.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtEdFacName.Location = new Point(64, 166);
+            txtEdFacName.Font = new Font("Doloto", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEdFacName.Location = new Point(79, 167);
             txtEdFacName.Name = "txtEdFacName";
-            txtEdFacName.Size = new Size(313, 35);
+            txtEdFacName.Size = new Size(314, 31);
             txtEdFacName.TabIndex = 3;
             // 
             // label26
             // 
             label26.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label26.AutoSize = true;
-            label26.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label26.Location = new Point(64, 129);
+            label26.Font = new Font("Zero Cool", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label26.Location = new Point(62, 137);
             label26.Name = "label26";
-            label26.Size = new Size(313, 24);
+            label26.Size = new Size(356, 27);
             label26.TabIndex = 2;
             label26.Text = "Наименование факультета";
             // 
@@ -1671,7 +1720,7 @@
             tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(851, 331);
+            tabPage6.Size = new Size(852, 331);
             tabPage6.TabIndex = 6;
             tabPage6.Text = "Типы корпусов";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1694,7 +1743,7 @@
             splitContainer7.Panel2.Controls.Add(btnEdBldtypeSv);
             splitContainer7.Panel2.Controls.Add(label15);
             splitContainer7.Panel2.Controls.Add(txtEdBldtypeType);
-            splitContainer7.Size = new Size(845, 325);
+            splitContainer7.Size = new Size(846, 325);
             splitContainer7.SplitterDistance = 300;
             splitContainer7.TabIndex = 0;
             // 
@@ -1718,11 +1767,11 @@
             btnEdBldtypeEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdBldtypeEd.Enabled = false;
             btnEdBldtypeEd.ForeColor = Color.DarkGoldenrod;
-            btnEdBldtypeEd.Location = new Point(385, 294);
+            btnEdBldtypeEd.Location = new Point(386, 297);
             btnEdBldtypeEd.Name = "btnEdBldtypeEd";
             btnEdBldtypeEd.Size = new Size(120, 28);
             btnEdBldtypeEd.TabIndex = 28;
-            btnEdBldtypeEd.Text = "РЕДАКТИРОВАТЬ";
+            btnEdBldtypeEd.Text = "Редактировать";
             btnEdBldtypeEd.UseVisualStyleBackColor = true;
             btnEdBldtypeEd.Click += button7_Click;
             // 
@@ -1730,11 +1779,11 @@
             // 
             btnEdBldtypeAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdBldtypeAdd.ForeColor = Color.ForestGreen;
-            btnEdBldtypeAdd.Location = new Point(39, 294);
+            btnEdBldtypeAdd.Location = new Point(40, 297);
             btnEdBldtypeAdd.Name = "btnEdBldtypeAdd";
             btnEdBldtypeAdd.Size = new Size(92, 28);
             btnEdBldtypeAdd.TabIndex = 25;
-            btnEdBldtypeAdd.Text = "Добавить +";
+            btnEdBldtypeAdd.Text = "Добавить";
             btnEdBldtypeAdd.UseVisualStyleBackColor = true;
             btnEdBldtypeAdd.Click += button11_Click;
             // 
@@ -1743,11 +1792,11 @@
             btnEdBldtypeDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdBldtypeDel.Enabled = false;
             btnEdBldtypeDel.ForeColor = Color.Firebrick;
-            btnEdBldtypeDel.Location = new Point(152, 294);
+            btnEdBldtypeDel.Location = new Point(153, 297);
             btnEdBldtypeDel.Name = "btnEdBldtypeDel";
             btnEdBldtypeDel.Size = new Size(93, 28);
             btnEdBldtypeDel.TabIndex = 26;
-            btnEdBldtypeDel.Text = "Удалить -";
+            btnEdBldtypeDel.Text = "Удалить";
             btnEdBldtypeDel.UseVisualStyleBackColor = true;
             btnEdBldtypeDel.Click += button15_Click;
             // 
@@ -1756,7 +1805,7 @@
             btnEdBldtypeSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEdBldtypeSv.Enabled = false;
             btnEdBldtypeSv.ForeColor = Color.SlateBlue;
-            btnEdBldtypeSv.Location = new Point(266, 294);
+            btnEdBldtypeSv.Location = new Point(267, 297);
             btnEdBldtypeSv.Name = "btnEdBldtypeSv";
             btnEdBldtypeSv.Size = new Size(98, 28);
             btnEdBldtypeSv.TabIndex = 27;
@@ -1768,10 +1817,10 @@
             // 
             label15.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label15.AutoSize = true;
-            label15.Font = new Font("Zero Cool", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label15.Location = new Point(145, 109);
+            label15.Font = new Font("Zero Cool", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label15.Location = new Point(120, 106);
             label15.Name = "label15";
-            label15.Size = new Size(267, 24);
+            label15.Size = new Size(305, 27);
             label15.TabIndex = 1;
             label15.Text = "Название типа корпуса";
             label15.Click += label15_Click;
@@ -1780,20 +1829,199 @@
             // 
             txtEdBldtypeType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtEdBldtypeType.BorderStyle = BorderStyle.FixedSingle;
-            txtEdBldtypeType.Font = new Font("Yuruka Kerning (sherbackoffalex", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtEdBldtypeType.Location = new Point(130, 136);
+            txtEdBldtypeType.Font = new Font("Doloto", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtEdBldtypeType.Location = new Point(123, 136);
             txtEdBldtypeType.Name = "txtEdBldtypeType";
-            txtEdBldtypeType.Size = new Size(297, 35);
+            txtEdBldtypeType.Size = new Size(298, 31);
             txtEdBldtypeType.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            tabPage7.Controls.Add(splitContainer8);
+            tabPage7.Location = new Point(4, 24);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Padding = new Padding(3);
+            tabPage7.Size = new Size(852, 331);
+            tabPage7.TabIndex = 7;
+            tabPage7.Text = "Пользователи";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer8
+            // 
+            splitContainer8.Dock = DockStyle.Fill;
+            splitContainer8.Location = new Point(3, 3);
+            splitContainer8.Name = "splitContainer8";
+            // 
+            // splitContainer8.Panel1
+            // 
+            splitContainer8.Panel1.Controls.Add(dataGridView8);
+            // 
+            // splitContainer8.Panel2
+            // 
+            splitContainer8.Panel2.Controls.Add(btnEdUsrEd);
+            splitContainer8.Panel2.Controls.Add(btnEdUsrAdd);
+            splitContainer8.Panel2.Controls.Add(btnEdUsrDel);
+            splitContainer8.Panel2.Controls.Add(btnEdUsrSv);
+            splitContainer8.Panel2.Controls.Add(label29);
+            splitContainer8.Panel2.Controls.Add(label28);
+            splitContainer8.Panel2.Controls.Add(label23);
+            splitContainer8.Panel2.Controls.Add(chkEdUsrAct);
+            splitContainer8.Panel2.Controls.Add(txtEdUsrType);
+            splitContainer8.Panel2.Controls.Add(txtEdUsrPswd);
+            splitContainer8.Panel2.Controls.Add(txtEdUsrLg);
+            splitContainer8.Size = new Size(846, 325);
+            splitContainer8.SplitterDistance = 399;
+            splitContainer8.TabIndex = 0;
+            // 
+            // dataGridView8
+            // 
+            dataGridView8.AllowUserToAddRows = false;
+            dataGridView8.AllowUserToDeleteRows = false;
+            dataGridView8.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView8.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView8.Dock = DockStyle.Fill;
+            dataGridView8.Location = new Point(0, 0);
+            dataGridView8.MultiSelect = false;
+            dataGridView8.Name = "dataGridView8";
+            dataGridView8.ReadOnly = true;
+            dataGridView8.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView8.Size = new Size(399, 325);
+            dataGridView8.TabIndex = 0;
+            dataGridView8.CellMouseClick += dataGridView8_CellMouseClick;
+            // 
+            // btnEdUsrEd
+            // 
+            btnEdUsrEd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdUsrEd.Enabled = false;
+            btnEdUsrEd.ForeColor = Color.DarkGoldenrod;
+            btnEdUsrEd.Location = new Point(323, 297);
+            btnEdUsrEd.Name = "btnEdUsrEd";
+            btnEdUsrEd.Size = new Size(120, 28);
+            btnEdUsrEd.TabIndex = 32;
+            btnEdUsrEd.Text = "Редактировать";
+            btnEdUsrEd.UseVisualStyleBackColor = true;
+            btnEdUsrEd.Click += btnEdUsrEd_Click;
+            // 
+            // btnEdUsrAdd
+            // 
+            btnEdUsrAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdUsrAdd.ForeColor = Color.ForestGreen;
+            btnEdUsrAdd.Location = new Point(1, 297);
+            btnEdUsrAdd.Name = "btnEdUsrAdd";
+            btnEdUsrAdd.Size = new Size(92, 28);
+            btnEdUsrAdd.TabIndex = 29;
+            btnEdUsrAdd.Text = "Добавить";
+            btnEdUsrAdd.UseVisualStyleBackColor = true;
+            btnEdUsrAdd.Click += btnEdUsrAdd_Click;
+            // 
+            // btnEdUsrDel
+            // 
+            btnEdUsrDel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdUsrDel.Enabled = false;
+            btnEdUsrDel.ForeColor = Color.Firebrick;
+            btnEdUsrDel.Location = new Point(106, 297);
+            btnEdUsrDel.Name = "btnEdUsrDel";
+            btnEdUsrDel.Size = new Size(93, 28);
+            btnEdUsrDel.TabIndex = 30;
+            btnEdUsrDel.Text = "Удалить";
+            btnEdUsrDel.UseVisualStyleBackColor = true;
+            btnEdUsrDel.Click += btnEdUsrDel_Click;
+            // 
+            // btnEdUsrSv
+            // 
+            btnEdUsrSv.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdUsrSv.Enabled = false;
+            btnEdUsrSv.ForeColor = Color.SlateBlue;
+            btnEdUsrSv.Location = new Point(212, 297);
+            btnEdUsrSv.Name = "btnEdUsrSv";
+            btnEdUsrSv.Size = new Size(98, 28);
+            btnEdUsrSv.TabIndex = 31;
+            btnEdUsrSv.Text = "Сохранить";
+            btnEdUsrSv.UseVisualStyleBackColor = true;
+            btnEdUsrSv.Click += btnEdUsrSv_Click;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Zero Cool", 12F);
+            label29.Location = new Point(49, 170);
+            label29.Name = "label29";
+            label29.Size = new Size(99, 18);
+            label29.TabIndex = 6;
+            label29.Text = "Тип записи";
+            label29.Click += label29_Click;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Zero Cool", 12F);
+            label28.Location = new Point(49, 95);
+            label28.Name = "label28";
+            label28.Size = new Size(66, 18);
+            label28.TabIndex = 5;
+            label28.Text = "Пароль";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Zero Cool", 12F);
+            label23.Location = new Point(49, 16);
+            label23.Name = "label23";
+            label23.Size = new Size(60, 18);
+            label23.TabIndex = 4;
+            label23.Text = "Логин";
+            // 
+            // chkEdUsrAct
+            // 
+            chkEdUsrAct.AutoSize = true;
+            chkEdUsrAct.Enabled = false;
+            chkEdUsrAct.Font = new Font("Zero Cool", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            chkEdUsrAct.Location = new Point(49, 244);
+            chkEdUsrAct.Name = "chkEdUsrAct";
+            chkEdUsrAct.Size = new Size(113, 21);
+            chkEdUsrAct.TabIndex = 3;
+            chkEdUsrAct.Text = "УЗ активна";
+            chkEdUsrAct.UseVisualStyleBackColor = true;
+            // 
+            // txtEdUsrType
+            // 
+            txtEdUsrType.BorderStyle = BorderStyle.FixedSingle;
+            txtEdUsrType.Enabled = false;
+            txtEdUsrType.Font = new Font("Yuruka Kerning (sherbackoffalex", 15.75F, FontStyle.Bold);
+            txtEdUsrType.Location = new Point(49, 192);
+            txtEdUsrType.Name = "txtEdUsrType";
+            txtEdUsrType.Size = new Size(311, 32);
+            txtEdUsrType.TabIndex = 2;
+            txtEdUsrType.TextChanged += textBox3_TextChanged;
+            // 
+            // txtEdUsrPswd
+            // 
+            txtEdUsrPswd.BorderStyle = BorderStyle.FixedSingle;
+            txtEdUsrPswd.Enabled = false;
+            txtEdUsrPswd.Font = new Font("Yuruka Kerning (sherbackoffalex", 15.75F, FontStyle.Bold);
+            txtEdUsrPswd.Location = new Point(49, 117);
+            txtEdUsrPswd.Name = "txtEdUsrPswd";
+            txtEdUsrPswd.Size = new Size(311, 32);
+            txtEdUsrPswd.TabIndex = 1;
+            // 
+            // txtEdUsrLg
+            // 
+            txtEdUsrLg.BorderStyle = BorderStyle.FixedSingle;
+            txtEdUsrLg.Enabled = false;
+            txtEdUsrLg.Font = new Font("Yuruka Kerning (sherbackoffalex", 15.75F, FontStyle.Bold);
+            txtEdUsrLg.Location = new Point(49, 38);
+            txtEdUsrLg.Name = "txtEdUsrLg";
+            txtEdUsrLg.Size = new Size(311, 32);
+            txtEdUsrLg.TabIndex = 0;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Zero Cool", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Font = new Font("Zero Cool", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label9.ForeColor = Color.DarkCyan;
             label9.Location = new Point(3, 3);
             label9.Name = "label9";
-            label9.Size = new Size(348, 18);
+            label9.Size = new Size(442, 22);
             label9.TabIndex = 8;
             label9.Text = "Редактирование информационной базы";
             // 
@@ -1802,12 +2030,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(877, 481);
+            Controls.Add(label_username);
             Controls.Add(btn_auth);
             Controls.Add(tabs);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainFrame";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Manage Spaces";
+            Text = "АИС учета помещений института";
             Load += Form1_Load;
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
@@ -1875,7 +2104,15 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer7).EndInit();
             splitContainer7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView7).EndInit();
+            tabPage7.ResumeLayout(false);
+            splitContainer8.Panel1.ResumeLayout(false);
+            splitContainer8.Panel2.ResumeLayout(false);
+            splitContainer8.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer8).EndInit();
+            splitContainer8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView8).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -2002,5 +2239,20 @@
         private Label label_username;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
+        private TabPage pageUsers;
+        private TabPage tabPage7;
+        private SplitContainer splitContainer8;
+        private DataGridView dataGridView8;
+        private TextBox txtEdUsrLg;
+        private Label label29;
+        private Label label28;
+        private Label label23;
+        private CheckBox chkEdUsrAct;
+        private TextBox txtEdUsrType;
+        private TextBox txtEdUsrPswd;
+        private Button btnEdUsrEd;
+        private Button btnEdUsrAdd;
+        private Button btnEdUsrDel;
+        private Button btnEdUsrSv;
     }
 }

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ManageSpacesOfInstitute</id>
+    <version>1.0.0</version>
+    <authors>ManageSpacesOfInstitute</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="0736dcfed84cd55c47f10112f705b260d1584a31" />
+    <dependencies>
+      <group targetFramework="net9.0-windows10.0.26100">
+        <dependency id="BCrypt.Net-Next" version="4.0.3" exclude="Build,Analyzers" />
+        <dependency id="FirebirdSql.Data.FirebirdClient" version="7.10.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net9.0-windows10.0.26100">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net9.0-windows10.0.26100/Doloto-Regular.ttf" buildAction="Content" />
+      <files include="any/net9.0-windows10.0.26100/Yuruka Kerning (sherbackoffalex).otf" buildAction="Content" />
+      <files include="any/net9.0-windows10.0.26100/ZeroCool.otf" buildAction="Content" />
+      <files include="any/net9.0-windows10.0.26100/AppIcon.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.runtimeconfig.json" target="lib\net9.0-windows10.0.26100\ManageSpacesOfInstitute.runtimeconfig.json" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\bin\Release\net9.0-windows10.0.26100.0\ManageSpacesOfInstitute.dll" target="lib\net9.0-windows10.0.26100\ManageSpacesOfInstitute.dll" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\Doloto-Regular.ttf" target="content\Doloto-Regular.ttf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\Doloto-Regular.ttf" target="contentFiles\any\net9.0-windows10.0.26100\Doloto-Regular.ttf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\Yuruka Kerning (sherbackoffalex).otf" target="content\Yuruka Kerning (sherbackoffalex).otf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\Yuruka Kerning (sherbackoffalex).otf" target="contentFiles\any\net9.0-windows10.0.26100\Yuruka Kerning (sherbackoffalex).otf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\ZeroCool.otf" target="content\ZeroCool.otf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\ZeroCool.otf" target="contentFiles\any\net9.0-windows10.0.26100\ZeroCool.otf" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\AppIcon.ico" target="content\AppIcon.ico" />
+    <file src="C:\Users\GOLDS\source\repos\DB_Course\ManageSpacesOfInstitute\AppIcon.ico" target="contentFiles\any\net9.0-windows10.0.26100\AppIcon.ico" />
+  </files>
+</package>

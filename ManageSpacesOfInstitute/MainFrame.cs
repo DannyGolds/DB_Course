@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Networking.Sockets;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Text.RegularExpressions;
 
 
 
@@ -19,8 +18,7 @@ namespace ManageSpacesOfInstitute
     public partial class MainFrame : Form
     {
         private DataTable _originalDataTable;
-        private bool isAuthorizedAdmin = true;
-        private DataGridViewRow row;
+        private string AuthorizedType = "";
         private int prevAction;
         private struct LastEditBuildingState
         {
@@ -80,7 +78,7 @@ namespace ManageSpacesOfInstitute
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             gridview_foundroomsinfo.ReadOnly = true;
-            using var _ = UpdateTabsAsync();
+            //using var _ = UpdateTabsAsync();
         }
         private async void Form1_Load(object sender, EventArgs e)
         {
@@ -98,16 +96,52 @@ namespace ManageSpacesOfInstitute
             fpl_cheq.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtypebuild.SelectedIndexChanged += (s, _) => filterData();
             fpl_chtyperoom.SelectedIndexChanged += (s, _) => filterData();
+            await UpdateTabsAsync();
+        }
+        private List<TabPage> allowedPages = new List<TabPage>();
+
+        private void ConfigureSubTabs(string role)
+        {
+            allowedPages.Clear();
+
+            switch (role)
+            {
+                case "ADMIN":
+                    allowedPages.AddRange(new[] { tabPage1, tabPage3, tabPage4, tabPage5, tabChairs, tabFacult, tabPage6, tabPage7 });
+                    break;
+
+                case "DIRECTOR":
+                    tabControl1.SelectedIndex = 4;
+                    allowedPages.AddRange(new[] { tabChairs, tabFacult });
+                    break;
+
+                case "SUPMANAG":
+                    allowedPages.AddRange(new[] { tabPage1, tabPage3, tabPage4 });
+                    break;
+            }
         }
         private async Task UpdateTabsAsync()
         {
-            if (isAuthorizedAdmin)
+            bool canAccessEditPage = AuthorizedType == "ADMIN" ||
+                                     AuthorizedType == "DIRECTOR" ||
+                                     AuthorizedType == "SUPMANAG";
+
+            if (canAccessEditPage)
             {
                 if (!tabs.TabPages.Contains(page_edit))
                 {
                     tabs.TabPages.Add(page_edit);
                 }
-                await LoadDataToEditPageAsync();
+
+                try
+                {
+                    ConfigureSubTabs(AuthorizedType);
+                    await LoadDataToEditPageAsync();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Данные не загружены, но доступ открыт: {ex.Message}");
+                }
             }
             else
             {
@@ -131,6 +165,7 @@ namespace ManageSpacesOfInstitute
             await LoadDataToTableAsync(Shared.Chairs.info, Shared.Chairs.proc, Shared.Chairs.to_hide, dataGridView5, Shared.Chairs.naming);
             await LoadDataToTableAsync(Shared.Faculties.info, Shared.Faculties.proc, Shared.Faculties.to_hide, dataGridView6, Shared.Faculties.naming);
             await LoadDataToTableAsync(Shared.BuildingTypes.info, Shared.BuildingTypes.proc, Shared.BuildingTypes.to_hide, dataGridView7, Shared.BuildingTypes.naming);
+            await LoadDataToTableAsync(Shared.User.info, Shared.User.proc, Shared.User.to_hide, dataGridView8, Shared.User.naming);
             comboBox2.SelectedIndexChanged += (s, _) => filterEditRoom();
         }
         private async Task LoadDataToComboBoxFromTableAsync(string idColumnName, string displayColumnName, string tableName, System.Windows.Forms.ComboBox comboBox, bool useMinusOneForNone = false)
@@ -307,23 +342,25 @@ namespace ManageSpacesOfInstitute
 
 
         //START ОБРАБОТЧИКИ СОБЫТИЙ (MAIN_PAGE)
-        private void btn_auth_Click(object sender, EventArgs e)
+        private async void btn_auth_Click(object sender, EventArgs e)
         {
-            if (!isAuthorizedAdmin)
+            // Проверяем, авторизован ли пользователь (если AuthorizedType пустой — значит не залогинен)
+            if (string.IsNullOrEmpty(AuthorizedType))
             {
                 using var authForm = new Auth();
                 if (authForm.ShowDialog() == DialogResult.OK)
                 {
                     label_username.Text = authForm.loggedUser;
-                    if (authForm.accessLevel == "ADMIN")
-                    {
-                        isAuthorizedAdmin = true;
-                        UpdateTabsAsync();
-                        btn_auth.Text = "Выйти";
-                        Shared.ShowNotify("Уведомление", "Вы получили функционал редактирования базы.");
-                    }
+
+                    // Получаем уровень доступа из формы (например: "Admin", "Директор" или "Завхоз")
+                    AuthorizedType = authForm.accessLevel;
+
+                    // Обновляем интерфейс
+                    await UpdateTabsAsync();
+
+                    btn_auth.Text = "Выйти";
+                    Shared.ShowNotify("Уведомление", $"Вы вошли как {AuthorizedType}. Доступ обновлен.");
                 }
-                return;
             }
             else
             {
@@ -336,12 +373,16 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    isAuthorizedAdmin = false;
-                    UpdateTabsAsync();
+                    // Сбрасываем тип авторизации
+                    AuthorizedType = null;
+                    label_username.Text = "Гость";
+
+                    // Метод UpdateTabsAsync сам скроет page_edit, так как AuthorizedType теперь null
+                    await UpdateTabsAsync();
+
                     btn_auth.Text = "Авторизоваться";
-                    Shared.ShowNotify("Действия с аккаунтом", "Вы успешно вышли из аккаунта администратора!");
+                    Shared.ShowNotify("Действия с аккаунтом", "Вы успешно вышли из системы!");
                 }
-                return;
             }
         }
         private int GetSafeInt(object value)
@@ -363,8 +404,8 @@ namespace ManageSpacesOfInstitute
                 return;
             }
 
-            using var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
-            detailsForm.ShowDialog(this);
+            var detailsForm = new RoomDetails(Convert.ToInt32(roomId));
+            detailsForm.Show();
         }
         private void button27_Click(object sender, EventArgs e)
         {
@@ -818,7 +859,7 @@ namespace ManageSpacesOfInstitute
             txtEdEqNum.Enabled = true;
             cmbEdEqRoom.Enabled = true;
             r_txtEdEqDesc.Enabled = true;
-
+            btnEdBuildFile.Enabled = true;
         }
         private void DisableEqItems()
         {
@@ -827,6 +868,7 @@ namespace ManageSpacesOfInstitute
             txtEdEqNum.Enabled = false;
             cmbEdEqRoom.Enabled = false;
             r_txtEdEqDesc.Enabled = false;
+            btnEdBuildFile.Enabled = false;
         }
         private void clearEqItems()
         {
@@ -1096,7 +1138,7 @@ namespace ManageSpacesOfInstitute
 
                 if (result == DialogResult.Yes)
                 {
-                    if (txtEdRespFIO.Text.Length == 0 || cmbEdChFac.SelectedIndex == 0 || txtEdRespCont.Text.Length == 0)
+                    if (txtEdRespFIO.Text.Length == 0 || txtEdRespPos.Text.Length == 0 || txtEdRespCont.Text.Length == 0)
                     {
                         Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
                         return;
@@ -1642,8 +1684,166 @@ namespace ManageSpacesOfInstitute
 
 
 
+        private void EnableUsrItems()
+        {
+            txtEdUsrLg.Enabled = true;
+            txtEdUsrPswd.Enabled = true;
+            txtEdUsrType.Enabled = true;
+            chkEdUsrAct.Enabled = true;
 
-        
+
+        }
+        private void DisableUsrItems()
+        {
+            txtEdUsrLg.Enabled = false;
+            txtEdUsrPswd.Enabled = false;
+            txtEdUsrType.Enabled = false;
+            chkEdUsrAct.Enabled = false;
+
+        }
+        private void clearUsrItems()
+        {
+            txtEdUsrLg.Text = "";
+            txtEdUsrPswd.Text = "";
+            txtEdUsrType.Text = "";
+            chkEdUsrAct.Checked = false;
+        }
+        private void dataGridView8_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView8.CurrentRow == null) return;
+            prevAction = 0;
+            btnEdUsrDel.Enabled = true;
+            btnEdUsrSv.Enabled = false;
+            btnEdUsrEd.Enabled = true;
+            var row = dataGridView8.CurrentRow;
+
+            txtEdUsrLg.Text = row.Cells["Логин"].Value?.ToString() ?? "";
+            txtEdUsrType.Text = row.Cells["Тип УЗ"].Value?.ToString() ?? "";
+            chkEdUsrAct.Checked = (bool)row.Cells["УЗ активна"].Value;
+
+            DisableUsrItems();
+        }
+
+        private void btnEdUsrAdd_Click(object sender, EventArgs e)
+        {
+            prevAction = 1;
+            btnEdUsrDel.Enabled = false;
+            btnEdUsrEd.Enabled = false;
+            btnEdUsrSv.Enabled = true;
+            EnableUsrItems();
+            clearUsrItems();
+        }
+
+        private void btnEdUsrDel_Click(object sender, EventArgs e)
+        {
+            prevAction = 2;
+            btnEdUsrSv_Click(sender, e);
+        }
+
+        private async void btnEdUsrSv_Click(object sender, EventArgs e)
+        {
+            var row = dataGridView8.CurrentRow;
+            if (prevAction == 1)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Вы уверены, что хотите добавить запись?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    if (txtEdUsrType.Text.Length == 0 && txtEdUsrLg.Text.Length == 0 && txtEdUsrPswd.Text.Length == 0)
+                    {
+                        Shared.ShowNotify("Добавление записи", "Поля не должны быть пустыми!");
+                        return;
+                    }
+                    await ExecuteEditAsync(
+                        new FbParameter[]
+{   new FbParameter("P_LOGIN", FbDbType.VarChar) {Value = txtEdUsrLg.Text},
+new FbParameter("P_PASSWORDHASH", FbDbType.VarChar) {Value = BCrypt.Net.BCrypt.HashPassword( txtEdUsrPswd.Text, workFactor: 12)},
+new FbParameter("P_ACCESSLEVEL", FbDbType.VarChar) {Value = txtEdUsrType.Text},
+new FbParameter("P_ISACTIVE", FbDbType.Boolean) {Value = chkEdUsrAct.Checked},
+}, "ADD_USER");
+
+                }
+            }
+            else if (prevAction == 2)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Вы уверены, что хотите удалить запись?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    if (dataGridView8.CurrentRow == null)
+                    {
+                        Shared.ShowNotify("Удаление записи", "Нет выбранной строки для удаления.");
+                        return;
+                    }
+
+                    var idValue = row.Cells["USER_ID"].Value;
+
+                    await ExecuteEditAsync(new[]
+                    {
+                        new FbParameter("USER_ID", FbDbType.Integer) { Value = Convert.ToInt32(idValue) }
+                    }, "DELETE_USER");
+                }
+            }
+            else if (prevAction == 5)
+            {
+                var result = MessageBox.Show(
+                    this,
+                    "Вы уверены, что хотите обновить запись?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                var idValue = row.Cells["USER_ID"].Value;
+                if (result != DialogResult.Yes) return;
+
+                await ExecuteEditAsync(new[]
+                   {
+                        new FbParameter("USER_ID", FbDbType.Integer) { Value = Convert.ToInt32(idValue) },
+                        new FbParameter("LOGIN", FbDbType.VarChar) {Value = txtEdUsrLg.Text},
+                        new FbParameter("HASHPASS", FbDbType.VarChar) {Value = BCrypt.Net.BCrypt.HashPassword( txtEdUsrPswd.Text, workFactor: 12)},
+                        new FbParameter("ACCESSLEVEL", FbDbType.VarChar) {Value =txtEdUsrType.Text},
+                        new FbParameter("ISACTIVE", FbDbType.Boolean) {Value = chkEdUsrAct.Checked}
+                    }, "UPDATE_USER");
+
+                Shared.ShowNotify("Изменение записи", "Информация о типе корпуса обновлена.");
+                await LoadDataToEditPageAsync(); // или Form1_Load
+            }
+            Form1_Load(sender, e);
+            clearUsrItems();
+            DisableUsrItems();
+            await LoadDataToEditPageAsync();
+            btnEdUsrEd.Enabled = false;
+            btnEdUsrDel.Enabled = false;
+            btnEdUsrSv.Enabled = false;
+        }
+
+        private void btnEdUsrEd_Click(object sender, EventArgs e)
+        {
+            prevAction = 5;
+            btnEdUsrDel.Enabled = false;
+            btnEdUsrSv.Enabled = true;
+            EnableUsrItems();
+        }
+
+
+
+
+
+
+
+
+
 
         private void label15_Click(object sender, EventArgs e)
         {
@@ -1689,52 +1889,52 @@ namespace ManageSpacesOfInstitute
             btnEdBldtypeSv.Enabled = false;
         }
 
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //START Обработчики событий. (НЕИСПОЛЬЗУЕМЫЕ)
         private void tabPage1_Click(object sender, EventArgs e) { }
         private void textBox2_TextChanged(object sender, EventArgs e) { }
@@ -1780,5 +1980,32 @@ namespace ManageSpacesOfInstitute
 
         }
 
+        private void splitContainer8_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (!allowedPages.Contains(tabControl1.SelectedTab))
+            {
+                // Насильно возвращаем его на первую разрешенную вкладку
+                if (allowedPages.Count > 0)
+                {
+                    tabControl1.SelectedTab = allowedPages[0];
+                    Shared.ShowNotify("Доступ к этому разделу ограничен.", "Доступ");
+                }
+            }
+        }
     }
 }

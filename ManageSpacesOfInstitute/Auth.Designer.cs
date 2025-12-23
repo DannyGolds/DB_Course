@@ -104,7 +104,7 @@
             Margin = new Padding(6, 5, 6, 5);
             Name = "Auth";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Auth";
+            Text = "Вход";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -33,8 +33,6 @@
             lbl_id_input = new Label();
             BuildingImage = new PictureBox();
             dataGridView1 = new DataGridView();
-            flp = new FlowLayoutPanel();
-            button1 = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Габариты = new DataGridViewTextBoxColumn();
@@ -48,6 +46,8 @@
             Column10 = new DataGridViewTextBoxColumn();
             Column12 = new DataGridViewTextBoxColumn();
             Column11 = new DataGridViewTextBoxColumn();
+            flp = new FlowLayoutPanel();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)BuildingImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -73,6 +73,7 @@
             // 
             // BuildingImage
             // 
+            BuildingImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             BuildingImage.BorderStyle = BorderStyle.FixedSingle;
             BuildingImage.Location = new Point(14, 30);
             BuildingImage.Margin = new Padding(3, 2, 3, 2);
@@ -85,7 +86,8 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
@@ -98,28 +100,6 @@
             dataGridView1.Size = new Size(798, 70);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // flp
-            // 
-            flp.AutoScroll = true;
-            flp.BackColor = SystemColors.Menu;
-            flp.Location = new Point(420, 30);
-            flp.Margin = new Padding(0);
-            flp.Name = "flp";
-            flp.Size = new Size(392, 227);
-            flp.TabIndex = 0;
-            flp.Paint += flp_Paint;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(14, 338);
-            button1.Name = "button1";
-            button1.Size = new Size(213, 40);
-            button1.TabIndex = 11;
-            button1.Text = "Показать структуру по аудитории";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Column1
             // 
@@ -211,6 +191,30 @@
             Column11.Name = "Column11";
             Column11.ReadOnly = true;
             Column11.Width = 163;
+            // 
+            // flp
+            // 
+            flp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            flp.AutoScroll = true;
+            flp.BackColor = SystemColors.Menu;
+            flp.Location = new Point(420, 30);
+            flp.Margin = new Padding(0);
+            flp.Name = "flp";
+            flp.Size = new Size(392, 227);
+            flp.TabIndex = 0;
+            flp.Paint += flp_Paint;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.Font = new Font("Doloto", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button1.Location = new Point(14, 338);
+            button1.Name = "button1";
+            button1.Size = new Size(213, 40);
+            button1.TabIndex = 11;
+            button1.Text = "Показать структуру по аудитории";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // RoomDetails
             // 

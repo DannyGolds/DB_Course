@@ -41,7 +41,7 @@ namespace ManageSpacesOfInstitute
                 // Получаем хэш из БД
                 var dt = await db.CallProcedureAsync(
                     "GET_USER_BY_USERNAME",
-                    new List<string> { "USER_ID", "PASSWORD_HASH", "ACCESSLEVEL"},
+                    new List<string> { "USER_ID", "PASSWORD_HASH", "ACCESSLEVEL", "IS_ACTIVE"},
                     new FbParameter("P_USERNAME", username)
                 );
 
@@ -54,7 +54,7 @@ namespace ManageSpacesOfInstitute
                 string storedHash = dt.Rows[0]["PASSWORD_HASH"].ToString();
 
                 // Верификация пароля
-                if (BCrypt.Net.BCrypt.Verify(password, storedHash))
+                if (BCrypt.Net.BCrypt.Verify(password, storedHash) && (bool)dt.Rows[0]["IS_ACTIVE"] == true)
                 {
                     loggedUser = username;
                     accessLevel = dt.Rows[0]["ACCESSLEVEL"].ToString();
@@ -66,7 +66,7 @@ namespace ManageSpacesOfInstitute
                     Shared.ShowNotify("Действия с аккаунтом", "Неверный пароль!");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Shared.ShowNotify("Действия с аккаунтом", "Неверный логин или пароль");
             }

@@ -15,25 +15,13 @@
           }
         }
       },
-      "FirebirdSql.Data.FirebirdClient/7.10.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Reflection.Emit": "4.7.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll": {}
-        }
-      },
-      "System.Reflection.Emit/4.7.0": {
+      "FirebirdSql.Data.FirebirdClient/10.3.4": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll": {}
         }
       }
     }
@@ -70,81 +58,32 @@
         "readme.md"
       ]
     },
-    "FirebirdSql.Data.FirebirdClient/7.10.0": {
-      "sha512": "KTB61XmhM5S0xZ9zjjFtNgtnwqRdztwD0cSJza7O2QOV6rOk3owpCx/ETBuj/Ugz5AEgVCEQMFUlirLdTi1lcw==",
+    "FirebirdSql.Data.FirebirdClient/10.3.4": {
+      "sha512": "lmaY+XQvnhPl1YRrY+lzTZPD88YDbllelN5RhFMrzinqSmjWpWZRE0A4AI1L2mPBNAI346Q8MHAvnJjDPd7VnQ==",
       "type": "package",
-      "path": "firebirdsql.data.firebirdclient/7.10.0",
+      "path": "firebirdsql.data.firebirdclient/10.3.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "firebird-logo.png",
-        "firebirdsql.data.firebirdclient.7.10.0.nupkg.sha512",
+        "firebirdsql.data.firebirdclient.10.3.4.nupkg.sha512",
         "firebirdsql.data.firebirdclient.nuspec",
-        "lib/net452/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net48/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net6.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net7.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net8.0/FirebirdSql.Data.FirebirdClient.dll",
         "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll",
-        "license.txt",
-        "readme.txt"
-      ]
-    },
-    "System.Reflection.Emit/4.7.0": {
-      "sha512": "VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ==",
-      "type": "package",
-      "path": "system.reflection.emit/4.7.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/netcore50/System.Reflection.Emit.dll",
-        "lib/netcoreapp2.0/_._",
-        "lib/netstandard1.1/System.Reflection.Emit.dll",
-        "lib/netstandard1.1/System.Reflection.Emit.xml",
-        "lib/netstandard1.3/System.Reflection.Emit.dll",
-        "lib/netstandard2.0/System.Reflection.Emit.dll",
-        "lib/netstandard2.0/System.Reflection.Emit.xml",
-        "lib/netstandard2.1/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcoreapp2.0/_._",
-        "ref/netstandard1.1/System.Reflection.Emit.dll",
-        "ref/netstandard1.1/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/de/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/es/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/fr/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/it/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/ja/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/ko/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/ru/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/zh-hans/System.Reflection.Emit.xml",
-        "ref/netstandard1.1/zh-hant/System.Reflection.Emit.xml",
-        "ref/netstandard2.0/System.Reflection.Emit.dll",
-        "ref/netstandard2.0/System.Reflection.Emit.xml",
-        "ref/netstandard2.1/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/aot/lib/netcore50/System.Reflection.Emit.dll",
-        "runtimes/aot/lib/netcore50/System.Reflection.Emit.xml",
-        "system.reflection.emit.4.7.0.nupkg.sha512",
-        "system.reflection.emit.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "lib/netstandard2.1/FirebirdSql.Data.FirebirdClient.dll",
+        "license.txt"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0-windows10.0.26100": [
       "BCrypt.Net-Next >= 4.0.3",
-      "FirebirdSql.Data.FirebirdClient >= 7.10.0"
+      "FirebirdSql.Data.FirebirdClient >= 10.3.4"
     ]
   },
   "packageFolders": {
@@ -154,11 +93,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
+      "projectUniqueName": "C:\\Users\\GOLDS\\source\\repos\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
       "projectName": "ManageSpacesOfInstitute",
-      "projectPath": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
+      "projectPath": "C:\\Users\\GOLDS\\source\\repos\\DB_Course\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute.csproj",
       "packagesPath": "C:\\Users\\GOLDS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GOLDS\\source\\repos\\ManageSpacesOfInstitute\\ManageSpacesOfInstitute\\obj\\",
+      "outputPath": "C:\\Users\\GOLDS\\source\\repos\\DB_Course\\ManageSpacesOfInstitute\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -203,7 +142,7 @@
           },
           "FirebirdSql.Data.FirebirdClient": {
             "target": "Package",
-            "version": "[7.10.0, )"
+            "version": "[10.3.4, )"
           }
         },
         "imports": [

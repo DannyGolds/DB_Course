@@ -5,6 +5,7 @@ namespace ManageSpacesOfInstitute
 {
     public static class Shared
     {
+        public static Dictionary<string, List<TabPage>> keyValuePairs = new Dictionary<string, List<TabPage>>();
         public static void LoadImageFromBlob(PictureBox pictureBox, object blobData)
         {
             // Скрываем PictureBox, если данных нет
@@ -40,7 +41,7 @@ namespace ManageSpacesOfInstitute
             notifyIcon.Visible = true;
 
             // Показать уведомление
-            notifyIcon.ShowBalloonTip(3000, title, text, ToolTipIcon.Info);
+            notifyIcon.ShowBalloonTip(0, title, text, ToolTipIcon.Info);
 
         }
         public static class Partial
@@ -72,6 +73,22 @@ namespace ManageSpacesOfInstitute
             };
         }
 
+        public static class User
+        {
+            public static List<string> info = new List<string>
+            {
+                "USER_ID", "LOGIN", "ACCESSLEVEL","IS_ACTIVE"
+            };
+            public static string proc = "GET_USER_BY_USERNAME";
+            public static List<string> to_hide = new List<string> { "USER_ID" };
+            public static List<string> naming = new List<string>
+            {
+                "USER_ID",
+                "Логин",
+                "Тип УЗ",
+                "УЗ активна"
+            };
+        }
         public static class Responsible
         {
             public static List<string> info = new List<string>

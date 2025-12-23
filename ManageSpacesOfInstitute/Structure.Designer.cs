@@ -39,15 +39,16 @@
             richTextBox1.BackColor = SystemColors.ButtonFace;
             richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Font = new Font("Zero Cool", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            richTextBox1.Location = new Point(12, 43);
+            richTextBox1.Location = new Point(0, 43);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(375, 109);
+            richTextBox1.Size = new Size(398, 118);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.ForeColor = Color.DarkCyan;
             label1.Location = new Point(12, 9);
@@ -66,9 +67,11 @@
             Font = new Font("Zero Cool", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(8, 6, 8, 6);
+            MaximumSize = new Size(650, 220);
+            MinimumSize = new Size(414, 200);
             Name = "Structure";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Structure";
+            Text = "Структура по аудитории";
             Load += Structure_Load;
             ResumeLayout(false);
             PerformLayout();
